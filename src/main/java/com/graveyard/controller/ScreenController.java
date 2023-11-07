@@ -12,4 +12,9 @@ public class ScreenController {
     public String welcome() {
         return "Welcome";
     }
+
+    @GetMapping(path="/filter_page_blank")
+    public String filter_page_blank() {
+        return "GraveFilter/filter_page_blank";
+    }
 }
