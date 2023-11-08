@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -8,8 +8,8 @@
   <!-- Make sure you put this AFTER Leaflet's CSS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-  <script th:src="@{/Graveyard_Banani_Grave_Qgis_4326.js}"></script>
-  <script th:src="@{/Road_Banani.js}"></script>
+  <script src="Graveyard_Banani_Grave_Qgis_4326.js"></script>
+  <script src="Road_Banani.js"></script>
 
   <style>
         #map { height: 780px; }
@@ -30,7 +30,18 @@
 <body>
 <div id="map"></div>
 <script>
-    //create map object in map div with co-orrdinate and zoom level
+<!-- $(document).ready(function(){-->
+<!--$.getJSON( '[[@{/api/getGraveAvailApi}]]')-->
+<!--          .done(function( data ) {-->
+<!--            console.log(data);-->
+<!--          })-->
+<!--          .fail(function( jqxhr, textStatus, error ) {-->
+<!--            console.log( "Request Failed: " + error );-->
+<!--            alert("Request Failed: " + error);-->
+<!--        });-->
+<!--});-->
+<!--function createMap(){-->
+     //create map object in map div with co-orrdinate and zoom level
     // var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);
     var map = L.map('map').setView([23.799933989199999, 90.404398157299994], 21);
 
@@ -49,14 +60,15 @@
     //set color of the polygon
     function getColor(d) {
         //return d = "0220139" ? '#800026' : '#FFFF00';
-        return d = '#52C755';
+        return  d == "Yes" ? '#52c755' : '#ff0f0f';
     }
 
     //set the style of the polygon
     function style(feature) {
         return {
           //  fillColor: getColor(feature.properties.Grave_ID),
-            fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
+          //  fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
+            fillColor: getColor(feature.properties.Available),
             weight: 2,
             opacity: 1,
             color: 'white',
@@ -94,8 +106,9 @@
     //set the feature on mouse hover
     function onEachFeature(feature, layer) {
         layer.on({
-            mouseover: highlightFeature,
+            // mouseover: highlightFeature,
             mouseout: resetHighlight,
+            // click: zoomToFeature,
             click: highlightFeature
         });
     }
@@ -121,6 +134,9 @@
     info.addTo(map);
 
     var gravedata=L.geoJSON(gravedata).addTo(map)
+
+<!--}-->
+
 </script>
 </body>
 </html>
