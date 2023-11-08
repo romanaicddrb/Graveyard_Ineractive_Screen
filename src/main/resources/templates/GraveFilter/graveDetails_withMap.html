@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+  <title>Graveyard interactive screen</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- Custom styles for this template -->
+  <link href="starter-template.css" rel="stylesheet">
+  <style type="text/css" data-asas-style="">
+	  body, div, a, p, span{ user-select: text !important; }
+	  p, h1, h2, h3, h4, h5, h6{ cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important; color: #fff !important; }
+	  #myDataTable thead th {
+		  background-color: #E1EFFE;
+		}
+
+		.card-footer button {
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+		}
+
+
+		.card-footer button i {
+			margin-right: 5px;
+		}
+	  .container, .container-lg, .container-md, .container-sm, .container-xl
+	  {
+	  max-width: 1800px;
+		}
+	  </style>
+</head>
+
+<body >
+
+<div th:replace="GraveFilter/filter_page_blank.html :: navbar"></div>
+<main role="main" class="container">
+  <div class="row">
+    <nav aria-label="breadcrumb "  >
+      <ol class="breadcrumb  mb-5  ">
+        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><img  id ="home" src="https://img.icons8.com/ios-filled/50/000000/dog-house.png" class="mr-md-2 mr-1 mb-1 "  width="22" height="19"><span  >হোম</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"> </li>
+        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >কবর অনুসন্ধান</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>
+        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >কবরের বিস্তারিত</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <!-- First Column with Card -->
+          <div class="card">
+            <div class="card-header">কবরের বিস্তারিত</div>
+            <div class="card-body">
+              <div class=" col-md-12">
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="form-group">
+                        <label >কবরের মেমো / আইডি নং</label>
+                        <p>ব ২৬২৩</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label >কবর নং</label>
+                        <p>২৭</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label >কবরের সারি</label>
+                        <p>৫</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label >কবরের ব্লক</label>
+                        <p>০১</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label >কবরের জোন</label>
+                        <p>উত্তর জোন</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label >মৃত্যুর তারিখ</label>
+                        <p>২৬-১২-২০২১</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label >দাফনের তারিখ</label>
+                        <p>২৭-১২-২০২১</p>
+                      </div>
+                    </div>
+
+                    <!-- Repeat the above structure for the remaining rows -->
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="form-group">
+                        <label >মৃত্যু ব্যক্তির নাম</label>
+                        <p>গোলাম মোস্তফা</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label>স্বামী/স্ত্রীর নাম</label>
+                        <p>কানিজ ফাতেমা</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label >পিতাম নাম</label>
+                        <p>গোলাম হাফিজ</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label >মাতার নাম</label>
+                        <p>রাজিয়া বেগম</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label >ঠিকানা</label>
+                        <p>১১ নং রোড, বনানী কাকলী ঢাকা</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label >জাতীয়তা</label>
+                        <p>বাংলাদেশী</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <!-- Second Column with Card -->
+          <div class="card " style="height: 100%;">
+            <div class="card-body">
+              <!-- Content for the second card -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</main><!-- /.container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>
+<script>
+	  $(document).ready(function() {
+		$('#myDataTable').DataTable();
+	  });
+	</script>
+
+
+</body>
+</html>

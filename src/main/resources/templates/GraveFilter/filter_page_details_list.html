@@ -9,13 +9,13 @@
 
   <title>Graveyard interactive screen</title>
 
-
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
   <!-- Custom styles for this template -->
-  <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">
+  <link href="starter-template.css" rel="stylesheet">
   <style type="text/css" data-asas-style="">
 	  body, div, a, p, span{ user-select: text !important; }
 	  p, h1, h2, h3, h4, h5, h6{ cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important; color: #fff !important; }
@@ -40,25 +40,12 @@
 		}
 
 	  </style>
-
-
-
 </head>
-<body>
 
-    <div th:fragment="navbar">
-      <nav class="navbar navbar-expand-md navbar-dark bg-light fixed-top">
-      <img th:src="@{/resource/icon.png}" alt="Your Logo" width="24" height="24" style="margin-right: 10px; width: 24px; height: 24px; padding: 3.29px 7.29px 3.29px 6.59px; border-radius: 3px; background: #1175BD;">
-      <span style="width: 760px; height: 29px; font-family: Inter; font-weight: 400; line-height: 29px; letter-spacing: 0em; text-align: left;">পূর্ববর্তী পেজে যান</span>
-      <div class="collapse navbar-collapse" >
-        <img th:src="@{/resource/Group7241.png}"alt="Your Logo" width="30" height="30" style="margin-right: 10px;">
-        কবরস্থান ব্যবস্থাপনা সিস্টেম
+<body >
 
-      </div>
-      </nav>
-    </div>
-
-  <main role="main" class="container">
+<div th:replace="GraveFilter/filter_page_blank.html :: navbar"></div>
+<main role="main" class="container">
   <div class="row">
     <nav aria-label="breadcrumb "  >
       <ol class="breadcrumb  mb-5  ">
@@ -69,22 +56,21 @@
   </div>
   <div class="row">
     <!-- Left Card with Filter Options -->
-
     <div class="col-md-4">
       <div class="card">
         <div class="card-header">প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন</div>
         <div class="card-body">
           <!-- Filter by Name -->
           <div class="form-group">
-            <label for="MemoFilter">মেমো নং</label>
+            <label >মেমো নং</label>
             <input type="text" class="form-control" id="MemoFilter">
           </div>
           <div class="form-group">
-            <label for="DeadnameFilter">মৃত্যু ব্যক্তির নাম</label>
+            <label >মৃত্যু ব্যক্তির নাম</label>
             <input type="text" class="form-control" id="DeadnameFilter">
           </div>
           <div class="form-group">
-            <label for="DeaddayFilter">মৃত্যুর তারিখ</label>
+            <label >মৃত্যুর তারিখ</label>
             <div class="row">
               <div class="col-sm-4">
                 <div class="form-group">
@@ -160,12 +146,13 @@
             </div>
           </div>
 
-          <div>
+          <div class="card-footer" style="background-color: #205F8B;">
 
-            <button type="button" class="btn btn-primary btn-lg btn-block">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-            </svg>
+            <button type="button" class="btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+              </svg>
+
             </button>
           </div>
 
@@ -174,7 +161,6 @@
         </div>
       </div>
     </div>
-
 
     <!-- Right Card with Data Table -->
     <div class="col-md-8">
@@ -195,14 +181,108 @@
             </tr>
             </thead>
             <tbody>
+            <!-- Add your data rows here -->
             <tr>
-              <td colspan="7" style="text-align: center;">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                  <img th:src="@{/resource/popup.png}" alt="Popup Image" width="350" height="350">
-                  <p>কোন ডাটা অনুসন্ধান করে পাওয়া যায় নি</p>
-                </div>
-              </td>
+              <td>ব ২৬২৩</td>
+              <td>২৬-১২-২০২১</td>
+              <td>গোলাম মোস্তফা</td>
+              <td>গোলাম হাফিজ</td>
+              <td>২৭-১২-২০২১</td>
+              <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
+
+              <td><a th:href="@{/graveDetails_withMap}"><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></a></td>
             </tr>
+            <tr>
+              <td>ব ২৬২১</td>
+              <td>২৬-১২-২০২১</td>
+              <td>গোলাম মোস্তফা</td>
+              <td>গোলাম হাফিজ</td>
+              <td>২৭-১২-২০২১</td>
+              <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
+              <td><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></td>
+            </tr>
+            <tr>
+              <td>ব ২৬২৩</td>
+              <td>২৬-১২-২০২১</td>
+              <td>গোলাম মোস্তফা</td>
+              <td>গোলাম হাফিজ</td>
+              <td>২৭-১২-২০২১</td>
+              <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
+              <td><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></td>
+            </tr>
+            <tr>
+              <td>ব ২৬২১</td>
+              <td>২৬-১২-২০২১</td>
+              <td>গোলাম মোস্তফা</td>
+              <td>গোলাম হাফিজ</td>
+              <td>২৭-১২-২০২১</td>
+              <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
+              <td><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></td>
+            </tr>
+            <tr>
+              <td>ব ২৬২৩</td>
+              <td>২৬-১২-২০২১</td>
+              <td>গোলাম মোস্তফা</td>
+              <td>গোলাম হাফিজ</td>
+              <td>২৭-১২-২০২১</td>
+              <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
+              <td><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></td>
+            </tr>
+            <tr>
+              <td>ব ২৬২১</td>
+              <td>২৬-১২-২০২১</td>
+              <td>গোলাম মোস্তফা</td>
+              <td>গোলাম হাফিজ</td>
+              <td>২৭-১২-২০২১</td>
+              <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
+              <td><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></td>
+            </tr>
+            <tr>
+              <td>ব ২৬২৩</td>
+              <td>২৬-১২-২০২১</td>
+              <td>গোলাম মোস্তফা</td>
+              <td>গোলাম হাফিজ</td>
+              <td>২৭-১২-২০২১</td>
+              <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
+              <td><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></td>
+            </tr>
+            <tr>
+              <td>ব ২৬২১</td>
+              <td>২৬-১২-২০২১</td>
+              <td>গোলাম মোস্তফা</td>
+              <td>গোলাম হাফিজ</td>
+              <td>২৭-১২-২০২১</td>
+              <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
+              <td><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></td>
+            </tr>
+            <tr>
+              <td>ব ২৬২১</td>
+              <td>২৬-১২-২০২১</td>
+              <td>গোলাম মোস্তফা</td>
+              <td>গোলাম হাফিজ</td>
+              <td>২৭-১২-২০২১</td>
+              <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
+              <td><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></td>
+            </tr>
+            <tr>
+              <td>ব ২৬২৩</td>
+              <td>২৬-১২-২০২১</td>
+              <td>গোলাম মোস্তফা</td>
+              <td>গোলাম হাফিজ</td>
+              <td>২৭-১২-২০২১</td>
+              <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
+              <td><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></td>
+            </tr>
+            <tr>
+              <td>ব ২৬২১</td>
+              <td>২৬-১২-২০২১</td>
+              <td>গোলাম মোস্তফা</td>
+              <td>গোলাম হাফিজ</td>
+              <td>২৭-১২-২০২১</td>
+              <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
+              <td><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></td>
+            </tr>
+            <!-- Add more data rows as needed -->
             </tbody>
           </table>
         </div>
@@ -217,7 +297,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 
 <script src="../../assets/js/vendor/popper.min.js"></script>
-<script src="/plugins/bootstrap.js/bootstrap.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>
 <script>
 	  $(document).ready(function() {
@@ -227,6 +307,4 @@
 
 
 </body>
-
-
 </html>
