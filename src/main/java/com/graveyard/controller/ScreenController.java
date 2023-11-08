@@ -12,4 +12,7 @@ public class ScreenController {
     public String welcome() {
         return "Welcome";
     }
+
+    @GetMapping(path="/map")
+    public String showMap(){ return "showmap";}
 }
