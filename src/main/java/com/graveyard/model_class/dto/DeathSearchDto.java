@@ -1,17 +1,19 @@
-package com.graveyard.model_class.dto;
-
-import lombok.*;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-public class DeathSearchDto {
-    String graveyardId;
-    String search_text;
-    String search_text_F;
-    String search_text_M;
-    String search_text_NID;
-    String search_text_dod;
-    String search_text_dobur;
-}
+//package com.graveyard.model_class.dto;
+//
+//import lombok.*;
+//
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Getter
+//@Setter
+//public class DeathSearchDto {
+//    String graveyardId;
+//    String memo;
+//    String name;
+//    String dod_day;
+//    String dod_month;
+//    String dod_year;
+//    String bur_day;
+//    String bur_month;
+//    String bur_year;
+//}

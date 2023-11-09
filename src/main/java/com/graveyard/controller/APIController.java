@@ -1,8 +1,8 @@
 package com.graveyard.controller;
 
-import com.graveyard.model_class.dto.DataTable;
+import com.graveyard.model_class.dto.DataTableDto.DataTable;
+import com.graveyard.model_class.dto.DataTableDto.DataTableRequestDto;
 import com.graveyard.model_class.dto.DeathListDto;
-import com.graveyard.model_class.dto.DeathSearchDto;
 import com.graveyard.model_class.dto.GraveDetail;
 import com.graveyard.service.GraveService;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class APIController {
     }
 
     @PostMapping(path = "/search", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DataTable<DeathListDto>> search(DeathSearchDto object) {
+    public ResponseEntity<DataTable<DeathListDto>> search(DataTableRequestDto object) {
         return new ResponseEntity<>(graveService.getBySearch(object), HttpStatus.OK);
     }
 
