@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
   <!-- Custom styles for this template -->
-  <link href="starter-template.css" rel="stylesheet">
+  <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">
   <style type="text/css" data-asas-style="">
 	  body, div, a, p, span{ user-select: text !important; }
 	  p, h1, h2, h3, h4, h5, h6{ cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important; color: #fff !important; }
@@ -48,7 +48,7 @@
   <div class="row">
     <nav aria-label="breadcrumb "  >
       <ol class="breadcrumb  mb-5  ">
-        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><img  id ="home" src="https://img.icons8.com/ios-filled/50/000000/dog-house.png" class="mr-md-2 mr-1 mb-1 "  width="22" height="19"><span  >হোম</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"> </li>
+        <li class="breadcrumb-item "><a class="black-text active-2" th:href="@{/}"><img  id ="home" src="https://img.icons8.com/ios-filled/50/000000/dog-house.png" class="mr-md-2 mr-1 mb-1 "  width="22" height="19"><span  >হোম</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"> </li>
         <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >কবর অনুসন্ধান</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>
         <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >কবরের বিস্তারিত</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>
       </ol>

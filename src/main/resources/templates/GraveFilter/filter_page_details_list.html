@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
   <!-- Custom styles for this template -->
-  <link href="starter-template.css" rel="stylesheet">
+  <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">
   <style type="text/css" data-asas-style="">
 	  body, div, a, p, span{ user-select: text !important; }
 	  p, h1, h2, h3, h4, h5, h6{ cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important; color: #fff !important; }
@@ -49,7 +49,7 @@
   <div class="row">
     <nav aria-label="breadcrumb "  >
       <ol class="breadcrumb  mb-5  ">
-        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><img  id ="home" src="https://img.icons8.com/ios-filled/50/000000/dog-house.png" class="mr-md-2 mr-1 mb-1 "  width="22" height="19"><span  >হোম</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"> </li>
+        <li class="breadcrumb-item "><a class="black-text active-2" th:href="@{/}"><img  id ="home" src="https://img.icons8.com/ios-filled/50/000000/dog-house.png" class="mr-md-2 mr-1 mb-1 "  width="22" height="19"><span  >হোম</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"> </li>
         <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >কবর অনুসন্ধান</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>
       </ol>
     </nav>
@@ -146,15 +146,14 @@
             </div>
           </div>
 
-          <div class="card-footer" style="background-color: #205F8B;">
 
-            <button type="button" class="btn">
+
+            <button type="button" class="btn btn-primary btn-lg btn-block">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
               </svg>
-
             </button>
-          </div>
+
 
 
 
@@ -190,7 +189,7 @@
               <td>২৭-১২-২০২১</td>
               <td>১১ নং রোড, বনানী কাকলী ঢাকা</td>
 
-              <td><a th:href="@{/graveDetails_withMap}"><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></a></td>
+              <td><a th:href="@{/graveDetails_withPosition}"><button type="button" class="btn btn-primary btn-sm">বিস্তারিত দেখুন</button></a></td>
             </tr>
             <tr>
               <td>ব ২৬২১</td>

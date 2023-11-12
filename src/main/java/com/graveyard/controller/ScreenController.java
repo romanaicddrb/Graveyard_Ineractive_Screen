@@ -10,7 +10,7 @@ public class ScreenController {
 
     @GetMapping(path="/")
     public String welcome() {
-        return "Welcome";
+        return "GraveFilter/HomeScreen";
     }
 
     @GetMapping(path="/filter_page_blank")
@@ -23,9 +23,24 @@ public class ScreenController {
         return "GraveFilter/filter_page_details_list";
     }
 
-    @GetMapping(path="/graveDetails_withMap")
+    @GetMapping(path="/graveSearch")
     public String graveDetails_withMap() {
+        return "GraveFilter/filter_page_blank";
+    }
+
+    @GetMapping(path="/mapSearch")
+    public String mapSearch() {
+        return "GraveFilter/MapSearchGrave";
+    }
+
+    @GetMapping(path="/graveDetails_withPosition")
+    public String graveDetails_withPosition() {
         return "GraveFilter/graveDetails_withMap";
+    }
+
+    @GetMapping(path="/BuriedSearch")
+    public String BuriedSearch() {
+        return "GraveFilter/filter_page_details_list";
     }
 
 
