@@ -1,4 +1,4 @@
-package com.graveyard.model_class.dto;
+package com.graveyard.model_class.dto.DataTableDto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

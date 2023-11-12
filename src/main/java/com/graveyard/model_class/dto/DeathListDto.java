@@ -2,12 +2,14 @@ package com.graveyard.model_class.dto;
 
 import java.time.LocalDate;
 
-public class DeathListDto {
-    public String decId;
-    private String memoNo;
-    public String decName;
-    public String father;
-    public String mother;
-    public String dod;
-    public String burDate;
+public interface DeathListDto {
+    String getDec_id();
+    String getGraveyard_id();
+    String getGrave_id();
+    String getMemo_no();
+    String getDec_name();
+    String getFather();
+    String getDod();
+    String getBur_date();
+    String getAddress();
 }
