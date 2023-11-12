@@ -1,0 +1,201 @@
+body {
+    margin:0;
+    padding:0;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    font-family: Hind Siliguri;
+    display: flex;
+    justify-content: center;
+}
+
+.video { /* This is to make the video appear behind everything else */
+    position: fixed;
+    z-index: -1000; /* Z-Index is -1000 just to be safe */
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+}
+
+.headerOf{
+    display: flex;
+    margin: 25px 0px 25px 15px;
+    /* width: 1759px; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.start{
+    color: #FFF;
+    text-align: center;
+    font-family: Hind Siliguri;
+    display: flex;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.logosSec{
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+
+.logos{
+    display: flex;
+    justify-content: right;
+    flex-shrink: 0;
+}
+
+.logoText{
+  color: #FFF;
+  font-family: Baloo Da 2;
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  font-size: 14px;
+  padding: 0;
+  /* font-style: normal; */
+  font-weight: 600;
+  line-height: normal;
+}
+
+.contentCenter{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Hind Siliguri;
+  gap: 40px;
+  margin-top: 5%;
+}
+
+.titleB{
+  color: #FFF;
+  text-align: center;
+  text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+  font-family: Hind Siliguri;
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+  font-weight: 700;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.44);
+  background: rgba(17, 117, 189, 0.19);
+  /* line-height: 64px; 133.333% */
+}
+
+.contentSec{
+  color: #FFF;
+  text-align: center;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.60);
+  font-family: Hind Siliguri;
+  font-size: smaller;
+  font-style: normal;
+  /* font-weight: 500; */
+  line-height: normal;
+}
+
+.centerBottom{
+  display: flex;
+  /* align-items: flex-start; */
+  gap: 40px;
+
+  .graveSearch{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    /* gap: 10px; */
+    flex: 1 0 0;
+
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.69);
+    background: #1175BD;
+
+    p{
+      color: #FFFFFF; 
+      font-family: Hind Siliguri;  
+      font-style: normal; 
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+
+  .mapSearch{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    /* gap: 10px; */
+    flex: 1 0 0;
+
+    border-radius: 10px;
+    background: #FFF;
+
+    p{
+      font-family: Hind Siliguri;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+}
+
+.footOf { /* This is for the content */
+    position: fixed;
+    z-index: 1; /* This can be set to any number greater than -1000. */
+    bottom: 0;
+    /* background: rgba(0, 0, 0, 0.5); */
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;    
+    /* align-items: center; */
+    gap: 4px;
+}
+
+p{
+  margin: auto; 
+  align-content: center;
+}
+
+.footRight{
+  display: flex;
+  padding: 0px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: #FFF;
+
+  p{
+    color: #343434;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); /* <-- this is the culprit */
+}
