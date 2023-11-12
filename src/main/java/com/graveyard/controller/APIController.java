@@ -1,5 +1,6 @@
 package com.graveyard.controller;
 
+import com.graveyard.model_class.dto.*;
 import com.graveyard.model_class.dto.DataTableDto.DataTable;
 import com.graveyard.model_class.dto.DataTableDto.DataTableRequestDto;
 import com.graveyard.model_class.dto.DeathListDto;
@@ -9,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -29,6 +32,12 @@ public class APIController {
     public ResponseEntity<GraveDetail> detail(@PathVariable("gId") String gId,
                                               @PathVariable("id") String id) {
         return new ResponseEntity<>(graveService.getGraveDetail(gId, id), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/getGraveAvailApi")
+    public List<GraveAvailabilityDto> Allgraveavailability() {
+        List<GraveAvailabilityDto> f = graveService.getGraveStatus();
+        return f;
     }
 
 }

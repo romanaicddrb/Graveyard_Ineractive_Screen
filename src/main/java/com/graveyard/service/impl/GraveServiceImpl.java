@@ -1,5 +1,6 @@
 package com.graveyard.service.impl;
 
+import com.graveyard.model_class.dto.*;
 import com.graveyard.model_class.dto.DataTableDto.DataTable;
 import com.graveyard.model_class.dto.DataTableDto.DataTableRequestDto;
 import com.graveyard.model_class.dto.DeathListDto;
@@ -7,6 +8,8 @@ import com.graveyard.model_class.dto.GraveDetail;
 import com.graveyard.repository.GraveRepository;
 import com.graveyard.service.GraveService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import java.util.ArrayList;
 
@@ -18,6 +21,7 @@ public class GraveServiceImpl implements GraveService {
     public GraveServiceImpl(GraveRepository graveRepository) {
         this.graveRepository = graveRepository;
     }
+
 
     @Override
     public DataTable<DeathListDto> getBySearch(DataTableRequestDto object) {
@@ -69,4 +73,11 @@ public class GraveServiceImpl implements GraveService {
             return null;
         }
     }
+
+    @Override
+    public List<GraveAvailabilityDto> getGraveStatus() {
+        return graveRepository.getGraveStatus();
+    }
+
+
 }
