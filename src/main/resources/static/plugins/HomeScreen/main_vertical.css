@@ -4,26 +4,26 @@ body {
 }
 
 .container{
-    width: 100%;
-    height: 100%;
     font-family: Hind Siliguri;
     display: flex;
     justify-content: center;
+    width: 2000.94px;
+    height: 3557.22px;
 }
+
 
 .video { /* This is to make the video appear behind everything else */
     position: fixed;
     z-index: -1000; /* Z-Index is -1000 just to be safe */
     right: 0;
     bottom: 0;
-    min-width: 100%; 
-    min-height: 100%;
+    min-width: 100%;
+    min-height: 80%;
 }
 
 .headerOf{
     display: flex;
-    margin: 25px 0px 25px 15px;
-    /* width: 1759px; */
+    /*width: 1759px;*/
     justify-content: space-between;
     align-items: center;
 }
@@ -41,15 +41,18 @@ body {
 
 .logosSec{
     display: flex;
+    flex-direction: column;
     text-align: left;
     justify-content: space-between;
     align-items: center;
     padding: 0;
+    justify-content: center;
+    gap: 10px;
 }
 
 .logos{
     display: flex;
-    justify-content: right;
+    justify-content: center;
     flex-shrink: 0;
 }
 
@@ -58,7 +61,7 @@ body {
   font-family: Baloo Da 2;
   display: flex;
   justify-content: center;
-  text-align: left;
+  text-align: center;
   font-size: 14px;
   padding: 0;
   /* font-style: normal; */
@@ -150,18 +153,21 @@ body {
 }
 
 .footOf { /* This is for the content */
-    position: fixed;
-    z-index: 1; /* This can be set to any number greater than -1000. */
-    bottom: 0;
-    /* background: rgba(0, 0, 0, 0.5); */
-    color: #f1f1f1;
-    width: 100%;
-    padding: 20px;
     display: flex;
+    /*width: 1800px;*/
     justify-content: space-between;
-    padding: 10px 20px;    
-    /* align-items: center; */
-    gap: 4px;
+    align-items: center;
+}
+
+.footLeft{
+    background: rgba(12, 64, 101, 0.80);
+    border-radius: 4px;
+    display: flex;
+    padding: 20px 32px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 p{
@@ -171,19 +177,12 @@ p{
 
 .footRight{
   display: flex;
-  padding: 0px;
+  padding: 10px 20px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0px;
   border-radius: 10px;
-  background: #FFF;
-
-  p{
-    color: #343434;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+  background: rgba(9, 51, 81, 0.76);
 }
 
 .modal {
@@ -198,4 +197,41 @@ p{
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4); /* <-- this is the culprit */
+}
+
+
+.commonFooter{
+    background: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .footerP{
+        /*background: url{[[@{/resource/image/commonBg.png}]]}
+                            no-repeat center center fixed;*/
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        flex-shrink: 0;
+        background: rgba(49, 49, 49, 0.67);
+        .boxOut{
+            display: flex;
+            width: 100%px;
+            padding: 28px 20px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            border-radius: 7px;
+            background: rgba(7, 50, 81, 0.95);
+            margin-top:-60px;
+        }
+
+
+
+    }
 }
