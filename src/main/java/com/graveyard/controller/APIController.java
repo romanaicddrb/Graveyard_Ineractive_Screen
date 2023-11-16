@@ -24,7 +24,7 @@ public class APIController {
     }
 
     @PostMapping(path = "/search", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DataTable<DeathListDto>> search(DataTableRequestDto object) {
+    public ResponseEntity<DataTable<DeathListDto>> search(@RequestBody DataTableRequestDto object) {
         return new ResponseEntity<>(graveService.getBySearch(object), HttpStatus.OK);
     }
 
