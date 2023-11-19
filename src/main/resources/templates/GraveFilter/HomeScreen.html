@@ -39,7 +39,7 @@
 
   <div class="row headerOf">
     <div class="col-md-2 start">
-      <img th:src="@{/resource/আস-সালামু আলাইকুম ٱلسَّلَامُ عَلَيْكُمْ__.png}" alt="আস-সালামু আলাইকুম" style="max-width: 225px; max-height: 75px;">
+      <img th:src="@{/resource/আস-সালামু আলাইকুম ٱلسَّلَامُ عَلَيْكُمْ__.png}" alt="আস-সালামু আলাইকুম" style="max-width: 200px; max-height: 70px;">
     </div>
 
     <div class="col-md-3 logosSec">
@@ -53,37 +53,48 @@
     </div>
   </div>
 
-  <div class="row contentCenter" style="vertical-align: middle;">
-    <div class="col-md-3 titleB">
-      <p style="font-size: 36px;">বনানী কবরস্থানে</p>
-      <p style="font-size:20;">আপনাকে স্বাগতম</p>
-    </div>
 
-    <div class="col-md-3 contentSec">
-      <p style="font-size: 19px;">আপনাকে কিভাবে সহযোগিতা করতে পারি?</p>
-    </div>
+  <div class="row clo-md-3">
+    <div class="contentCenter" style="vertical-align: middle;">
+      <div class="col-md-3 titleB">
+        <p style="font-size: 24px; font-weight: 700;">বনানী কবরস্থানে</p>
+        <p style="font-size:18; font-weight: 500;">আপনাকে স্বাগতম</p>
+      </div>
 
-    <div class="col-md-3">
-      <div class="row centerBottom">
-        <div class="col-md-6 graveSearch">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17 22V20H20V17H22V20.5C22 20.89 21.84 21.24 21.54 21.54C21.24 21.84 20.89 22 20.5 22H17ZM7 22H3.5C3.11 22 2.76 21.84 2.46 21.54C2.16 21.24 2 20.89 2 20.5V17H4V20H7V22ZM17 2H20.5C20.89 2 21.24 2.16 21.54 2.46C21.84 2.76 22 3.11 22 3.5V7H20V4H17V2ZM7 2V4H4V7H2V3.5C2 3.11 2.16 2.76 2.46 2.46C2.76 2.16 3.11 2 3.5 2H7ZM10.5 6C13 6 15 8 15 10.5C15 11.38 14.75 12.2 14.31 12.9L17.57 16.16L16.16 17.57L12.9 14.31C12.2 14.75 11.38 15 10.5 15C8 15 6 13 6 10.5C6 8 8 6 10.5 6ZM10.5 8C9.12 8 8 9.12 8 10.5C8 11.88 9.12 13 10.5 13C11.88 13 13 11.88 13 10.5C13 9.12 11.88 8 10.5 8Z" fill="white"/>
-          </svg>
+      <div class="col-md-3 contentSec">
+        <p style="font-size: 21.3px; text-align: justify; padding: 0px;">আপনাকে কিভাবে সহযোগিতা করতে পারি?</p>
+      </div>
 
-          <p style="font-size: 11px; color: #FFFFFF;"><a th:href="@{/graveSearch}">কবর অনুসন্ধান করুন</a></p>
-        </div>
+      <div class="col-md-3" style="padding: 0px 12px;">
+        <div class="row centerBottom">
 
-        <div class="col-md-6 mapSearch">
-          <svg style="margin: auto;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.0962 18.2554L12 19.2126L10.9038 18.2554C6.98842 14.8366 5 11.8112 5 9C5 5.02141 8.10349 2 12 2C15.8965 2 19 5.02141 19 9C19 11.8112 17.0116 14.8366 13.0962 18.2554ZM5.68555 14.8034C6.09614 15.3656 6.55352 15.9373 7.05748 16.519C5.19525 16.9384 4 17.5337 4 18C4 18.807 7.57914 20 12 20C16.4209 20 20 18.807 20 18C20 17.5337 18.8047 16.9384 16.9425 16.519C17.4465 15.9373 17.9039 15.3656 18.3144 14.8034C20.5633 15.4858 22 16.5804 22 18C22 20.5068 17.5203 22 12 22C6.47973 22 2 20.5068 2 18C2 16.5804 3.43674 15.4858 5.68555 14.8034ZM12 4C14.8038 4 17 6.13816 17 9C17 11.047 15.3727 13.5659 12 16.556C8.62733 13.5659 7 11.047 7 9C7 6.13816 9.19624 4 12 4ZM12 6C13.6569 6 15 7.34315 15 9C15 10.6569 13.6569 12 12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6ZM11 9C11 8.44772 11.4477 8 12 8C12.5523 8 13 8.44772 13 9C13 9.55228 12.5523 10 12 10C11.4477 10 11 9.55228 11 9Z" fill="#1175BD"/>
-          </svg>
+            <div class="col-md-6 graveSearch">
+              <a th:href="@{/graveSearch}" style="width:100%; height:100%;">
+                <div style="width: 100%; padding:15px 20px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M17 22V20H20V17H22V20.5C22 20.89 21.84 21.24 21.54 21.54C21.24 21.84 20.89 22 20.5 22H17ZM7 22H3.5C3.11 22 2.76 21.84 2.46 21.54C2.16 21.24 2 20.89 2 20.5V17H4V20H7V22ZM17 2H20.5C20.89 2 21.24 2.16 21.54 2.46C21.84 2.76 22 3.11 22 3.5V7H20V4H17V2ZM7 2V4H4V7H2V3.5C2 3.11 2.16 2.76 2.46 2.46C2.76 2.16 3.11 2 3.5 2H7ZM10.5 6C13 6 15 8 15 10.5C15 11.38 14.75 12.2 14.31 12.9L17.57 16.16L16.16 17.57L12.9 14.31C12.2 14.75 11.38 15 10.5 15C8 15 6 13 6 10.5C6 8 8 6 10.5 6ZM10.5 8C9.12 8 8 9.12 8 10.5C8 11.88 9.12 13 10.5 13C11.88 13 13 11.88 13 10.5C13 9.12 11.88 8 10.5 8Z" fill="white"/>
+                  </svg>
+                  <p style="font-size: 11px; color: #FFFFFF; padding: 0px; display: inline;">কবর অনুসন্ধান করুন</p>
+                </div>
+              </a>
+            </div>
 
-          <p style="font-size: 11px; color: #1175BD; text-align: left; margin-left: 0;"><a th:href="@{/mapSearch}">ম্যাপ এ দেখুন</a></p>
+
+            <div class="col-md-6 mapSearch">
+              <a th:href="@{/mapSearch}" style="width:100%; height:100%;">
+                <div style="width: 100%; padding:15px 35px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.0962 18.2554L12 19.2126L10.9038 18.2554C6.98842 14.8366 5 11.8112 5 9C5 5.02141 8.10349 2 12 2C15.8965 2 19 5.02141 19 9C19 11.8112 17.0116 14.8366 13.0962 18.2554ZM5.68555 14.8034C6.09614 15.3656 6.55352 15.9373 7.05748 16.519C5.19525 16.9384 4 17.5337 4 18C4 18.807 7.57914 20 12 20C16.4209 20 20 18.807 20 18C20 17.5337 18.8047 16.9384 16.9425 16.519C17.4465 15.9373 17.9039 15.3656 18.3144 14.8034C20.5633 15.4858 22 16.5804 22 18C22 20.5068 17.5203 22 12 22C6.47973 22 2 20.5068 2 18C2 16.5804 3.43674 15.4858 5.68555 14.8034ZM12 4C14.8038 4 17 6.13816 17 9C17 11.047 15.3727 13.5659 12 16.556C8.62733 13.5659 7 11.047 7 9C7 6.13816 9.19624 4 12 4ZM12 6C13.6569 6 15 7.34315 15 9C15 10.6569 13.6569 12 12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6ZM11 9C11 8.44772 11.4477 8 12 8C12.5523 8 13 8.44772 13 9C13 9.55228 12.5523 10 12 10C11.4477 10 11 9.55228 11 9Z" fill="#1175BD"/>
+                  </svg>
+                  <p style="font-size: 11px; color: #1175BD; padding: 0px; display: inline;">ম্যাপ এ দেখুন</p>
+                </div>
+              </a>
+            </div>
+
         </div>
       </div>
     </div>
   </div>
-
   <div class="row footOf">
     <div class="col-md-2">
       <p style="color: #FFF;

@@ -66,7 +66,7 @@ body {
   display: flex;
   justify-content: center;
   text-align: left;
-  font-size: 14px;
+  font-size: 16px;
   padding: 0;
   /* font-style: normal; */
   font-weight: 600;
@@ -81,6 +81,7 @@ body {
   font-family: Hind Siliguri;
   gap: 40px;
   margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .titleB{
@@ -91,36 +92,36 @@ body {
   display: flex;
   flex-direction: column;
   font-style: normal;
-  font-weight: 700;
-  padding: 15px;
+  padding: 25px 10px;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.44);
   background: rgba(17, 117, 189, 0.19);
-  /* line-height: 64px; 133.333% */
+  line-height: 50px;
 }
 
 .contentSec{
   color: #FFF;
-  text-align: center;
+  text-align: justify;
   text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.60);
   font-family: Hind Siliguri;
-  font-size: smaller;
   font-style: normal;
-  /* font-weight: 500; */
+  font-weight: 500;
   line-height: normal;
+  padding: 0px;
 }
 
 .centerBottom{
   display: flex;
   /* align-items: flex-start; */
-  gap: 40px;
+  gap: 20px;
+  padding: 0px;
 
   .graveSearch{
     display: flex;
-    padding: 10px;
+    padding: 0px;
     justify-content: center;
     align-items: center;
-    /* gap: 10px; */
+    gap: 10px;
     flex: 1 0 0;
 
     border-radius: 10px;
@@ -133,15 +134,16 @@ body {
       font-style: normal;
       font-weight: 500;
       line-height: normal;
+      display: inline;
     }
   }
 
   .mapSearch{
     display: flex;
-    padding: 10px;
     justify-content: center;
     align-items: center;
-    /* gap: 10px; */
+    padding: 0px;
+    gap: 10px;
     flex: 1 0 0;
 
     border-radius: 10px;
@@ -157,13 +159,11 @@ body {
 }
 
 .footOf { /* This is for the content */
-    position: fixed;
     z-index: 1; /* This can be set to any number greater than -1000. */
     bottom: 0;
     /* background: rgba(0, 0, 0, 0.5); */
     color: #f1f1f1;
     width: 100%;
-    padding: 20px;
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
