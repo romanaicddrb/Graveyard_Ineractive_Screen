@@ -70,114 +70,127 @@
   <div class="row">
     <!-- Left Card with Filter Options -->
 
-    <div class="col-md-4">
+    <div class="col-md-12 mb-2">
       <div class="card">
         <div class="card-header">প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন</div>
         <div class="card-body">
-          <!-- Filter by Name -->
-          <div class="form-group">
-            <label for="MemoFilter">মেমো নং</label>
-            <input type="text" class="form-control" id="MemoFilter">
-          </div>
-          <div class="form-group">
-            <label for="DeadnameFilter">মৃত্যু ব্যক্তির নাম</label>
-            <input type="text" class="form-control" id="DeadnameFilter">
-          </div>
-          <div class="form-group">
-            <label for="DeaddayFilter">মৃত্যুর তারিখ</label>
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="form-group">
-
-                  <select class="form-control" id="DeaddayFilter" >
-                    <option value="01" disabled selected>দিন</option>
-                    <option value="01">১</option>
-                    <option value="02">২</option>
-                    <!-- Add more day options as needed -->
-                  </select>
-                </div>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="MemoFilter">মেমো নং</label>
+                <input type="text" class="form-control" id="MemoFilter">
               </div>
+            </div>
 
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <select class="form-control" id="DeadmonthFilter" >
-                    <option value="01" selected>মাস</option>
-                    <option value="01">জানুয়ারী</option>
-                    <option value="02">ফেব্রুয়ারী</option>
-                    <!-- Add more month options as needed -->
-                  </select>
-                </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="DeadnameFilter">মৃত্যু ব্যক্তির নাম</label>
+                <input type="text" class="form-control" id="DeadnameFilter">
               </div>
+            </div>
 
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <select class="form-control" id="DeadyearFilter" >
-                    <option value="2023" selected>সাল</option>
-                    <option value="2023">২০২৩</option>
-                    <option value="2022">২০২২</option>
-                    <!-- Add more year options as needed -->
-                  </select>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="DeaddayFilter">মৃত্যুর তারিখ</label>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="DeaddayFilter" >
+                        <option value="" disabled selected>দিন</option>
+                        <option value="01">১</option>
+                        <option value="02">২</option>
+                        <!-- Add more day options as needed -->
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="DeadmonthFilter" >
+                        <option value="" selected>মাস</option>
+                        <option value="01">জানুয়ারী</option>
+                        <option value="02">ফেব্রুয়ারী</option>
+                        <!-- Add more month options as needed -->
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="DeadyearFilter" >
+                        <option value="" selected>সাল</option>
+                        <option value="2023">২০২৩</option>
+                        <option value="2022">২০২২</option>
+                        <!-- Add more year options as needed -->
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label >দাফনের তারিখ</label>
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="form-group">
 
-                  <select class="form-control" id="BurieddayFilter" >
-                    <option value="01" disabled selected>দিন</option>
-                    <option value="01">১</option>
-                    <option value="02">২</option>
-                    <!-- Add more day options as needed -->
-                  </select>
-                </div>
-              </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="BurieddayFilter">দাফনের তারিখ</label>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="BurieddayFilter" >
+                        <option value="" disabled selected>দিন</option>
+                        <option value="01">১</option>
+                        <option value="02">২</option>
+                        <!-- Add more day options as needed -->
+                      </select>
+                    </div>
+                  </div>
 
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <select class="form-control" id="BuriedmonthFilter" >
-                    <option value="01" selected>মাস</option>
-                    <option value="01">জানুয়ারী</option>
-                    <option value="02">ফেব্রুয়ারী</option>
-                    <!-- Add more month options as needed -->
-                  </select>
-                </div>
-              </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="BuriedmonthFilter" >
+                        <option value="" selected>মাস</option>
+                        <option value="01">জানুয়ারী</option>
+                        <option value="02">ফেব্রুয়ারী</option>
+                        <!-- Add more month options as needed -->
+                      </select>
+                    </div>
+                  </div>
 
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <select class="form-control" id="BuriedyearFilter" >
-                    <option value="2023" selected>সাল</option>
-                    <option value="2023">২০২৩</option>
-                    <option value="2022">২০২২</option>
-                    <!-- Add more year options as needed -->
-                  </select>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="BuriedyearFilter" >
+                        <option value="" selected>সাল</option>
+                        <option value="2023">২০২৩</option>
+                        <option value="2022">২০২২</option>
+                        <!-- Add more year options as needed -->
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+                <div class="col-md-1">
+                  <div class="form-group">
+                    <label>&nbsp;</label>
+                    <div>
+<!--                      <a th:href="@{/BuriedSearch}">-->
+                    <button id="searchBtn" type="button" class="btn btn-primary btn-sm ">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                      </svg>
+                    </button>
+<!--                    </a>-->
+                    </div>
+                  </div>
+                </div>
           </div>
-
-          <div>
-
-            <a th:href="@{/BuriedSearch}"><button type="button" class="btn btn-primary btn-lg btn-block">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-            </svg>
-            </button></a>
-          </div>
-
-
-
         </div>
       </div>
     </div>
 
 
+
     <!-- Right Card with Data Table -->
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="card" style="height: 100%;">
 
         <div class="card-body">
@@ -185,6 +198,8 @@
           <table id="myDataTable" class="display" style="width:100%">
             <thead>
             <tr>
+              <th style="display:none">Id</th>
+              <th style="display:none">GraveId</th>
               <th>মেমো নং</th>
               <th>মৃত্যুর তারিখ</th>
               <th>মৃত্যু ব্যক্তির নাম</th>
@@ -195,14 +210,23 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td colspan="7" style="text-align: center;">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                  <img th:src="@{/resource/popup.png}" alt="Popup Image" width="350" height="350">
-                  <p>কোন ডাটা অনুসন্ধান করে পাওয়া যায় নি</p>
-                </div>
-              </td>
-            </tr>
+              <tr>
+                <!--              <td colspan="7" style="text-align: center;">-->
+                <!--                <div style="display: flex; flex-direction: column; align-items: center;">-->
+                <!--                  <img th:src="@{/resource/popup.png}" alt="Popup Image" width="350" height="350">-->
+                <!--                  <p>কোন ডাটা অনুসন্ধান করে পাওয়া যায় নি</p>-->
+                <!--                </div>-->
+                <!--              </td>-->
+                <td style="display:none"></td>
+                <td style="display:none"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -216,14 +240,105 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-<script src="../../assets/js/vendor/popper.min.js"></script>
-<script src="/plugins/bootstrap.js/bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>
-<script>
-	  $(document).ready(function() {
-		$('#myDataTable').DataTable();
-	  });
-	</script>
+<!--<script src="/plugins/popper/popper.min.js"></script>-->
+<!--<script th:src="@{/plugins/bootstrap.js/bootstrap.min.js}"></script>-->
+<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="/plugins/datatables/jquery.datatables.min.js"></script>
+<!--    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
+
+    <script>
+   $(document).ready(function()
+    {
+              var gidValue = '2';
+              var myDataTable = $('#myDataTable').DataTable({
+                 "responsive": true,
+                  "lengthChange": false,
+                  "autoWidth": true,
+                  "paging": true,
+                  "fixedHeader": true,
+                  "select": true,
+                  "processing": false,
+                  "destroy": true,
+                  columns: [
+                    { data: 'dec_id', visible: false },
+                    { data: 'graveyard_id' , visible: false },
+                    { data: 'memo_no' },
+                    { data: 'dod' },
+                    { data: 'dec_name' },
+                    { data: 'father' },
+                    { data: 'bur_date' },
+                    { data: 'address' },
+                    {
+                          data: null,
+                          render: function (data, type, row) {
+                              if (data && data.dec_id && data.graveyard_id) {
+
+<!--                                  return '<a th:href="@{/graveDetails_withPosition/{id}(id=${\'dec_id\'})}" class="btn">Details</a>';-->
+                                      var url = '/graveDetails_withPosition/' + data.dec_id + '?gid=' + data.graveyard_id;
+                                      return '<a href="' + url + '" class="btn">Details</a>';
+                              }
+                              else {
+                                  // If data is not available, return an empty string
+                                  return '';
+                              }
+                          }
+                      }
+                  ]
+              });
+              function loadDetailsPage(dec_id, graveyard_id) {
+                      window.location.href = '/graveDetails_withPosition/?id=' + dec_id + '&gid=' + graveyard_id;
+              }
+
+            $('#searchBtn').on('click', function() {
+                 var memoFilter = $('#MemoFilter').val();
+                 var deadNameFilter = $('#DeadnameFilter').val();
+                 var deadDayFilter = $('#DeaddayFilter').val();
+                 var deadMonthFilter = $('#DeadmonthFilter').val();
+                 var deadYearFilter = $('#DeadyearFilter').val();
+                 var buriedDayFilter = $('#BurieddayFilter').val();
+                 var buriedMonthFilter = $('#BuriedmonthFilter').val();
+                 var buriedYearFilter = $('#BuriedyearFilter').val();
+
+                 // Prepare the request data
+                 var requestData = {
+                    graveyardId: '2',
+                    memo: memoFilter,
+                    name: deadNameFilter,
+                    dod_day: '',
+                    dod_month: deadMonthFilter,
+                    dod_year: deadYearFilter,
+                    bur_day: '',
+                    bur_month: buriedMonthFilter,
+                    bur_year: buriedYearFilter
+                 };
+
+
+                  $.ajax({
+                    url: '/api/search',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(requestData),
+                    success: function(data) {
+                    console.log(data)
+                      myDataTable.clear();
+                          if (data.data.length > 0) {
+                            myDataTable.rows.add(data.data).draw();
+                            $('.btn').on('click', function() {
+                                var rowData = myDataTable.row($(this).parents('tr')).data();
+                                loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
+                            });
+                        }
+                    },
+                    error: function(error) {
+                      console.error('Error performing search:', error);
+                    }
+                  });
+           });
+   });
+</script>
+
+
 
 
 </body>
