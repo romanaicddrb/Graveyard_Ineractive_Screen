@@ -199,6 +199,7 @@
             <thead>
             <tr>
               <th style="display:none">Id</th>
+              <th style="display:none">GraveId</th>
               <th>মেমো নং</th>
               <th>মৃত্যুর তারিখ</th>
               <th>মৃত্যু ব্যক্তির নাম</th>
@@ -216,6 +217,7 @@
                 <!--                  <p>কোন ডাটা অনুসন্ধান করে পাওয়া যায় নি</p>-->
                 <!--                </div>-->
                 <!--              </td>-->
+                <td style="display:none"></td>
                 <td style="display:none"></td>
                 <td></td>
                 <td></td>
@@ -248,7 +250,7 @@
     <script>
    $(document).ready(function()
     {
-
+              var gidValue = '2';
               var myDataTable = $('#myDataTable').DataTable({
                  "responsive": true,
                   "lengthChange": false,
@@ -260,6 +262,7 @@
                   "destroy": true,
                   columns: [
                     { data: 'dec_id', visible: false },
+                    { data: 'graveyard_id' , visible: false },
                     { data: 'memo_no' },
                     { data: 'dod' },
                     { data: 'dec_name' },
@@ -269,11 +272,13 @@
                     {
                           data: null,
                           render: function (data, type, row) {
-                              // Check if data is available for the button
-                              if (data && data.dec_id) {
+                              if (data && data.dec_id && data.graveyard_id) {
 
-                                  return '<a th:href="@{/graveDetails_withPosition/{id}(id=${\'dec_id\'})}" class="btn">Details</a>';
-                              } else {
+<!--                                  return '<a th:href="@{/graveDetails_withPosition/{id}(id=${\'dec_id\'})}" class="btn">Details</a>';-->
+                                      var url = '/graveDetails_withPosition/' + data.dec_id + '?gid=' + data.graveyard_id;
+                                      return '<a href="' + url + '" class="btn">Details</a>';
+                              }
+                              else {
                                   // If data is not available, return an empty string
                                   return '';
                               }
@@ -281,8 +286,8 @@
                       }
                   ]
               });
-              function loadDetailsPage(dec_id) {
-                      window.location.href = '/graveDetails_withPosition/{id}(id=${dec_id})';
+              function loadDetailsPage(dec_id, graveyard_id) {
+                      window.location.href = '/graveDetails_withPosition/?id=' + dec_id + '&gid=' + graveyard_id;
               }
 
             $('#searchBtn').on('click', function() {
@@ -321,7 +326,7 @@
                             myDataTable.rows.add(data.data).draw();
                             $('.btn').on('click', function() {
                                 var rowData = myDataTable.row($(this).parents('tr')).data();
-                                loadDetailsPage(rowData.dec_id);
+                                loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
                             });
                         }
                     },
