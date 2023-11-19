@@ -23,9 +23,10 @@ public class ScreenController {
         return "GraveFilter/filter_page_details_list";
     }
 
+    // Search Grave By Memo and other filters
     @GetMapping(path="/graveSearch")
-    public String graveDetails_withMap() {
-        return "GraveFilter/filter_page_blank";
+    public String graveSearchWithFilter() {
+        return "GraveFilter/graveSearchWithFilter";
     }
 
     @GetMapping(path="/mapSearch")
