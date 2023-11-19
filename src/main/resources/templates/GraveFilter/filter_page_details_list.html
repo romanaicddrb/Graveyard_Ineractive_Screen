@@ -56,113 +56,125 @@
   </div>
   <div class="row">
     <!-- Left Card with Filter Options -->
-    <div class="col-md-4">
+    <div class="col-md-12 mb-2" >
       <div class="card">
         <div class="card-header">প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন</div>
         <div class="card-body">
-          <!-- Filter by Name -->
-          <div class="form-group">
-            <label >মেমো নং</label>
-            <input type="text" class="form-control" id="MemoFilter">
-          </div>
-          <div class="form-group">
-            <label >মৃত্যু ব্যক্তির নাম</label>
-            <input type="text" class="form-control" id="DeadnameFilter">
-          </div>
-          <div class="form-group">
-            <label >মৃত্যুর তারিখ</label>
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="form-group">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="MemoFilter">মেমো নং</label>
+                <input type="text" class="form-control" id="MemoFilter">
+              </div>
+            </div>
 
-                  <select class="form-control" id="DeaddayFilter" >
-                    <option value="01" disabled selected>দিন</option>
-                    <option value="01">১</option>
-                    <option value="02">২</option>
-                    <!-- Add more day options as needed -->
-                  </select>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="DeadnameFilter">মৃত্যু ব্যক্তির নাম</label>
+                <input type="text" class="form-control" id="DeadnameFilter">
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="DeaddayFilter">মৃত্যুর তারিখ</label>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="DeaddayFilter" >
+                        <option value="01" disabled selected>দিন</option>
+                        <option value="01">১</option>
+                        <option value="02">২</option>
+                        <!-- Add more day options as needed -->
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="DeadmonthFilter" >
+                        <option value="01" selected>মাস</option>
+                        <option value="01">জানুয়ারী</option>
+                        <option value="02">ফেব্রুয়ারী</option>
+                        <!-- Add more month options as needed -->
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="DeadyearFilter" >
+                        <option value="2023" selected>সাল</option>
+                        <option value="2023">২০২৩</option>
+                        <option value="2022">২০২২</option>
+                        <!-- Add more year options as needed -->
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <select class="form-control" id="DeadmonthFilter" >
-                    <option value="01" selected>মাস</option>
-                    <option value="01">জানুয়ারী</option>
-                    <option value="02">ফেব্রুয়ারী</option>
-                    <!-- Add more month options as needed -->
-                  </select>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="BurieddayFilter">দাফনের তারিখ</label>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="BurieddayFilter" >
+                        <option value="01" disabled selected>দিন</option>
+                        <option value="01">১</option>
+                        <option value="02">২</option>
+                        <!-- Add more day options as needed -->
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="BuriedmonthFilter" >
+                        <option value="01" selected>মাস</option>
+                        <option value="01">জানুয়ারী</option>
+                        <option value="02">ফেব্রুয়ারী</option>
+                        <!-- Add more month options as needed -->
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <select class="form-control" id="BuriedyearFilter" >
+                        <option value="2023" selected>সাল</option>
+                        <option value="2023">২০২৩</option>
+                        <option value="2022">২০২২</option>
+                        <!-- Add more year options as needed -->
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <select class="form-control" id="DeadyearFilter" >
-                    <option value="2023" selected>সাল</option>
-                    <option value="2023">২০২৩</option>
-                    <option value="2022">২০২২</option>
-                    <!-- Add more year options as needed -->
-                  </select>
+            </div>
+            <div class="col-md-1">
+              <div class="form-group">
+                <label>&nbsp;</label>
+                <div>
+                  <a th:href="@{/BuriedSearch}">
+                    <button type="button" class="btn btn-primary btn-sm ">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                      </svg>
+                    </button>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label >দাফনের তারিখ</label>
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="form-group">
-
-                  <select class="form-control" id="BurieddayFilter" >
-                    <option value="01" disabled selected>দিন</option>
-                    <option value="01">১</option>
-                    <option value="02">২</option>
-                    <!-- Add more day options as needed -->
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <select class="form-control" id="BuriedmonthFilter" >
-                    <option value="01" selected>মাস</option>
-                    <option value="01">জানুয়ারী</option>
-                    <option value="02">ফেব্রুয়ারী</option>
-                    <!-- Add more month options as needed -->
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <select class="form-control" id="BuriedyearFilter" >
-                    <option value="2023" selected>সাল</option>
-                    <option value="2023">২০২৩</option>
-                    <option value="2022">২০২২</option>
-                    <!-- Add more year options as needed -->
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-            <button type="button" class="btn btn-primary btn-lg btn-block">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-              </svg>
-            </button>
-
-
-
-
         </div>
       </div>
     </div>
 
     <!-- Right Card with Data Table -->
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="card" style="height: 100%;">
 
         <div class="card-body">
