@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <link th:href="@{/plugins/HomeScreen/main.css}" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+<div th:fragment="navbar" style="padding: 0px;">
+    <nav class="navbar navbar-dark bg-light fixed-top" style="height: 60px;">
+        <div class="row col-md-12">
+            <div class="col-md-3">
+                <img th:src="@{/resource/icon.png}" alt="Your Logo" width="26" height="26" style="margin-right: 10px; width: 24px; height: 24px; padding: 3.29px 7.29px 3.29px 6.59px; border-radius: 3px; background: #1175BD;">
+                <span style="font-family: Inter; font-weight: 400; letter-spacing: 0em; text-align: left; font-size: 16px;">
+                    পূর্ববর্তী পেজে যান
+                </span>
+            </div>
+
+            <div class="col-md-1" style="margin-right:80px;">
+
+            </div>
+
+
+            <div class="col-md-4" style="display: flex; justify-content: center; align-items: center; gap:15px;">
+                <img th:src="@{/resource/Group7241.png}" alt="Your Logo" width="30" height="30">
+                <p style="color: #205F8B;
+                        font-family: Baloo Da 2;
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: normal;">
+                    কবরস্থান ব্যবস্থাপনা সিস্টেম
+                </p>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
