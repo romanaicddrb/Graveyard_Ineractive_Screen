@@ -159,6 +159,8 @@ body {
 }
 
 .footOf { /* This is for the content */
+    position: fixed;
+
     z-index: 1; /* This can be set to any number greater than -1000. */
     bottom: 0;
     /* background: rgba(0, 0, 0, 0.5); */
@@ -183,7 +185,7 @@ p{
   align-items: center;
   gap: 10px;
   border-radius: 10px;
-  background: #FFF;
+  background: rgba(12, 64, 101, 0.85);
 
   p{
     color: #343434;
