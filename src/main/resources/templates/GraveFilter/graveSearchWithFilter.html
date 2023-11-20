@@ -17,6 +17,7 @@
   <!-- Custom styles for this template -->
   <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">
 
+
   <style type="text/css" data-asas-style="">
 	  body, div, a, p, span{ user-select: text !important; }
 	  p, h1, h2, h3, h4, h5, h6{ cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important; color: #fff !important; }
@@ -47,6 +48,11 @@
       bottom: 0;
       min-width: 100%;
       min-height: 100%;
+    }
+
+    p{
+      margin: auto;
+      align-content: center;
     }
 
   </style>
@@ -87,31 +93,66 @@
       </ol>
     </div>
   </div>
+
+<!--    <div class="row">-->
+<!--      <div class="col-md-3" style="background: #FFF;">-->
+<!--        প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন-->
+<!--      </div>-->
+<!--      <div class="col-md-9">-->
+<!--        প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন-->
+
+<!--      </div>-->
+<!--    </div>-->
+
+
+
   <div class="row">
     <!-- Left Card with Filter Options -->
 
-    <div class="col-md-3 mb-2">
-      <div class="card">
-        <div class="card-header">
-          প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন
+    <div class="col-md-4">
+      <div class="card" style="padding: 20px;">
+        <div>
+          <p style="color: #205F8B;
+              font-family: Hind Siliguri;
+              font-size: 20px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: normal;
+              margin: auto;
+              align-content: center;
+              padding: 15px 0px;
+              display: flex;
+              justify-content: center;
+              align-items: center;">
+            প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন
+          </p>
         </div>
-        <div class="card-body">
+        <div class="card-body"
+             style="display: flex;
+                    padding: 20px;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 30px;
+                    border-radius: 10px;
+                    background: #EBEBEB;">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="MemoFilter">মেমো নং</label>
                 <input type="text" class="form-control" id="MemoFilter">
               </div>
             </div>
 
-            <div class="col-md-3">
+
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="DeadnameFilter">মৃত্যু ব্যক্তির নাম</label>
                 <input type="text" class="form-control" id="DeadnameFilter">
               </div>
             </div>
 
-            <div class="col-md-3">
+
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="DeaddayFilter">মৃত্যুর তারিখ</label>
                 <div class="row">
@@ -151,7 +192,7 @@
               </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="BurieddayFilter">দাফনের তারিখ</label>
                 <div class="row">
@@ -190,20 +231,20 @@
                 </div>
               </div>
             </div>
-                <div class="col-md-1">
-                  <div class="form-group">
-                    <label>&nbsp;</label>
-                    <div>
+            <div class="col-md-12">
+<!--              <div class="form-group">-->
+
+
 <!--                      <a th:href="@{/BuriedSearch}">-->
-                    <button id="searchBtn" type="button" class="btn btn-primary btn-sm ">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                      </svg>
-                    </button>
+                <button id="searchBtn" type="button" class="btn btn-primary" style="width: 100%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                  </svg>
+                </button>
 <!--                    </a>-->
-                    </div>
-                  </div>
-                </div>
+
+<!--              </div>-->
+            </div>
           </div>
         </div>
       </div>
@@ -212,7 +253,7 @@
 
 
     <!-- Right Card with Data Table -->
-    <div class="col-md-9">
+    <div class="col-md-8">
       <div class="card" style="height: 100%;">
 
         <div class="card-body">
