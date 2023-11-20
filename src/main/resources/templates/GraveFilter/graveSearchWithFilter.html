@@ -55,6 +55,29 @@
       align-content: center;
     }
 
+
+  #bg-top:before {
+  content:"";
+  position: fixed;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
+  z-index:1;
+  background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);
+  mix-blend-mode: multiply;
+}
+
+#bg-top {
+  left: 0%;
+  top: 0%;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
   </style>
 
 
@@ -67,10 +90,24 @@
   <main role="main" class="container">
   <div class="row">
 
-    <div class="video-background" style="margin-top: -20px;">
-      <div class="bg">
-        <img th:src="@{/resource/Grave_QR1.png}" alt="BG">
+    <div id="bg-top">
+      <div class="video-background" style="margin-top: -20px;">
+        <div class="bg">
+          <img th:src="@{/resource/Grave_QR1.png}" alt="BG">
+        </div>
       </div>
+    </div>
+    <div style="position: fixed; /* Sit on top of the page content */
+                  display: none; /* Hidden by default */
+                  width: 100%; /* Full width (cover the whole page) */
+                  height: 100%; /* Full height (cover the whole page) */
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background-color: rgba(0,0,0,0.5);
+                  mix-blend-mode: multiply; /* Black background with opacity */
+                  z-index: 2;">
     </div>
 
     <div>
@@ -106,11 +143,11 @@
 
 
 
-  <div class="row">
+  <div class="row" style="margin-bottom: 1%;">
     <!-- Left Card with Filter Options -->
 
     <div class="col-md-4">
-      <div class="card" style="padding: 20px;">
+      <div class="card" style="padding: 20px; padding-left: 40px; padding-right: 40px; border-radius: 20px; background: #FFF;">
         <div>
           <p style="color: #205F8B;
               font-family: Hind Siliguri;
@@ -122,7 +159,7 @@
               align-content: center;
               padding: 15px 0px;
               display: flex;
-              justify-content: center;
+<!--              justify-content: center;-->
               align-items: center;">
             প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন
           </p>
