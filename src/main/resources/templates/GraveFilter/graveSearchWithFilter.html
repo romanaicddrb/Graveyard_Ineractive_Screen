@@ -35,21 +35,21 @@
 	  }
 
 
-		.card-footer button {
-			background-color: #007bff;
-			color: #fff;
-			border: none;
-			padding: 10px 20px;
-		}
+      .card-footer button {
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+      }
 
 
-		.card-footer button i {
-			margin-right: 5px;
-		}
-	  .container, .container-lg, .container-md, .container-sm, .container-xl
-	  {
-	  max-width: 1800px;
-		}
+      .card-footer button i {
+          margin-right: 5px;
+      }
+
+	  .container, .container-lg, .container-md, .container-sm, .container-xl{
+	      max-width: 1800px;
+	  }
 
     .bg{
       position: fixed;
@@ -96,8 +96,7 @@
   .sorting{
     color: #205F8B;
     font-family: Hind Siliguri;
-    text-align: center;
-    margin: auto;
+    text-align: left;
     font-size: font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
     font-style: normal;
     font-weight: 400;
@@ -194,6 +193,7 @@
                     padding: 20px;
                     flex-direction: column;
                     align-items: flex-start;
+                    font-family: Hind Siliguri;
                     gap: 30px;
                     border-radius: 10px;
                     background: #EBEBEB;">
@@ -321,7 +321,7 @@
         <div class="card-body table-responsive" style="padding: 0;">
           <!-- DataTable style="background: #E1EFFE; border-radius: 20px 20px 0px 0px;"-->
           <table class="table align-middle" id="myDataTable"
-                 style="width: 100%; border-radius: 20px;">
+                 style="width: 100%; border-radius: 20px; font-family: Hind Siliguri;">
             <thead>
               <tr>
                 <th style="display:none">Id</th>
@@ -394,7 +394,7 @@
                     { data: 'dec_name' },
                     { data: 'father' },
                     { data: 'bur_date' },
-                    { data: 'address' },
+                    { data: 'address' , width: '20%' },
                     {
                           data: null,
                           render: function (data, type, row) {
