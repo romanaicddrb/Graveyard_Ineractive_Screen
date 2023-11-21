@@ -362,7 +362,7 @@
                           data: null,
                           render: function (data, type, row) {
                               if (data && data.dec_id && data.graveyard_id) {
-                                  return '<a th:href="@{/graveDetails_withPosition/(id=${data.dec_id}, gid=1)}" class="btn">Details</a>';
+                                  return '<button type="button" class="btn btn-block btn-success btn-sm"> Details </button>';
                               }
                               else {
                                   // If data is not available, return an empty string
@@ -373,8 +373,8 @@
                   ]
               });
               function loadDetailsPage(dec_id, graveyard_id) {
-<!--                      window.location.href = '/graveDetails_withPosition/?id=' + dec_id + '&gid=' + graveyard_id;-->
-                      window.location.href = '/BuriedSearch';
+                      window.location.href = '/graveDetails_withPosition?id=f2c71196-7c27-4507-9fdb-d96971ceccb6&gid=2';
+<!--                      window.location.href = '/BuriedSearch';-->
               }
 
             $('#searchBtn').on('click', function() {
