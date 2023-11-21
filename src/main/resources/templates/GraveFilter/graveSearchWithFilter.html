@@ -18,7 +18,7 @@
   <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">
 
 
-  <style type="text/css" data-asas-style="">
+  <style data-asas-style="">
 	  body, div, a, p, span{ user-select: text !important; }
 	  p, h1, h2, h3, h4, h5, h6{ cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important; color: #fff !important; }
 	  #myDataTable thead th {
@@ -87,7 +87,7 @@
 
   <div th:replace="CommonTemp/navBar.html :: navbar"></div>
 
-  <main role="main" class="container">
+  <main role="main" class="container-fluid" style="margin-top: 8%;">
   <div class="row">
 
     <div id="bg-top">
@@ -97,33 +97,22 @@
         </div>
       </div>
     </div>
-    <div style="position: fixed; /* Sit on top of the page content */
-                  display: none; /* Hidden by default */
-                  width: 100%; /* Full width (cover the whole page) */
-                  height: 100%; /* Full height (cover the whole page) */
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  bottom: 0;
-                  background-color: rgba(0,0,0,0.5);
-                  mix-blend-mode: multiply; /* Black background with opacity */
-                  z-index: 2;">
-    </div>
 
-    <div>
-      <ol class="breadcrumb" style="background: none; color: white;">
-        <li class="breadcrumb-item ">
+
+    <div class="row" style="padding: 0px; margin: 2% 0px;">
+      <ol class="breadcrumb" style="background: none; color: white; padding: 0 1rem; margin: 0px;">
+        <li class="breadcrumb-item">
           <a class="active-2" th:href="@{/}" style="display: inline;">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M4.90727 8.33332L9.90837 3.33222L14.9095 8.33332H14.9084V16.6667H4.90839V8.33332H4.90727ZM3.24172 9.99887L2.01104 11.2296L0.833374 10.0519L8.73086 2.1544C9.38118 1.50408 10.4356 1.50408 11.0859 2.1544L18.9834 10.0519L17.8057 11.2296L16.5751 9.99889V16.6667C16.5751 17.5871 15.8289 18.3333 14.9084 18.3333H4.90839C3.98791 18.3333 3.24172 17.5871 3.24172 16.6667V9.99887Z" fill="white"/>
             </svg>
-            <p style="color: white; display: inline;">হোম</p>
+            <p style="color: white; display: inline; cursor: pointer;">হোম</p>
           </a>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#D1D5DB"/>
           </svg>
           <a class="active-2" href="#" style="display: inline;">
-            <p style="color: white; display: inline;">কবর অনুসন্ধান</p>
+            <p style="color: white; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>
           </a>
         </li>
 
