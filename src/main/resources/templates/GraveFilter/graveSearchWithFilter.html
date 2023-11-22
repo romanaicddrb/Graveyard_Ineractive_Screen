@@ -35,21 +35,21 @@
 	  }
 
 
-		.card-footer button {
-			background-color: #007bff;
-			color: #fff;
-			border: none;
-			padding: 10px 20px;
-		}
+      .card-footer button {
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+      }
 
 
-		.card-footer button i {
-			margin-right: 5px;
-		}
-	  .container, .container-lg, .container-md, .container-sm, .container-xl
-	  {
-	  max-width: 1800px;
-		}
+      .card-footer button i {
+          margin-right: 5px;
+      }
+
+	  .container, .container-lg, .container-md, .container-sm, .container-xl{
+	      max-width: 1800px;
+	  }
 
     .bg{
       position: fixed;
@@ -96,8 +96,7 @@
   .sorting{
     color: #205F8B;
     font-family: Hind Siliguri;
-    text-align: center;
-    margin: auto;
+    text-align: left;
     font-size: font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
     font-style: normal;
     font-weight: 400;
@@ -111,6 +110,17 @@
     border-top-right-radius: 20px;
   }
 
+  table.dataTable td{
+    font-family: Hind Siliguri;
+    padding: 15px 10px;
+  }
+
+
+
+  table.dataTable .btn{
+    background-color: red;
+    color: #FFF;
+  }
 
   </style>
 
@@ -194,6 +204,7 @@
                     padding: 20px;
                     flex-direction: column;
                     align-items: flex-start;
+                    font-family: Hind Siliguri;
                     gap: 30px;
                     border-radius: 10px;
                     background: #EBEBEB;">
@@ -321,7 +332,7 @@
         <div class="card-body table-responsive" style="padding: 0;">
           <!-- DataTable style="background: #E1EFFE; border-radius: 20px 20px 0px 0px;"-->
           <table class="table align-middle" id="myDataTable"
-                 style="width: 100%; border-radius: 20px;">
+                 style="width: 100%; border-radius: 20px; font-family: Hind Siliguri;">
             <thead>
               <tr>
                 <th style="display:none">Id</th>
@@ -394,12 +405,15 @@
                     { data: 'dec_name' },
                     { data: 'father' },
                     { data: 'bur_date' },
-                    { data: 'address'},
+                    { data: 'address' , width: '20%' },
                     {
                           data: null,
                           render: function (data, type, row) {
                               if (data && data.dec_id && data.graveyard_id) {
-                                  return '<button type="button" class="btn btn-block btn-success btn-sm"> Details </button>';
+
+<!--                                  return '<a th:href="@{/graveDetails_withPosition/{id}(id=${\'dec_id\'})}" class="btn">Details</a>';-->
+                                      var url = '/graveDetails_withPosition/' + data.dec_id + '?gid=' + data.graveyard_id;
+                                      return '<a href="' + url + '" class="btn">Details</a>';
                               }
                               else {
                                   // If data is not available, return an empty string
@@ -410,8 +424,7 @@
                   ]
               });
               function loadDetailsPage(dec_id, graveyard_id) {
-                      window.location.href = '/graveDetails_withPosition?id=f2c71196-7c27-4507-9fdb-d96971ceccb6&gid=2';
-<!--                      window.location.href = '/BuriedSearch';-->
+                      window.location.href = '/graveDetails_withPosition/?id=' + dec_id + '&gid=' + graveyard_id;
               }
 
             $('#searchBtn').on('click', function() {
