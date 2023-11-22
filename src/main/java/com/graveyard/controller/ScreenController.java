@@ -66,15 +66,15 @@ public class ScreenController {
             Model model
     ) {
         String apiUrl = "http://localhost:8080/api/detail?gId=" + gid + "&id=" + decId;
-        GraveDetail graveDetail = restTemplate.getForObject(apiUrl, GraveDetail.class);
-
-        // Check if the object is not null
-        if (graveDetail != null) {
-            model.addAttribute("graveDetail", graveDetail);
-        } else {
-            // Handle the case when the API call is not successful
-            // You might want to add error handling logic here
-        }
+//        GraveDetail graveDetail = restTemplate.getForObject(apiUrl, GraveDetail.class);
+//
+//        // Check if the object is not null
+//        if (graveDetail != null) {
+//            model.addAttribute("graveDetail", graveDetail);
+//        } else {
+//            // Handle the case when the API call is not successful
+//            // You might want to add error handling logic here
+//        }
 
         return "GraveFilter/graveDetails_withMap";
 
