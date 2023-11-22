@@ -97,7 +97,7 @@
     color: #205F8B;
     font-family: Hind Siliguri;
     text-align: left;
-    font-size: font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
+    font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
     font-style: normal;
     font-weight: 400;
     line-height: 24px; /* 150% */
@@ -132,38 +132,39 @@
 
   <div th:replace="CommonTemp/navBar.html :: navbar"></div>
 
-  <main role="main" class="container overflow-hidden" style="margin-top: 98px; padding: 0 4%;">
-  <div class="row gx-5">
+  <main role="main" class="container overflow-hidden"
+        style="margin-top: 98px; padding: 0 4%;">
+    <div class="row gx-5">
 
-    <div id="bg-top">
-      <div class="video-background" style="margin-top: -20px;">
-        <div class="bg">
-          <img th:src="@{/resource/Grave_QR1.png}" alt="BG">
+      <div id="bg-top">
+        <div class="video-background" style="margin-top: -20px;">
+          <div class="bg">
+            <img th:src="@{/resource/Grave_QR1.png}" alt="BG">
+          </div>
         </div>
       </div>
-    </div>
 
 
-    <div class="row" style="padding: 0px;margin: 1% 0px;margin-top: 2%;">
-      <ol class="breadcrumb" style="background: none; color: white; padding: 0 1rem; margin: 0px;">
-        <li class="breadcrumb-item">
-          <a class="active-2" th:href="@{/}" style="display: inline;">
+      <div class="row" style="padding: 0px;margin: 1% 0px;margin-top: 2%;">
+        <ol class="breadcrumb" style="background: none; color: white; padding: 0 1rem; margin: 0px;">
+          <li class="breadcrumb-item">
+            <a class="active-2" th:href="@{/}" style="display: inline;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.90727 8.33332L9.90837 3.33222L14.9095 8.33332H14.9084V16.6667H4.90839V8.33332H4.90727ZM3.24172 9.99887L2.01104 11.2296L0.833374 10.0519L8.73086 2.1544C9.38118 1.50408 10.4356 1.50408 11.0859 2.1544L18.9834 10.0519L17.8057 11.2296L16.5751 9.99889V16.6667C16.5751 17.5871 15.8289 18.3333 14.9084 18.3333H4.90839C3.98791 18.3333 3.24172 17.5871 3.24172 16.6667V9.99887Z" fill="white"/>
+              </svg>
+              <p style="color: white; display: inline; cursor: pointer;">হোম</p>
+            </a>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M4.90727 8.33332L9.90837 3.33222L14.9095 8.33332H14.9084V16.6667H4.90839V8.33332H4.90727ZM3.24172 9.99887L2.01104 11.2296L0.833374 10.0519L8.73086 2.1544C9.38118 1.50408 10.4356 1.50408 11.0859 2.1544L18.9834 10.0519L17.8057 11.2296L16.5751 9.99889V16.6667C16.5751 17.5871 15.8289 18.3333 14.9084 18.3333H4.90839C3.98791 18.3333 3.24172 17.5871 3.24172 16.6667V9.99887Z" fill="white"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#D1D5DB"/>
             </svg>
-            <p style="color: white; display: inline; cursor: pointer;">হোম</p>
-          </a>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#D1D5DB"/>
-          </svg>
-          <a class="active-2" href="#" style="display: inline;">
-            <p style="color: white; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>
-          </a>
-        </li>
+            <a class="active-2" href="#" style="display: inline;">
+              <p style="color: white; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>
+            </a>
+          </li>
 
-      </ol>
+        </ol>
+      </div>
     </div>
-  </div>
 
 <!--    <div class="row">-->
 <!--      <div class="col-md-3" style="background: #FFF;">-->
@@ -171,7 +172,6 @@
 <!--      </div>-->
 <!--      <div class="col-md-9">-->
 <!--        প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন-->
-
 <!--      </div>-->
 <!--    </div>-->
 
@@ -414,7 +414,7 @@
                           data: null,
                           render: function (data, type, row) {
                               if (data && data.dec_id && data.graveyard_id) {
-                                return '<button type="button" class="btn btn-block btn-success btn-sm"> Details </button>';
+                                return '<button type="button" class="btn btn-block btn-sm"> Details </button>';
                               }
                               else {
                                   // If data is not available, return an empty string
