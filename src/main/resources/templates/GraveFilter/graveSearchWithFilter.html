@@ -112,6 +112,14 @@
 
   table.dataTable td{
     font-family: Hind Siliguri;
+    padding: 15px 10px;
+  }
+
+
+
+  table.dataTable .btn{
+    background-color: red;
+    color: #FFF;
   }
 
   </style>
@@ -384,7 +392,10 @@
                  "responsive": true,
                   "lengthChange": false,
                   "autoWidth": true,
-                  "paging": true,
+                  "paging": false,
+                  "scrollCollapse": true,
+                  "scrollX": true,
+                  "scrollY": 500,
                   "fixedHeader": true,
                   "select": true,
                   "processing": false,
