@@ -28,7 +28,7 @@ public class APIController {
         return new ResponseEntity<>(graveService.getBySearch(object), HttpStatus.OK);
     }
 
-    @GetMapping(value = "detail/")
+    @GetMapping(value = "/detail")
     public ResponseEntity<GraveDetail> detail(@PathVariable("gId") String gId,
                                               @PathVariable("id") String id) {
         return new ResponseEntity<>(graveService.getGraveDetail(gId, id), HttpStatus.OK);
