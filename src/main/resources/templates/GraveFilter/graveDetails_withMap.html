@@ -10,6 +10,7 @@
   <title>Graveyard interactive screen</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+  <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -38,127 +39,198 @@
 	  {
 	  max-width: 1800px;
 		}
+
+      .form-group p{
+        font-weight: 700;
+        font-size: calc(6.8px + 6 * ((100vw - 400px) / 680));
+      }
 	  </style>
 </head>
 
 <body >
 
-<div th:replace="GraveFilter/filter_page_blank.html :: navbar"></div>
-<main role="main" class="container">
-  <div class="row">
-    <nav aria-label="breadcrumb "  >
-      <ol class="breadcrumb  mb-5  ">
-        <li class="breadcrumb-item "><a class="black-text active-2" th:href="@{/}"><img  id ="home" src="https://img.icons8.com/ios-filled/50/000000/dog-house.png" class="mr-md-2 mr-1 mb-1 "  width="22" height="19"><span  >হোম</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"> </li>
-        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >কবর অনুসন্ধান</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>
-        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >কবরের বিস্তারিত</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>
-      </ol>
-    </nav>
-  </div>
+<div th:replace="CommonTemp/navBar.html :: navbar"></div>
+<main role="main" class="container overflow-hidden"
+      style="margin-top: 98px; padding: 0 4%; background: #F5F5F5;
+      height: 100%; padding: 0px 40px 40px 40px;">
 
-  <div class="row">
-    <div class="col-md-12 mb-2">
+    <div class="row" style="padding: 0px;margin: 1% 0px; width: 100%;">
+        <ol class="breadcrumb" style="background: none; color: white; padding: 0; margin: 0px;">
+            <li class="breadcrumb-item">
+                <a class="active-2" th:href="@{/}" style="display: inline;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.90727 8.33332L9.90837 3.33222L14.9095 8.33332H14.9084V16.6667H4.90839V8.33332H4.90727ZM3.24172 9.99887L2.01104 11.2296L0.833374 10.0519L8.73086 2.1544C9.38118 1.50408 10.4356 1.50408 11.0859 2.1544L18.9834 10.0519L17.8057 11.2296L16.5751 9.99889V16.6667C16.5751 17.5871 15.8289 18.3333 14.9084 18.3333H4.90839C3.98791 18.3333 3.24172 17.5871 3.24172 16.6667V9.99887Z" fill="#1175BD"/>
+                    </svg>
+                    <p style="color: #1175BD; display: inline; cursor: pointer;">হোম</p>
+                </a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#1175BD"/>
+                </svg>
+                <a class="active-2" href="#" style="display: inline;">
+                    <p style="color: #1175BD; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>
+                </a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#828282"/>
+                </svg>
+
+                <p style="color: #828282; display: inline; margin: 0px;">কবরের বিস্তারিত</p>
+
+            </li>
+
+        </ol>
+    </div>
+
+<!--  <div class="row gx-5">-->
+<!--    <nav aria-label="breadcrumb">-->
+<!--      <ol class="breadcrumb  mb-5  ">-->
+<!--        <li class="breadcrumb-item "><a class="black-text active-2" th:href="@{/}"><img  id ="home" src="https://img.icons8.com/ios-filled/50/000000/dog-house.png" class="mr-md-2 mr-1 mb-1 "  width="22" height="19"><span  >হোম</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"> </li>-->
+<!--        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >কবর অনুসন্ধান</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>-->
+<!--        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >কবরের বিস্তারিত</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>-->
+<!--      </ol>-->
+<!--    </nav>-->
+<!--  </div>-->
+
+  <div class="row col-md-12"
+       style="height: 100%; width: 100%; background: #FFF;
+        border-radius: 20px; padding: 40px 20px; margin-left: 0.2%;">
+    <div style="width: 100%; padding: 0px 2%;">
+      <p style="color: #205F8B;
+          font-family: Hind Siliguri;
+          font-size: 30px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          align-content: center;
+          text-align: center;
+          padding: 0px;
+          display: flex;
+   <!--justify-content: center;-->
+          align-items: center;">
+          কবরের বিস্তারিত
+      </p>
+    </div>
+    <div class="col-md-5" style="padding-right: 0px;">
     <!-- First Header Card -->
-      <div class="card">
-          <div class="card-header">কবরের বিস্তারিত</div>
-              <div class="card-body">
-                <div class="row ">
-                      <div class=" col-md-2">
-                          <div class="form-group">
-                                <label >কবরের মেমো / আইডি নং</label>
-                              <p th:text="${graveDetail.memo_no}"></p>
-                              </div>
-                      </div>
-                      <div class=" col-md-1">
-                         <div class="form-group">
-                                <label >কবর নং</label>
-                             <p th:text="${graveDetail.memoNo}"></p>
-                              </div>
-                      </div>
-                      <div class=" col-md-1">
-                          <div class="form-group">
-                                <label >কবরের সারি</label>
-                              <p th:text="${graveDetail.memoNo}"></p>
-                              </div>
-                      </div>
-                      <div class=" col-md-2">
-                          <div class="form-group">
-                              <label >কবরের ব্লক</label>
-                              <p th:text="${graveDetail.memoNo}"></p>
-                            </div>
-                      </div>
-                      <div class=" col-md-2">
-                          <div class="form-group">
-                            <label >কবরের জোন</label>
-                              <p th:text="${graveDetail.memoNo}"></p>
-                          </div>
-                      </div>
-                      <div class=" col-md-2">
-                          <div class="form-group">
-                            <label >মৃত্যুর তারিখ</label>
-                              <p th:text="${graveDetail.memoNo}"></p>
-                          </div>
-                      </div>
-                      <div class=" col-md-2">
-                          <div class="form-group">
-                            <label >দাফনের তারিখ</label>
-                              <p th:text="${graveDetail.memoNo}"></p>
-                          </div>
-                      </div>
+      <div class="card" style="padding-top: 0px; padding-left: 20px;
+      padding-right: 20px; padding-bottom: 20px; border: none;
+      background: #FFF; height: 100%;">
+
+        <div class="row card-body"
+               style="border-radius: 10px; background: #F3F3F3;
+                    display: flex;
+                    padding: 30px 20px;
+                    align-items: flex-start;
+                    font-family: Hind Siliguri;
+                    font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
+                    gap: 20px;">
+            <div class="col-md-5" style="display: flex; flex-direction: column;
+            width: 100%; padding: 0px;">
+              <div class="col">
+                  <div class="form-group">
+                      <label >কবরের মেমো / আইডি নং</label>
+                      <p>hello</p>
+    <!--                       <p th:text="${graveDetail.memo_no}"></p>-->
                   </div>
-
-                <div class="row border-top ">
-                      <div class=" col-md-2">
-                        <div class="form-group">
-                          <label >মৃত্যু ব্যক্তির নাম</label>
-                            <p th:text="${graveDetail.memoNo}"></p>
-                        </div>
-                      </div>
-                      <div class=" col-md-2">
-                        <div class="form-group">
-                          <label>স্বামী/স্ত্রীর নাম</label>
-                            <p th:text="${graveDetail.memoNo}"></p>
-                        </div>
-                      </div>
-                      <div class=" col-md-2">
-                        <div class="form-group">
-                          <label >পিতাম নাম</label>
-                            <p th:text="${graveDetail.memoNo}"></p>
-                        </div>
-                      </div>
-                      <div class=" col-md-2">
-                        <div class="form-group">
-                          <label >মাতার নাম</label>
-                            <p th:text="${graveDetail.memoNo}"></p>
-                        </div>
-                      </div>
-                      <div class=" col-md-2">
-                        <div class="form-group">
-                          <label >ঠিকানা</label>
-                            <p th:text="${graveDetail.memoNo}"></p>
-                        </div>
-                      </div>
-                      <div class=" col-md-2">
-                        <div class="form-group">
-                          <label >জাতীয়তা</label>
-                            <p th:text="${graveDetail.memoNo}"></p>
-                        </div>
-                      </div>
-                </div>
-
               </div>
+              <div class="col">
+                 <div class="form-group">
+                     <label >কবর নং</label>
+    <!--                     <p th:text="${graveDetail.memoNo}"></p>-->
+                 </div>
+              </div>
+              <div class="col">
+                  <div class="form-group">
+                      <label >কবরের সারি</label>
+    <!--                      <p th:text="${graveDetail.memoNo}"></p>-->
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-group">
+                      <label>কবরের ব্লক</label>
+    <!--                      <p th:text="${graveDetail.memoNo}"></p>-->
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-group">
+                    <label >কবরের জোন</label>
+    <!--                       <p th:text="${graveDetail.memoNo}"></p>-->
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-group">
+                    <label >মৃত্যুর তারিখ</label>
+    <!--                    <p th:text="${graveDetail.memoNo}"></p>-->
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-group">
+                    <label >দাফনের তারিখ</label>
+    <!--                    <p th:text="${graveDetail.memoNo}"></p>-->
+                  </div>
+              </div>
+            </div>
+
+            <div class="col-md-6" style="display: flex; flex-direction: column;
+            width: 100%; padding: 0px;">
+              <div class="col">
+                <div class="form-group">
+                  <label >মৃত্যু ব্যক্তির নাম</label>
+                  <p>Name of death pearson</p>
+    <!--                            <p th:text="${graveDetail.memoNo}"></p>-->
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label>স্বামী/স্ত্রীর নাম</label>
+    <!--                            <p th:text="${graveDetail.memoNo}"></p>-->
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label >পিতাম নাম</label>
+    <!--                            <p th:text="${graveDetail.memoNo}"></p>-->
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label >মাতার নাম</label>
+    <!--                            <p th:text="${graveDetail.memoNo}"></p>-->
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label >ঠিকানা</label>
+    <!--                            <p th:text="${graveDetail.memoNo}"></p>-->
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label >জাতীয়তা</label>
+    <!--                            <p th:text="${graveDetail.memoNo}"></p>-->
+                </div>
+              </div>
+            </div>
           </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
+
+    <div class="col-md-7" style="padding-left: 0px;">
         <!-- Second Column with Card -->
-        <div class="card " style="width: 100% ,height: 100%;">
-          <div class="card-body">
+        <div class="card"
+             style="padding-top: 0px; padding-left: 20px; padding-right: 20px;
+             padding-bottom: 20px; border: none; background: #FFF; height: 100%;">
+          <div class="card-body"
+               style="border-radius: 10px;
+                    display: flex;
+                    padding: 20px;
+                    align-items: flex-start;
+                    gap: 20px;
+                    border: 1px solid #F3F3F3;">
             <!-- Content for the second card -->
           </div>
         </div>
-      </div>
-    </div>
+     </div>
+
   </div>
 
 
