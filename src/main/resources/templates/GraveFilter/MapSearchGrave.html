@@ -13,12 +13,15 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
 
   <!-- Custom styles for this template -->
   <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">
   <style type="text/css" data-asas-style="">
+
 	  body, div, a, p, span{ user-select: text !important; }
-	  p, h1, h2, h3, h4, h5, h6{ cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important; color: #fff !important; }
+	  p, h1, h2, h3, h4, h5, h6{
+	  cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important;}
 	  #myDataTable thead th {
 		  background-color: #E1EFFE;
 		}
@@ -39,11 +42,9 @@
 	  max-width: 1800px;
 		}
 
-		 #map { height: 780px; }
+		 #map { height: 800px; }
         .info {
                 padding: 6px 8px;
-                font: 14px/16px Arial, Helvetica, sans-serif;
-                background: white;
                 background: rgba(255,255,255,0.8);
                 box-shadow: 0 0 15px rgba(0,0,0,0.2);
                 border-radius: 5px;
@@ -68,34 +69,76 @@
 <div th:replace="CommonTemp/navBar.html :: navbar"></div>
 
 
-<main role="main" class="container">
-  <div class="row">
-    <nav aria-label="breadcrumb "  >
-      <ol class="breadcrumb  mb-5  ">
-        <li class="breadcrumb-item "><a class="black-text active-2" th:href="@{/}"><img  id ="home" src="https://img.icons8.com/ios-filled/50/000000/dog-house.png" class="mr-md-2 mr-1 mb-1 "  width="22" height="19"><span  >হোম</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"> </li>
-        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >ম্যাপ এ দেখুন</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>
-      </ol>
-    </nav>
+<main role="main" class="container overflow-hidden"
+      style="margin-top: 98px; padding-bottom: 98px; padding: 0 4%; background: #F5F5F5; width: 100%;">
+  <div class="row" style="padding: 0px;margin: 1% 0px; width: 100%;">
+    <ol class="breadcrumb" style="background: none; color: white; padding: 0; margin: 0px;">
+      <li class="breadcrumb-item">
+        <a class="active-2" th:href="@{/}" style="display: inline;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.90727 8.33332L9.90837 3.33222L14.9095 8.33332H14.9084V16.6667H4.90839V8.33332H4.90727ZM3.24172 9.99887L2.01104 11.2296L0.833374 10.0519L8.73086 2.1544C9.38118 1.50408 10.4356 1.50408 11.0859 2.1544L18.9834 10.0519L17.8057 11.2296L16.5751 9.99889V16.6667C16.5751 17.5871 15.8289 18.3333 14.9084 18.3333H4.90839C3.98791 18.3333 3.24172 17.5871 3.24172 16.6667V9.99887Z" fill="#1175BD"/>
+          </svg>
+          <p style="color: #1175BD; display: inline; cursor: pointer;">হোম</p>
+        </a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#1175BD"/>
+        </svg>
+        <a class="active-2" href="#" style="display: inline;">
+          <p style="color: #1175BD; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>
+        </a>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#1175BD"/>
+        </svg>
+        <a class="active-2" href="#" style="display: inline;">
+          <p style="color: #1175BD; display: inline; cursor: pointer;">কবরের বিস্তারিত</p>
+        </a>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#828282"/>
+        </svg>
+
+        <p style="color: #828282; display: inline; margin: 0px;">ম্যাপ</p>
+
+      </li>
+
+    </ol>
   </div>
-  <div class="row">
+
+
+<!--  <div class="row">-->
+<!--    <nav aria-label="breadcrumb "  >-->
+<!--      <ol class="breadcrumb  mb-5  ">-->
+<!--        <li class="breadcrumb-item "><a class="black-text active-2" th:href="@{/}"><img  id ="home" src="https://img.icons8.com/ios-filled/50/000000/dog-house.png" class="mr-md-2 mr-1 mb-1 "  width="22" height="19"><span  >হোম</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"> </li>-->
+<!--        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >ম্যাপ এ দেখুন</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>-->
+<!--      </ol>-->
+<!--    </nav>-->
+<!--  </div>-->
+  <div class="row" style="background: #FFF; border-radius: 20px; margin-bottom: 40px;">
     <!-- Left Card with Filter Options -->
 
-    <div class="col-md-12">
-      <div class="card" style="height: 700px;">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <span>কবরস্থান এর</span>
-          <span><a th:href="@{/filter_page_blank}"><button type="button" class="btn btn-outline-primary active"><img th:src="@{/resource/magnify-scan.png}">কবর অনুসন্ধান করুন</button></a></span>
-        </div>
+    <div class="col-md-12" style="padding: 0;">
+      <div style="padding: 20px 20px 0px 20px;">
+        <p style="color: #205F8B; font-family: Hind Siliguri; font-size: 24px; font-style: normal;
+          font-weight: 500; line-height: normal; align-content: center; text-align: center;
+          padding: 0px; display: flex; align-items: center;">
+          ম্যাপ এর মাধ্যমে কবর দেখুন
+        </p>
+      </div>
+      <hr style="width: 100%; height: 1px; background: #DADADA;">
 
-        <div class="card-body">
+      <div class="col-md-12 card"
+           style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 40px;
+           border: none; border-radius: 20px;">
+        <div id="map"></div>
+
+<!--        <div class="card-header d-flex justify-content-between align-items-center">-->
+<!--          <span>ম্যাপ এর মাধ্যমে কবর দেখুন</span>-->
+<!--          <span><a th:href="@{/filter_page_blank}"><button type="button" class="btn btn-outline-primary active"><img th:src="@{/resource/magnify-scan.png}">কবর অনুসন্ধান করুন</button></a></span>-->
+<!--        </div>-->
+
+
           <!-- Filter by Name -->
-
-          <div id="map"></div>
-
-
-
-
-        </div>
       </div>
     </div>
   </div>
