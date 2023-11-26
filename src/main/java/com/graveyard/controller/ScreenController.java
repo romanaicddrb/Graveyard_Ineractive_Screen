@@ -65,7 +65,7 @@ public class ScreenController {
             @RequestParam(name = "gid") String gid,
             Model model
     ) {
-        String apiUrl = "http://localhost:8080/api/detail?gId=" + gid + "&id=" + decId;
+        String apiUrl = "http://localhost:8080/api/detail/" + gid + "/" + decId;
 //        GraveDetail graveDetail = restTemplate.getForObject(apiUrl, GraveDetail.class);
 //
 //        // Check if the object is not null
