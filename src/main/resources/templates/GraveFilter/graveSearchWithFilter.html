@@ -20,7 +20,16 @@
 
 
   <style data-asas-style="">
-	  body, div, a, p, span{ user-select: text !important; }
+	  body, div, a, p, span{
+	    user-select: text !important;
+      }
+
+      body{
+	    background: #F5F5F5;
+	    font-family: Hind Siliguri;
+        font-style: normal;
+      }
+
 	  p, h1, h2, h3, h4, h5, h6{
 	    cursor: auto;
 	    user-select: text !important;
@@ -30,10 +39,13 @@
 	  }
 	  #myDataTable thead th {
 		  background-color: #E1EFFE;
-		  padding: 15px 10px;
 		  vertical-align: middle;
 	  }
 
+	  th.sorting{
+	    padding-left: 30px;
+	    padding-right: 0px;
+	  }
 
       .card-footer button {
           background-color: #007bff;
@@ -100,7 +112,7 @@
     font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; /* 150% */
+    line-height: 24px;
   }
 
   .card-body{
@@ -112,7 +124,8 @@
 
   table.dataTable td{
     font-family: Hind Siliguri;
-    padding: 15px 10px;
+    padding-left: 30px;
+	padding-right: 0px;
   }
 
 
@@ -121,6 +134,20 @@
     border-radius: 5px;
     background: #1175BD;
     color: #FFF;
+  }
+
+  #myDataTable_info.dataTables_info{
+    padding: 20px;
+    position: fixed;
+    z-index: 1; /* This can be set to any number greater than -1000. */
+    bottom: 7%;
+    width: 100%;
+    display: flex;
+    gap: 4px;
+  }
+
+  .dataTables_scrollHead{
+    height: 49px;
   }
 
   </style>
@@ -133,7 +160,7 @@
   <div th:replace="CommonTemp/navBar.html :: navbar"></div>
 
   <main role="main" class="container overflow-hidden"
-        style="margin-top: 98px; padding: 0 4%;">
+        style="margin-top: 98px; padding: 0 0.1%;">
     <div class="row gx-5">
 
       <div id="bg-top">
@@ -181,35 +208,20 @@
     <!-- Left Card with Filter Options -->
 
     <div class="col-md-4">
-      <div class="card" style="padding: 20px; padding-left: 40px;
-      padding-right: 40px; padding-bottom: 40px; border-radius: 20px;
-      background: #FFF; height: 100%;">
+      <div class="card"
+           style="padding: 20px; padding-left: 40px; padding-right: 40px; padding-bottom: 40px;
+           border-radius: 20px; background: #FFF; height: 100%;">
         <div>
-          <p style="color: #205F8B;
-              font-family: Hind Siliguri;
-              font-size: 24px;
-              font-style: normal;
-              font-weight: 500;
-              line-height: normal;
-              margin: auto;
-              align-content: center;
-              padding: 15px 0px;
-              display: flex;
-<!--              justify-content: center;-->
-              align-items: center;">
+          <p style="color: #205F8B; font-family: Hind Siliguri; font-size: 28px; font-style: normal;
+              font-weight: 500; line-height: normal; margin: auto; align-content: center; padding: 15px 0px;
+              display: flex; align-items: center;">
             প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন
           </p>
         </div>
         <div class="card-body"
-             style="display: flex;
-                    padding: 20px;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    font-family: Hind Siliguri;
-                    gap: 30px;
-                    border-radius: 10px;
-                    background: #EBEBEB;">
-          <div class="row">
+             style="display: flex; flex-direction: column; align-items: flex-start;
+                    font-family: Hind Siliguri; font-size: 18px; border-radius: 10px; background: #EBEBEB;">
+          <div class="row" style="gap: 20px;">
             <div class="col-md-12">
               <div class="form-group">
                 <label for="MemoFilter">মেমো নং</label>
@@ -308,32 +320,30 @@
             <div class="col-md-12">
 <!--              <div class="form-group">-->
 
-
-<!--                      <a th:href="@{/BuriedSearch}">-->
-                <button id="searchBtn" type="button" class="btn btn-primary" style="width: 100%;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                  </svg>
-                </button>
+<!--            <a th:href="@{/BuriedSearch}">-->
+            <button id="searchBtn" type="button" class="btn btn-primary" style="width: 100%;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+              </svg>
+            </button>
 <!--                    </a>-->
 
 <!--              </div>-->
-            </div>
+
           </div>
+        </div>
         </div>
       </div>
     </div>
-
-
 
     <!-- Right Card with Data Table -->
     <div class="col-md-8">
       <div class="card" style="height: 100%; border-radius: 20px;">
 
-        <div class="card-body table-responsive" style="padding: 0;">
+        <div class="card-body table-responsive" style="padding: 0px 20px 20px 20px;">
           <!-- DataTable style="background: #E1EFFE; border-radius: 20px 20px 0px 0px;"-->
           <table class="table align-middle" id="myDataTable"
-                 style="width: 100%; border-radius: 20px; font-family: Hind Siliguri;">
+                 style="width: 100%; border-radius: 20px; font-family: Hind Siliguri; border: none;">
             <thead>
               <tr>
                 <th style="display:none">Id</th>
@@ -344,7 +354,7 @@
                 <th>পিতার নাম</th>
                 <th>দাফনের তারিখ</th>
                 <th>ঠিকানা</th>
-                <th>স্ট্যাটাস</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -396,31 +406,32 @@
                   "paging": false,
                   "scrollCollapse": true,
                   "scrollX": true,
-                  "scrollY": 500,
+                  "scrollY": 565,
                   "fixedHeader": true,
                   "select": true,
                   "processing": false,
                   "destroy": true,
+
                   columns: [
-                    { data: 'dec_id', visible: false },
-                    { data: 'graveyard_id' , visible: false },
-                    { data: 'memo_no' },
-                    { data: 'dod' },
+                    { data: 'dec_id', visible: false, width: '0%'},
+                    { data: 'graveyard_id' , visible: false, width: '0%' },
+                    { data: 'memo_no', width: '100px' },
+                    { data: 'dod', width: '120px', },
                     { data: 'dec_name' },
-                    { data: 'father' },
-                    { data: 'bur_date' },
-                    { data: 'address' , width: '20%' },
+                    { data: 'father', },
+                    { data: 'bur_date', width: '140px' },
+                    { data: 'address' , },
                     {
                           data: null,
                           render: function (data, type, row) {
                               if (data && data.dec_id && data.graveyard_id) {
-                                return '<button type="button" class="btn btn-block btn-sm"> Details </button>';
+                                return '<div class="mr-3" style="margin-left: -5%;"><button type="button" class="btn btn-block btn-sm"> Details </button></div>';
                               }
                               else {
                                   // If data is not available, return an empty string
                                   return '';
                               }
-                          }
+                          },
                       }
                   ]
               });

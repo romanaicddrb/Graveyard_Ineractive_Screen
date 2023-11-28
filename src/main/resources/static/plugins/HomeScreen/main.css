@@ -78,10 +78,12 @@ body {
 
 .logosSec{
     display: flex;
-    text-align: left;
-    justify-content: space-between;
-    align-items: center;
+    text-align: right;
+    font-family: Hind Siliguri;
+    justify-content: right;
+    align-items: right;
     padding: 0;
+    gap: 5px;
 }
 
 .logos{
@@ -92,11 +94,10 @@ body {
 
 .logoText{
   color: #FFF;
-  font-family: Baloo Da 2;
   display: flex;
-  justify-content: center;
-  text-align: left;
-  font-size: 16px;
+  justify-content: right;
+  text-align: right;
+  font-size: 22px;
   padding: 0;
   /* font-style: normal; */
   font-weight: 600;
@@ -110,8 +111,6 @@ body {
   align-items: center;
   font-family: Hind Siliguri;
   gap: 40px;
-  margin-top: 7%;
-  margin-bottom: 5%;
 }
 
 .titleB{
@@ -126,7 +125,8 @@ body {
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.44);
   background: rgba(17, 117, 189, 0.19);
-  line-height: 50px;
+  line-height: 60px;
+  margin-bottom: 50px;
 }
 
 .contentSec{
@@ -142,7 +142,7 @@ body {
   font-style: normal;
   display: flex;
   text-align: justify;
-  font-size: calc(12.8px + 6 * ((100vw - 400px) / 680));
+  font-size: calc(16.8px + 6 * ((100vw - 400px) / 680));
   text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.60);
 }
 
@@ -198,7 +198,6 @@ body {
 
 .footOf { /* This is for the content */
     position: fixed;
-
     z-index: 1; /* This can be set to any number greater than -1000. */
     bottom: 0;
     /* background: rgba(0, 0, 0, 0.5); */
@@ -206,7 +205,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 25px 20px;
     /* align-items: center; */
     gap: 4px;
 }
