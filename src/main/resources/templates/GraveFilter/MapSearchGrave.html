@@ -20,6 +20,7 @@
   <style type="text/css" data-asas-style="">
 
 	  body, div, a, p, span{ user-select: text !important; }
+	  body{background: #F5F5F5;}
 	  p, h1, h2, h3, h4, h5, h6{
 	  cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important;}
 	  #myDataTable thead th {
@@ -37,10 +38,10 @@
 		.card-footer button i {
 			margin-right: 5px;
 		}
-	  .container, .container-lg, .container-md, .container-sm, .container-xl
-	  {
-	  max-width: 1800px;
-		}
+<!--	  .container, .container-lg, .container-md, .container-sm, .container-xl-->
+<!--	  {-->
+<!--	    width: 100%;-->
+<!--		}-->
 
 		 #map { height: 800px; }
         .info {
@@ -69,8 +70,8 @@
 <div th:replace="CommonTemp/navBar.html :: navbar"></div>
 
 
-<main role="main" class="container overflow-hidden"
-      style="margin-top: 98px; padding-bottom: 98px; padding: 0 4%; background: #F5F5F5; width: 100%;">
+<main role="main" class="container"
+      style="margin-top: 98px; padding-bottom: 98px; padding: 0; background: #F5F5F5; width: 100%;">
   <div class="row" style="padding: 0px;margin: 1% 0px; width: 100%;">
     <ol class="breadcrumb" style="background: none; color: white; padding: 0; margin: 0px;">
       <li class="breadcrumb-item">
@@ -80,25 +81,25 @@
           </svg>
           <p style="color: #1175BD; display: inline; cursor: pointer;">হোম</p>
         </a>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#1175BD"/>
-        </svg>
-        <a class="active-2" href="#" style="display: inline;">
-          <p style="color: #1175BD; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>
-        </a>
+<!--        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#1175BD"/>-->
+<!--        </svg>-->
+<!--        <a class="active-2" href="#" style="display: inline;">-->
+<!--          <p style="color: #1175BD; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>-->
+<!--        </a>-->
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#1175BD"/>
-        </svg>
-        <a class="active-2" href="#" style="display: inline;">
-          <p style="color: #1175BD; display: inline; cursor: pointer;">কবরের বিস্তারিত</p>
-        </a>
+<!--        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#1175BD"/>-->
+<!--        </svg>-->
+<!--        <a class="active-2" href="#" style="display: inline;">-->
+<!--          <p style="color: #1175BD; display: inline; cursor: pointer;">কবরের বিস্তারিত</p>-->
+<!--        </a>-->
 
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#828282"/>
         </svg>
 
-        <p style="color: #828282; display: inline; margin: 0px;">ম্যাপ</p>
+        <p style="color: #828282; display: inline; margin: 0px;">ম্যাপ এ দেখুন</p>
 
       </li>
 
@@ -118,13 +119,18 @@
     <!-- Left Card with Filter Options -->
 
     <div class="col-md-12" style="padding: 0;">
-      <div style="padding: 20px 20px 0px 20px;">
+      <div class="d-flex justify-content-between align-items-center" style="padding: 20px 20px 0px 20px;">
         <p style="color: #205F8B; font-family: Hind Siliguri; font-size: 24px; font-style: normal;
           font-weight: 500; line-height: normal; align-content: center; text-align: center;
           padding: 0px; display: flex; align-items: center;">
           ম্যাপ এর মাধ্যমে কবর দেখুন
         </p>
+<!--        <div class="card-header d-flex justify-content-between align-items-center">-->
+<!--          <span>ম্যাপ এর মাধ্যমে কবর দেখুন</span>-->
+        <span><a th:href="@{/filter_page_blank}"><button type="button" class="btn btn-outline-primary active"><img th:src="@{/resource/magnify-scan.png}">কবর অনুসন্ধান করুন</button></a></span>
+<!--        </div>-->
       </div>
+
       <hr style="width: 100%; height: 1px; background: #DADADA;">
 
       <div class="col-md-12 card"
@@ -133,9 +139,7 @@
         <div id="map"></div>
 
 
-
-
-        </div>
+          <!-- Filter by Name -->
       </div>
     </div>
   </div>
