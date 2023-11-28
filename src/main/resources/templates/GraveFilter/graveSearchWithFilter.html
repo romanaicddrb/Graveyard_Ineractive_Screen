@@ -61,41 +61,46 @@
 
 
 
-    .bg{
-      position: fixed;
-      z-index: -1000; /* Z-Index is -1000 just to be safe */
-      right: 0;
-      bottom: 0;
-      min-width: 100%;
-      min-height: 100%;
-    }
-
-    p{
-      margin: auto;
-      align-content: center;
-    }
 
 
-  #bg-top:before {
-  content:"";
-  position: fixed;
-  top:0;
-  right:0;
-  left:0;
-  bottom:0;
-  z-index:1;
-  background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);
-  mix-blend-mode: multiply;
+   .bg {
+    position: fixed;
+    z-index: -1000;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+#bg-top:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);
+    mix-blend-mode: multiply;
 }
 
 #bg-top {
-  left: 0%;
-  top: 0%;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
+    left: 0%;
+    top: 0%;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+/* Ensure the image covers the full screen */
+.bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
   #myDataTable_filter{
@@ -340,7 +345,7 @@
                 <th style="display:none">GraveId</th>
                 <th>মেমো নং</th>
                 <th>মৃত্যুর তারিখ</th>
-                <th>মৃত্যু ব্যক্তির নাম</th>
+                <th>মৃত ব্যক্তির নাম</th>
                 <th>পিতার নাম</th>
                 <th>দাফনের তারিখ</th>
                 <th>ঠিকানা</th>
@@ -409,7 +414,7 @@
                     { data: 'dec_name' },
                     { data: 'father', },
                     { data: 'bur_date', width: '160px' },
-                    { data: 'address' , },
+                    { data: 'address' , visible: false, width: '0%' },
                     {
                           data: null,
                           render: function (data, type, row) {
