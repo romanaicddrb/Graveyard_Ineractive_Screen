@@ -364,8 +364,8 @@
                 <td style="display:none"></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td style="text-transform: uppercase;"></td>
+                <td style="text-transform: uppercase;"></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -411,8 +411,8 @@
                     { data: 'graveyard_id' , visible: false, width: '0%' },
                     { data: 'memo_no', width: '100px' },
                     { data: 'dod', width: '140px', },
-                    { data: 'dec_name' },
-                    { data: 'father', },
+                    { data: 'dec_name', 'text-transform': 'uppercase' },
+                    { data: 'father', 'text-transform': 'uppercase' },
                     { data: 'bur_date', width: '160px' },
                     { data: 'address' , visible: false, width: '0%' },
                     {
@@ -427,7 +427,16 @@
                               }
                           },
                       }
-                  ]
+                  ],
+                  "columnDefs": [
+                      {
+                          "targets": [4, 5], // Column indexes (0-based) where transformation should be applied
+                          "render": function (data, type, row) {
+                              // Apply text-transform: uppercase to the rendered content
+                              return type === 'display' && data !== null ? data.toUpperCase() : data;
+                          }
+                      }
+                  ],
               });
               function loadDetailsPage(dec_id, graveyard_id) {
                       window.location.href = '/graveDetails_withPosition?id=' + dec_id + '&gid=' + graveyard_id;
@@ -478,6 +487,7 @@
                     }
                   });
            });
+
    });
 
 
