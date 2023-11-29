@@ -386,6 +386,7 @@
 <!--<script th:src="@{/plugins/bootstrap.js/bootstrap.min.js}"></script>-->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <script src="/plugins/datatables/jquery.datatables.min.js"></script>
+<!--<script src="https://cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>-->
 <script src="https://cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js" charset="utf8"></script>
 <!--    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
 <!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
@@ -394,6 +395,33 @@
 
    $(document).ready(function()
     {
+
+
+<!--        $('#myDataTable').DataTable( {-->
+<!--          "paging": true,-->
+<!--          "deferRender": true,-->
+<!--          "ajax":{-->
+<!--              "url":"https://services7.arcgis.com/ewmPU1HI7BJPXAG4/arcgis/rest/services/NOPIMS_Wells_Feature_Service/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson",-->
+<!--              "dataSrc": "features"-->
+<!--          },-->
+<!--            "columnDefs": [ {-->
+<!--            targets: 3,-->
+<!--            render: $.fn.dataTable.render.moment('M-DD-YYYY,THH:mm','M/DD/YYYY')-->
+<!--          } ],-->
+<!--          -->
+<!--        });-->
+
+
+
+
+
+
+
+
+
+
+
+
               var gidValue = '2';
               var myDataTable = $('#myDataTable').DataTable({
 
@@ -440,8 +468,7 @@
                             return type === 'display' && data !== null ? data.toUpperCase() : data;
                         }
                       },
-
-
+<!--                      { "targets": [3], "type": "datetime", render: $.fn.dataTable.render.moment( 'Do MMM YYYYY' ) },-->
 
                   ],
               });
