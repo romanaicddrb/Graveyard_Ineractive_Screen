@@ -21,7 +21,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ScreenController {
 //    private final RestTemplate restTemplate;
-    private final DecPersonService decPersonService;
+    private DecPersonService decPersonService;
 
 //    @Autowired
 //    public ScreenController(RestTemplateBuilder restTemplateBuilder) {
@@ -52,6 +52,7 @@ public class ScreenController {
 
     @GetMapping(path="/mapSearch")
     public String mapSearch() {
+        String apiUrl = "http://localhost:8080/api/getGraveAvailApi/2";
         return "GraveFilter/MapSearchGrave";
     }
 
