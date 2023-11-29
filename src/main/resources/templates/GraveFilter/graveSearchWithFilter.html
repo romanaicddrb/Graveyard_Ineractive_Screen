@@ -419,7 +419,7 @@
                           data: null,
                           render: function (data, type, row) {
                               if (data && data.dec_id && data.graveyard_id) {
-                                return '<div class="mr-3" style="margin-left: -5%;"><button type="button" class="btn btn-block btn-sm"> Details </button></div>';
+                                return '<div class="mr-3" style="margin-left: -5%; font-size: 5px;"><button type="button" class="btn btn-block btn-sm"> বিস্তারিত দেখুন </button></div>';
                               }
                               else {
                                   // If data is not available, return an empty string
@@ -478,7 +478,31 @@
                     }
                   });
            });
+    const countriesDropDown = document.getElementById("BuriedyearFilter");
+    const countriesData = {
+      "Australia": "🇦🇺",
+      "Canada": "🇨🇦",
+      "UK": "🇬🇧",
+      "USA": "🇺🇸"
+    }
+
+    for (let key in countriesData) {
+
+      let option = document.createElement("option");
+      option.setAttribute('value', countriesData[key]);
+
+      let optionText = document.createTextNode(key);
+      option.appendChild(optionText);
+
+      countriesDropDown.appendChild(option);
+    }
+
    });
+
+
+
+
+
 
 
 
