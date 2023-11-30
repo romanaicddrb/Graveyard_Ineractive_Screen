@@ -40,7 +40,7 @@
 	  }
 
      #map {
-      height: 100%;
+      height: 780px;
       width: 100%;
      }
 
@@ -156,11 +156,27 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
+<script src="/plugins/jquery/jquery.min.js"></script>
 <script th:src="@{plugins/popper/popper.min.js}"></script>
 <script th:src="@{plugins/bootstrap.js/bootstrap.min.js}"></script>
 
 <script>
-       //create map object in map div with co-orrdinate and zoom level
+  $(document).ready(function()
+    {
+      $.ajax({
+              url: '/api/getGraveAvailApi/2',
+              method: 'GET',
+              contentType: 'application/json',
+              success: function(data) {
+              console.log(data)
+              },
+              error: function(error) {
+                console.error('Error performing search:', error);
+              }
+            });
+    });
+
+    //create map object in map div with co-orrdinate and zoom level
     // var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);
     var map = L.map('map', {
       fullscreenControl: true,
