@@ -18,11 +18,19 @@
   <!-- Custom styles for this template -->
   <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">
   <style type="text/css" data-asas-style="">
-	  body, div, a, p, span{ user-select: text !important; }
-	  p, h1, h2, h3, h4, h5, h6{ cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important; color: #fff !important; }
+	  body, div, a, p, span{
+	    user-select: text !important;
+      }
+
+	  p, h1, h2, h3, h4, h5, h6{
+	    cursor: auto; user-select: text !important;
+      }::selection{
+        background-color: #338FFF !important; color: #fff !important;
+      }
+
 	  #myDataTable thead th {
 		  background-color: #E1EFFE;
-		}
+	  }
 
       body{
 	    background: #F5F5F5;
@@ -37,18 +45,15 @@
 			padding: 10px 20px;
 		}
 
-
 		.card-footer button i {
 			margin-right: 5px;
 		}
-	  .container, .container-lg, .container-md, .container-sm, .container-xl
-	  {
-	  max-width: 1800px;
-		}
+
   #map {
-      height: 750px;
+      height: 100%;
       width: 100%;
-     }
+      border-radius: 10px;
+  }
 
     .info {
       padding: 6px 8px;
@@ -60,11 +65,15 @@
       margin: 0 0 5px;
       color: #777;
     }
-      .form-group p{
-        font-weight: 700;
-        font-size: calc(8.8px + 6 * ((100vw - 400px) / 680));
-      }
-	  </style>
+    .form-group p{
+      font-weight: 700;
+      font-size: calc(8.8px + 6 * ((100vw - 400px) / 680));
+    }
+
+    div.form-group{
+      padding: 10px;
+    }
+  </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -75,9 +84,9 @@
 <body >
 
 <div th:replace="CommonTemp/navBar.html :: navbar"></div>
-<main role="main" class="container overflow-hidden"
+<main role="main" class="overflow-hidden"
       style="margin-top: 98px; padding: 0 4%; background: #F5F5F5;
-      height: 100%; padding: 0px 40px 40px 40px;">
+      height: 100%; width: 100%; padding: 0px 40px 40px 40px;">
 
     <div class="row" style="padding: 0px;margin: 1% 0px; width: 100%;">
         <ol class="breadcrumb" style="background: none; color: white; padding: 0; margin: 0px;">
@@ -117,43 +126,33 @@
 
   <div class="row col-md-12"
        style="height: 100%; width: 100%; background: #FFF;
-        border-radius: 20px; padding: 40px 20px; margin-left: 0.2%;">
+        border-radius: 20px; padding: 30px 20px; margin-left: 0.2%;">
     <div style="width: 100%; padding: 0px 2%;">
-      <p style="color: #205F8B;
-          font-family: Hind Siliguri;
-          font-size: 30px;
-          font-style: normal;
-          font-weight: 500;
-          line-height: normal;
-          align-content: center;
-          text-align: center;
-          padding: 0px;
+      <p style="color: #205F8B; font-size: 30px; font-style: normal; font-weight: 500;
+          line-height: normal; align-content: center; text-align: center; padding: 0px;
           display: flex;
-   <!--justify-content: center;-->
           align-items: center;">
           কবরের বিস্তারিত
       </p>
     </div>
     <div class="col-md-5" style="padding-right: 0px;">
     <!-- First Header Card -->
-      <div class="card" style="padding-top: 0px; padding-left: 20px;
-      padding-right: 20px; padding-bottom: 20px; border: none;
-      background: #FFF; height: 100%;">
-
+      <div class="card"
+           style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 20px;
+           border: none; background: #FFF; height: 100%;">
         <div class="row card-body"
                style="border-radius: 10px; background: #F3F3F3;
                     display: flex;
                     padding: 30px 20px;
                     align-items: flex-start;
-                    font-family: Hind Siliguri;
                     font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
                     gap: 20px;">
-            <div class="col-md-5" style="display: flex; flex-direction: column;
-            width: 100%; padding: 0px;">
+            <div class="col-md-5"
+                 style="display: flex; flex-direction: column; width: 100%; padding: 0px;">
               <div class="col">
                   <div class="form-group">
                       <label >কবরের মেমো / আইডি নং</label>
-                           <p th:text="${data.Memo_no}"></p>
+                      <p th:text="${data.Memo_no}"></p>
                   </div>
               </div>
               <div class="col">
@@ -165,19 +164,19 @@
               <div class="col">
                   <div class="form-group">
                       <label >কবরের সারি</label>
-                                               <p th:text="${data.Grave_lane}"></p>
+                      <p th:text="${data.Grave_lane}"></p>
                   </div>
               </div>
               <div class="col">
                   <div class="form-group">
                       <label>কবরের ব্লক</label>
-                                               <p th:text="${data.Grave_block}"></p>
+                      <p th:text="${data.Grave_block}"></p>
                   </div>
               </div>
               <div class="col">
                   <div class="form-group">
                     <label >কবরের জোন</label>
-                                               <p th:text="${data.Grave_zone}"></p>
+                    <p th:text="${data.Grave_zone}"></p>
                   </div>
               </div>
               <div class="col">
@@ -199,37 +198,37 @@
               <div class="col">
                 <div class="form-group">
                   <label >মৃত্যু ব্যক্তির নাম</label>
-                                <p th:text="${data.Dec_name}"></p>
+                  <p th:text="${data.Dec_name}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
                   <label>স্বামী/স্ত্রীর নাম</label>
-                                <p th:text="${data.Spouse}"></p>
+                  <p th:text="${data.Spouse}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
                   <label >পিতাম নাম</label>
-                                <p th:text="${data.Father}"></p>
+                  <p th:text="${data.Father}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
                   <label >মাতার নাম</label>
-                                <p th:text="${data.Mother}"></p>
+                  <p th:text="${data.Mother}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
                   <label >ঠিকানা</label>
-                                 <p th:text="${data.Address}"></p>
+                  <p th:text="${data.Address}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
                   <label >জাতীয়তা</label>
-                                 <p th:text="${data.Nationality}"></p>
+                  <p th:text="${data.Nationality}"></p>
                 </div>
               </div>
             </div>
@@ -240,12 +239,12 @@
     <div class="col-md-7" style="padding-left: 0px;">
         <!-- Second Column with Card -->
         <div class="card"
-             style="padding-top: 0px; padding-left: 20px; padding-right: 20px;
+             style="padding-top: 0px; padding-left: 20px; padding-right: 0px;
              padding-bottom: 20px; border: none; background: #FFF; height: 100%;">
           <div class="card-body"
                style="border-radius: 10px;
                     display: flex;
-                    padding: 20px;
+                    padding: 0px;
                     align-items: flex-start;
                     gap: 20px;
                     border: 1px solid #F3F3F3;">

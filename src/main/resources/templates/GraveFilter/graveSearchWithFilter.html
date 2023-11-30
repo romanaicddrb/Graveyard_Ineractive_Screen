@@ -239,8 +239,8 @@
                     <div class="form-group">
                       <select class="form-control" id="DeaddayFilter" >
                         <option value="" disabled selected>দিন</option>
-                        <option value="01">১</option>
-                        <option value="02">২</option>
+<!--                        <option value="01">১</option>-->
+<!--                        <option value="02">২</option>-->
                         <!-- Add more day options as needed -->
                       </select>
                     </div>
@@ -250,8 +250,8 @@
                     <div class="form-group">
                       <select class="form-control" id="DeadmonthFilter" >
                         <option value="" selected>মাস</option>
-                        <option value="01">জানুয়ারী</option>
-                        <option value="02">ফেব্রুয়ারী</option>
+<!--                        <option value="01">জানুয়ারী</option>-->
+<!--                        <option value="02">ফেব্রুয়ারী</option>-->
                         <!-- Add more month options as needed -->
                       </select>
                     </div>
@@ -262,8 +262,8 @@
 
                         <select class="form-control" id="DeadyearFilter">
                           <option value="" selected>সাল</option>
-                          <option value="2023">২০২৩</option>
-                          <option value="2022">২০২২</option>
+<!--                          <option value="2023">২০২৩</option>-->
+<!--                          <option value="2022">২০২২</option>-->
                           <!-- Add more year options as needed -->
                         </select>
 
@@ -281,8 +281,8 @@
                     <div class="form-group">
                       <select class="form-control" id="BurieddayFilter" >
                         <option value="" disabled selected>দিন</option>
-                        <option value="01">১</option>
-                        <option value="02">২</option>
+<!--                        <option value="01">১</option>-->
+<!--                        <option value="02">২</option>-->
                         <!-- Add more day options as needed -->
                       </select>
                     </div>
@@ -292,8 +292,8 @@
                     <div class="form-group">
                       <select class="form-control" id="BuriedmonthFilter" >
                         <option value="" selected>মাস</option>
-                        <option value="01">জানুয়ারী</option>
-                        <option value="02">ফেব্রুয়ারী</option>
+<!--                        <option value="01">জানুয়ারী</option>-->
+<!--                        <option value="02">ফেব্রুয়ারী</option>-->
                         <!-- Add more month options as needed -->
                       </select>
                     </div>
@@ -303,8 +303,8 @@
                     <div class="form-group">
                       <select class="form-control" id="BuriedyearFilter" >
                         <option value="" selected>সাল</option>
-                        <option value="2023">২০২৩</option>
-                        <option value="2022">২০২২</option>
+<!--                        <option value="2023">২০২৩</option>-->
+<!--                        <option value="2022">২০২২</option>-->
                         <!-- Add more year options as needed -->
                       </select>
                     </div>
@@ -316,11 +316,11 @@
 <!--              <div class="form-group">-->
 
 <!--            <a th:href="@{/BuriedSearch}">-->
-              <button id="searchBtn" type="button" class="btn btn-primary" style="width: 100%;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-              </svg>
-            </button>
+              <button id="searchBtn" type="button" class="btn" style="width: 100%; background-color: #205F8B;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M13 22.5C7.47715 22.5 3 18.0228 3 12.5C3 6.97715 7.47715 2.5 13 2.5C18.5228 2.5 23 6.97715 23 12.5C23 14.8109 22.2161 16.9387 20.8998 18.6321L27.6339 25.3661L25.8661 27.1339L19.1321 20.3998C17.4387 21.7161 15.3109 22.5 13 22.5ZM20.5 12.5C20.5 16.6421 17.1421 20 13 20C8.85786 20 5.5 16.6421 5.5 12.5C5.5 8.35786 8.85786 5 13 5C17.1421 5 20.5 8.35786 20.5 12.5Z" fill="white"/>
+                </svg>
+              </button>
 <!--                    </a>-->
 
 <!--              </div>-->
@@ -364,8 +364,8 @@
                 <td style="display:none"></td>
                 <td></td>
                 <td></td>
-                <td style="text-transform: uppercase;"></td>
-                <td style="text-transform: uppercase;"></td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -386,15 +386,46 @@
 <!--<script th:src="@{/plugins/bootstrap.js/bootstrap.min.js}"></script>-->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <script src="/plugins/datatables/jquery.datatables.min.js"></script>
+<!--<script src="https://cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>-->
+<script src="https://cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js" charset="utf8"></script>
 <!--    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
 <!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
 
     <script>
+
    $(document).ready(function()
     {
+
+
+<!--        $('#myDataTable').DataTable( {-->
+<!--          "paging": true,-->
+<!--          "deferRender": true,-->
+<!--          "ajax":{-->
+<!--              "url":"https://services7.arcgis.com/ewmPU1HI7BJPXAG4/arcgis/rest/services/NOPIMS_Wells_Feature_Service/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson",-->
+<!--              "dataSrc": "features"-->
+<!--          },-->
+<!--            "columnDefs": [ {-->
+<!--            targets: 3,-->
+<!--            render: $.fn.dataTable.render.moment('M-DD-YYYY,THH:mm','M/DD/YYYY')-->
+<!--          } ],-->
+<!--          -->
+<!--        });-->
+
+
+
+
+
+
+
+
+
+
+
+
               var gidValue = '2';
               var myDataTable = $('#myDataTable').DataTable({
-                 "responsive": true,
+
+                  "responsive": true,
                   "lengthChange": false,
                   "autoWidth": true,
                   "paging": false,
@@ -411,31 +442,34 @@
                     { data: 'graveyard_id' , visible: false, width: '0%' },
                     { data: 'memo_no', width: '100px' },
                     { data: 'dod', width: '140px', },
-                    { data: 'dec_name', 'text-transform': 'uppercase' },
-                    { data: 'father', 'text-transform': 'uppercase' },
-                    { data: 'bur_date', width: '160px' },
+                    { data: 'dec_name' },
+                    { data: 'father', },
+                    { data: 'bur_date', width: '160px', },
+
                     { data: 'address' , visible: false, width: '0%' },
                     {
                           data: null,
                           render: function (data, type, row) {
                               if (data && data.dec_id && data.graveyard_id) {
-                                return '<div class="mr-3" style="margin-left: -5%;"><button type="button" class="btn btn-block btn-sm"> Details </button></div>';
+                                return '<div class="mr-3" style="margin-left: -5%; font-size: 5px;"><button type="button" class="btn btn-block btn-sm"> বিস্তারিত দেখুন </button></div>';
                               }
                               else {
                                   // If data is not available, return an empty string
                                   return '';
                               }
-                          },
+                          }, width: '140px'
                       }
                   ],
                   "columnDefs": [
                       {
-                          "targets": [4, 5], // Column indexes (0-based) where transformation should be applied
-                          "render": function (data, type, row) {
-                              // Apply text-transform: uppercase to the rendered content
-                              return type === 'display' && data !== null ? data.toUpperCase() : data;
-                          }
-                      }
+                        "targets": [4, 5], // Column indexes (0-based) where transformation should be applied
+                        "render": function (data, type, row) {
+                            // Apply text-transform: uppercase to the rendered content
+                            return type === 'display' && data !== null ? data.toUpperCase() : data;
+                        }
+                      },
+<!--                      { "targets": [3], "type": "datetime", render: $.fn.dataTable.render.moment( 'Do MMM YYYYY' ) },-->
+
                   ],
               });
               function loadDetailsPage(dec_id, graveyard_id) {
@@ -491,9 +525,106 @@
    });
 
 
+<!--$('#myDataTable').datetime('M/D/YYYY');-->
+<!--DataTable.datetime('dddd D MMMM YYYY');-->
+
+<!--const editor = new DataTable.Editor({-->
+<!--    ajax: '../php/dates.php?format=custom',-->
+<!--    fields: [-->
+<!--        {-->
+<!--            type: 'datetime',-->
+<!--            def: () => new Date(),-->
+<!--            format: 'M/D/YYYY',-->
+<!--            fieldInfo: 'US style m/d/y format'-->
+<!--        },-->
+<!--    ],-->
+<!--    table: '#myDataTable'-->
+<!--});-->
+
+
+
+const monthDropDown = document.getElementById("BuriedmonthFilter");
+const monthDropDownDead = document.getElementById("DeadmonthFilter");
+const monthData = {
+  "জানুয়ারি": "1",
+  "ফেব্রুয়ারি": "2",
+  "মার্চ": "3",
+  "এপ্রিল": "4",
+  "মে": "5",
+  "জুন": "6",
+  "জুলাই": "7",
+  "আগস্ট": "8",
+  "সেপ্টেম্বর": "9",
+  "অক্টোবর": "10",
+  "নভেম্বর": "11",
+  "ডিসেম্বর": "12"
+}
+
+for (let key in monthData) {
+  let option = document.createElement("option");
+  option.setAttribute('value', monthData[key]);
+
+  let optionText = document.createTextNode(key);
+  option.appendChild(optionText);
+
+  monthDropDown.appendChild(option);
+}
+
+for (let key in monthData) {
+  let option = document.createElement("option");
+  option.setAttribute('value', monthData[key]);
+
+  let optionText = document.createTextNode(key);
+  option.appendChild(optionText);
+
+  monthDropDownDead.appendChild(option);
+}
+
+const dayDropDown = document.getElementById("BurieddayFilter");
+const dayDropDownDead = document.getElementById("DeaddayFilter");
+
+for (let i=1; i<31; i++) {
+  let option = document.createElement("option");
+
+  let optionText = document.createTextNode(i);
+  option.appendChild(optionText);
+
+  dayDropDown.appendChild(option);
+}
+
+for (let i=1; i<31; i++) {
+  let option = document.createElement("option");
+
+  let optionText = document.createTextNode(i);
+  option.appendChild(optionText);
+
+  dayDropDownDead.appendChild(option);
+}
+
+const yearDropDown = document.getElementById("BuriedyearFilter");
+const yearDropDownDead = document.getElementById("DeadyearFilter");
+for (let i=1974; i<2024; i++) {
+  let option = document.createElement("option");
+
+  let optionText = document.createTextNode(i);
+  option.appendChild(optionText);
+
+  yearDropDown.appendChild(option);
+}
+
+for (let i=1974; i<2024; i++) {
+  let option = document.createElement("option");
+
+  let optionText = document.createTextNode(i);
+  option.appendChild(optionText);
+
+  yearDropDownDead.appendChild(option);
+}
+
 
 
 </script>
+
 
 
 
