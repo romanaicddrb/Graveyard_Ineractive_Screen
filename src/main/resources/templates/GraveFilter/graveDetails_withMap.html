@@ -240,7 +240,8 @@ th:text="${someObject.someProperty}">someValue</span>-->
                   <div class="form-group">
                     <label >মৃত্যুর তারিখ</label>
                       <p th:if="${data.Dod == null}">N/A</p>
-                      <p th:unless="${data.Dod}"><p th:text="${data.Dod}"></p></p>
+                      <p th:unless="${data.Dod}">
+                        <p th:text="${data.Dod}"></p></p>
 <!--                        <p th:text="${data.Dod}"></p>-->
                   </div>
               </div>
@@ -255,7 +256,19 @@ th:text="${someObject.someProperty}">someValue</span>-->
                         <label >দাফনের তারিখ</label>
                         <p th:if="${data.Bur_date == null}">N/A</p>
                         <p th:unless="${data.Bur_date}">
-                            <p th:text="${data.Bur_date}"></p>
+                            <th:block th:with="clazz=${T(java.time.format.DateTimeFormatter)},
+          style=${T(java.time.format.FormatStyle).SHORT},
+          zone=${T(java.time.ZoneId).systemDefault()},
+          formatter=${clazz.ofLocalizedDateTime(style).withLocale(#locale).withZone(zone)}">
+                                <span th:text="${formatter.format(data.Bur_date)}"></span>
+                            </th:block>
+<!--                        <p> th:field ="*{#temporals.format(data.Bur_date, 'dd-MM-yyyy')}"</p>-->
+<!--                            <p th:text="${#temporals.format(data.Bur_date, 'SHORT')}"></p>-->
+
+<!--                            <p th:text="${#dates.format(data.Bur_date, 'dd-MM-yyyy HH:mm')}"></p>-->
+
+<!--                        #temporals.format(data.burdate, 'dd-MM-yyyy')-->
+<!--                        <span th:text="${data.burdate != null} ? ${'কবর দেয়ার তারিখ: '+#temporals.format(data.burdate, 'dd-MM-yyyy')} : ${'কবর দেয়ার তারিখ:'}"></span><br/>-->
 <!--                            <p th:text="${#dates.format(sprint.data.Bur_date, 'dd-MM-yyyy')}"></p>-->
                         </p>
 <!--                        <td th:text="${{sb.datePlanted}}">13/01/2011</td>-->
@@ -371,22 +384,44 @@ th:text="${someObject.someProperty}">someValue</span>-->
 <!--		$('#myDataTable').DataTable();-->
 <!--	  });-->
 <!--</script>-->
-<script>
-    //create map object in map div with co-orrdinate and zoom level
- // var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);
- var map = L.map('map', {
-   fullscreenControl: true,
-   fullscreenControlOptions: {
-     position: 'topleft'
-   }
-}).setView([23.799943031000002 , 90.4052079537], 15);
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
+<!--<script>-->
+<!--    //create map object in map div with co-orrdinate and zoom level-->
+<!-- // var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);-->
+<!-- var map = L.map('map', {-->
+<!--   fullscreenControl: true,-->
+<!--   fullscreenControlOptions: {-->
+<!--     position: 'topleft'-->
+<!--   }-->
+<!--}).setView([23.799943031000002 , 90.4052079537], 15);-->
+<!--    &lt;!&ndash; Bootstrap core JavaScript-->
+<!--    ================================================== &ndash;&gt;-->
+<!--    &lt;!&ndash; Placed at the end of the document so the pages load faster &ndash;&gt;-->
+<!--</script>-->
+
     <script>
+<!--        function convertDate($date) {-->
+<!--       // EN-Date to GE-Date-->
+<!--       if (strstr($date, "-") || strstr($date, "/"))   {-->
+<!--               $date = preg_split("/[\/]|[-]+/", $date);-->
+<!--               $date = $date[2].".".$date[1].".".$date[0];-->
+<!--               return $date;-->
+<!--       }-->
+<!--       // GE-Date to EN-Date-->
+<!--       else if (strstr($date, ".")) {-->
+<!--               $date = preg_split("[.]", $date);-->
+<!--               $date = $date[2]."-".$date[1]."-".$date[0];-->
+<!--               return $date;-->
+<!--       }-->
+<!--       return false;-->
+<!--}-->
+
+
+
+
+
         function GetGraveBycode(id){
             const features = gravedata.features;
             return features.filter(
@@ -411,8 +446,8 @@ th:text="${someObject.someProperty}">someValue</span>-->
 
 
  //set marker
- var marker = L.marker([23.7990516813, 90.4038127014]).addTo(map);
- marker.bindPopup("<b>You are here.</b>").openPopup();
+ var marker = L.marker([found[0].properties.Y, found[0].properties.X]).addTo(map);
+ marker.bindPopup("<b>কবর নম্বরঃ "+found[0].properties.Grave_ID+"<br><b>নাম: "+'[[${data.Dec_name}]]'+"</b>").openPopup();
 
  //set color of the polygon
  function getColor(d) {
