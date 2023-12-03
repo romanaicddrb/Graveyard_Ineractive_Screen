@@ -380,6 +380,26 @@ th:text="${someObject.someProperty}">someValue</span>-->
      position: 'topleft'
    }
 }).setView([23.799943031000002 , 90.4052079537], 15);
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>
+    <script>
+        function GetGraveBycode(id){
+            const features = gravedata.features;
+            return features.filter(
+                function(grave){
+                    return grave.properties.Grave_ID == id
+                }
+            );
+        }
+
+        var found = GetGraveBycode('[[${data.Grave_no}]]');
+
+        //create map object in map div with co-orrdinate and zoom level
+        var map = L.map('map').setView([found[0].properties.Y , found[0].properties.X], 21);
 
  //set map view as tile layer
  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

@@ -136,11 +136,27 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
+<script src="/plugins/jquery/jquery.min.js"></script>
 <script th:src="@{plugins/popper/popper.min.js}"></script>
 <script th:src="@{plugins/bootstrap.js/bootstrap.min.js}"></script>
 
 <script>
-       //create map object in map div with co-orrdinate and zoom level
+  $(document).ready(function()
+    {
+      $.ajax({
+              url: '/api/getGraveAvailApi/2',
+              method: 'GET',
+              contentType: 'application/json',
+              success: function(data) {
+              console.log(data)
+              },
+              error: function(error) {
+                console.error('Error performing search:', error);
+              }
+            });
+    });
+
+    //create map object in map div with co-orrdinate and zoom level
     // var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);
     var map = L.map('map', {
       fullscreenControl: true,
@@ -231,7 +247,7 @@
 
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
-        this._div.innerHTML = '<h4>Grave Details</h4>' +  (props ?
+        this._div.innerHTML = '<h4>কবরের বিস্তারিত</h4>' +  (props ?
             '<b>GraveID:</b> ' + props.Grave_ID + '<br\> <b>Block:</b>' + props.Block + '<br\> <b>Lane:</b>' + props.Lane
             : 'Touch on a grave');
     };
