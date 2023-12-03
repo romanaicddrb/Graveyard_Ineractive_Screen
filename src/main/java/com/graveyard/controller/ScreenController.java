@@ -1,5 +1,6 @@
 package com.graveyard.controller;
 
+import com.graveyard.model_class.viewmodel.GraveAvailable_ViewModel;
 import com.graveyard.model_class.viewmodel.GraveDetails_ViewModel;
 import com.graveyard.service.DecPersonService;
 import com.graveyard.service.*;
@@ -52,6 +53,17 @@ public class ScreenController {
 
     @GetMapping(path="/mapSearch")
     public String mapSearch() {
+
+//        List<GraveAvailable_ViewModel> Grave_availability = decPersonService.getDecPerson_Detail(UUID.fromString(Dec_id));
+//        GraveDetails_ViewModel graveDetails_ViewModel;
+//        if(!Dec_per_detail.isEmpty()){
+//            graveDetails_ViewModel=Dec_per_detail.get(0);
+//        }else{
+//            graveDetails_ViewModel=new GraveDetails_ViewModel();
+//            model.addAttribute("no_data_found",true);
+//        }
+//        model.addAttribute("data",graveDetails_ViewModel);
+
         return "GraveFilter/MapSearchGrave";
     }
 
