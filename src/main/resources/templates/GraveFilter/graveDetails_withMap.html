@@ -248,7 +248,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>
@@ -269,9 +268,9 @@
 
         //set map view as tile layer
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 70, // Set the maximum zoom level you want to allow
-          minZoom: 1, // Set a minimum zoom level
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            maxZoom: 70, // Set the maximum zoom level you want to allow
+            minZoom: 1, // Set a minimum zoom level
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
         //set marker
@@ -280,8 +279,8 @@
 
         //set color of the polygon
         function getColor(d) {
-          //return d = "0220139" ? '#800026' : '#FFFF00';
-          return  d == "Yes" ? '#52c755' : '#ff0f0f';
+            //return d = "0220139" ? '#800026' : '#FFFF00';
+            return  d == "Yes" ? '#52c755' : '#ff0f0f';
         }
 
         //set the style of the polygon
@@ -298,20 +297,18 @@
             };
          }
 
-         //set the layer style
-         function highlightFeature(e) {
-             var layer = e.target;
-
-             layer.setStyle({
-                 weight: 5,
-                 color: '#666',
-                 dashArray: '',
-                 fillOpacity: 0.7
-             });
-
-             layer.bringToFront();
-             info.update(layer.feature.properties);
-         }
+        //set the layer style
+        function highlightFeature(e) {
+            var layer = e.target;
+            layer.setStyle({
+                weight: 5,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.7
+            });
+            layer.bringToFront();
+            info.update(layer.feature.properties);
+        }
 
          //reset the highlight
          function resetHighlight(e) {
@@ -338,7 +335,6 @@
          var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
 
          var info = L.control();
-
          info.onAdd = function (map) {
              this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
              this.update();
@@ -351,13 +347,10 @@
                  '<b>GraveID:</b> ' + props.Grave_ID + '<br\> <b>Block:</b>' + props.Block + '<br\> <b>Lane:</b>' + props.Lane
                  : 'Touch on a grave');
          };
-
          info.addTo(map);
 
          var gravedata=L.geoJSON(gravedata).addTo(map)
-
     </script>
-
 
 </body>
 </html>
