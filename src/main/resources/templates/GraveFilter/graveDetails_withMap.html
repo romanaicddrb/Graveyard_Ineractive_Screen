@@ -191,26 +191,25 @@
                   <div class="form-group">
                       <label >মেমো নম্বর</label>
                       <p th:if="${data.Memo_no == null}">N/A</p>
-                      <p th:unless="${data.Memo_no}"><p th:text="${data.Memo_no}"></p></p>
+                      <p th:if="${data.Memo_no == ''}">N/A</p>
+                      <p th:unless="${data.Memo_no}">
+                        <p th:text="${data.Memo_no}"></p>
+                      </p>
 <!--                      <p th:text="${data.Memo_no}"></p>-->
                   </div>
               </div>
               <div class="col">
                  <div class="form-group">
                      <label >কবর নম্বর</label>
-                     <p th:if="${data.Grave_no == null}">N/A</p>
+                     <p th:if="${data.Grave_no == null}">N/A</p><p th:if="${data.Grave_no == ''}">N/A</p>
                      <p th:unless="${data.Grave_no}">
                         <p th:text="${#strings.toUpperCase(data.Grave_no)}"></p></p>
-
-<!--                     th:if="${someObject.someProperty != null}"
-th:text="${someObject.someProperty}">someValue</span>-->
-<!--                     <p th:text="${data.Grave_no}"></p>-->
                  </div>
               </div>
               <div class="col">
                   <div class="form-group">
                       <label >কবরের সারি</label>
-                      <p th:if="${data.Grave_lane == null}">N/A</p>
+                      <p th:if="${data.Grave_lane == null}">N/A</p><p th:if="${data.Grave_lane == ''}">N/A</p>
                       <p th:unless="${data.Grave_lane}">
                         <p th:text="${#strings.toUpperCase(data.Grave_lane)}"></p></p>
 <!--                      <p th:text="${data.Grave_lane}"></p>-->
@@ -219,7 +218,7 @@ th:text="${someObject.someProperty}">someValue</span>-->
               <div class="col">
                   <div class="form-group">
                       <label>কবরের ব্লক</label>
-                      <p th:if="${data.Grave_block == null}">N/A</p>
+                      <p th:if="${data.Grave_block == null}">N/A</p><p th:if="${data.Grave_block == ''}">N/A</p>
                       <p th:unless="${data.Grave_block}">
                         <p th:text="${#strings.toUpperCase(data.Grave_block)}"></p></p>
 <!--                      <p th:text="${data.Grave_block}"></p>-->
@@ -228,7 +227,7 @@ th:text="${someObject.someProperty}">someValue</span>-->
               <div class="col">
                   <div class="form-group">
                     <label >কবরের জোন</label>
-                      <p th:if="${data.Grave_zone == null}">N/A</p>
+                      <p th:if="${data.Grave_zone == null}">N/A</p><p th:if="${data.Grave_zone == ''}">N/A</p>
                       <p th:unless="${data.Grave_zone}">
                         <p th:text="${#strings.toUpperCase(data.Grave_zone)}"></p></p>
 
@@ -239,7 +238,7 @@ th:text="${someObject.someProperty}">someValue</span>-->
               <div class="col">
                   <div class="form-group">
                     <label >মৃত্যুর তারিখ</label>
-                      <p th:if="${data.Dod == null}">N/A</p>
+                      <p th:if="${data.Dod == null}">N/A</p><p th:if="${data.Dod == ''}">N/A</p>
                       <p th:unless="${data.Dod}">
                         <p th:text="${data.Dod}"></p></p>
 <!--                        <p th:text="${data.Dod}"></p>-->
@@ -254,15 +253,20 @@ th:text="${someObject.someProperty}">someValue</span>-->
                 <div class="col">
                     <div class="form-group">
                         <label >দাফনের তারিখ</label>
-                        <p th:if="${data.Bur_date == null}">N/A</p>
-                        <p th:unless="${data.Bur_date}">
-                            <th:block th:with="clazz=${T(java.time.format.DateTimeFormatter)},
-          style=${T(java.time.format.FormatStyle).SHORT},
-          zone=${T(java.time.ZoneId).systemDefault()},
-          formatter=${clazz.ofLocalizedDateTime(style).withLocale(#locale).withZone(zone)}">
-                                <span th:text="${formatter.format(data.Bur_date)}"></span>
-                            </th:block>
-<!--                        <p> th:field ="*{#temporals.format(data.Bur_date, 'dd-MM-yyyy')}"</p>-->
+                            <p th:if="${data.Bur_date == null}">N/A</p><p th:if="${data.Bur_date == ''}">N/A</p>
+                            <p th:unless="${data.Bur_date}">
+                            <p th:text="${data.Bur_date}"></p></p>
+<!--                        <p th:text="${#temporals.format(data.Bur_date, 'yyyy-MM-dd');}"></p>-->
+
+<!--                            <p th:text="${data.Bur_date}"></p>-->
+<!--                        <p th:text="${#dates.year(data.Bur_date)}">-->
+
+
+<!--                        <p th:text="${data.Bur_date}?${#temporals.format(T(java.time.LocalDate).of(#dates.year(data.Bur_date), #dates.month(data.Bur_date), #dates.day(data.Bur_date)), 'yyyy-MM-dd', new java.util.Locale('en', 'EN'))}:''"></p>-->
+<!--                        <p th:text="${#temporals.format('2023-12-01', 'dd-MMM-yyyy',new java.util.Locale('en'))}"></p>-->
+<!--                        <p th:if="${data.Bur_date == null}">N/A</p>    #dates.format('2023-12-01', 'dd-mm-yyyy')-->
+<!--                        <p th:unless="${data.Bur_date}">-->
+<!--                       <p> th:field ="*{#temporals.format(data.Bur_date, 'dd-MM-yyyy')}"</p>-->
 <!--                            <p th:text="${#temporals.format(data.Bur_date, 'SHORT')}"></p>-->
 
 <!--                            <p th:text="${#dates.format(data.Bur_date, 'dd-MM-yyyy HH:mm')}"></p>-->
@@ -270,7 +274,7 @@ th:text="${someObject.someProperty}">someValue</span>-->
 <!--                        #temporals.format(data.burdate, 'dd-MM-yyyy')-->
 <!--                        <span th:text="${data.burdate != null} ? ${'কবর দেয়ার তারিখ: '+#temporals.format(data.burdate, 'dd-MM-yyyy')} : ${'কবর দেয়ার তারিখ:'}"></span><br/>-->
 <!--                            <p th:text="${#dates.format(sprint.data.Bur_date, 'dd-MM-yyyy')}"></p>-->
-                        </p>
+<!--                        </p>-->
 <!--                        <td th:text="${{sb.datePlanted}}">13/01/2011</td>-->
 <!--                        <td th:text="${#dates.format(sprint.releaseDate, 'dd-MMM-yyyy')}"></td>-->
                         <!--       <p th:text="${data.Bur_date}"></p>-->
@@ -279,7 +283,7 @@ th:text="${someObject.someProperty}">someValue</span>-->
               <div class="col">
                 <div class="form-group">
                   <label >মৃত ব্যক্তির নাম</label>
-                    <p th:if="${data.Dec_name == null}">N/A</p>
+                    <p th:if="${data.Dec_name == null}">N/A</p><p th:if="${data.Dec_name == ''}">N/A</p>
                     <p th:unless="${data.Dec_name}">
                         <p th:text="${#strings.toUpperCase(data.Dec_name)}"></p></p>
 <!--                  <p th:text="${data.Dec_name}"></p>-->
@@ -288,22 +292,9 @@ th:text="${someObject.someProperty}">someValue</span>-->
               <div class="col">
                 <div class="form-group">
                   <label>স্বামী/স্ত্রীর নাম</label>
-
-<!--                    <p th:switch="${#lists.size(data.Spouse)}">-->
-<!--                        <p th:case="'0'">N/A</p>-->
-<!--                        <p th:case="'1'" th:text="${#strings.toUpperCase(data.Spouse)}"></p>-->
-<!--                        <p th:case="*">-->
-<!--                            <p th:each="course:${teacher.courses}">N/A</p>-->
-<!--                        </p>-->
-<!--                    </p>-->
-
-
-
-
                     <p th:if="${data.Spouse == null}">N/A</p>
                     <p th:if="${data.Spouse == ''}">N/A</p>
                     <p th:unless="${data.Spouse}">
-<!--                        <p th:if="${data.Spouse == ''}">N/A</p>-->
                         <p th:text="${#strings.toUpperCase(data.Spouse)}"></p>
                     </p>
 
@@ -313,7 +304,7 @@ th:text="${someObject.someProperty}">someValue</span>-->
               <div class="col">
                 <div class="form-group">
                   <label >পিতার নাম</label>
-                    <p th:if="${data.Father == null}">N/A</p>
+                    <p th:if="${data.Father == null}">N/A</p><p th:if="${data.Father == ''}">N/A</p>
                     <p th:unless="${data.Father}">
                         <p th:text="${#strings.toUpperCase(data.Father)}"></p></p>
 <!--                  <p th:text="${data.Father}"></p>-->
@@ -322,7 +313,7 @@ th:text="${someObject.someProperty}">someValue</span>-->
               <div class="col">
                 <div class="form-group">
                   <label >মাতার নাম</label>
-                    <p th:if="${data.Mother == null}">N/A</p>
+                    <p th:if="${data.Mother == null}">N/A</p><p th:if="${data.Mother == ''}">N/A</p>
                     <p th:unless="${data.Mother}">
                         <p th:text="${#strings.toUpperCase(data.Mother)}"></p></p>
 <!--                  <p th:text="${data.Mother}"></p>-->
@@ -331,7 +322,7 @@ th:text="${someObject.someProperty}">someValue</span>-->
               <div class="col">
                 <div class="form-group">
                   <label >ঠিকানা</label>
-                    <p th:if="${data.Address == null}">N/A</p>
+                    <p th:if="${data.Address == null}">N/A</p><p th:if="${data.Address == ''}">N/A</p>
                     <p th:unless="${data.Address}">
                         <p th:text="${#strings.toUpperCase(data.Address)}"></p></p>
 <!--                  <p th:text="${data.Address}"></p>-->
@@ -380,105 +371,104 @@ th:text="${someObject.someProperty}">someValue</span>-->
 <script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>
 
 <script>
-    //create map object in map div with co-orrdinate and zoom level
-// var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);
-var map = L.map('map', {
- fullscreenControl: true,
- fullscreenControlOptions: {
-   position: 'topleft'
- }
-}).setView([23.799943031000002 , 90.4052079537], 15);
+    function GetGraveBycode(id){
+            const features = gravedata.features;
+            return features.filter(
+                function(grave){
+                    return grave.properties.Grave_ID == id
+                }
+            );
+        }
 
-//set map view as tile layer
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-   maxZoom: 70, // Set the maximum zoom level you want to allow
-   minZoom: 1, // Set a minimum zoom level
-   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+        var found = GetGraveBycode('[[${data.Grave_no}]]');
 
+        //create map object in map div with co-orrdinate and zoom level
+        var map = L.map('map').setView([found[0].properties.Y , found[0].properties.X], 21);
 
+        //set map view as tile layer
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 70, // Set the maximum zoom level you want to allow
+            minZoom: 1, // Set a minimum zoom level
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
-//set marker
-var marker = L.marker([found[0].properties.Y, found[0].properties.X]).addTo(map);
+        //set marker
+        var marker = L.marker([found[0].properties.Y, found[0].properties.X]).addTo(map);
         marker.bindPopup("<b>কবর নম্বরঃ "+found[0].properties.Grave_ID+"<br><b>নাম: "+'[[${data.Dec_name}]]'+"</b>").openPopup();
 
-//set color of the polygon
-function getColor(d) {
-   //return d = "0220139" ? '#800026' : '#FFFF00';
-   return  d == "Yes" ? '#52c755' : '#ff0f0f';
-}
+        //set color of the polygon
+        function getColor(d) {
+            //return d = "0220139" ? '#800026' : '#FFFF00';
+            return  d == "Yes" ? '#52c755' : '#ff0f0f';
+        }
 
-//set the style of the polygon
-function style(feature) {
-   return {
-     //  fillColor: getColor(feature.properties.Grave_ID),
-     //  fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
-       fillColor: getColor(feature.properties.Available),
-       weight: 2,
-       opacity: 1,
-       color: 'white',
-       dashArray: '3',
-       fillOpacity: 0.7
-   };
-}
+        //set the style of the polygon
+        function style(feature) {
+            return {
+               //  fillColor: getColor(feature.properties.Grave_ID),
+               //  fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
+               fillColor: getColor(feature.properties.Available),
+               weight: 2,
+               opacity: 1,
+               color: 'white',
+               dashArray: '3',
+               fillOpacity: 0.7
+            };
+         }
 
-//set the layer style
-function highlightFeature(e) {
-   var layer = e.target;
+        //set the layer style
+        function highlightFeature(e) {
+            var layer = e.target;
+            layer.setStyle({
+                weight: 5,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.7
+            });
+            layer.bringToFront();
+            info.update(layer.feature.properties);
+        }
 
-   layer.setStyle({
-       weight: 5,
-       color: '#666',
-       dashArray: '',
-       fillOpacity: 0.7
-   });
+         //reset the highlight
+         function resetHighlight(e) {
+             gravedata.resetStyle(e.target);
+             info.update();
+         }
 
-   layer.bringToFront();
-   info.update(layer.feature.properties);
-}
+         //set the zoom feature
+         function zoomToFeature(e) {
+             map.fitBounds(e.target.getBounds());
+         }
 
-//reset the highlight
-function resetHighlight(e) {
-   gravedata.resetStyle(e.target);
-   info.update();
-}
+         //set the feature on mouse hover
+         function onEachFeature(feature, layer) {
+             layer.on({
+                 // mouseover: highlightFeature,
+                 mouseout: resetHighlight,
+                 //click: zoomToFeature,
+                 click: highlightFeature
+             });
+         }
 
-//set the zoom feature
-function zoomToFeature(e) {
-   map.fitBounds(e.target.getBounds());
-}
+         var roaddata=L.geoJSON(roaddata).addTo(map)
+         var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
 
-//set the feature on mouse hover
-function onEachFeature(feature, layer) {
-   layer.on({
-       // mouseover: highlightFeature,
-       mouseout: resetHighlight,
-       //click: zoomToFeature,
-       click: highlightFeature
-   });
-}
+         var info = L.control();
+         info.onAdd = function (map) {
+             this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+             this.update();
+             return this._div;
+         };
 
-var roaddata=L.geoJSON(roaddata).addTo(map)
-var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
+         // method that we will use to update the control based on feature properties passed
+         info.update = function (props) {
+             this._div.innerHTML = '<h4>Grave Details</h4>' +  (props ?
+                 '<b>GraveID:</b> ' + props.Grave_ID + '<br\> <b>Block:</b>' + props.Block + '<br\> <b>Lane:</b>' + props.Lane
+                 : 'Touch on a grave');
+         };
+         info.addTo(map);
 
-var info = L.control();
-
-info.onAdd = function (map) {
-   this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-   this.update();
-   return this._div;
-};
-
-// method that we will use to update the control based on feature properties passed
-info.update = function (props) {
-   this._div.innerHTML = '<h4>Grave Details</h4>' +  (props ?
-       '<b>GraveID:</b> ' + props.Grave_ID + '<br\> <b>Block:</b>' + props.Block + '<br\> <b>Lane:</b>' + props.Lane
-       : 'Touch on a grave');
-};
-
-info.addTo(map);
-
-var gravedata=L.geoJSON(gravedata).addTo(map)
+         var gravedata=L.geoJSON(gravedata).addTo(map)
 
 </script>
 
