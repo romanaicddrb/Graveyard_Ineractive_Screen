@@ -217,7 +217,7 @@
           <div class="row" style="gap: 20px;">
             <div class="col-md-12">
               <div class="form-group">
-                <label for="MemoFilter">মেমো নং</label>
+                <label for="MemoFilter">মেমো নম্বর</label>
                 <input type="text" class="form-control" id="MemoFilter">
               </div>
             </div>
@@ -343,7 +343,7 @@
               <tr>
                 <th style="display:none">Id</th>
                 <th style="display:none">GraveId</th>
-                <th>মেমো নং</th>
+                <th>মেমো নম্বর</th>
                 <th>মৃত্যুর তারিখ</th>
                 <th>মৃত ব্যক্তির নাম</th>
                 <th>পিতার নাম</th>
@@ -386,16 +386,16 @@
 <!--<script th:src="@{/plugins/bootstrap.js/bootstrap.min.js}"></script>-->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <script src="/plugins/datatables/jquery.datatables.min.js"></script>
-<!--<script src="https://cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>-->
-<script src="https://cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js" charset="utf8"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+
+<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js"></script>
 <!--    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
 <!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
 
     <script>
 
-   $(document).ready(function()
-    {
-
+   $(document).ready(function(){
 
 <!--        $('#myDataTable').DataTable( {-->
 <!--          "paging": true,-->
@@ -406,16 +406,10 @@
 <!--          },-->
 <!--            "columnDefs": [ {-->
 <!--            targets: 3,-->
-<!--            render: $.fn.dataTable.render.moment('M-DD-YYYY,THH:mm','M/DD/YYYY')-->
+<!--            render: $.fn.dataTable.moment('DD-MMM-Y HH:mm:ss'),-->
+<!--                   -->
 <!--          } ],-->
-<!--          -->
 <!--        });-->
-
-
-
-
-
-
 
 
 
@@ -436,6 +430,7 @@
                   "select": true,
                   "processing": false,
                   "destroy": true,
+                  "orderable": true,
 
                   columns: [
                     { data: 'dec_id', visible: false, width: '0%'},
@@ -468,7 +463,10 @@
                             return type === 'display' && data !== null ? data.toUpperCase() : data;
                         }
                       },
-<!--                      { "targets": [3], "type": "datetime", render: $.fn.dataTable.render.moment( 'Do MMM YYYYY' ) },-->
+
+                      {
+                        "targets": [3, 6],
+                        "type": "datetime", render: $.fn.dataTable.render.moment( 'DD-MM-YYYY' ) },
 
                   ],
               });
