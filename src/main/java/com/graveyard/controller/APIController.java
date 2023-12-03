@@ -28,16 +28,15 @@ public class APIController {
         return new ResponseEntity<>(graveService.getBySearch(object), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/detail")
+    @GetMapping(value = "/detail/{gId}/{id}")
     public ResponseEntity<GraveDetail> detail(@PathVariable("gId") String gId,
                                               @PathVariable("id") String id) {
         return new ResponseEntity<>(graveService.getGraveDetail(gId, id), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/getGraveAvailApi")
-    public List<GraveAvailabilityDto> Allgraveavailability() {
-        List<GraveAvailabilityDto> f = graveService.getGraveStatus();
-        return f;
+    @GetMapping(value = "/getGraveAvailApi/{gid}")
+    public ResponseEntity<List<GraveAvailabilityDto>> Allgraveavailability(@PathVariable("gid") String gid) {
+        return new ResponseEntity<>(graveService.getGraveStatus(), HttpStatus.OK);
     }
 
 }

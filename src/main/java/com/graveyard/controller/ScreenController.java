@@ -21,7 +21,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ScreenController {
 //    private final RestTemplate restTemplate;
-    private final DecPersonService decPersonService;
+    private DecPersonService decPersonService;
 
 //    @Autowired
 //    public ScreenController(RestTemplateBuilder restTemplateBuilder) {

@@ -45,8 +45,8 @@ public interface GraveRepository extends JpaRepository<DecPerson, Long> {
             nativeQuery = true)
     GraveDetail getDetail(@Param("gid") String gid, @Param("did") String did);
 
-    @Query(value = "select '12134', '36', decname, father, '2023-01-01', '45', '2022-02-02', 'No' from dec_person",
+    @Query(value = "select * from get_grave_avalability( :gid)",
             nativeQuery = true)
-    List<GraveAvailabilityDto> getGraveStatus();
+    List<GraveAvailabilityDto> getGraveStatus(@Param("gid") Integer gid);
 
 }
