@@ -29,7 +29,7 @@ public class GraveAvailable_ViewModel {
     private String father;
     private LocalDateTime burdate;
     private Double datePart;
-    private Double remainingDaysForAvailability;
+    private Double  remaing_days_for_availability;
     private String available;
 
 }

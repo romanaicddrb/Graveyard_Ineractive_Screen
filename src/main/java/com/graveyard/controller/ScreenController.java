@@ -23,6 +23,7 @@ import java.util.UUID;
 public class ScreenController {
 //    private final RestTemplate restTemplate;
     private DecPersonService decPersonService;
+    private GraveAvailable graveAvailable;
 
 //    @Autowired
 //    public ScreenController(RestTemplateBuilder restTemplateBuilder) {
@@ -52,17 +53,10 @@ public class ScreenController {
     }
 
     @GetMapping(path="/mapSearch")
-    public String mapSearch() {
+    public String mapSearch(Model model) {
 
-//        List<GraveAvailable_ViewModel> Grave_availability = decPersonService.getDecPerson_Detail(UUID.fromString(Dec_id));
-//        GraveDetails_ViewModel graveDetails_ViewModel;
-//        if(!Dec_per_detail.isEmpty()){
-//            graveDetails_ViewModel=Dec_per_detail.get(0);
-//        }else{
-//            graveDetails_ViewModel=new GraveDetails_ViewModel();
-//            model.addAttribute("no_data_found",true);
-//        }
-//        model.addAttribute("data",graveDetails_ViewModel);
+        List<GraveAvailable_ViewModel> Grave_availability = graveAvailable.getGraveAvailable(2);
+        model.addAttribute("data",Grave_availability);
 
         return "GraveFilter/MapSearchGrave";
     }
