@@ -253,9 +253,11 @@
                 <div class="col">
                     <div class="form-group">
                         <label >দাফনের তারিখ</label>
-                            <p th:if="${data.Bur_date == null}">N/A</p><p th:if="${data.Bur_date == ''}">N/A</p>
+                            <p th:if="${data.Bur_date == null}">N/A</p>
+                            <p th:if="${data.Bur_date == ''}">N/A</p>
                             <p th:unless="${data.Bur_date}">
-                            <p th:text="${data.Bur_date}"></p></p>
+<!--                                <p th:text="${#dates.formatISO(standardDate)}"></p>-->
+                            </p>
 <!--                        <p th:text="${#temporals.format(data.Bur_date, 'yyyy-MM-dd');}"></p>-->
 
 <!--                            <p th:text="${data.Bur_date}"></p>-->
@@ -371,6 +373,8 @@
 <script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>
 
 <script>
+
+
     function GetGraveBycode(id){
             const features = gravedata.features;
             return features.filter(
@@ -378,7 +382,9 @@
                     return grave.properties.Grave_ID == id
                 }
             );
-        }
+    }
+
+    var test = GetGraveBycode('[[${data.Bur_date}]]');
 
         var found = GetGraveBycode('[[${data.Grave_no}]]');
 
