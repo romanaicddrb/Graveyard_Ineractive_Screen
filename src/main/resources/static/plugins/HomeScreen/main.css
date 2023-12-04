@@ -4,13 +4,19 @@ body {
 }
 
 .container{
+    width: 100%;
+    height: 100%;
     font-family: Hind Siliguri;
     display: flex;
     justify-content: center;
-    width: 2000.94px;
-    height: 3557.22px;
 }
 
+#homeBg{
+  background-image: url("HomePageBg.png");
+  background-size: cover;
+  min-width: 2000px;
+  min-height: 2211px;
+}
 
 .video { /* This is to make the video appear behind everything else */
     position: fixed;
@@ -18,12 +24,43 @@ body {
     right: 0;
     bottom: 0;
     min-width: 100%;
-    min-height: 80%;
+    min-height: 100%;
+    display: flex;
+
 }
+
+#home-top-video:before {
+  content:"";
+  position: fixed;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
+  z-index:1;
+  background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);
+  mix-blend-mode: multiply;
+}
+
+#home-top-video {
+  left: 0%;
+  top: 0%;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+
+
+
+
+
 
 .headerOf{
     display: flex;
-    /*width: 1759px;*/
+    margin: 25px 0px 25px 15px;
+    /* width: 1759px; */
     justify-content: space-between;
     align-items: center;
 }
@@ -41,28 +78,26 @@ body {
 
 .logosSec{
     display: flex;
-    flex-direction: column;
-    text-align: left;
-    justify-content: space-between;
-    align-items: center;
+    text-align: right;
+    font-family: Hind Siliguri;
+    justify-content: right;
+    align-items: right;
     padding: 0;
-    justify-content: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .logos{
     display: flex;
-    justify-content: center;
+    justify-content: right;
     flex-shrink: 0;
 }
 
 .logoText{
   color: #FFF;
-  font-family: Baloo Da 2;
   display: flex;
-  justify-content: center;
-  text-align: center;
-  font-size: 14px;
+  justify-content: right;
+  text-align: right;
+  font-size: 22px;
   padding: 0;
   /* font-style: normal; */
   font-weight: 600;
@@ -76,7 +111,6 @@ body {
   align-items: center;
   font-family: Hind Siliguri;
   gap: 40px;
-  margin-top: 5%;
 }
 
 .titleB{
@@ -87,36 +121,45 @@ body {
   display: flex;
   flex-direction: column;
   font-style: normal;
-  font-weight: 700;
-  padding: 15px;
+  padding: 25px 10px;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.44);
   background: rgba(17, 117, 189, 0.19);
-  /* line-height: 64px; 133.333% */
+  line-height: 60px;
+  margin-bottom: 50px;
 }
 
 .contentSec{
-  color: #FFF;
-  text-align: center;
-  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.60);
-  font-family: Hind Siliguri;
-  font-size: smaller;
-  font-style: normal;
-  /* font-weight: 500; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
   line-height: normal;
+  padding: 0px;
+  color: #FFF;
+  font-weight: 500;
+  font-family: Hind Siliguri;
+  font-style: normal;
+  display: flex;
+  text-align: justify;
+  font-size: calc(16.8px + 6 * ((100vw - 400px) / 680));
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.60);
 }
+
+
 
 .centerBottom{
   display: flex;
   /* align-items: flex-start; */
-  gap: 40px;
+  gap: 20px;
+  padding: 0px;
 
   .graveSearch{
     display: flex;
-    padding: 10px;
+    padding: 0px;
     justify-content: center;
     align-items: center;
-    /* gap: 10px; */
+    gap: 10px;
     flex: 1 0 0;
 
     border-radius: 10px;
@@ -124,20 +167,21 @@ body {
     background: #1175BD;
 
     p{
-      color: #FFFFFF; 
-      font-family: Hind Siliguri;  
-      font-style: normal; 
+      color: #FFFFFF;
+      font-family: Hind Siliguri;
+      font-style: normal;
       font-weight: 500;
       line-height: normal;
+      display: inline;
     }
   }
 
   .mapSearch{
     display: flex;
-    padding: 10px;
     justify-content: center;
     align-items: center;
-    /* gap: 10px; */
+    padding: 0px;
+    gap: 10px;
     flex: 1 0 0;
 
     border-radius: 10px;
@@ -153,36 +197,39 @@ body {
 }
 
 .footOf { /* This is for the content */
+    position: fixed;
+    z-index: 1; /* This can be set to any number greater than -1000. */
+    bottom: 0;
+    /* background: rgba(0, 0, 0, 0.5); */
+    color: #f1f1f1;
+    width: 100%;
     display: flex;
-    /*width: 1800px;*/
     justify-content: space-between;
-    align-items: center;
-}
-
-.footLeft{
-    background: rgba(12, 64, 101, 0.80);
-    border-radius: 4px;
-    display: flex;
-    padding: 20px 32px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    padding: 25px 20px;
+    /* align-items: center; */
+    gap: 4px;
 }
 
 p{
-  margin: auto; 
+  margin: auto;
   align-content: center;
 }
 
 .footRight{
   display: flex;
-  padding: 10px 20px;
+  padding: 0px;
   justify-content: center;
   align-items: center;
-  gap: 0px;
+  gap: 10px;
   border-radius: 10px;
-  background: rgba(9, 51, 81, 0.76);
+  background: rgba(12, 64, 101, 0.85);
+
+  p{
+    color: #343434;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
 }
 
 .modal {
@@ -196,42 +243,6 @@ p{
     height: 100%;
     overflow: auto;
     background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4); /* <-- this is the culprit */
+    background-color: rgba(0,0,0,0.4);
 }
 
-
-.commonFooter{
-    background: #FFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .footerP{
-        /*background: url{[[@{/resource/image/commonBg.png}]]}
-                            no-repeat center center fixed;*/
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 40px;
-        flex-shrink: 0;
-        background: rgba(49, 49, 49, 0.67);
-        .boxOut{
-            display: flex;
-            width: 100%px;
-            padding: 28px 20px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            border-radius: 7px;
-            background: rgba(7, 50, 81, 0.95);
-            margin-top:-60px;
-        }
-
-
-
-    }
-}

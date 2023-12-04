@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <link th:href="@{/plugins/HomeScreen/main.css}" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+<div th:fragment="navbar" style="padding: 0px;">
+    <nav class="navbar bg-white fixed-top">
+        <div class="row col-md-12" style="display: flex; align-items: center; padding: 10px;
+        font-family: Hind Siliguri;">
+            <div class="col-md-2" onclick="history.back()" style="cursor: pointer; margin-right:5%;">
+                <img th:src="@{/resource/icon.png}" alt="Back Button Logo"
+                     style="margin-right: 6px; width: 24px; height: 24px; padding: 3px 6px 3px 6px;
+                     border-radius: 3px; background: #1175BD;">
+                <p style="display: inline; font-weight: 400; letter-spacing: 0em; text-align: left;
+                font-size: 18px; cursor: pointer;">
+                    পূর্ববর্তী পেজে যান
+                </p>
+            </div>
+
+<!--            <div class="col-md-1" style="margin-right:10%;">-->
+
+<!--            </div>-->
+
+
+            <div class="col-md-8"
+                 style="display: flex; align-items: center; justify-content: center;
+                 gap:6px;">
+                <a th:href="@{/}" style="display: flex; align-items: center;
+                 justify-content: center; gap: 5px; cursor: pointer; text-decoration:none">
+                    <img th:src="@{/resource/Group7241.png}" alt="Your Logo" style="height: 55px;
+                    width: auto;">
+                    <p style="color: #205F8B; font-size: 22px; cursor: pointer; font-weight: 700;
+                    margin: 0px; display: inline;">
+                        কবরস্থান ব্যবস্থাপনা সিস্টেম
+                    </p>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
