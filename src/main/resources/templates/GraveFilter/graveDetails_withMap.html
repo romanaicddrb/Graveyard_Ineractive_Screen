@@ -253,11 +253,11 @@
                 <div class="col">
                     <div class="form-group">
                         <label >দাফনের তারিখ</label>
-                            <p th:if="${data.Bur_date == null}">N/A</p>
-                            <p th:if="${data.Bur_date == ''}">N/A</p>
+                            <p th:if="${data.Bur_date == null}">N/A</p><p th:if="${data.Bur_date == ''}">N/A</p>
                             <p th:unless="${data.Bur_date}">
-<!--                                <p th:text="${#dates.formatISO(standardDate)}"></p>-->
-                            </p>
+<!--                            <p th:text="${data.Bur_date}"></p>-->
+                        <p th:text="${burdate}"></p>
+                        </p>
 <!--                        <p th:text="${#temporals.format(data.Bur_date, 'yyyy-MM-dd');}"></p>-->
 
 <!--                            <p th:text="${data.Bur_date}"></p>-->
@@ -371,54 +371,9 @@
 <script src="../../assets/js/vendor/popper.min.js"></script>
 <script src="../../dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-json/2.6.0/jquery.json.min.js" integrity="sha512-QE2PMnVCunVgNeqNsmX6XX8mhHW+OnEhUhAWxlZT0o6GFBJfGRCfJ/Ut3HGnVKAxt8cArm7sEqhq2QdSF0R7VQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
 
 <script>
-<!--    const obj = JSON.parse([[${data}]]);-->
-<!--    for (property in obj) {-->
-<!--       var output = property + ': ' + obj[property]+'; ';-->
-<!--       property++;-->
-<!--    }-->
-<!--    console.log(output);-->
-
-<!--    const obj = {-->
-<!--    name: "Femi",-->
-<!--    status: "Junior",-->
-<!--    age: 23,-->
-<!--    isActive: true,-->
-<!--};-->
-
-<!--for (property in obj) {-->
-<!--   var output = property + ': ' + obj[property]+'; ';-->
-<!--   property++;-->
-<!--}-->
-<!--console.log(output);-->
-
-<!--    console.log(data);-->
-<!--console.log([[${data.curr_date}]]);-->
-<!--    console.log(JSON.stringify(data));-->
-
-
-
-        //var test1 = dateFormat([[${data.Bur_date}]]);
-
-
-<!--        var date = new Date([[${data}]]);-->
-<!--    var date = GetGraveBycode([[${data.Bur_date}]]);-->
-<!--    console.log(date);-->
-
-<!--    const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;-->
-<!--    console.log(formattedDate);-->
-
-
-
-
-
-
-        function GetGraveBycode(id){
+    function GetGraveBycode(id){
             const features = gravedata.features;
             return features.filter(
                 function(grave){
@@ -427,96 +382,95 @@
             );
         }
 
+        var found = GetGraveBycode('[[${data.Grave_no}]]');
 
-            var found = GetGraveBycode('[[${data.Grave_no}]]');
+        //create map object in map div with co-orrdinate and zoom level
+        var map = L.map('map').setView([found[0].properties.Y , found[0].properties.X], 21);
 
-            //create map object in map div with co-orrdinate and zoom level
-            var map = L.map('map').setView([found[0].properties.Y , found[0].properties.X], 21);
+        //set map view as tile layer
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 70, // Set the maximum zoom level you want to allow
+            minZoom: 1, // Set a minimum zoom level
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
-            //set map view as tile layer
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 70, // Set the maximum zoom level you want to allow
-                minZoom: 1, // Set a minimum zoom level
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
+        //set marker
+        var marker = L.marker([found[0].properties.Y, found[0].properties.X]).addTo(map);
+        marker.bindPopup("<b>কবর নম্বরঃ "+found[0].properties.Grave_ID+"<br><b>নাম: "+'[[${data.Dec_name}]]'+"</b>").openPopup();
 
-            //set marker
-            var marker = L.marker([found[0].properties.Y, found[0].properties.X]).addTo(map);
-            marker.bindPopup("<b>কবর নম্বরঃ "+found[0].properties.Grave_ID+"<br><b>নাম: "+'[[${data.Dec_name}]]'+"</b>").openPopup();
+        //set color of the polygon
+        function getColor(d) {
+            //return d = "0220139" ? '#800026' : '#FFFF00';
+            return  d == "Yes" ? '#52c755' : '#ff0f0f';
+        }
 
-            //set color of the polygon
-            function getColor(d) {
-                //return d = "0220139" ? '#800026' : '#FFFF00';
-                return  d == "Yes" ? '#52c755' : '#ff0f0f';
-            }
+        //set the style of the polygon
+        function style(feature) {
+            return {
+               //  fillColor: getColor(feature.properties.Grave_ID),
+               //  fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
+               fillColor: getColor(feature.properties.Available),
+               weight: 2,
+               opacity: 1,
+               color: 'white',
+               dashArray: '3',
+               fillOpacity: 0.7
+            };
+         }
 
-            //set the style of the polygon
-            function style(feature) {
-                return {
-                   //  fillColor: getColor(feature.properties.Grave_ID),
-                   //  fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
-                   fillColor: getColor(feature.properties.Available),
-                   weight: 2,
-                   opacity: 1,
-                   color: 'white',
-                   dashArray: '3',
-                   fillOpacity: 0.7
-                };
-             }
+        //set the layer style
+        function highlightFeature(e) {
+            var layer = e.target;
+            layer.setStyle({
+                weight: 5,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.7
+            });
+            layer.bringToFront();
+            info.update(layer.feature.properties);
+        }
 
-            //set the layer style
-            function highlightFeature(e) {
-                var layer = e.target;
-                layer.setStyle({
-                    weight: 5,
-                    color: '#666',
-                    dashArray: '',
-                    fillOpacity: 0.7
-                });
-                layer.bringToFront();
-                info.update(layer.feature.properties);
-            }
+         //reset the highlight
+         function resetHighlight(e) {
+             gravedata.resetStyle(e.target);
+             info.update();
+         }
 
-             //reset the highlight
-             function resetHighlight(e) {
-                 gravedata.resetStyle(e.target);
-                 info.update();
-             }
+         //set the zoom feature
+         function zoomToFeature(e) {
+             map.fitBounds(e.target.getBounds());
+         }
 
-             //set the zoom feature
-             function zoomToFeature(e) {
-                 map.fitBounds(e.target.getBounds());
-             }
+         //set the feature on mouse hover
+         function onEachFeature(feature, layer) {
+             layer.on({
+                 // mouseover: highlightFeature,
+                 mouseout: resetHighlight,
+                 //click: zoomToFeature,
+                 click: highlightFeature
+             });
+         }
 
-             //set the feature on mouse hover
-             function onEachFeature(feature, layer) {
-                 layer.on({
-                     // mouseover: highlightFeature,
-                     mouseout: resetHighlight,
-                     //click: zoomToFeature,
-                     click: highlightFeature
-                 });
-             }
+         var roaddata=L.geoJSON(roaddata).addTo(map)
+         var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
 
-             var roaddata=L.geoJSON(roaddata).addTo(map)
-             var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
+         var info = L.control();
+         info.onAdd = function (map) {
+             this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+             this.update();
+             return this._div;
+         };
 
-             var info = L.control();
-             info.onAdd = function (map) {
-                 this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-                 this.update();
-                 return this._div;
-             };
+         // method that we will use to update the control based on feature properties passed
+         info.update = function (props) {
+             this._div.innerHTML = '<h4>Grave Details</h4>' +  (props ?
+                 '<b>GraveID:</b> ' + props.Grave_ID + '<br\> <b>Block:</b>' + props.Block + '<br\> <b>Lane:</b>' + props.Lane
+                 : 'Touch on a grave');
+         };
+         info.addTo(map);
 
-             // method that we will use to update the control based on feature properties passed
-             info.update = function (props) {
-                 this._div.innerHTML = '<h4>Grave Details</h4>' +  (props ?
-                     '<b>GraveID:</b> ' + props.Grave_ID + '<br\> <b>Block:</b>' + props.Block + '<br\> <b>Lane:</b>' + props.Lane
-                     : 'Touch on a grave');
-             };
-             info.addTo(map);
-
-             var gravedata=L.geoJSON(gravedata).addTo(map)
+         var gravedata=L.geoJSON(gravedata).addTo(map)
 
 </script>
 
