@@ -1,12 +1,16 @@
 package com.graveyard.model_class.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
+
 public class GraveAvailabilityDto {
-    public String gserial;
-    private String burserial;
-    public String decname;
-    public String father;
-    public String date_part;
-    public String remaing_days_for_availability;
-    public String burDate;
-    public String available;
+    private String gserial;
+    private Long burserial;
+    private String decname;
+    private String father;
+    private LocalDateTime burdate;
+    private Double datePart;
+    private Double remainingDaysForAvailability;
+    private String available;
 }

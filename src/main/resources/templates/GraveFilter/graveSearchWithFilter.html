@@ -13,83 +13,225 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
 
   <!-- Custom styles for this template -->
-  <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">
-  <style type="text/css" data-asas-style="">
-	  body, div, a, p, span{ user-select: text !important; }
-	  p, h1, h2, h3, h4, h5, h6{ cursor: auto; user-select: text !important; }::selection{ background-color: #338FFF !important; color: #fff !important; }
+<!--  <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">-->
+
+
+  <style data-asas-style="">
+	  body, div, a, p, span{
+	    user-select: text !important;
+      }
+
+      body{
+	    background: #F5F5F5;
+	    font-family: Hind Siliguri;
+        font-style: normal;
+      }
+
+	  p, h1, h2, h3, h4, h5, h6{
+	    cursor: auto;
+	    user-select: text !important;
+	  }::selection{
+	    background-color: #338FFF !important;
+	    color: #fff !important;
+	  }
 	  #myDataTable thead th {
-		  background-color: #E1EFFE;
-		}
+        background-color: #E1EFFE;
+        vertical-align: middle;
+	  }
 
-		.card-footer button {
-			background-color: #007bff;
-			color: #fff;
-			border: none;
-			padding: 10px 20px;
-		}
+	  th.sorting{
+	    padding-left: 30px;
+	    padding-right: 0px;
+	  }
+
+      .card-footer button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+      }
 
 
-		.card-footer button i {
-			margin-right: 5px;
-		}
-	  .container, .container-lg, .container-md, .container-sm, .container-xl
-	  {
-	  max-width: 1800px;
-		}
+      .card-footer button i {
+        margin-right: 5px;
+      }
 
-	  </style>
+
+
+
+
+   .bg {
+    position: fixed;
+    z-index: -1000;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+#bg-top:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);
+    mix-blend-mode: multiply;
+}
+
+#bg-top {
+    left: 0%;
+    top: 0%;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+/* Ensure the image covers the full screen */
+.bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+  #myDataTable_filter{
+    display: none;
+  }
+
+
+  .sorting{
+    color: #205F8B;
+    font-family: Hind Siliguri;
+    text-align: left;
+    font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .card-body{
+    border-radius: 20px;
+    border-color: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+
+  table.dataTable td{
+    font-family: Hind Siliguri;
+    padding-left: 30px;
+	padding-right: 0px;
+  }
+
+
+
+  table.dataTable .btn{
+    border-radius: 5px;
+    background: #1175BD;
+    color: #FFF;
+  }
+
+  #myDataTable_info.dataTables_info{
+    padding: 20px;
+    position: fixed;
+    z-index: 1; /* This can be set to any number greater than -1000. */
+    bottom: 7%;
+    width: 100%;
+    display: flex;
+    gap: 4px;
+  }
+
+  .dataTables_scrollHead{
+    height: 49px;
+  }
+
+
+  </style>
 
 
 
 </head>
 <body>
 
-    <div th:fragment="navbar">
-      <nav class="navbar navbar-expand-md navbar-dark bg-light fixed-top">
-      <img th:src="@{/resource/icon.png}" alt="Your Logo" width="24" height="24" style="margin-right: 10px; width: 24px; height: 24px; padding: 3.29px 7.29px 3.29px 6.59px; border-radius: 3px; background: #1175BD;">
-      <span style="width: 760px; height: 29px; font-family: Inter; font-weight: 400; line-height: 29px; letter-spacing: 0em; text-align: left;">পূর্ববর্তী পেজে যান</span>
-      <div class="collapse navbar-collapse" >
-        <img th:src="@{/resource/Group7241.png}"alt="Your Logo" width="30" height="30" style="margin-right: 10px;">
-        কবরস্থান ব্যবস্থাপনা সিস্টেম
+  <div th:replace="CommonTemp/navBar.html :: navbar"></div>
 
+  <main role="main" class="overflow-hidden"
+        style="margin-top: 98px; padding: 0 1%;">
+    <div class="row gx-5">
+
+      <div id="bg-top">
+        <div class="video-background" style="margin-top: -20px;">
+          <div class="bg">
+            <img th:src="@{/resource/Grave_QR1.png}" alt="BG">
+          </div>
+        </div>
       </div>
-      </nav>
+
+
+      <div class="row" style="padding: 0px;margin: 1% 0px;margin-top: 2%;">
+        <ol class="breadcrumb" style="background: none; color: white; padding: 0 1rem; margin: 0px;">
+          <li class="breadcrumb-item">
+            <a class="active-2" th:href="@{/}" style="display: inline;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.90727 8.33332L9.90837 3.33222L14.9095 8.33332H14.9084V16.6667H4.90839V8.33332H4.90727ZM3.24172 9.99887L2.01104 11.2296L0.833374 10.0519L8.73086 2.1544C9.38118 1.50408 10.4356 1.50408 11.0859 2.1544L18.9834 10.0519L17.8057 11.2296L16.5751 9.99889V16.6667C16.5751 17.5871 15.8289 18.3333 14.9084 18.3333H4.90839C3.98791 18.3333 3.24172 17.5871 3.24172 16.6667V9.99887Z" fill="white"/>
+              </svg>
+              <p style="color: white; display: inline; cursor: pointer;">হোম</p>
+            </a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#D1D5DB"/>
+            </svg>
+            <a class="active-2" href="#" style="display: inline;">
+              <p style="color: white; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>
+            </a>
+          </li>
+
+        </ol>
+      </div>
     </div>
 
-  <main role="main" class="container">
-  <div class="row">
-    <nav aria-label="breadcrumb "  >
-      <ol class="breadcrumb  mb-5  ">
-        <li class="breadcrumb-item "><a class="black-text active-2" th:href="@{/}"><img  id ="home" src="https://img.icons8.com/ios-filled/50/000000/dog-house.png" class="mr-md-2 mr-1 mb-1 "  width="22" height="19"><span  >হোম</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"> </li>
-        <li class="breadcrumb-item "><a class="black-text active-2" href="#"><span >কবর অনুসন্ধান</span></a><img class="ml-md-3 ml-1" src="https://img.icons8.com/metro/50/000000/chevron-right.png " width="20" height="20"></li>
-      </ol>
-    </nav>
-  </div>
-  <div class="row">
+    <div class="row" style="height: 100%;">
     <!-- Left Card with Filter Options -->
 
-    <div class="col-md-12 mb-2">
-      <div class="card">
-        <div class="card-header">প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন</div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-2">
+      <div class="col-md-4">
+      <div class="card"
+           style="padding: 20px; padding-left: 40px; padding-right: 40px; padding-bottom: 70px;
+           border-radius: 20px; background: #FFF; height: 100%;">
+        <div>
+          <p style="color: #205F8B; font-family: Hind Siliguri; font-size: 30px; font-style: normal;
+              font-weight: 500; line-height: normal; margin: auto; align-content: center; padding: 20px 0px;
+              display: flex; align-items: center;">
+            প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন
+          </p>
+        </div>
+        <div class="card-body"
+             style="display: flex; flex-direction: column; align-items: flex-start; padding: 50px;
+                    font-family: Hind Siliguri; font-size: 22px; border-radius: 10px; padding-bottom: 60px; background: #EBEBEB;">
+          <div class="row" style="gap: 20px;">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="MemoFilter">মেমো নং</label>
                 <input type="text" class="form-control" id="MemoFilter">
               </div>
             </div>
 
-            <div class="col-md-3">
+
+            <div class="col-md-12">
               <div class="form-group">
-                <label for="DeadnameFilter">মৃত্যু ব্যক্তির নাম</label>
+                <label for="DeadnameFilter">মৃত ব্যক্তির নাম</label>
                 <input type="text" class="form-control" id="DeadnameFilter">
               </div>
             </div>
 
-            <div class="col-md-3">
+
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="DeaddayFilter">মৃত্যুর তারিখ</label>
                 <div class="row">
@@ -97,8 +239,8 @@
                     <div class="form-group">
                       <select class="form-control" id="DeaddayFilter" >
                         <option value="" disabled selected>দিন</option>
-                        <option value="01">১</option>
-                        <option value="02">২</option>
+<!--                        <option value="01">১</option>-->
+<!--                        <option value="02">২</option>-->
                         <!-- Add more day options as needed -->
                       </select>
                     </div>
@@ -108,8 +250,8 @@
                     <div class="form-group">
                       <select class="form-control" id="DeadmonthFilter" >
                         <option value="" selected>মাস</option>
-                        <option value="01">জানুয়ারী</option>
-                        <option value="02">ফেব্রুয়ারী</option>
+<!--                        <option value="01">জানুয়ারী</option>-->
+<!--                        <option value="02">ফেব্রুয়ারী</option>-->
                         <!-- Add more month options as needed -->
                       </select>
                     </div>
@@ -117,19 +259,21 @@
 
                   <div class="col-sm-4">
                     <div class="form-group">
-                      <select class="form-control" id="DeadyearFilter" >
-                        <option value="" selected>সাল</option>
-                        <option value="2023">২০২৩</option>
-                        <option value="2022">২০২২</option>
-                        <!-- Add more year options as needed -->
-                      </select>
+
+                        <select class="form-control" id="DeadyearFilter">
+                          <option value="" selected>সাল</option>
+<!--                          <option value="2023">২০২৩</option>-->
+<!--                          <option value="2022">২০২২</option>-->
+                          <!-- Add more year options as needed -->
+                        </select>
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-12">
               <div class="form-group">
                 <label for="BurieddayFilter">দাফনের তারিখ</label>
                 <div class="row">
@@ -137,8 +281,8 @@
                     <div class="form-group">
                       <select class="form-control" id="BurieddayFilter" >
                         <option value="" disabled selected>দিন</option>
-                        <option value="01">১</option>
-                        <option value="02">২</option>
+<!--                        <option value="01">১</option>-->
+<!--                        <option value="02">২</option>-->
                         <!-- Add more day options as needed -->
                       </select>
                     </div>
@@ -148,8 +292,8 @@
                     <div class="form-group">
                       <select class="form-control" id="BuriedmonthFilter" >
                         <option value="" selected>মাস</option>
-                        <option value="01">জানুয়ারী</option>
-                        <option value="02">ফেব্রুয়ারী</option>
+<!--                        <option value="01">জানুয়ারী</option>-->
+<!--                        <option value="02">ফেব্রুয়ারী</option>-->
                         <!-- Add more month options as needed -->
                       </select>
                     </div>
@@ -159,8 +303,8 @@
                     <div class="form-group">
                       <select class="form-control" id="BuriedyearFilter" >
                         <option value="" selected>সাল</option>
-                        <option value="2023">২০২৩</option>
-                        <option value="2022">২০২২</option>
+<!--                        <option value="2023">২০২৩</option>-->
+<!--                        <option value="2022">২০২২</option>-->
                         <!-- Add more year options as needed -->
                       </select>
                     </div>
@@ -168,46 +312,45 @@
                 </div>
               </div>
             </div>
-                <div class="col-md-1">
-                  <div class="form-group">
-                    <label>&nbsp;</label>
-                    <div>
-<!--                      <a th:href="@{/BuriedSearch}">-->
-                    <button id="searchBtn" type="button" class="btn btn-primary btn-sm ">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                      </svg>
-                    </button>
+            <div class="col-md-12" style="margin-top: 30px;">
+<!--              <div class="form-group">-->
+
+<!--            <a th:href="@{/BuriedSearch}">-->
+              <button id="searchBtn" type="button" class="btn" style="width: 100%; background-color: #205F8B;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M13 22.5C7.47715 22.5 3 18.0228 3 12.5C3 6.97715 7.47715 2.5 13 2.5C18.5228 2.5 23 6.97715 23 12.5C23 14.8109 22.2161 16.9387 20.8998 18.6321L27.6339 25.3661L25.8661 27.1339L19.1321 20.3998C17.4387 21.7161 15.3109 22.5 13 22.5ZM20.5 12.5C20.5 16.6421 17.1421 20 13 20C8.85786 20 5.5 16.6421 5.5 12.5C5.5 8.35786 8.85786 5 13 5C17.1421 5 20.5 8.35786 20.5 12.5Z" fill="white"/>
+                </svg>
+              </button>
 <!--                    </a>-->
-                    </div>
-                  </div>
-                </div>
+
+<!--              </div>-->
+
           </div>
+        </div>
         </div>
       </div>
     </div>
 
+      <!-- Right Card with Data Table -->
+      <div class="col-md-8">
+      <div class="card" style="height: 100%; border-radius: 20px;">
 
-
-    <!-- Right Card with Data Table -->
-    <div class="col-md-12">
-      <div class="card" style="height: 100%;">
-
-        <div class="card-body">
-          <!-- DataTable -->
-          <table id="myDataTable" class="display" style="width:100%">
+        <div class="card-body table-responsive" style="padding: 0px 20px 20px 20px;">
+          <!-- DataTable style="background: #E1EFFE; border-radius: 20px 20px 0px 0px;"-->
+          <table class="table align-middle" id="myDataTable"
+                 style="width: 100%; border-radius: 20px; font-family: Hind Siliguri; border: none;">
             <thead>
-            <tr>
-              <th style="display:none">Id</th>
-              <th style="display:none">GraveId</th>
-              <th>মেমো নং</th>
-              <th>মৃত্যুর তারিখ</th>
-              <th>মৃত্যু ব্যক্তির নাম</th>
-              <th>পিতাম নাম</th>
-              <th>দাফনের তারিখ</th>
-              <th>ঠিকানা</th>
-              <th>স্ট্যাটাস</th>
-            </tr>
+              <tr>
+                <th style="display:none">Id</th>
+                <th style="display:none">GraveId</th>
+                <th>মেমো নং</th>
+                <th>মৃত্যুর তারিখ</th>
+                <th>মৃত ব্যক্তির নাম</th>
+                <th>পিতার নাম</th>
+                <th>দাফনের তারিখ</th>
+                <th>ঠিকানা</th>
+                <th></th>
+              </tr>
             </thead>
             <tbody>
               <tr>
@@ -232,9 +375,8 @@
         </div>
       </div>
     </div>
-  </div>
-
-</main><!-- /.container -->
+    </div>
+  </main>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -244,50 +386,94 @@
 <!--<script th:src="@{/plugins/bootstrap.js/bootstrap.min.js}"></script>-->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <script src="/plugins/datatables/jquery.datatables.min.js"></script>
+<!--<script src="https://cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>-->
+<script src="https://cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js" charset="utf8"></script>
 <!--    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
 <!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
 
     <script>
+
    $(document).ready(function()
     {
+
+
+<!--        $('#myDataTable').DataTable( {-->
+<!--          "paging": true,-->
+<!--          "deferRender": true,-->
+<!--          "ajax":{-->
+<!--              "url":"https://services7.arcgis.com/ewmPU1HI7BJPXAG4/arcgis/rest/services/NOPIMS_Wells_Feature_Service/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson",-->
+<!--              "dataSrc": "features"-->
+<!--          },-->
+<!--            "columnDefs": [ {-->
+<!--            targets: 3,-->
+<!--            render: $.fn.dataTable.render.moment('M-DD-YYYY,THH:mm','M/DD/YYYY')-->
+<!--          } ],-->
+<!--          -->
+<!--        });-->
+
+
+
+
+
+
+
+
+
+
+
+
               var gidValue = '2';
               var myDataTable = $('#myDataTable').DataTable({
-                 "responsive": true,
+
+                  "responsive": true,
                   "lengthChange": false,
                   "autoWidth": true,
-                  "paging": true,
+                  "paging": false,
+                  "scrollCollapse": true,
+                  "scrollX": true,
+                  "scrollY": 700,
                   "fixedHeader": true,
                   "select": true,
                   "processing": false,
                   "destroy": true,
+
                   columns: [
-                    { data: 'dec_id', visible: false },
-                    { data: 'graveyard_id' , visible: false },
-                    { data: 'memo_no' },
-                    { data: 'dod' },
+                    { data: 'dec_id', visible: false, width: '0%'},
+                    { data: 'graveyard_id' , visible: false, width: '0%' },
+                    { data: 'memo_no', width: '100px' },
+                    { data: 'dod', width: '140px', },
                     { data: 'dec_name' },
-                    { data: 'father' },
-                    { data: 'bur_date' },
-                    { data: 'address' },
+                    { data: 'father', },
+                    { data: 'bur_date', width: '160px', },
+
+                    { data: 'address' , visible: false, width: '0%' },
                     {
                           data: null,
                           render: function (data, type, row) {
                               if (data && data.dec_id && data.graveyard_id) {
-
-<!--                                  return '<a th:href="@{/graveDetails_withPosition/{id}(id=${\'dec_id\'})}" class="btn">Details</a>';-->
-                                      var url = '/graveDetails_withPosition/' + data.dec_id + '?gid=' + data.graveyard_id;
-                                      return '<a href="' + url + '" class="btn">Details</a>';
+                                return '<div class="mr-3" style="margin-left: -5%; font-size: 5px;"><button type="button" class="btn btn-block btn-sm"> বিস্তারিত দেখুন </button></div>';
                               }
                               else {
                                   // If data is not available, return an empty string
                                   return '';
                               }
-                          }
+                          }, width: '140px'
                       }
-                  ]
+                  ],
+                  "columnDefs": [
+                      {
+                        "targets": [4, 5], // Column indexes (0-based) where transformation should be applied
+                        "render": function (data, type, row) {
+                            // Apply text-transform: uppercase to the rendered content
+                            return type === 'display' && data !== null ? data.toUpperCase() : data;
+                        }
+                      },
+<!--                      { "targets": [3], "type": "datetime", render: $.fn.dataTable.render.moment( 'Do MMM YYYYY' ) },-->
+
+                  ],
               });
               function loadDetailsPage(dec_id, graveyard_id) {
-                      window.location.href = '/graveDetails_withPosition/?id=' + dec_id + '&gid=' + graveyard_id;
+                      window.location.href = '/graveDetails_withPosition?id=' + dec_id + '&gid=' + graveyard_id;
               }
 
             $('#searchBtn').on('click', function() {
@@ -335,8 +521,110 @@
                     }
                   });
            });
+
    });
+
+
+<!--$('#myDataTable').datetime('M/D/YYYY');-->
+<!--DataTable.datetime('dddd D MMMM YYYY');-->
+
+<!--const editor = new DataTable.Editor({-->
+<!--    ajax: '../php/dates.php?format=custom',-->
+<!--    fields: [-->
+<!--        {-->
+<!--            type: 'datetime',-->
+<!--            def: () => new Date(),-->
+<!--            format: 'M/D/YYYY',-->
+<!--            fieldInfo: 'US style m/d/y format'-->
+<!--        },-->
+<!--    ],-->
+<!--    table: '#myDataTable'-->
+<!--});-->
+
+
+
+const monthDropDown = document.getElementById("BuriedmonthFilter");
+const monthDropDownDead = document.getElementById("DeadmonthFilter");
+const monthData = {
+  "জানুয়ারি": "1",
+  "ফেব্রুয়ারি": "2",
+  "মার্চ": "3",
+  "এপ্রিল": "4",
+  "মে": "5",
+  "জুন": "6",
+  "জুলাই": "7",
+  "আগস্ট": "8",
+  "সেপ্টেম্বর": "9",
+  "অক্টোবর": "10",
+  "নভেম্বর": "11",
+  "ডিসেম্বর": "12"
+}
+
+for (let key in monthData) {
+  let option = document.createElement("option");
+  option.setAttribute('value', monthData[key]);
+
+  let optionText = document.createTextNode(key);
+  option.appendChild(optionText);
+
+  monthDropDown.appendChild(option);
+}
+
+for (let key in monthData) {
+  let option = document.createElement("option");
+  option.setAttribute('value', monthData[key]);
+
+  let optionText = document.createTextNode(key);
+  option.appendChild(optionText);
+
+  monthDropDownDead.appendChild(option);
+}
+
+const dayDropDown = document.getElementById("BurieddayFilter");
+const dayDropDownDead = document.getElementById("DeaddayFilter");
+
+for (let i=1; i<31; i++) {
+  let option = document.createElement("option");
+
+  let optionText = document.createTextNode(i);
+  option.appendChild(optionText);
+
+  dayDropDown.appendChild(option);
+}
+
+for (let i=1; i<31; i++) {
+  let option = document.createElement("option");
+
+  let optionText = document.createTextNode(i);
+  option.appendChild(optionText);
+
+  dayDropDownDead.appendChild(option);
+}
+
+const yearDropDown = document.getElementById("BuriedyearFilter");
+const yearDropDownDead = document.getElementById("DeadyearFilter");
+for (let i=1974; i<2024; i++) {
+  let option = document.createElement("option");
+
+  let optionText = document.createTextNode(i);
+  option.appendChild(optionText);
+
+  yearDropDown.appendChild(option);
+}
+
+for (let i=1974; i<2024; i++) {
+  let option = document.createElement("option");
+
+  let optionText = document.createTextNode(i);
+  option.appendChild(optionText);
+
+  yearDropDownDead.appendChild(option);
+}
+
+
+
 </script>
+
 
 
 
