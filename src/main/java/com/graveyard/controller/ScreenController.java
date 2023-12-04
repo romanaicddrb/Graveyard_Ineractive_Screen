@@ -55,8 +55,8 @@ public class ScreenController {
     @GetMapping(path="/mapSearch")
     public String mapSearch(Model model) {
 
-        List<GraveAvailable_ViewModel> Grave_availability = graveAvailable.getGraveAvailable(2);
-        model.addAttribute("data",Grave_availability);
+//        List<GraveAvailable_ViewModel> Grave_availability = graveAvailable.getGraveAvailable(2);
+//        model.addAttribute("data",Grave_availability);
 
         return "GraveFilter/MapSearchGrave";
     }

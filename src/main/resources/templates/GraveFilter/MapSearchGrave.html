@@ -141,10 +141,10 @@
 <!--<script th:src="@{plugins/bootstrap.js/bootstrap.min.js}"></script>-->
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-<script th:inline="javascript">
-  var graveAvailabilityData = [[${data}]] ;
-        console.log(graveAvailabilityData);
-</script>
+<!--<script th:inline="javascript">-->
+<!--  var graveAvailabilityData = [[${data}]] ;-->
+<!--        console.log(graveAvailabilityData);-->
+<!--</script>-->
 
 <script>
 
@@ -168,7 +168,7 @@
 
     //set marker
     var marker = L.marker([23.7990516813, 90.4038127014]).addTo(map);
-    marker.bindPopup("<b>You are here.</b>").openPopup();
+    marker.bindPopup("<b>আপনি এখানে.</b>").openPopup();
 
     //set color of the polygon
     function getColor(d) {
