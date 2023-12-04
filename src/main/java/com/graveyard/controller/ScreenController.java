@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -100,7 +104,19 @@ public class ScreenController {
             graveDetails_ViewModel=new GraveDetails_ViewModel();
             model.addAttribute("no_data_found",true);
         }
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        try {
+            date = inputFormat.parse(graveDetails_ViewModel.Bur_date);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        String curr_date = outputFormat.format(date);
+
         model.addAttribute("data",graveDetails_ViewModel);
+        model.addAttribute("burdate",curr_date);
         return "GraveFilter/graveDetails_withMap";
 
     }

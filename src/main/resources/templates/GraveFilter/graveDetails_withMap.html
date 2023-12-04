@@ -255,7 +255,9 @@
                         <label >দাফনের তারিখ</label>
                             <p th:if="${data.Bur_date == null}">N/A</p><p th:if="${data.Bur_date == ''}">N/A</p>
                             <p th:unless="${data.Bur_date}">
-                            <p th:text="${data.Bur_date}"></p></p>
+<!--                            <p th:text="${data.Bur_date}"></p>-->
+                        <p th:text="${burdate}"></p>
+                        </p>
 <!--                        <p th:text="${#temporals.format(data.Bur_date, 'yyyy-MM-dd');}"></p>-->
 
 <!--                            <p th:text="${data.Bur_date}"></p>-->
