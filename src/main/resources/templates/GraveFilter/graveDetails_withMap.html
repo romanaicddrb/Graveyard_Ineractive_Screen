@@ -190,32 +190,32 @@
               <div class="col">
                   <div class="form-group">
                       <label >মেমো নম্বর</label>
-                      <p th:text="${data.Memo_no} ?: 'N/A'"></p>
+                      <p th:text="${data.Memo_no == null OR data.Memo_no == ''} ? 'N/A' : ${data.Memo_no}"></p>
                   </div>
               </div>
               <div class="col">
                  <div class="form-group">
                      <label >কবর নম্বর</label>
-                     <p th:text="${data.Grave_no} ?: 'N/A'"></p>
+                     <p th:text="${data.Grave_no == null OR data.Grave_no == ''} ? 'N/A' : ${data.Grave_no}"></p>
 
                  </div>
               </div>
               <div class="col">
                   <div class="form-group">
                       <label >কবরের সারি</label>
-                      <p th:text="${data.Grave_lane} ?: 'N/A'"></p>
+                      <p th:text="${data.Grave_lane == null OR data.Grave_lane == ''} ? 'N/A' : ${data.Grave_lane}"></p>
                   </div>
               </div>
               <div class="col">
                   <div class="form-group">
                       <label>কবরের ব্লক</label>
-                      <p th:text="${data.Grave_block} ?: 'N/A'"></p>
+                      <p th:text="${data.Grave_block == null OR data.Grave_block == ''} ? 'N/A' : ${data.Grave_block}"></p>
                   </div>
               </div>
               <div class="col">
                   <div class="form-group">
                     <label >কবরের জোন</label>
-                      <p th:text="${data.Grave_zone} ?: 'N/A'"></p>
+                      <p th:text="${data.Grave_zone == null OR data.Grave_zone == ''} ? 'N/A' : ${data.Grave_zone}"></p>
                   </div>
               </div>
               <div class="col">
@@ -239,31 +239,31 @@
               <div class="col">
                 <div class="form-group">
                     <label >মৃত ব্যক্তির নাম</label>
-                    <p th:text="${data.Dec_name} ?: 'N/A'"></p>
+                    <p th:text="${data.Dec_name == null OR data.Dec_name == ''} ? 'N/A' : ${data.Dec_name}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
                     <label>স্বামী/স্ত্রীর নাম</label>
-                    <p th:text="${data.Spouse} ?: 'N/A'"></p>
+                    <p th:text="${data.Spouse == null OR data.Spouse == ''} ? 'N/A' : ${data.Spouse}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
                     <label >পিতার নাম</label>
-                    <p th:text="${data.Father} ?: 'N/A'"></p>
+                    <p th:text="${data.Father == null OR data.Father == ''} ? 'N/A' : ${data.Father}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
                     <label >মাতার নাম</label>
-                    <p th:text="${data.Mother} ?: 'N/A'"></p>
+                    <p th:text="${data.Mother == null OR data.Mother == ''} ? 'N/A' : ${data.Mother}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
                     <label >ঠিকানা</label>
-                    <p th:text="${data.Address} ?: 'N/A'"></p>
+                    <p th:text="${data.Address == null OR data.Address == ''} ? 'N/A' : ${data.Address}"></p>
                 </div>
               </div>
             </div>
@@ -298,9 +298,9 @@
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="../../assets/js/vendor/popper.min.js"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>
+<!--<script src="../../assets/js/vendor/popper.min.js"></script>-->
+<!--<script src="../../dist/js/bootstrap.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
 
 <script>
     function GetGraveBycode(id){

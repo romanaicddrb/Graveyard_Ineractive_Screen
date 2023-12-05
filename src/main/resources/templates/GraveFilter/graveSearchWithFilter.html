@@ -239,8 +239,6 @@
                     <div class="form-group">
                       <select class="form-control" id="DeaddayFilter" >
                         <option value="" disabled selected>দিন</option>
-<!--                        <option value="01">১</option>-->
-<!--                        <option value="02">২</option>-->
                         <!-- Add more day options as needed -->
                       </select>
                     </div>
@@ -250,8 +248,6 @@
                     <div class="form-group">
                       <select class="form-control" id="DeadmonthFilter" >
                         <option value="" selected>মাস</option>
-<!--                        <option value="01">জানুয়ারী</option>-->
-<!--                        <option value="02">ফেব্রুয়ারী</option>-->
                         <!-- Add more month options as needed -->
                       </select>
                     </div>
@@ -262,8 +258,6 @@
 
                         <select class="form-control" id="DeadyearFilter">
                           <option value="" selected>সাল</option>
-<!--                          <option value="2023">২০২৩</option>-->
-<!--                          <option value="2022">২০২২</option>-->
                           <!-- Add more year options as needed -->
                         </select>
 
@@ -281,9 +275,6 @@
                     <div class="form-group">
                       <select class="form-control" id="BurieddayFilter" >
                         <option value="" disabled selected>দিন</option>
-<!--                        <option value="01">১</option>-->
-<!--                        <option value="02">২</option>-->
-                        <!-- Add more day options as needed -->
                       </select>
                     </div>
                   </div>
@@ -292,8 +283,6 @@
                     <div class="form-group">
                       <select class="form-control" id="BuriedmonthFilter" >
                         <option value="" selected>মাস</option>
-<!--                        <option value="01">জানুয়ারী</option>-->
-<!--                        <option value="02">ফেব্রুয়ারী</option>-->
                         <!-- Add more month options as needed -->
                       </select>
                     </div>
@@ -303,8 +292,6 @@
                     <div class="form-group">
                       <select class="form-control" id="BuriedyearFilter" >
                         <option value="" selected>সাল</option>
-<!--                        <option value="2023">২০২৩</option>-->
-<!--                        <option value="2022">২০২২</option>-->
                         <!-- Add more year options as needed -->
                       </select>
                     </div>
@@ -316,7 +303,8 @@
 <!--              <div class="form-group">-->
 
 <!--            <a th:href="@{/BuriedSearch}">-->
-              <button id="searchBtn" type="button" class="btn" style="width: 100%; background-color: #205F8B;">
+              <button id="searchBtn" type="button" class="btn"
+                      style="width: 100%; background-color: #205F8B;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M13 22.5C7.47715 22.5 3 18.0228 3 12.5C3 6.97715 7.47715 2.5 13 2.5C18.5228 2.5 23 6.97715 23 12.5C23 14.8109 22.2161 16.9387 20.8998 18.6321L27.6339 25.3661L25.8661 27.1339L19.1321 20.3998C17.4387 21.7161 15.3109 22.5 13 22.5ZM20.5 12.5C20.5 16.6421 17.1421 20 13 20C8.85786 20 5.5 16.6421 5.5 12.5C5.5 8.35786 8.85786 5 13 5C17.1421 5 20.5 8.35786 20.5 12.5Z" fill="white"/>
                 </svg>
@@ -396,26 +384,6 @@
     <script>
 
    $(document).ready(function(){
-
-<!--        $('#myDataTable').DataTable( {-->
-<!--          "paging": true,-->
-<!--          "deferRender": true,-->
-<!--          "ajax":{-->
-<!--              "url":"https://services7.arcgis.com/ewmPU1HI7BJPXAG4/arcgis/rest/services/NOPIMS_Wells_Feature_Service/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson",-->
-<!--              "dataSrc": "features"-->
-<!--          },-->
-<!--            "columnDefs": [ {-->
-<!--            targets: 3,-->
-<!--            render: $.fn.dataTable.moment('DD-MMM-Y HH:mm:ss'),-->
-<!--                   -->
-<!--          } ],-->
-<!--        });-->
-
-
-
-
-
-
               var gidValue = '2';
               var myDataTable = $('#myDataTable').DataTable({
 
