@@ -13,5 +13,5 @@ public interface GraveService {
     DataTable<DeathListDto> getBySearch(DataTableRequestDto object);
     GraveDetail getGraveDetail(String gId, String id);
 
-    List<GraveAvailabilityDto> getGraveStatus();
+    List<GraveMapDetail> getGraveMapDetail(int gId);
 }

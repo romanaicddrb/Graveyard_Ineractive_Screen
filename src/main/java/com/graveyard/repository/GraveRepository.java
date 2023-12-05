@@ -1,9 +1,8 @@
 package com.graveyard.repository;
 
-import com.graveyard.model_class.dto.DataTableDto.DataTable;
-import com.graveyard.model_class.dto.GraveAvailabilityDto;
 import com.graveyard.model_class.dto.DeathListDto;
 import com.graveyard.model_class.dto.GraveDetail;
+import com.graveyard.model_class.dto.GraveMapDetail;
 import com.graveyard.model_class.entity.DecPerson;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -45,8 +44,8 @@ public interface GraveRepository extends JpaRepository<DecPerson, Long> {
             nativeQuery = true)
     GraveDetail getDetail(@Param("gid") String gid, @Param("did") String did);
 
-    @Query(value = "select * from get_grave_avalability( :gid)",
+    @Query(value = "select * from get_grave_avalabilitystatus( :gid)",
             nativeQuery = true)
-    List<GraveAvailabilityDto> getGraveStatus(@Param("gid") Integer gid);
+    List<GraveMapDetail> getGraveMapDetail(@Param("gid") int gid);
 
 }

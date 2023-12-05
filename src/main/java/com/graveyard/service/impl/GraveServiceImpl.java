@@ -75,8 +75,8 @@ public class GraveServiceImpl implements GraveService {
     }
 
     @Override
-    public List<GraveAvailabilityDto> getGraveStatus() {
-        return graveRepository.getGraveStatus(2);
+    public List<GraveMapDetail> getGraveMapDetail(int gId) {
+        return graveRepository.getGraveMapDetail(gId);
     }
 
 
