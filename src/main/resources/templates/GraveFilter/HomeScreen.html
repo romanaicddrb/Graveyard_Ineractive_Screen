@@ -1,139 +1,182 @@
 <!DOCTYPE html>
 <html lang="en" style="scroll-behavior:smooth" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graveyard</title>
-    <!--Font-->
-    <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
-    <!-- Latest compiled and minified CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <!--Customized CSS-->
-    <link th:href="@{/plugins/HomeScreen/main.css}" rel="stylesheet">
-    <style>
-      <!--Global anchor tag style-->
-      a {
-          text-decoration: none;
-          color: inherit;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container-fluid">
-      <!--Background Video-->
-      <div id="home-top-video">
-        <div class="video-background">
-          <video autoplay muted loop class="video" width="100%">
-            <source th:src="@{/resource/InteractionScreen.mp4}" type="video/mp4">
-          </video>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graveyard</title>
+
+  <!--Font-->
+  <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
+
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  <link th:href="@{/plugins/HomeScreen/main.css}" rel="stylesheet">
+  <style>
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+
+  </style>
+
+
+</head>
+<body>
+<div class="container-fluid">
+
+  <div id="home-top-video">
+    <div class="video-background">
+      <video autoplay muted loop class="video" width="100%">
+        <source th:src="@{/resource/InteractionScreen.mp4}" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div class="row headerOf">
+    <div class="col-md-2 start">
+      <img th:src="@{/resource/আস-সালামু আলাইকুম ٱلسَّلَامُ عَلَيْكُمْ__.png}"
+           alt="আস-সালামু আলাইকুম"
+           style="max-width: 200px; max-height: 70px;">
+    </div>
+
+    <div class="col-md-3 logosSec">
+      <div class="col-md-4 logos">
+        <img th:src="@{/resource/logo.svg}" alt="logo"
+             style="max-width: 50px; max-height: 50px;">
+
       </div>
-      <!--Header components-->
-      <div class="row headerOf">
-        <!--Header left side component-->
-        <div class="col-md-2 start">
-          <img th:src="@{/resource/আস-সালামু আলাইকুম ٱلسَّلَامُ عَلَيْكُمْ__.png}" alt="আস-সালামু আলাইকুম" style="max-width: 200px; max-height: 70px;">
-        </div>
-        <!--Header right side component-->
-        <div class="col-md-3 logosSec">
-          <div class="col-md-4 logos">
-            <img th:src="@{/resource/logo.svg}" alt="logo" style="max-width: 50px; max-height: 50px;">
-          </div>
-          <div class="col-md-6 logoText">
-            <p style="margin-left: 0px; text-align: right;">কবরস্থান ব্যবস্থাপনা সিস্টেম</p>
-          </div>
-        </div>
+      <div class="col-md-6 logoText">
+        <p style="margin-left: 0px; text-align: right;">কবরস্থান ব্যবস্থাপনা সিস্টেম</p>
       </div>
-      <!--Middle components-->
-      <div class="row col align-self-center" style="display: flex; justify-content: center; align-items: center; margin-top: 8%;">
-        <div class="contentCenter" style="vertical-align: middle;">
-          <div class="col-md-3 titleB">
-            <p style="font-size: calc(24.8px + 6 * ((100vw - 400px) / 680)); font-weight: 700;">বনানী কবরস্থানে</p>
-            <p style="font-size:calc(12.8px + 6 * ((100vw - 400px) / 680)); font-weight: 500;">আপনাকে স্বাগতম</p>
-          </div>
-          <div class="col-md-4 contentSec">
-            <p>আপনাকে কিভাবে সহযোগিতা করতে পারি?</p>
-          </div>
-          <div class="col-md-4" style="padding: 0px 12px;">
-            <div class="row centerBottom">
-                <div class="col-md-6 graveSearch">
-                  <a th:href="@{/graveSearch}" style="width:100%; height:100%;">
-                    <div style="width: 100%; padding:15px; align-items: center; display: flex; justify-content: center;">
-                      <p style="font-size: calc(5.09px + 6 * ((100vw - 400px) / 680)); color: #FFFFFF;
-                      padding: 0px; display: inline; justify-content: center; align-items: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
-                          <path d="M17 22V20H20V17H22V20.5C22 20.89 21.84 21.24 21.54 21.54C21.24 21.84 20.89 22 20.5 22H17ZM7 22H3.5C3.11 22 2.76 21.84 2.46 21.54C2.16 21.24 2 20.89 2 20.5V17H4V20H7V22ZM17 2H20.5C20.89 2 21.24 2.16 21.54 2.46C21.84 2.76 22 3.11 22 3.5V7H20V4H17V2ZM7 2V4H4V7H2V3.5C2 3.11 2.16 2.76 2.46 2.46C2.76 2.16 3.11 2 3.5 2H7ZM10.5 6C13 6 15 8 15 10.5C15 11.38 14.75 12.2 14.31 12.9L17.57 16.16L16.16 17.57L12.9 14.31C12.2 14.75 11.38 15 10.5 15C8 15 6 13 6 10.5C6 8 8 6 10.5 6ZM10.5 8C9.12 8 8 9.12 8 10.5C8 11.88 9.12 13 10.5 13C11.88 13 13 11.88 13 10.5C13 9.12 11.88 8 10.5 8Z" fill="white"/>
-                        </svg>
-                        &nbsp; &nbsp; কবর অনুসন্ধান করুন
-                      </p>
-                    </div>
-                  </a>
+    </div>
+  </div>
+
+
+  <div class="row col align-self-center"
+       style="display: flex; justify-content: center; align-items: center; margin-top: 8%;">
+    <div class="contentCenter"
+         style="vertical-align: middle;">
+      <div class="col-md-3 titleB">
+        <p style="font-size: calc(24.8px + 6 * ((100vw - 400px) / 680)); font-weight: 700;">
+          বনানী কবরস্থানে</p>
+        <p
+          style="font-size:calc(12.8px + 6 * ((100vw - 400px) / 680)); font-weight: 500;">
+            আপনাকে স্বাগতম
+        </p>
+      </div>
+
+
+      <div class="col-md-4 contentSec">
+        <p>আপনাকে কিভাবে সহযোগিতা করতে পারি?</p>
+      </div>
+
+
+
+      <div class="col-md-4"
+           style="padding: 0px 12px;">
+        <div class="row centerBottom">
+
+            <div class="col-md-6 graveSearch">
+              <a th:href="@{/graveSearch}"
+                 style="width:100%; height:100%; text-decoration:none">
+                <div
+                  style="width: 100%; padding:15px; align-items: center; display: flex;
+                  justify-content: center; text-decoration:none">
+
+                  <p style="font-size: calc(5.09px + 6 * ((100vw - 400px) / 680)); color: #FFFFFF;
+                  padding: 0px; display: inline; justify-content: center; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
+                      <path d="M17 22V20H20V17H22V20.5C22 20.89 21.84 21.24 21.54 21.54C21.24 21.84 20.89 22 20.5 22H17ZM7 22H3.5C3.11 22 2.76 21.84 2.46 21.54C2.16 21.24 2 20.89 2 20.5V17H4V20H7V22ZM17 2H20.5C20.89 2 21.24 2.16 21.54 2.46C21.84 2.76 22 3.11 22 3.5V7H20V4H17V2ZM7 2V4H4V7H2V3.5C2 3.11 2.16 2.76 2.46 2.46C2.76 2.16 3.11 2 3.5 2H7ZM10.5 6C13 6 15 8 15 10.5C15 11.38 14.75 12.2 14.31 12.9L17.57 16.16L16.16 17.57L12.9 14.31C12.2 14.75 11.38 15 10.5 15C8 15 6 13 6 10.5C6 8 8 6 10.5 6ZM10.5 8C9.12 8 8 9.12 8 10.5C8 11.88 9.12 13 10.5 13C11.88 13 13 11.88 13 10.5C13 9.12 11.88 8 10.5 8Z" fill="white"/>
+                    </svg>
+                   &nbsp; &nbsp; কবর অনুসন্ধান করুন</p>
                 </div>
-                <div class="col-md-6 mapSearch">
-                  <a th:href="@{/mapSearch}" style="width:100%; height:100%;">
-                    <div style="width: 100%;
-                          padding:15px;
-                          align-items: center;
-                          display: flex;
-                          justify-content: center;">
-                      <p style="font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
-                        color: #1175BD; padding: 0px; display: inline; gap: 20px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
-                          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.0962 18.2554L12 19.2126L10.9038 18.2554C6.98842 14.8366 5 11.8112 5 9C5 5.02141 8.10349 2 12 2C15.8965 2 19 5.02141 19 9C19 11.8112 17.0116 14.8366 13.0962 18.2554ZM5.68555 14.8034C6.09614 15.3656 6.55352 15.9373 7.05748 16.519C5.19525 16.9384 4 17.5337 4 18C4 18.807 7.57914 20 12 20C16.4209 20 20 18.807 20 18C20 17.5337 18.8047 16.9384 16.9425 16.519C17.4465 15.9373 17.9039 15.3656 18.3144 14.8034C20.5633 15.4858 22 16.5804 22 18C22 20.5068 17.5203 22 12 22C6.47973 22 2 20.5068 2 18C2 16.5804 3.43674 15.4858 5.68555 14.8034ZM12 4C14.8038 4 17 6.13816 17 9C17 11.047 15.3727 13.5659 12 16.556C8.62733 13.5659 7 11.047 7 9C7 6.13816 9.19624 4 12 4ZM12 6C13.6569 6 15 7.34315 15 9C15 10.6569 13.6569 12 12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6ZM11 9C11 8.44772 11.4477 8 12 8C12.5523 8 13 8.44772 13 9C13 9.55228 12.5523 10 12 10C11.4477 10 11 9.55228 11 9Z" fill="#1175BD"/>
-                        </svg>
-                        &nbsp; &nbsp; ম্যাপ এ দেখুন
-                      </p>
-                    </div>
-                  </a>
-                </div>
+              </a>
             </div>
-          </div>
-        </div>
-      </div>
-      <!--Footer components-->
-      <div class="row footOf">
-        <!--Footer left side components-->
-        <div class="col-md-2" style="display: flex;
-              padding: 10px 10px;
-              margin-left: 10px;
-              justify-content: center;
-              align-items: center;
-              gap: 10px;
-              border-radius: 10px;
-              background: rgba(12, 64, 101, 0.85);">
-          <p style="color: #FFF;
-                font-family: Hind Siliguri;
-                font-size: 18px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 120%;">কারিগরি সহায়তায়:</p>
-          <img th:src="@{/resource/icddrb.png}" alt="icddrb" style="height: auto; width: 150px;">
-        </div>
-        <!--Footer right side components-->
-        <div class="col-md-3 footRight">
-          <div class="col-md-11" data-toggle="modal" data-target="#visit" id="visit_modal" style="color: #fff; font-family: Hind Siliguri; font-size: 18px; font-style: normal;
-               font-weight: 500; line-height: normal; align-items: center; display: flex;
-               justify-content: center; gap: 10px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M16.5 11.9991C16.5 11.3191 16.44 10.6591 16.36 9.99908H19.74C19.9 10.6391 20 11.3091 20 11.9991C20 12.3691 19.97 12.7291 19.92 13.0791C20.61 13.1791 21.25 13.3991 21.84 13.7191C21.94 13.1591 22 12.5891 22 11.9991C22 6.49908 17.5 1.99908 12 1.99908C6.47 1.99908 2 6.49908 2 11.9991C2 17.4991 6.5 21.9991 12 21.9991C12.59 21.9991 13.16 21.9391 13.72 21.8391C13.26 20.9991 13 20.0291 13 18.9991C13 18.7091 13.03 18.4291 13.07 18.1491C12.75 18.7791 12.4 19.3891 12 19.9591C11.17 18.7591 10.5 17.4291 10.09 15.9991H13.81C14.41 14.9591 15.31 14.1191 16.4 13.5991C16.46 13.0691 16.5 12.5391 16.5 11.9991ZM12 4.02908C12.83 5.22908 13.5 6.56908 13.91 7.99908H10.09C10.5 6.56908 11.17 5.22908 12 4.02908ZM4.26 13.9991C4.1 13.3591 4 12.6891 4 11.9991C4 11.3091 4.1 10.6391 4.26 9.99908H7.64C7.56 10.6591 7.5 11.3191 7.5 11.9991C7.5 12.6791 7.56 13.3391 7.64 13.9991H4.26ZM5.08 15.9991H8C8.35 17.2491 8.8 18.4491 9.4 19.5591C7.57 18.9291 6.03 17.6491 5.08 15.9991ZM8 7.99908H5.08C6.03 6.33908 7.57 5.05908 9.4 4.43908C8.8 5.54908 8.35 6.74908 8 7.99908ZM14.34 13.9991H9.66C9.56 13.3391 9.5 12.6791 9.5 11.9991C9.5 11.3191 9.56 10.6491 9.66 9.99908H14.34C14.43 10.6491 14.5 11.3191 14.5 11.9991C14.5 12.6791 14.43 13.3391 14.34 13.9991ZM14.59 4.43908C16.43 5.06908 17.96 6.33908 18.92 7.99908H15.97C15.65 6.74908 15.19 5.54908 14.59 4.43908ZM23 17.9991V19.9991H20V22.9991H18V19.9991H15V17.9991H18V14.9991H20V17.9991H23Z" fill="white"/>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M7 1.99908H17C18.1046 1.99908 19 2.89451 19 3.99908V19.9991C19 21.1037 18.1046 21.9991 17 21.9991H7C5.89543 21.9991 5 21.1037 5 19.9991V3.99908C5 2.89451 5.89543 1.99908 7 1.99908ZM7 3.99908V19.9991H17V3.99908H7ZM13 17.9991C13 18.5514 12.5523 18.9991 12 18.9991C11.4477 18.9991 11 18.5514 11 17.9991C11 17.4468 11.4477 16.9991 12 16.9991C12.5523 16.9991 13 17.4468 13 17.9991Z" fill="#fff"/>
-            </svg>
-            মোবাইল এবং ওয়েবসাইট সম্পর্কে জানতে
-            <p style="color: #E98923; display: inline;">ভিজিট করুন</p>
-          </div>
+
+
+            <div class="col-md-6 mapSearch">
+              <a th:href="@{/mapSearch}" style="width:100%; height:100%; text-decoration:none">
+                <div style="width: 100%;
+                      padding:15px;
+                      align-items: center;
+                      display: flex;
+                      justify-content: center;">
+                  <p
+                    style="font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
+                    color: #1175BD; padding: 0px; display: inline; gap: 20px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.0962 18.2554L12 19.2126L10.9038 18.2554C6.98842 14.8366 5 11.8112 5 9C5 5.02141 8.10349 2 12 2C15.8965 2 19 5.02141 19 9C19 11.8112 17.0116 14.8366 13.0962 18.2554ZM5.68555 14.8034C6.09614 15.3656 6.55352 15.9373 7.05748 16.519C5.19525 16.9384 4 17.5337 4 18C4 18.807 7.57914 20 12 20C16.4209 20 20 18.807 20 18C20 17.5337 18.8047 16.9384 16.9425 16.519C17.4465 15.9373 17.9039 15.3656 18.3144 14.8034C20.5633 15.4858 22 16.5804 22 18C22 20.5068 17.5203 22 12 22C6.47973 22 2 20.5068 2 18C2 16.5804 3.43674 15.4858 5.68555 14.8034ZM12 4C14.8038 4 17 6.13816 17 9C17 11.047 15.3727 13.5659 12 16.556C8.62733 13.5659 7 11.047 7 9C7 6.13816 9.19624 4 12 4ZM12 6C13.6569 6 15 7.34315 15 9C15 10.6569 13.6569 12 12 12C10.3431 12 9 10.6569 9 9C9 7.34315 10.3431 6 12 6ZM11 9C11 8.44772 11.4477 8 12 8C12.5523 8 13 8.44772 13 9C13 9.55228 12.5523 10 12 10C11.4477 10 11 9.55228 11 9Z" fill="#1175BD"/>
+                    </svg>
+                    &nbsp; &nbsp; ম্যাপ এ দেখুন
+                  </p>
+                </div>
+              </a>
+            </div>
+
         </div>
       </div>
     </div>
+  </div>
+  <div class="row footOf">
+    <div class="col-md-2"
+         style="display: flex;
+          padding: 10px 10px;
+          margin-left: 10px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: 10px;
+          background: rgba(12, 64, 101, 0.85);">
+      <p style="color: #FFF;
+            font-family: Hind Siliguri;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 120%;">কারিগরি সহায়তায়:</p>
+      <img th:src="@{/resource/icddrb.png}" alt="icddrb" style="height: auto; width: 150px;">
+    </div>
 
-    <!--Modal for QR code-->
-    <div class="modal" id="visit" role="dialog"></div>
+    <div class="col-md-3 footRight">
+      <div class="col-md-11" data-toggle="modal" data-target="#visit" id="visit_modal"
+           style="color: #fff; font-family: Hind Siliguri; font-size: 18px; font-style: normal;
+           font-weight: 500; line-height: normal; align-items: center; display: flex;
+           justify-content: center; gap: 10px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M16.5 11.9991C16.5 11.3191 16.44 10.6591 16.36 9.99908H19.74C19.9 10.6391 20 11.3091 20 11.9991C20 12.3691 19.97 12.7291 19.92 13.0791C20.61 13.1791 21.25 13.3991 21.84 13.7191C21.94 13.1591 22 12.5891 22 11.9991C22 6.49908 17.5 1.99908 12 1.99908C6.47 1.99908 2 6.49908 2 11.9991C2 17.4991 6.5 21.9991 12 21.9991C12.59 21.9991 13.16 21.9391 13.72 21.8391C13.26 20.9991 13 20.0291 13 18.9991C13 18.7091 13.03 18.4291 13.07 18.1491C12.75 18.7791 12.4 19.3891 12 19.9591C11.17 18.7591 10.5 17.4291 10.09 15.9991H13.81C14.41 14.9591 15.31 14.1191 16.4 13.5991C16.46 13.0691 16.5 12.5391 16.5 11.9991ZM12 4.02908C12.83 5.22908 13.5 6.56908 13.91 7.99908H10.09C10.5 6.56908 11.17 5.22908 12 4.02908ZM4.26 13.9991C4.1 13.3591 4 12.6891 4 11.9991C4 11.3091 4.1 10.6391 4.26 9.99908H7.64C7.56 10.6591 7.5 11.3191 7.5 11.9991C7.5 12.6791 7.56 13.3391 7.64 13.9991H4.26ZM5.08 15.9991H8C8.35 17.2491 8.8 18.4491 9.4 19.5591C7.57 18.9291 6.03 17.6491 5.08 15.9991ZM8 7.99908H5.08C6.03 6.33908 7.57 5.05908 9.4 4.43908C8.8 5.54908 8.35 6.74908 8 7.99908ZM14.34 13.9991H9.66C9.56 13.3391 9.5 12.6791 9.5 11.9991C9.5 11.3191 9.56 10.6491 9.66 9.99908H14.34C14.43 10.6491 14.5 11.3191 14.5 11.9991C14.5 12.6791 14.43 13.3391 14.34 13.9991ZM14.59 4.43908C16.43 5.06908 17.96 6.33908 18.92 7.99908H15.97C15.65 6.74908 15.19 5.54908 14.59 4.43908ZM23 17.9991V19.9991H20V22.9991H18V19.9991H15V17.9991H18V14.9991H20V17.9991H23Z" fill="white"/>
+        </svg>
 
-    <!--Customized JS-->
-    <script type="text/javascript" src="JS\mainJS.js"></script>
-  </body>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7 1.99908H17C18.1046 1.99908 19 2.89451 19 3.99908V19.9991C19 21.1037 18.1046 21.9991 17 21.9991H7C5.89543 21.9991 5 21.1037 5 19.9991V3.99908C5 2.89451 5.89543 1.99908 7 1.99908ZM7 3.99908V19.9991H17V3.99908H7ZM13 17.9991C13 18.5514 12.5523 18.9991 12 18.9991C11.4477 18.9991 11 18.5514 11 17.9991C11 17.4468 11.4477 16.9991 12 16.9991C12.5523 16.9991 13 17.4468 13 17.9991Z" fill="#fff"/>
+        </svg>
+        মোবাইল এবং ওয়েবসাইট সম্পর্কে জানতে
+        <!-- <button type="button" id="rest" data-toggle="modal" data-target="#ownerModal">
+          <span style="color: #1175BD; display: inline;"> ভিজিট করুন</span>
+        </button> -->
+        <p style="color: #E98923; display: inline;">
+          ভিজিট করুন</p>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="modal" id="visit" role="dialog">
+</div>
+
+<script type="text/javascript" src="js\mainJS.js"></script>
+<!--<script>-->
+<!--  document.getElementById("visit_modal").addEventListener("click", function(e) {-->
+<!--      e.preventDefault();-->
+<!--      $('#visitModal').modal('show');-->
+<!--  });-->
+<!--</script>-->
+</body>
 </html>

@@ -8,6 +8,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.text.*;
+import java.util.Calendar;
 
 
 @Entity
@@ -45,4 +47,16 @@ public class GraveDetails_ViewModel {
     public String Spouse;
     public String Address;
     public String Nationality ;
+//
+//
+//
+//    SimpleDateFormat DateFormat
+//            = new SimpleDateFormat("dd/MM/yyyy");
+//
+//    // Initializing the calendar Object
+//    Calendar c = Calendar.getInstance();
+//
+//    // Using format() method for conversion
+//    String curr_date
+//            = DateFormat.format(Bur_date);
 }

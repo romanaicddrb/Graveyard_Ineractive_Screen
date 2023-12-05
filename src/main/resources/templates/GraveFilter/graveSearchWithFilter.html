@@ -217,7 +217,7 @@
           <div class="row" style="gap: 20px;">
             <div class="col-md-12">
               <div class="form-group">
-                <label for="MemoFilter">মেমো নং</label>
+                <label for="MemoFilter">মেমো নম্বর</label>
                 <input type="text" class="form-control" id="MemoFilter">
               </div>
             </div>
@@ -239,8 +239,6 @@
                     <div class="form-group">
                       <select class="form-control" id="DeaddayFilter" >
                         <option value="" disabled selected>দিন</option>
-<!--                        <option value="01">১</option>-->
-<!--                        <option value="02">২</option>-->
                         <!-- Add more day options as needed -->
                       </select>
                     </div>
@@ -250,8 +248,6 @@
                     <div class="form-group">
                       <select class="form-control" id="DeadmonthFilter" >
                         <option value="" selected>মাস</option>
-<!--                        <option value="01">জানুয়ারী</option>-->
-<!--                        <option value="02">ফেব্রুয়ারী</option>-->
                         <!-- Add more month options as needed -->
                       </select>
                     </div>
@@ -262,8 +258,6 @@
 
                         <select class="form-control" id="DeadyearFilter">
                           <option value="" selected>সাল</option>
-<!--                          <option value="2023">২০২৩</option>-->
-<!--                          <option value="2022">২০২২</option>-->
                           <!-- Add more year options as needed -->
                         </select>
 
@@ -281,9 +275,6 @@
                     <div class="form-group">
                       <select class="form-control" id="BurieddayFilter" >
                         <option value="" disabled selected>দিন</option>
-<!--                        <option value="01">১</option>-->
-<!--                        <option value="02">২</option>-->
-                        <!-- Add more day options as needed -->
                       </select>
                     </div>
                   </div>
@@ -292,8 +283,6 @@
                     <div class="form-group">
                       <select class="form-control" id="BuriedmonthFilter" >
                         <option value="" selected>মাস</option>
-<!--                        <option value="01">জানুয়ারী</option>-->
-<!--                        <option value="02">ফেব্রুয়ারী</option>-->
                         <!-- Add more month options as needed -->
                       </select>
                     </div>
@@ -303,8 +292,6 @@
                     <div class="form-group">
                       <select class="form-control" id="BuriedyearFilter" >
                         <option value="" selected>সাল</option>
-<!--                        <option value="2023">২০২৩</option>-->
-<!--                        <option value="2022">২০২২</option>-->
                         <!-- Add more year options as needed -->
                       </select>
                     </div>
@@ -316,7 +303,8 @@
 <!--              <div class="form-group">-->
 
 <!--            <a th:href="@{/BuriedSearch}">-->
-              <button id="searchBtn" type="button" class="btn" style="width: 100%; background-color: #205F8B;">
+              <button id="searchBtn" type="button" class="btn"
+                      style="width: 100%; background-color: #205F8B;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M13 22.5C7.47715 22.5 3 18.0228 3 12.5C3 6.97715 7.47715 2.5 13 2.5C18.5228 2.5 23 6.97715 23 12.5C23 14.8109 22.2161 16.9387 20.8998 18.6321L27.6339 25.3661L25.8661 27.1339L19.1321 20.3998C17.4387 21.7161 15.3109 22.5 13 22.5ZM20.5 12.5C20.5 16.6421 17.1421 20 13 20C8.85786 20 5.5 16.6421 5.5 12.5C5.5 8.35786 8.85786 5 13 5C17.1421 5 20.5 8.35786 20.5 12.5Z" fill="white"/>
                 </svg>
@@ -343,7 +331,7 @@
               <tr>
                 <th style="display:none">Id</th>
                 <th style="display:none">GraveId</th>
-                <th>মেমো নং</th>
+                <th>মেমো নম্বর</th>
                 <th>মৃত্যুর তারিখ</th>
                 <th>মৃত ব্যক্তির নাম</th>
                 <th>পিতার নাম</th>
@@ -386,42 +374,16 @@
 <!--<script th:src="@{/plugins/bootstrap.js/bootstrap.min.js}"></script>-->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <script src="/plugins/datatables/jquery.datatables.min.js"></script>
-<!--<script src="https://cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>-->
-<script src="https://cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js" charset="utf8"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+
+<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js"></script>
 <!--    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
 <!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
 
     <script>
 
-   $(document).ready(function()
-    {
-
-
-<!--        $('#myDataTable').DataTable( {-->
-<!--          "paging": true,-->
-<!--          "deferRender": true,-->
-<!--          "ajax":{-->
-<!--              "url":"https://services7.arcgis.com/ewmPU1HI7BJPXAG4/arcgis/rest/services/NOPIMS_Wells_Feature_Service/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson",-->
-<!--              "dataSrc": "features"-->
-<!--          },-->
-<!--            "columnDefs": [ {-->
-<!--            targets: 3,-->
-<!--            render: $.fn.dataTable.render.moment('M-DD-YYYY,THH:mm','M/DD/YYYY')-->
-<!--          } ],-->
-<!--          -->
-<!--        });-->
-
-
-
-
-
-
-
-
-
-
-
-
+   $(document).ready(function(){
               var gidValue = '2';
               var myDataTable = $('#myDataTable').DataTable({
 
@@ -436,6 +398,7 @@
                   "select": true,
                   "processing": false,
                   "destroy": true,
+                  "orderable": true,
 
                   columns: [
                     { data: 'dec_id', visible: false, width: '0%'},
@@ -468,7 +431,10 @@
                             return type === 'display' && data !== null ? data.toUpperCase() : data;
                         }
                       },
-<!--                      { "targets": [3], "type": "datetime", render: $.fn.dataTable.render.moment( 'Do MMM YYYYY' ) },-->
+
+                      {
+                        "targets": [3, 6],
+                        "type": "datetime", render: $.fn.dataTable.render.moment( 'DD-MM-YYYY' ) },
 
                   ],
               });
