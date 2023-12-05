@@ -1,5 +1,6 @@
 package com.graveyard.controller;
 
+import com.graveyard.model_class.dto.GraveDetail;
 import com.graveyard.model_class.viewmodel.GraveAvailable_ViewModel;
 import com.graveyard.model_class.viewmodel.GraveDetails_ViewModel;
 import com.graveyard.service.DecPersonService;
@@ -24,6 +25,8 @@ public class ScreenController {
 //    private final RestTemplate restTemplate;
     private DecPersonService decPersonService;
     private GraveAvailable graveAvailable;
+
+    private final GraveService graveService;
 
 //    @Autowired
 //    public ScreenController(RestTemplateBuilder restTemplateBuilder) {
@@ -85,22 +88,31 @@ public class ScreenController {
 //
 //    }
 
+//    @RequestMapping({"/graveDetails_withPosition"})
+//    public String graveDetails_withPosition(@RequestParam(value = "id", required = false) String Dec_id,
+//                                            @RequestParam(value = "gid", required = false) String graveyard_id,
+//                                            Model model)
+//    {
+//        List<GraveDetails_ViewModel> Dec_per_detail = decPersonService.getDecPerson_Detail(UUID.fromString(Dec_id));
+//        GraveDetails_ViewModel graveDetails_ViewModel;
+//        if(!Dec_per_detail.isEmpty()){
+//            graveDetails_ViewModel=Dec_per_detail.get(0);
+//        }else{
+//            graveDetails_ViewModel=new GraveDetails_ViewModel();
+//            model.addAttribute("no_data_found",true);
+//        }
+//        model.addAttribute("data",graveDetails_ViewModel);
+//        return "GraveFilter/graveDetails_withMap";
+//
+//    }
+
     @RequestMapping({"/graveDetails_withPosition"})
-    public String graveDetails_withPosition(@RequestParam(value = "id", required = false) String Dec_id,
+    public String graveDetails_withPosition(@RequestParam(value = "id", required = false) String dec_id,
                                             @RequestParam(value = "gid", required = false) String graveyard_id,
-                                            Model model
-                                            )
-//    @RequestParam (value="Dec_id", required = false) String Dec_id,
+                                            Model model)
     {
-        List<GraveDetails_ViewModel> Dec_per_detail = decPersonService.getDecPerson_Detail(UUID.fromString(Dec_id));
-        GraveDetails_ViewModel graveDetails_ViewModel;
-        if(!Dec_per_detail.isEmpty()){
-            graveDetails_ViewModel=Dec_per_detail.get(0);
-        }else{
-            graveDetails_ViewModel=new GraveDetails_ViewModel();
-            model.addAttribute("no_data_found",true);
-        }
-        model.addAttribute("data",graveDetails_ViewModel);
+        GraveDetail detail = graveService.getGraveDetail(graveyard_id, dec_id);
+        model.addAttribute("data",detail);
         return "GraveFilter/graveDetails_withMap";
 
     }

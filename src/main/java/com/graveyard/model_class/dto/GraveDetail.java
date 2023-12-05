@@ -1,5 +1,7 @@
 package com.graveyard.model_class.dto;
 
+import java.time.LocalDate;
+
 public interface GraveDetail {
 
      String getDec_id();
@@ -10,8 +12,8 @@ public interface GraveDetail {
      String getGrave_lane();
      String getGrave_block();
      String getGrave_zone();
-     String getDod();
-     String getBur_date();
+     LocalDate getDod();
+     LocalDate getBur_date();
      String getDec_name();
      String getFather();
      String getMother();
