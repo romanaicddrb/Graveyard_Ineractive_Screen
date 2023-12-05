@@ -238,9 +238,11 @@
               <div class="col">
                   <div class="form-group">
                     <label >মৃত্যুর তারিখ</label>
-                      <p th:if="${data.Dod == null}">N/A</p><p th:if="${data.Dod == ''}">N/A</p>
+                      <p th:if="${data.Dod == null}">N/A</p>
+                      <p th:if="${data.Dod == ''}">N/A</p>
                       <p th:unless="${data.Dod}">
-                        <p th:text="${data.Dod}"></p></p>
+                        <p th:text="${#dates.format(Doddate, 'dd-MM-yyyy')}"></p>
+<!--                        <p th:text="${data.Dod}"></p></p>-->
 <!--                        <p th:text="${data.Dod}"></p>-->
                   </div>
               </div>
@@ -253,10 +255,12 @@
                 <div class="col">
                     <div class="form-group">
                         <label >দাফনের তারিখ</label>
-                            <p th:if="${data.Bur_date == null}">N/A</p><p th:if="${data.Bur_date == ''}">N/A</p>
+                            <p th:if="${data.Bur_date == null}">N/A</p>
+                            <p th:if="${data.Bur_date == ''}">N/A</p>
                             <p th:unless="${data.Bur_date}">
 <!--                            <p th:text="${data.Bur_date}"></p>-->
-                        <p th:text="${burdate}"></p>
+<!--                        <p th:text="${burdate}"></p>-->
+                            <p th:text="${#dates.format(burdate, 'dd-MM-yyyy')}"></p>
                         </p>
 <!--                        <p th:text="${#temporals.format(data.Bur_date, 'yyyy-MM-dd');}"></p>-->
 
@@ -368,9 +372,9 @@
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="../../assets/js/vendor/popper.min.js"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>
+<!--<script src="../../assets/js/vendor/popper.min.js"></script>-->
+<!--<script src="../../dist/js/bootstrap.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
 
 <script>
     function GetGraveBycode(id){

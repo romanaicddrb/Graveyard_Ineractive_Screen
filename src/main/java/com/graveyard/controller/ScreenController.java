@@ -17,8 +17,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -93,7 +93,7 @@ public class ScreenController {
     public String graveDetails_withPosition(@RequestParam(value = "id", required = false) String Dec_id,
                                             @RequestParam(value = "gid", required = false) String graveyard_id,
                                             Model model
-                                            )
+                                            ) throws ParseException
 //    @RequestParam (value="Dec_id", required = false) String Dec_id,
     {
         List<GraveDetails_ViewModel> Dec_per_detail = decPersonService.getDecPerson_Detail(UUID.fromString(Dec_id));
@@ -106,17 +106,26 @@ public class ScreenController {
         }
 
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = null;
+        Date date1 = null;
         try {
             date = inputFormat.parse(graveDetails_ViewModel.Bur_date);
+            date1 = inputFormat.parse(graveDetails_ViewModel.Dod);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        String curr_date = outputFormat.format(date);
+//        String curr_date = outputFormat.format(date);
+
+        String curr =new SimpleDateFormat("dd/MM/yyyy").format(date);
+        String curr_Dod =new SimpleDateFormat("dd/MM/yyyy").format(date1);
+        Date curr_date =new SimpleDateFormat("dd/MM/yyyy").parse(curr);
+        Date curr_date_Dod =new SimpleDateFormat("dd/MM/yyyy").parse(curr_Dod);
+//        Date curr_date = String.valueOf(curr);
 
         model.addAttribute("data",graveDetails_ViewModel);
         model.addAttribute("burdate",curr_date);
+        model.addAttribute("Doddate",curr_date_Dod);
         return "GraveFilter/graveDetails_withMap";
 
     }
