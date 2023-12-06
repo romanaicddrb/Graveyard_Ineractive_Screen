@@ -167,8 +167,9 @@
 
 
     //set marker
-    var marker = L.marker([23.7990516813, 90.4038127014]).addTo(map);
-    marker.bindPopup("<b>আপনি এখানে.</b>").openPopup();
+    //var marker = L.marker([23.7990516813, 90.4038127014]).addTo(map);
+    var marker = L.marker([23.79902320 , 90.40380000]).addTo(map);
+    marker.bindPopup("<b>আপনার বর্তমান অবস্থান</b>").openPopup();
 
     //set color of the polygon
     function getColor(d) {
@@ -240,8 +241,8 @@
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
         this._div.innerHTML = '<h4>কবরের বিস্তারিত</h4>' +  (props ?
-            '<b>GraveID:</b> ' + props.Grave_ID + '<br\> <b>Block:</b>' + props.Block + '<br\> <b>Lane:</b>' + props.Lane
-            : 'Touch on a grave');
+            '<b>কবর নম্বর:</b> ' + props.Grave_ID + '<br\> <b>ব্লক:</b>' + props.Block + '<br\> <b>লেন:</b>' + props.Lane + '<br\> <b>নাম:</b>' + props.Name + '<br\> <b>পিতার নাম:</b>' + props.Father + '<br\> <b>কবর দেয়ার তারিখ:</b>' + props.Burial_Date
+            : 'কবর নির্বাচন করুন');
     };
 
     info.addTo(map);

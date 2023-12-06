@@ -115,8 +115,11 @@
     }
   </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script th:src="@{Control.FullScreen.css}"></script>
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script th:src="@{Control.FullScreen.js}"></script>
+
     <script th:src="@{Graveyard_Banani_Grave_Qgis_4326.js}"></script>
     <script th:src="@{Road_Banani.js}"></script>
 </head>
@@ -315,7 +318,12 @@
         var found = GetGraveBycode('[[${data.Grave_no}]]');
 
         //create map object in map div with co-orrdinate and zoom level
-        var map = L.map('map').setView([found[0].properties.Y , found[0].properties.X], 21);
+        var map = L.map('map', {
+  fullscreenControl: true,
+  fullscreenControlOptions: {
+    position: 'topleft'
+  }
+}).setView([found[0].properties.Y , found[0].properties.X], 21);
 
         //set map view as tile layer
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -323,6 +331,7 @@
             minZoom: 1, // Set a minimum zoom level
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
+
 
         //set marker
         var marker = L.marker([found[0].properties.Y, found[0].properties.X]).addTo(map);
@@ -394,9 +403,9 @@
 
          // method that we will use to update the control based on feature properties passed
          info.update = function (props) {
-             this._div.innerHTML = '<h4>Grave Details</h4>' +  (props ?
-                 '<b>GraveID:</b> ' + props.Grave_ID + '<br\> <b>Block:</b>' + props.Block + '<br\> <b>Lane:</b>' + props.Lane
-                 : 'Touch on a grave');
+             this._div.innerHTML = '<h4>কবরের বিস্তারিত</h4>' +  (props ?
+                 '<b>কবর নম্বর:</b> ' + props.Grave_ID + '<br\> <b>ব্লক:</b>' + props.Block + '<br\> <b>লেন:</b>' + props.Lane
+                 : 'কবর নির্বাচন করুন');
          };
          info.addTo(map);
 
