@@ -119,8 +119,11 @@
     }
   </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script th:src="@{Control.FullScreen.css}"></script>
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script th:src="@{Control.FullScreen.js}"></script>
+
     <script th:src="@{Graveyard_Banani_Grave_Qgis_4326.js}"></script>
     <script th:src="@{Road_Banani.js}"></script>
 </head>
@@ -194,60 +197,38 @@
               <div class="col">
                   <div class="form-group">
                       <label >মেমো নম্বর</label>
-                      <p th:if="${data.Memo_no == null}">N/A</p>
-                      <p th:if="${data.Memo_no == ''}">N/A</p>
-                      <p th:unless="${data.Memo_no}">
-                        <p th:text="${data.Memo_no}"></p>
-                      </p>
-<!--                      <p th:text="${data.Memo_no}"></p>-->
+                      <p th:text="${data.Memo_no == null OR data.Memo_no == ''} ? 'N/A' : ${data.Memo_no}"></p>
                   </div>
               </div>
               <div class="col">
                  <div class="form-group">
                      <label >কবর নম্বর</label>
-                     <p th:if="${data.Grave_no == null}">N/A</p><p th:if="${data.Grave_no == ''}">N/A</p>
-                     <p th:unless="${data.Grave_no}">
-                        <p th:text="${#strings.toUpperCase(data.Grave_no)}"></p></p>
+                     <p th:text="${data.Grave_no == null OR data.Grave_no == ''} ? 'N/A' : ${data.Grave_no}"></p>
+
                  </div>
               </div>
               <div class="col">
                   <div class="form-group">
                       <label >কবরের সারি</label>
-                      <p th:if="${data.Grave_lane == null}">N/A</p><p th:if="${data.Grave_lane == ''}">N/A</p>
-                      <p th:unless="${data.Grave_lane}">
-                        <p th:text="${#strings.toUpperCase(data.Grave_lane)}"></p></p>
-<!--                      <p th:text="${data.Grave_lane}"></p>-->
+                      <p th:text="${data.Grave_lane == null OR data.Grave_lane == ''} ? 'N/A' : ${data.Grave_lane}"></p>
                   </div>
               </div>
               <div class="col">
                   <div class="form-group">
                       <label>কবরের ব্লক</label>
-                      <p th:if="${data.Grave_block == null}">N/A</p><p th:if="${data.Grave_block == ''}">N/A</p>
-                      <p th:unless="${data.Grave_block}">
-                        <p th:text="${#strings.toUpperCase(data.Grave_block)}"></p></p>
-<!--                      <p th:text="${data.Grave_block}"></p>-->
+                      <p th:text="${data.Grave_block == null OR data.Grave_block == ''} ? 'N/A' : ${data.Grave_block}"></p>
                   </div>
               </div>
               <div class="col">
                   <div class="form-group">
                     <label >কবরের জোন</label>
-                      <p th:if="${data.Grave_zone == null}">N/A</p><p th:if="${data.Grave_zone == ''}">N/A</p>
-                      <p th:unless="${data.Grave_zone}">
-                        <p th:text="${#strings.toUpperCase(data.Grave_zone)}"></p></p>
-
-<!--                      ${#strings.capitalize(menuItem.desFnz)}-->
-<!--                    <p th:text="${data.Grave_zone}"></p>-->
+                      <p th:text="${data.Grave_zone == null OR data.Grave_zone == ''} ? 'N/A' : ${data.Grave_zone}"></p>
                   </div>
               </div>
               <div class="col">
                   <div class="form-group">
-                    <label >মৃত্যুর তারিখ</label>
-                      <p th:if="${data.Dod == null}">N/A</p>
-                      <p th:if="${data.Dod == ''}">N/A</p>
-                      <p th:unless="${data.Dod}">
-                        <p th:text="${#dates.format(Doddate, 'dd-MM-yyyy')}"></p>
-<!--                        <p th:text="${data.Dod}"></p></p>-->
-<!--                        <p th:text="${data.Dod}"></p>-->
+                      <label >মৃত্যুর তারিখ</label>
+                      <p th:text="${data.Dod} ? ${#temporals.format(data.Dod, 'dd-MM-yyyy')} : 'N/A'"></p>
                   </div>
               </div>
 
@@ -259,91 +240,39 @@
                 <div class="col" style="overflow: hide;">
                     <div class="form-group">
                         <label >দাফনের তারিখ</label>
-                            <p th:if="${data.Bur_date == null}">N/A</p>
-                            <p th:if="${data.Bur_date == ''}">N/A</p>
-                            <p th:unless="${data.Bur_date}">
-<!--                            <p th:text="${data.Bur_date}"></p>-->
-<!--                        <p th:text="${burdate}"></p>-->
-                            <p th:text="${#dates.format(burdate, 'dd-MM-yyyy')}"></p>
-                        </p>
-<!--                        <p th:text="${#temporals.format(data.Bur_date, 'yyyy-MM-dd');}"></p>-->
-
-<!--                            <p th:text="${data.Bur_date}"></p>-->
-<!--                        <p th:text="${#dates.year(data.Bur_date)}">-->
-
-
-<!--                        <p th:text="${data.Bur_date}?${#temporals.format(T(java.time.LocalDate).of(#dates.year(data.Bur_date), #dates.month(data.Bur_date), #dates.day(data.Bur_date)), 'yyyy-MM-dd', new java.util.Locale('en', 'EN'))}:''"></p>-->
-<!--                        <p th:text="${#temporals.format('2023-12-01', 'dd-MMM-yyyy',new java.util.Locale('en'))}"></p>-->
-<!--                        <p th:if="${data.Bur_date == null}">N/A</p>    #dates.format('2023-12-01', 'dd-mm-yyyy')-->
-<!--                        <p th:unless="${data.Bur_date}">-->
-<!--                       <p> th:field ="*{#temporals.format(data.Bur_date, 'dd-MM-yyyy')}"</p>-->
-<!--                            <p th:text="${#temporals.format(data.Bur_date, 'SHORT')}"></p>-->
-
-<!--                            <p th:text="${#dates.format(data.Bur_date, 'dd-MM-yyyy HH:mm')}"></p>-->
-
-<!--                        #temporals.format(data.burdate, 'dd-MM-yyyy')-->
-<!--                        <span th:text="${data.burdate != null} ? ${'কবর দেয়ার তারিখ: '+#temporals.format(data.burdate, 'dd-MM-yyyy')} : ${'কবর দেয়ার তারিখ:'}"></span><br/>-->
-<!--                            <p th:text="${#dates.format(sprint.data.Bur_date, 'dd-MM-yyyy')}"></p>-->
-<!--                        </p>-->
-<!--                        <td th:text="${{sb.datePlanted}}">13/01/2011</td>-->
-<!--                        <td th:text="${#dates.format(sprint.releaseDate, 'dd-MMM-yyyy')}"></td>-->
-                        <!--       <p th:text="${data.Bur_date}"></p>-->
+                        <p th:text="${data.Bur_date} ? ${#temporals.format(data.Bur_date, 'dd-MM-yyyy')} : 'N/A'"></p>
                     </div>
                 </div>
               <div class="col">
                 <div class="form-group">
-                  <label >মৃত ব্যক্তির নাম</label>
-                    <p th:if="${data.Dec_name == null}">N/A</p><p th:if="${data.Dec_name == ''}">N/A</p>
-                    <p th:unless="${data.Dec_name}">
-                        <p th:text="${#strings.toUpperCase(data.Dec_name)}"></p></p>
-<!--                  <p th:text="${data.Dec_name}"></p>-->
+                    <label >মৃত ব্যক্তির নাম</label>
+                    <p th:text="${data.Dec_name == null OR data.Dec_name == ''} ? 'N/A' : ${data.Dec_name}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label>স্বামী/স্ত্রীর নাম</label>
-                    <p th:if="${data.Spouse == null}">N/A</p>
-                    <p th:if="${data.Spouse == ''}">N/A</p>
-                    <p th:unless="${data.Spouse}">
-                        <p th:text="${#strings.toUpperCase(data.Spouse)}"></p>
-                    </p>
-
-<!--                    <p th:text="${#strings.toUpperCase(data.Spouse)}"></p>-->
+                    <label>স্বামী/স্ত্রীর নাম</label>
+                    <p th:text="${data.Spouse == null OR data.Spouse == ''} ? 'N/A' : ${data.Spouse}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label >পিতার নাম</label>
-                    <p th:if="${data.Father == null}">N/A</p><p th:if="${data.Father == ''}">N/A</p>
-                    <p th:unless="${data.Father}">
-                        <p th:text="${#strings.toUpperCase(data.Father)}"></p></p>
-<!--                  <p th:text="${data.Father}"></p>-->
+                    <label >পিতার নাম</label>
+                    <p th:text="${data.Father == null OR data.Father == ''} ? 'N/A' : ${data.Father}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label >মাতার নাম</label>
-                    <p th:if="${data.Mother == null}">N/A</p><p th:if="${data.Mother == ''}">N/A</p>
-                    <p th:unless="${data.Mother}">
-                        <p th:text="${#strings.toUpperCase(data.Mother)}"></p></p>
-<!--                  <p th:text="${data.Mother}"></p>-->
+                    <label >মাতার নাম</label>
+                    <p th:text="${data.Mother == null OR data.Mother == ''} ? 'N/A' : ${data.Mother}"></p>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label >ঠিকানা</label>
-                    <p th:if="${data.Address == null}">N/A</p><p th:if="${data.Address == ''}">N/A</p>
-                    <p th:unless="${data.Address}">
-                        <p th:text="${#strings.toUpperCase(data.Address)}"></p></p>
-<!--                  <p th:text="${data.Address}"></p>-->
+                    <label >ঠিকানা</label>
+                    <p th:text="${data.Address == null OR data.Address == ''} ? 'N/A' : ${data.Address}"></p>
                 </div>
               </div>
-<!--              <div class="col">-->
-<!--                <div class="form-group">-->
-<!--                  <label >জাতীয়তা</label>-->
-<!--                  <p th:text="${data.Nationality}"></p>-->
-<!--                </div>-->
-<!--              </div>-->
             </div>
           </div>
       </div>
@@ -393,7 +322,12 @@
         var found = GetGraveBycode('[[${data.Grave_no}]]');
 
         //create map object in map div with co-orrdinate and zoom level
-        var map = L.map('map').setView([found[0].properties.Y , found[0].properties.X], 21);
+        var map = L.map('map', {
+  fullscreenControl: true,
+  fullscreenControlOptions: {
+    position: 'topleft'
+  }
+}).setView([found[0].properties.Y , found[0].properties.X], 21);
 
         //set map view as tile layer
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -401,6 +335,7 @@
             minZoom: 1, // Set a minimum zoom level
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
+
 
         //set marker
         var marker = L.marker([found[0].properties.Y, found[0].properties.X]).addTo(map);
@@ -472,9 +407,9 @@
 
          // method that we will use to update the control based on feature properties passed
          info.update = function (props) {
-             this._div.innerHTML = '<h4>Grave Details</h4>' +  (props ?
-                 '<b>GraveID:</b> ' + props.Grave_ID + '<br\> <b>Block:</b>' + props.Block + '<br\> <b>Lane:</b>' + props.Lane
-                 : 'Touch on a grave');
+             this._div.innerHTML = '<h4>কবরের বিস্তারিত</h4>' +  (props ?
+                 '<b>কবর নম্বর:</b> ' + props.Grave_ID + '<br\> <b>ব্লক:</b>' + props.Block + '<br\> <b>লেন:</b>' + props.Lane
+                 : 'কবর নির্বাচন করুন');
          };
          info.addTo(map);
 

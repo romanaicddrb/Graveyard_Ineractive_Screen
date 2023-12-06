@@ -1,5 +1,6 @@
 package com.graveyard.controller;
 
+import com.graveyard.model_class.dto.GraveDetail;
 import com.graveyard.model_class.viewmodel.GraveAvailable_ViewModel;
 import com.graveyard.model_class.viewmodel.GraveDetails_ViewModel;
 import com.graveyard.service.DecPersonService;
@@ -28,6 +29,8 @@ public class ScreenController {
 //    private final RestTemplate restTemplate;
     private DecPersonService decPersonService;
     private GraveAvailable graveAvailable;
+
+    private final GraveService graveService;
 
 //    @Autowired
 //    public ScreenController(RestTemplateBuilder restTemplateBuilder) {
@@ -89,43 +92,31 @@ public class ScreenController {
 //
 //    }
 
+//    @RequestMapping({"/graveDetails_withPosition"})
+//    public String graveDetails_withPosition(@RequestParam(value = "id", required = false) String Dec_id,
+//                                            @RequestParam(value = "gid", required = false) String graveyard_id,
+//                                            Model model)
+//    {
+//        List<GraveDetails_ViewModel> Dec_per_detail = decPersonService.getDecPerson_Detail(UUID.fromString(Dec_id));
+//        GraveDetails_ViewModel graveDetails_ViewModel;
+//        if(!Dec_per_detail.isEmpty()){
+//            graveDetails_ViewModel=Dec_per_detail.get(0);
+//        }else{
+//            graveDetails_ViewModel=new GraveDetails_ViewModel();
+//            model.addAttribute("no_data_found",true);
+//        }
+//        model.addAttribute("data",graveDetails_ViewModel);
+//        return "GraveFilter/graveDetails_withMap";
+//
+//    }
+
     @RequestMapping({"/graveDetails_withPosition"})
-    public String graveDetails_withPosition(@RequestParam(value = "id", required = false) String Dec_id,
+    public String graveDetails_withPosition(@RequestParam(value = "id", required = false) String dec_id,
                                             @RequestParam(value = "gid", required = false) String graveyard_id,
-                                            Model model
-                                            ) throws ParseException
-//    @RequestParam (value="Dec_id", required = false) String Dec_id,
+                                            Model model)
     {
-        List<GraveDetails_ViewModel> Dec_per_detail = decPersonService.getDecPerson_Detail(UUID.fromString(Dec_id));
-        GraveDetails_ViewModel graveDetails_ViewModel;
-        if(!Dec_per_detail.isEmpty()){
-            graveDetails_ViewModel=Dec_per_detail.get(0);
-        }else{
-            graveDetails_ViewModel=new GraveDetails_ViewModel();
-            model.addAttribute("no_data_found",true);
-        }
-
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = null;
-        Date date1 = null;
-        try {
-            date = inputFormat.parse(graveDetails_ViewModel.Bur_date);
-            date1 = inputFormat.parse(graveDetails_ViewModel.Dod);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-//        String curr_date = outputFormat.format(date);
-
-        String curr =new SimpleDateFormat("dd/MM/yyyy").format(date);
-        String curr_Dod =new SimpleDateFormat("dd/MM/yyyy").format(date1);
-        Date curr_date =new SimpleDateFormat("dd/MM/yyyy").parse(curr);
-        Date curr_date_Dod =new SimpleDateFormat("dd/MM/yyyy").parse(curr_Dod);
-//        Date curr_date = String.valueOf(curr);
-
-        model.addAttribute("data",graveDetails_ViewModel);
-        model.addAttribute("burdate",curr_date);
-        model.addAttribute("Doddate",curr_date_Dod);
+        GraveDetail detail = graveService.getGraveDetail(graveyard_id, dec_id);
+        model.addAttribute("data",detail);
         return "GraveFilter/graveDetails_withMap";
 
     }
