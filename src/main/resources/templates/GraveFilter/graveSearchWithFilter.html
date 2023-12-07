@@ -48,6 +48,8 @@
 	    padding-right: 0px;
 	  }
 
+	  td, th{ vertical-align: middle !important; }
+
       .card-footer button {
         background-color: #007bff;
         color: #fff;
@@ -151,6 +153,9 @@
     justify-content: space-between;
   }
 
+  .paginate_button{ cursor: pointer; }
+  .disabled { color: gray !important; cursor: auto;}
+
   .dataTables_paginate{
     background: white;
     display: inline;
@@ -174,6 +179,17 @@
   .paginate_button.current{
     color: red;
   }
+
+
+  .dataTables_empty{
+    height: 790px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+
 
 
   </style>
@@ -373,16 +389,15 @@
 
                 <td style="display:none"></td>
                 <td style="display:none"></td>
-                <td>HI</td>
                 <td></td>
-                <td style="display:none"></td>
+                <td></td>
+                <td></td>
                 <td style="display:none"></td>
                 <td style="display:none"></td>
                 <td style="display:none"></td>
                 <td style="display:none"></td>
               </tr>
             </tbody>
-
           </table>
         </div>
       </div>
@@ -404,27 +419,26 @@
 <script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js"></script>
 <!--    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
 <!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
+<!--<script type="text/javascript" th:src="@{/js/graveSearchWithFilter.js}"></script>-->
 
 <script>
-
    $(document).ready(function(){
               var gidValue = '2';
+              $('#myDataTable').DataTable().clear().destroy();
               var myDataTable = $('#myDataTable').DataTable({
                   language: {
-                              "emptyTable": "No data available in table",
-                              "lengthMenu": "Show _MENU_ entries",
-                              "info": "Showing _START_-1 to _END_ of _TOTAL_ entries",
-                              "infoEmpty": "Showing 0 to 0 of 0 entries",
-                              "search": "Search:",
-                              "paginate": {
-                                  "first": "First",
-                                  "last": "Last",
-                                  "next": "Next",
-                                  "previous": "Previous"
-                              }
-                             },
-
-
+                      "emptyTable": "<img src='../resource/nodata.png' style: 'height: 100px; width: 100px;'>",
+                      "lengthMenu": "Show _MENU_ entries",
+                      "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                      "infoEmpty": "Showing 0 to 0 of 0 entries",
+                      "search": "Search:",
+                      "paginate": {
+                          "first": "First",
+                          "last": "Last",
+                          "next": "Next",
+                          "previous": "Previous"
+                      }
+                     },
 
                   "responsive": true,
                   "lengthChange": false,
@@ -432,6 +446,7 @@
                   "paging": true,
                   "scrollCollapse": true,
                   "scrollX": true,
+                  "scrollY": 685,
                   "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
 
                   "fixedHeader": true,
@@ -448,14 +463,13 @@
                     { data: 'dec_name' },
                     { data: 'father', },
                     { data: 'bur_date', width: '160px', },
-<!--                    { data: 'bur_date', width: '160px', },-->
 
                     { data: 'address' , visible: false, width: '0%' },
                     {
                           data: null,
                           render: function (data, type, row) {
                               if (data && data.dec_id && data.graveyard_id) {
-                                return '<div class="mr-3" style="margin-left: -5%; font-size: 5px;"><button type="button" class="btn btn-block btn-sm"> বিস্তারিত দেখুন </button></div>';
+                                return '<div class="mr-3" style="margin-left: -5%; font-size: 5px; display: flex; align-items: center;"><button type="button" class="btn btn-block btn-sm"> বিস্তারিত দেখুন </button></div>';
                               }
                               else {
                                   // If data is not available, return an empty string
@@ -510,17 +524,21 @@
                   $.ajax({
                     url: '/api/search',
                     method: 'POST',
+                    destroy : true,
                     contentType: 'application/json',
                     data: JSON.stringify(requestData),
                     success: function(data) {
-                    console.log(data)
-                      myDataTable.clear();
-                          if (data.data.length > 0) {
-                            myDataTable.rows.add(data.data).draw();
-                            $('.btn').on('click', function() {
-                                var rowData = myDataTable.row($(this).parents('tr')).data();
-                                loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
-                            });
+                        console.log(data)
+                        myDataTable.clear();
+                        if (data.data.length > 0) {
+                          myDataTable.rows.add(data.data).draw();
+                          $('.btn').on('click', function() {
+                              var rowData = myDataTable.row($(this).parents('tr')).data();
+                              loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
+                          });
+                        } else {
+                          myDataTable.clear();
+                          myDataTable.rows.add( "" ).draw();
                         }
                     },
                     error: function(error) {
