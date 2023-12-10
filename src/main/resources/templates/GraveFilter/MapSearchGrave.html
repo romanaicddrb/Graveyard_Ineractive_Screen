@@ -17,45 +17,8 @@
 
   <!-- Custom styles for this template -->
 <!--  <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">-->
-  <style type="text/css" data-asas-style="">
-
-	  body, div, a, p, span{
-	    user-select: text !important;
-      }
-
-	  body{
-	    background: #F5F5F5;
-	    font-family: Hind Siliguri;
-        font-style: normal;
-      }
-
-	  p, h1, h2, h3, h4, h5, h6{
-        cursor: auto;
-        user-select: text !important;
-        }::selection{
-        background-color: #338FFF !important;
-	  }
-	  #myDataTable thead th {
-		  background-color: #E1EFFE;
-	  }
-
-     #map {
-      height: 780px;
-      width: 100%;
-     }
-
-    .info {
-      padding: 6px 8px;
-      background: rgba(255,255,255,0.8);
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      border-radius: 5px;
-    }
-    .info h4 {
-      margin: 0 0 5px;
-      color: #777;
-    }
-
-	  </style>
+  <link th:href="@{/resource/CSS/main.css}" rel="stylesheet">
+  <link th:href="@{/resource/CSS/MapSearchGrave.css}" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <!-- Make sure you put this AFTER Leaflet's CSS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -130,6 +93,11 @@
     </div>
   </div>
 
+
+  <div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+
 </main><!-- /.container -->
 
 <!-- Bootstrap core JavaScript
@@ -140,11 +108,7 @@
 <!--<script th:src="@{plugins/popper/popper.min.js}"></script>-->
 <!--<script th:src="@{plugins/bootstrap.js/bootstrap.min.js}"></script>-->
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
-<!--<script th:inline="javascript">-->
-<!--  var graveAvailabilityData = [[${data}]] ;-->
-<!--        console.log(graveAvailabilityData);-->
-<!--</script>-->
+<script type="text/javascript" th:src="@{/resource/JS/common.js}"></script>
 
 <script>
 
