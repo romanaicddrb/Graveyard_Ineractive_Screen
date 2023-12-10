@@ -1,8 +1,4 @@
 $(document).ready(function(){
-    $(window).on("load",function(){
-         $(".loader-wrapper").fadeOut("slow");
-    });
-
     var gidValue = '2';
     $('#myDataTable').DataTable().clear().destroy();
     var myDataTable = $('#myDataTable').DataTable({

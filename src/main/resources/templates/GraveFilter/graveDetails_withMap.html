@@ -56,7 +56,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#FFF"/>
                 </svg>
-                <a class="active-2" href="#" style="display: inline;">
+                <a class="active-2" th:href="@{graveSearch}" style="display: inline;">
                     <p style="color: #FFF; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>
                 </a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -70,7 +70,7 @@
         </ol>
     </div>
 
-  <div class="row col-md-12"
+    <div class="row col-md-12"
        style="width: 100%; background: #FFF; border-radius: 20px; padding: 30px 20px;
        margin-left: 0.2%; height: 100%;">
     <div style="width: 100%; padding: 0px 2%;">
@@ -198,7 +198,11 @@
      </div>
 
   </div>
-
+    <div class="loader-wrapper">
+        <span class="loader">
+            <span class="loader-inner"></span>
+        </span>
+    </div>
 
 
 </main><!-- /.container -->
@@ -209,6 +213,7 @@
 <!--<script src="../../assets/js/vendor/popper.min.js"></script>-->
 <!--<script src="../../dist/js/bootstrap.min.js"></script>-->
 <!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
-<script type="module" th:src="@{/resource/JS/graveDetailsWithMap.js}"></script>
+<script type="text/javascript" th:src="@{/resource/JS/graveDetailsWithMap.js}"></script>
+<script type="text/javascript" th:src="@{/resource/JS/common.js}"></script>
 </body>
 </html>
