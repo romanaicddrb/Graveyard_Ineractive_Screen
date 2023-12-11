@@ -16,7 +16,7 @@
   <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
 
   <!-- Custom styles for this template -->
-<!--  <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">-->
+  <!--  <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">-->
   <link th:href="@{/resource/CSS/main.css}" rel="stylesheet">
   <link th:href="@{/resource/CSS/MapSearchGrave.css}" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -27,10 +27,7 @@
   <script th:src="@{Road_Banani.js}"></script>
 </head>
 <body>
-
 <div th:replace="CommonTemp/navBar.html :: navbar"></div>
-
-
 <main role="main"
       style="margin-top: 98px; padding: 0px 2% 2%; background: #F5F5F5;">
   <div class="row" style="padding: 0px;margin: 1% 0px;">
@@ -54,8 +51,6 @@
     </ol>
   </div>
 
-
-
   <div class="row"
        style="background: #FFF; border-radius: 20px; display: flex; width: 102%; height: 100%;
        ">
@@ -74,7 +69,7 @@
         <span>
           <a th:href="@{/graveSearch}">
             <button type="button" class="btn btn-outline-primary active">
-              <img th:src="@{/resource/magnify-scan.png}">
+              <img th:src="@{/resource/image/magnify-scan.png}">
               কবর অনুসন্ধান করুন
             </button>
           </a>
@@ -92,7 +87,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="loader-wrapper">
     <span class="loader"><span class="loader-inner"></span></span>
