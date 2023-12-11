@@ -8,6 +8,7 @@ function GetGraveBycode(id){
     }
 
     var found = GetGraveBycode('[[${data.Grave_no}]]');
+    console.log(found);
 
     //create map object in map div with co-orrdinate and zoom level
 
