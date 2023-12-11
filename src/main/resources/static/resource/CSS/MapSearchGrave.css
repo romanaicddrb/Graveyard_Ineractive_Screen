@@ -1,0 +1,35 @@
+body, div, a, p, span{
+	    user-select: text !important;
+      }
+
+	  body{
+	    background: #F5F5F5;
+	    font-family: Hind Siliguri;
+        font-style: normal;
+      }
+
+	  p, h1, h2, h3, h4, h5, h6{
+        cursor: auto;
+        user-select: text !important;
+        }::selection{
+        background-color: #338FFF !important;
+	  }
+	  #myDataTable thead th {
+		  background-color: #E1EFFE;
+	  }
+
+     #map {
+      height: 780px;
+      width: 100%;
+     }
+
+    .info {
+      padding: 6px 8px;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 5px;
+    }
+    .info h4 {
+      margin: 0 0 5px;
+      color: #777;
+    }

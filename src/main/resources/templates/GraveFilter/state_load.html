@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Graveyard interactive screen</title>
+        <link th:href="@{/plugins/HomeScreen/main.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="loader-wrapper">
+            <span class="loader"><span class="loader-inner"></span></span>
+        </div>
+    </body>
+    <script>
+        $(window).on("load",function(){
+           $(".loader-wrapper").fadeOut("slow");
+        });
+    </script>
+</html>
