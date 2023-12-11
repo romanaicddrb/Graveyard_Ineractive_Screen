@@ -97,4 +97,4 @@
 
     info.addTo(map);
 
-    var gravedata=L.geoJSON(gravedata).addTo(map)
+    var gravedata=L.geoJSON(gravedata).addTo(map);

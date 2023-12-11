@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" style="scroll-behavior:smooth" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Graveyard interactive screen</title>
+  <title>Graveyard interactive screen</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
-    <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
+  <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
     <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">
@@ -21,7 +21,7 @@
     <link th:href="@{/resource/CSS/graveDetailsWithMap.css}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script th:src="@{Control.FullScreen.css}"></script>
+    <link th:src="@{Control.FullScreen.css}">
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script th:src="@{Control.FullScreen.js}"></script>
@@ -92,7 +92,7 @@
                         padding: 30px 0px 20px 15px;;
                         align-items: flex-start;
                         font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
-                        gap: 20px; height: 780px;">
+                        gap: 20px; height: 760px;">
                 <div class="col-md-4"
                      style="display: flex; flex-direction: column; width: 100%; padding: 0px;">
                   <div class="col">
@@ -213,7 +213,11 @@
 <!--<script src="../../assets/js/vendor/popper.min.js"></script>-->
 <!--<script src="../../dist/js/bootstrap.min.js"></script>-->
 <!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
-<script type="text/javascript" th:src="@{/resource/JS/graveDetailsWithMap.js}"></script>
-<script type="text/javascript" th:src="@{/resource/JS/common.js}"></script>
+
+<script>
+
+
+</script>
+
 </body>
 </html>
