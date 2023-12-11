@@ -94,8 +94,8 @@
                 <div class="row">
                   <div class="col-sm-4">
                     <div class="form-group">
-                      <select class="form-control" id="DeaddayFilter" >
-                        <option value="" disabled selected>দিন</option>
+                      <select onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();' class="form-control" id="DeaddayFilter" >
+                        <option value="" selected>দিন</option>
                         <!-- Add more day options as needed -->
                       </select>
                     </div>
@@ -103,7 +103,7 @@
 
                   <div class="col-sm-4">
                     <div class="form-group">
-                      <select class="form-control" id="DeadmonthFilter" >
+                      <select onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();' class="form-control" id="DeadmonthFilter" >
                         <option value="" selected>মাস</option>
                         <!-- Add more month options as needed -->
                       </select>
@@ -113,7 +113,7 @@
                   <div class="col-sm-4">
                     <div class="form-group">
 
-                        <select class="form-control" id="DeadyearFilter">
+                        <select onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();' class="form-control" id="DeadyearFilter">
                           <option value="" selected>সাল</option>
                           <!-- Add more year options as needed -->
                         </select>
@@ -130,15 +130,15 @@
                 <div class="row">
                   <div class="col-sm-4">
                     <div class="form-group">
-                      <select class="form-control" id="BurieddayFilter" >
-                        <option value="" disabled selected>দিন</option>
+                      <select onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();' class="form-control" id="BurieddayFilter" >
+                        <option value="" selected>দিন</option>
                       </select>
                     </div>
                   </div>
 
                   <div class="col-sm-4">
                     <div class="form-group">
-                      <select class="form-control" id="BuriedmonthFilter" >
+                      <select onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();' class="form-control" id="BuriedmonthFilter" >
                         <option value="" selected>মাস</option>
                         <!-- Add more month options as needed -->
                       </select>
@@ -147,7 +147,7 @@
 
                   <div class="col-sm-4">
                     <div class="form-group">
-                      <select class="form-control" id="BuriedyearFilter" >
+                      <select onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();' class="form-control" id="BuriedyearFilter" >
                         <option value="" selected>সাল</option>
                         <!-- Add more year options as needed -->
                       </select>
@@ -228,6 +228,8 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
 
 <script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-mockjax/1.6.2/jquery.mockjax.min.js"></script>
+<!--<script type="text/javascript" src="//cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.js"></script>-->
 <script type="module" th:src="@{/resource/JS/graveSearchWithFilter.js}"></script>
 <script type="text/javascript" th:src="@{/resource/JS/common.js}"></script>
 </body>

@@ -79,18 +79,18 @@ $(document).ready(function(){
         var buriedMonthFilter = $('#BuriedmonthFilter').val();
         var buriedYearFilter = $('#BuriedyearFilter').val();
 
-        if(memoFilter!="" || deadNameFilter!="" || deadDayFilter!=null || deadMonthFilter!="" ||
-        deadYearFilter!="" || buriedDayFilter!=null || buriedMonthFilter!="" || buriedYearFilter!=""){
+        if(memoFilter!="" || deadNameFilter!="" || deadDayFilter!="" || deadMonthFilter!="" ||
+        deadYearFilter!="" || buriedDayFilter!="" || buriedMonthFilter!="" || buriedYearFilter!=""){
             $('#filterFieldEmpty').text("");
             // Prepare the request data
             var requestData = {
                 graveyardId: '2',
                 memo: memoFilter,
                 name: deadNameFilter,
-                dod_day: '',
+                dod_day: deadDayFilter,
                 dod_month: deadMonthFilter,
                 dod_year: deadYearFilter,
-                bur_day: '',
+                bur_day: buriedDayFilter,
                 bur_month: buriedMonthFilter,
                 bur_year: buriedYearFilter
             };
