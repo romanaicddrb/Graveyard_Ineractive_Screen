@@ -57,8 +57,10 @@
 
 	  </style>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" th:href="@{Control.FullScreen.css}"/>
   <!-- Make sure you put this AFTER Leaflet's CSS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script th:src="@{Control.FullScreen.js}"></script>
 
   <script th:src="@{Graveyard_Banani_Grave_Qgis_4326.js}"></script>
   <script th:src="@{Road_Banani.js}"></script>
@@ -67,9 +69,7 @@
 
 <div th:replace="CommonTemp/navBar.html :: navbar"></div>
 
-
-<main role="main"
-      style="margin-top: 98px; padding: 0px 2% 2%; background: #F5F5F5;">
+<main role="main" style="margin-top: 98px; padding: 0px 2% 2%; background: #F5F5F5;">
   <div class="row" style="padding: 0px;margin: 1% 0px;">
     <ol class="breadcrumb" style="background: none; color: white; padding: 0; margin: 0px;">
       <li class="breadcrumb-item">
@@ -79,35 +79,21 @@
           </svg>
           <p style="color: #1175BD; display: inline; cursor: pointer;">হোম</p>
         </a>
-
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#828282"/>
         </svg>
-
         <p style="color: #828282; display: inline; margin: 0px;">ম্যাপ এ দেখুন</p>
-
       </li>
-
     </ol>
   </div>
-
-
-
-  <div class="row"
-       style="background: #FFF; border-radius: 20px; display: flex; width: 102%; height: 100%;
+  <div class="row" style="background: #FFF; border-radius: 20px; display: flex; width: 102%; height: 100%;
        ">
     <!-- Left Card with Filter Options -->
-
     <div class="col-md-12" style="padding: 0;">
-      <div class="d-flex justify-content-between align-items-center"
-           style="padding: 16px 16px 0px 16px;">
+      <div class="d-flex justify-content-between align-items-center" style="padding: 16px 16px 0px 16px;">
         <p style="color: #205F8B; font-family: Hind Siliguri; font-size: 24px; font-style: normal;
           font-weight: 500; line-height: normal; text-align: left;
-          padding: 0px; display: flex; align-items: center; margin: 0;">
-          ম্যাপ এর মাধ্যমে কবর দেখুন
-        </p>
-<!--        <div class="card-header d-flex justify-content-between align-items-center">-->
-<!--          <span>ম্যাপ এর মাধ্যমে কবর দেখুন</span>-->
+          padding: 0px; display: flex; align-items: center; margin: 0;"> ম্যাপ এর মাধ্যমে কবর দেখুন</p>
         <span>
           <a th:href="@{/graveSearch}">
             <button type="button" class="btn btn-outline-primary active">
@@ -116,46 +102,26 @@
             </button>
           </a>
         </span>
-<!--        </div>-->
       </div>
 
       <hr style="width: 100%; height: 1px; background: #DADADA;">
 
-      <div class="col-md-12 card"
-           style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 40px;
+      <div class="col-md-12 card" style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 40px;
            border: none; border-radius: 20px; width: 100%;">
         <div id="map"></div>
-          <!-- Filter by Name -->
       </div>
     </div>
   </div>
+</main>
 
-</main><!-- /.container -->
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
 <script src="/plugins/jquery/jquery.min.js"></script>
-<!--<script th:src="@{plugins/popper/popper.min.js}"></script>-->
-<!--<script th:src="@{plugins/bootstrap.js/bootstrap.min.js}"></script>-->
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-<!--<script th:inline="javascript">-->
-<!--  var graveAvailabilityData = [[${data}]] ;-->
-<!--        console.log(graveAvailabilityData);-->
-<!--</script>-->
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
 <script>
 
     //create map object in map div with co-orrdinate and zoom level
-    // var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);
-    var map = L.map('map', {
-      fullscreenControl: true,
-      fullscreenControlOptions: {
-        position: 'topleft'
-      }
-}).setView([23.7999848513, 90.405272463100005], 18);
+    var map = L.map('map', {      fullscreenControl: true,      fullscreenControlOptions: {        position: 'topleft'      }}).setView([23.7999848513, 90.405272463100005], 18);
 
     //set map view as tile layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -164,24 +130,18 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-
-
     //set marker
-    //var marker = L.marker([23.7990516813, 90.4038127014]).addTo(map);
     var marker = L.marker([23.79902320 , 90.40380000]).addTo(map);
     marker.bindPopup("<b>আপনার বর্তমান অবস্থান</b>").openPopup();
 
     //set color of the polygon
     function getColor(d) {
-        //return d = "0220139" ? '#800026' : '#FFFF00';
         return  d == "Yes" ? '#52c755' : '#ff0f0f';
     }
 
     //set the style of the polygon
     function style(feature) {
         return {
-          //  fillColor: getColor(feature.properties.Grave_ID),
-          //  fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
             fillColor: getColor(feature.properties.Available),
             weight: 2,
             opacity: 1,
@@ -194,14 +154,12 @@
     //set the layer style
     function highlightFeature(e) {
         var layer = e.target;
-
         layer.setStyle({
             weight: 5,
             color: '#666',
             dashArray: '',
             fillOpacity: 0.7
         });
-
         layer.bringToFront();
         info.update(layer.feature.properties);
     }
@@ -252,6 +210,5 @@
 </script>
 
 </body>
-
 
 </html>
