@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('#myDataTable').DataTable().clear().destroy();
     var myDataTable = $('#myDataTable').DataTable({
         language: {
-            "emptyTable": "<img src='../resource/image/nodata.png' style='position: fixed; z-index: 1000; margin-left: 60%;'>",
+            "emptyTable": "<img src='../resource/image/nodata.png' style='position: fixed; z-index: 0; margin-left: 60%;'>",
             "lengthMenu": "Show _MENU_ entries",
             "info": "Showing _START_ to _END_ of _TOTAL_ entries",
             "infoEmpty": "Showing 0 to 0 of 0 entries",
