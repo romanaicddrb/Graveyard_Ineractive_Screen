@@ -8,7 +8,9 @@ $(document).ready(function(){
             "info": "Showing _START_ to _END_ of _TOTAL_ entries",
             "infoEmpty": "Showing 0 to 0 of 0 entries",
             "search": "Search:",
+            "pageLength": 50,
             "paginate": {
+
                 "first": "First",
                 "last": "Last",
                 "next": "Next",
@@ -16,7 +18,7 @@ $(document).ready(function(){
             }
         },
         "responsive": true,
-        "lengthChange": false,
+//        "lengthChange": false,
         "autoWidth": true,
         "paging": true,
         "scrollCollapse": true,
@@ -26,9 +28,10 @@ $(document).ready(function(){
 
         "fixedHeader": true,
         "select": true,
-        "processing": false,
+        "processing": true,
         "destroy": true,
         "orderable": true,
+        "dom": 'Bfrtip',
 
         columns: [
             { data: 'dec_id', visible: false, width: '0%'},
@@ -53,16 +56,31 @@ $(document).ready(function(){
             }
         ],
         "columnDefs": [{
-            "targets": [4, 5], // Column indexes (0-based) where transformation should be applied
-            "render":
-                function (data, type, row) {
-                // Apply text-transform: uppercase to the rendered content
-                    return type === 'display' && data !== null ? data.toUpperCase() : data;
+                "targets": [4, 5], // Column indexes (0-based) where transformation should be applied
+                "render":
+                    function (data, type, row) {
+                    // Apply text-transform: uppercase to the rendered content
+                        return type === 'display' && data !== null ? data.toUpperCase() : data;
+                    }
+                },{
+                    targets: [3, 6], // Assuming the 'Date' column is at index 0
+                    render: function(data, type, row, meta) {
+                        // Format the date as 'DD-MM-YYYY' manually
+                        if (type === 'display' && data) {
+                            var date = new Date(data);
+                            var day = date.getDate().toString().padStart(2, '0');
+                            var month = (date.getMonth() + 1).toString().padStart(2, '0');
+                            var year = date.getFullYear();
+                            return day + '-' + month + '-' + year;
+                        }
+                        return data;
+                    }
                 }
-            },{
-            "targets": [3, 6],
-            "type": "datetime", render: $.fn.dataTable.render.moment( 'DD-MM-YYYY' )
-        }],
+                //            {
+                //            "targets": [3, 6],
+                //            "type": "datetime", render: $.fn.dataTable.render.moment( 'DD-MM-YYYY' )
+                //            }
+        ],
     });
 
     function loadDetailsPage(dec_id, graveyard_id) {
@@ -70,6 +88,8 @@ $(document).ready(function(){
     }
 
     $('#searchBtn').on('click', function() {
+//        myDataTable.clear().draw();
+//        setTimeout(function(){
         var memoFilter = $('#MemoFilter').val();
         var deadNameFilter = $('#DeadnameFilter').val();
         var deadDayFilter = $('#DeaddayFilter').val();
@@ -105,6 +125,7 @@ $(document).ready(function(){
                     myDataTable.clear();
                     if (data.data.length > 0) {
                         myDataTable.rows.add(data.data).draw();
+                        myDataTable.page.len( 25 ).draw();
                         $('.btn').on('click', function() {
                           var rowData = myDataTable.row($(this).parents('tr')).data();
                           loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
@@ -121,6 +142,7 @@ $(document).ready(function(){
         } else {
             $('#filterFieldEmpty').text("Please fill at-least one filter field");
         }
+//        }, 2000);
     });
 });
 

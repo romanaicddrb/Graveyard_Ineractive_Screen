@@ -97,8 +97,13 @@ body, div, a, p, span{
   }
 
   th.sorting{
-    border: none;
+    border-bottom: 1px solid #dee2e6 !important;
   }
+
+  .dataTables_empty{
+    border: none !important;
+  }
+
 
   .card-body{
     border-radius: 20px;
@@ -107,9 +112,11 @@ body, div, a, p, span{
     border-top-right-radius: 20px;
   }
 
-  table.dataTable td{
+  td{
     font-family: Hind Siliguri;
-    padding: 20px 0px 20px 30px;
+    padding: 8px 20px !important;
+    border-top: none !important;
+    border-bottom: 1px solid #dee2e6 !important;
   }
 
 
@@ -146,7 +153,8 @@ body, div, a, p, span{
  }
 
   .dataTables_scrollHead{
-    height: 49px;
+    height: 1%;
+    border:none;
   }
 
   .paginate_button{
@@ -164,4 +172,11 @@ body, div, a, p, span{
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+
+  .select-wrapper {
+    height: 50px;
+    z-index: 100;
+    overflow-y: visible;
   }
