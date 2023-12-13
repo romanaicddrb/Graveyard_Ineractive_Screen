@@ -2,15 +2,18 @@ $(document).ready(function(){
     var gidValue = '2';
     $('#myDataTable').DataTable().clear().destroy();
     var myDataTable = $('#myDataTable').DataTable({
+
         language: {
             "emptyTable": "<img src='../resource/image/nodata.png' style='position: fixed; z-index: 0; margin-left: 60%;'>",
             "lengthMenu": "Show _MENU_ entries",
             "info": "Showing _START_ to _END_ of _TOTAL_ entries",
             "infoEmpty": "Showing 0 to 0 of 0 entries",
             "search": "Search:",
-            "pageLength": 50,
-            "paginate": {
+            "loadingRecords": "HHHHHHHH ...",
+//            "loadingRecords": "&nbsp; Loading.../",
 
+//            "pageLength": 50,  <div class='spinner'></div>
+            "paginate": {
                 "first": "First",
                 "last": "Last",
                 "next": "Next",
@@ -28,10 +31,11 @@ $(document).ready(function(){
 
         "fixedHeader": true,
         "select": true,
-        "processing": true,
+        "processing": "<i class='fa fa-spinner fa-spin fa-3x fa-fw'></i>vvvv...",
+//        "processing": "Loading.....",
         "destroy": true,
         "orderable": true,
-        "dom": 'Bfrtip',
+//        "dom": 'Bfrtip',
 
         columns: [
             { data: 'dec_id', visible: false, width: '0%'},
@@ -75,11 +79,9 @@ $(document).ready(function(){
                         }
                         return data;
                     }
+                },{
+                    orderable: false, targets: 8
                 }
-                //            {
-                //            "targets": [3, 6],
-                //            "type": "datetime", render: $.fn.dataTable.render.moment( 'DD-MM-YYYY' )
-                //            }
         ],
     });
 
@@ -87,7 +89,12 @@ $(document).ready(function(){
        window.location.href = '/graveDetails_withPosition?id=' + dec_id + '&gid=' + graveyard_id;
     }
 
+
     $('#searchBtn').on('click', function() {
+
+//        $(".loader-wrapper").style.display = "block";
+//        $(".loader-wrapper").fadeOut("slow");
+        //myDataTable.reload();
 //        myDataTable.clear().draw();
 //        setTimeout(function(){
         var memoFilter = $('#MemoFilter').val();
@@ -102,6 +109,20 @@ $(document).ready(function(){
         if(memoFilter!="" || deadNameFilter!="" || deadDayFilter!="" || deadMonthFilter!="" ||
         deadYearFilter!="" || buriedDayFilter!="" || buriedMonthFilter!="" || buriedYearFilter!=""){
             $('#filterFieldEmpty').text("");
+            swal({
+                title:"Please wait! Data is loading...",
+                text:"   ",
+                icon: "https://www.boasnotas.com/img/loading2.gif",
+                buttons: false,
+                closeOnClickOutside: false,
+                timer: 2500,
+                //icon: "success"
+            });
+//            $('.loader-wrapper').toggle('slow', function() {
+//                $(".loader-wrapper").fadeOut(1500);
+//            });
+
+//            alert("Please wait! Data is loading...");
             // Prepare the request data
             var requestData = {
                 graveyardId: '2',
@@ -121,8 +142,10 @@ $(document).ready(function(){
                 destroy : true,
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
+//                processing: 'Loading.....',
                 success: function(data) {
                     myDataTable.clear();
+//                    alert("Please wait! Data is loading...");
                     if (data.data.length > 0) {
                         myDataTable.rows.add(data.data).draw();
                         myDataTable.page.len( 25 ).draw();
@@ -215,6 +238,8 @@ for (let i=1974; i<2024; i++) {
     yearDropDown.appendChild(option);
 }
 
+
+
 for (let i=1974; i<2024; i++) {
     let option = document.createElement("option");
     option.setAttribute('value', i);
@@ -222,3 +247,9 @@ for (let i=1974; i<2024; i++) {
     option.appendChild(optionText);
     yearDropDownDead.appendChild(option);
 }
+document.addEventListener("contextmenu", event => {
+  if (event.target.nodeName === "nnnnnn") {
+    event.preventDefault();
+  }
+});
+

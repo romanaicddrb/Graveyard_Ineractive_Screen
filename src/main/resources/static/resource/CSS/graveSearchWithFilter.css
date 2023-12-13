@@ -1,47 +1,42 @@
 body, div, a, p, span{
-	    user-select: text !important;
-      }
+    user-select: text !important;
+}
 
-      body{
-	    background: #F5F5F5;
-	    font-family: Hind Siliguri;
-        font-style: normal;
+body{
+    background: #F5F5F5;
+    font-family: Hind Siliguri;
+    font-style: normal;
+}
 
-      }
+p, h1, h2, h3, h4, h5, h6{
+    cursor: auto;
+    user-select: text !important;
+}::selection{
+    background-color: #338FFF !important;
+    color: #fff !important;
+}
 
-	  p, h1, h2, h3, h4, h5, h6{
-	    cursor: auto;
-	    user-select: text !important;
-	  }::selection{
-	    background-color: #338FFF !important;
-	    color: #fff !important;
-	  }
-	  #myDataTable thead th {
-        color: #FFF;
-        vertical-align: middle;
-	  }
+td, th{
+    vertical-align: middle !important;
+    color: #205F8B;
+}
 
-	  th.sorting{
-	    padding-left: 30px;
-	    padding-right: 0px;
-	  }
+th{
+    border-bottom: 1px solid #DEDEDE !important;
+}
 
-	  td, th{ vertical-align: middle !important; }
+.card-footer button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+}
 
-      .card-footer button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-      }
+.card-footer button i {
+    margin-right: 5px;
+}
 
-
-      .card-footer button i {
-        margin-right: 5px;
-      }
-
-
-   .bg {
+.bg {
     position: fixed;
     z-index: -1000;
     right: 0;
@@ -60,7 +55,6 @@ body, div, a, p, span{
     left: 0;
     bottom: 0;
     z-index: 1;
-<!--    background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);-->
     mix-blend-mode: multiply;
 }
 
@@ -74,109 +68,84 @@ body, div, a, p, span{
     z-index: -1;
 }
 
-/* Ensure the image covers the full screen */
 .bg img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-  #myDataTable_filter{
+#myDataTable_filter{
     display: none;
-  }
+}
 
-
-  .sorting{
-    color: #205F8B;
-    font-family: Hind Siliguri;
-    text-align: left;
+.sorting{
     font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-  }
+}
 
-  th.sorting{
-    border-bottom: 1px solid #dee2e6 !important;
-  }
-
-  .dataTables_empty{
+.dataTables_empty{
     border: none !important;
-  }
+}
 
-
-  .card-body{
+.card-body{
     border-radius: 20px;
     border-color: none;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-  }
+}
 
-  td{
-    font-family: Hind Siliguri;
+td{
     padding: 8px 20px !important;
     border-top: none !important;
     border-bottom: 1px solid #dee2e6 !important;
-  }
+}
 
-
-
-  table.dataTable .btn{
+table.dataTable .btn{
     border-radius: 5px;
     background: #1175BD;
     color: #FFF;
-  }
+}
 
-  #myDataTable_info.dataTables_info{
+#myDataTable_info.dataTables_info{
     background: white;
     display: inline;
-  }
+}
 
-  .text-center{
+.text-center{
     width: 100%;
     display: flex;
     justify-content: space-between;
-  }
+}
 
-  .paginate_button{ cursor: pointer; }
-  .disabled { color: gray !important; cursor: auto;}
+.paginate_button{ cursor: pointer; }
+.disabled { color: gray !important; cursor: auto;}
 
-  .dataTables_paginate{
+.dataTables_paginate{
     background: white;
     display: inline;
-<!--    margin-left: 40%;-->
-  }
+}
 
 
- .dataTables_scrollBody{
-  min-height: 790px;
- }
+.dataTables_scrollBody{
+    min-height: 790px;
+}
 
-  .dataTables_scrollHead{
-    height: 1%;
-    border:none;
-  }
-
-  .paginate_button{
-    padding: 10px;
-  }
+.view-filter{
+    display: none;
+}
 
 
-  .paginate_button.current{
-    color: red;
-  }
-
-
-  .dataTables_empty{
+.dataTables_empty{
     height: 750px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
 
+.select-wrapper {
+height: 20px;
+overflow-y: visible;
+}
 
-  .select-wrapper {
-    height: 50px;
-    z-index: 100;
-    overflow-y: visible;
-  }
