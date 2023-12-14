@@ -1,15 +1,32 @@
-$(window).on("load",function(){
-    $(".loader-wrapper").fadeOut("slow");
-    swal({
-        title:"Please wait! Data is loading...",
-        text:"   ",
-        icon: "https://www.boasnotas.com/img/loading2.gif",
-        buttons: false,
-        closeOnClickOutside: false,
-        timer: 2500,
-        //icon: "success"
+//$(document).ready(function(){
+    $(window).on("load",function(){
+        $(".loader-wrapper").fadeOut("slow");
+//        swal({
+//        //      title:"Please wait! Data is loading...",
+//        //      text:"   ",
+//                icon: "https://www.boasnotas.com/img/loading2.gif",
+//                buttons: false,
+//                closeOnClickOutside: false,
+//                timer: 2500,
+//                //icon: "success"
+//            });
     });
-});
+
+
+//});
+
+
+//$(window).on("load",function(){
+//    swal({
+//    //        title:"Please wait! Data is loading...",
+//    //        text:"   ",
+//            icon: "https://www.boasnotas.com/img/loading2.gif",
+//            buttons: false,
+//            closeOnClickOutside: false,
+//            timer: 2500,
+//            //icon: "success"
+//    });
+//});
 
 
 

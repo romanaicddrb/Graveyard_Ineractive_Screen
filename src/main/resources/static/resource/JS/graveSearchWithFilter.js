@@ -110,8 +110,8 @@ $(document).ready(function(){
         deadYearFilter!="" || buriedDayFilter!="" || buriedMonthFilter!="" || buriedYearFilter!=""){
             $('#filterFieldEmpty').text("");
             swal({
-                title:"Please wait! Data is loading...",
-                text:"   ",
+//                title:"Please wait! Data is loading...",
+//                text:"   ",
                 icon: "https://www.boasnotas.com/img/loading2.gif",
                 buttons: false,
                 closeOnClickOutside: false,
@@ -145,13 +145,13 @@ $(document).ready(function(){
 //                processing: 'Loading.....',
                 success: function(data) {
                     myDataTable.clear();
-                    //    alert("Please wait! Data is loading...");
+//                    alert("Please wait! Data is loading...");
                     if (data.data.length > 0) {
                         myDataTable.rows.add(data.data).draw();
                         myDataTable.page.len( 25 ).draw();
                         $('.btn').on('click', function() {
                             swal({
-                                title:"Please wait! Data is loading...",
+                                title:"Please wait! Map is loading...",
                                 text:"   ",
                                 icon: "https://www.boasnotas.com/img/loading2.gif",
                                 buttons: false,
@@ -257,4 +257,9 @@ for (let i=1974; i<2024; i++) {
     option.appendChild(optionText);
     yearDropDownDead.appendChild(option);
 }
+document.addEventListener("contextmenu", event => {
+  if (event.target.nodeName === "nnnnnn") {
+    event.preventDefault();
+  }
+});
 
