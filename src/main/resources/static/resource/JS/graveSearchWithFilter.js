@@ -150,6 +150,15 @@ $(document).ready(function(){
                         myDataTable.rows.add(data.data).draw();
                         myDataTable.page.len( 25 ).draw();
                         $('.btn').on('click', function() {
+                        swal({
+                                        title:"Please wait! Map is loading...",
+                                        text:"   ",
+                                        icon: "https://www.boasnotas.com/img/loading2.gif",
+                                        buttons: false,
+                                        closeOnClickOutside: false,
+                                        timer: 2500,
+                                        //icon: "success"
+                                    });
                           var rowData = myDataTable.row($(this).parents('tr')).data();
                           loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
                         });
