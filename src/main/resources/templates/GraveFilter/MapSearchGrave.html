@@ -9,8 +9,6 @@
 
   <title>Graveyard interactive screen</title>
 
-
-
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
@@ -49,14 +47,13 @@
       </li>
     </ol>
   </div>
-  <div class="row" style="background: #FFF; border-radius: 20px; display: flex; width: 102%; height: 100%;
-       ">
+  <div class="row" style="background: #FFF; border-radius: 20px; display: flex; width: 102%; height: 100%;">
     <!-- Left Card with Filter Options -->
     <div class="col-md-12" style="padding: 0;">
       <div class="d-flex justify-content-between align-items-center" style="padding: 16px 16px 0px 16px;">
         <p style="color: #205F8B; font-family: Hind Siliguri; font-size: 24px; font-style: normal;
           font-weight: 500; line-height: normal; text-align: left;
-          padding: 0px; display: flex; align-items: center; margin: 0;"> ম্যাপ এর মাধ্যমে কবর দেখুন</p>
+          padding: 0px; display: flex; align-items: center; margin: auto;"> ম্যাপ এর মাধ্যমে কবর দেখুন</p>
         <span>
           <a th:href="@{/graveSearch}">
             <button type="button" class="btn btn-outline-primary active">
@@ -68,6 +65,22 @@
       </div>
 
       <hr style="width: 100%; height: 1px; background: #DADADA;">
+      <div class="col-md-12 align-items-center" style="display:flex; justify-content: center; gap: 20px; padding-bottom: 10px;">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="8" fill="#29A74A"/>
+          </svg>
+          <p style="color: #000;font-size: 18px;font-style: normal;
+          font-weight: 600;line-height: 120%; display:inline;">ফাঁকা আছে</p>
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="8" fill="#ED1C24"/>
+          </svg>
+          <p style="color: #000;font-size: 18px;font-style: normal; font-weight: 600;
+          line-height: 120%; display:inline;">ফাঁকা হবে</p>
+        </div>
+      </div>
 
       <div class="col-md-12 card" style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 40px;
            border: none; border-radius: 20px; width: 100%;">
