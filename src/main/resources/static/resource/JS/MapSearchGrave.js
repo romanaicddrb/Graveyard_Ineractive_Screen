@@ -5,7 +5,7 @@
       fullscreenControlOptions: {
         position: 'topleft'
       }
-}).setView([23.7999848513, 90.405272463100005], 18);
+}).setView([23.7999848513, 90.405272463100005], 19);
 
     //set map view as tile layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
