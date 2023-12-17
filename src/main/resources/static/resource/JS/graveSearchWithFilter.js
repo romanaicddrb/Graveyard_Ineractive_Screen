@@ -173,7 +173,7 @@ $(document).ready(function(){
                 }
             });
         } else {
-            $('#filterFieldEmpty').text("Please fill at-least one filter field");
+            $('#filterFieldEmpty').text("প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন");
         }
 //        }, 2000);
     });

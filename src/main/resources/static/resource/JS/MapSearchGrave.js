@@ -1,3 +1,18 @@
+//swal({
+//    //        title:"Please wait! Map is loading...",
+//    //        text:"   ",
+//    icon: "https://www.boasnotas.com/img/loading2.gif",
+//    buttons: false,
+//    closeOnClickOutside: false,
+//    timer: 1000,
+//    //icon: "success"
+//});
+//
+//
+//
+
+
+
 //create map object in map div with co-orrdinate and zoom level
     // var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);
     var map = L.map('map', {

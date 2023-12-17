@@ -14,41 +14,40 @@
 
 
 //});
-
-
-//$(window).on("load",function(){
-//    swal({
-//    //        title:"Please wait! Data is loading...",
+$(document).ready(function(){
+//    $('.searchGrave').on('click', function(){
+//        swal({
+//    //        title:"Please wait! Map is loading...",
 //    //        text:"   ",
 //            icon: "https://www.boasnotas.com/img/loading2.gif",
 //            buttons: false,
 //            closeOnClickOutside: false,
-//            timer: 2500,
+//            timer: 1000,
 //            //icon: "success"
+//        });
 //    });
-//});
 
 
+    let longPressTimer;
 
-let longPressTimer;
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault(); // Prevent the default right-click behavior
+    });
 
-document.addEventListener('contextmenu', function (e) {
-    e.preventDefault(); // Prevent the default right-click behavior
+    function startLongPress() {
+        longPressTimer = setTimeout(function () {
+            //alert('Long press detected!');
+        }, 1000); // Adjust the duration for your long press threshold
+    }
+
+    function endLongPress() {
+        clearTimeout(longPressTimer);
+    }
+
+    document.addEventListener('touchstart', startLongPress);
+    document.addEventListener('touchend', endLongPress);
+
+    // For mouse users (optional)
+    document.addEventListener('mousedown', startLongPress);
+    document.addEventListener('mouseup', endLongPress);
 });
-
-function startLongPress() {
-    longPressTimer = setTimeout(function () {
-        //alert('Long press detected!');
-    }, 1000); // Adjust the duration for your long press threshold
-}
-
-function endLongPress() {
-    clearTimeout(longPressTimer);
-}
-
-document.addEventListener('touchstart', startLongPress);
-document.addEventListener('touchend', endLongPress);
-
-// For mouse users (optional)
-document.addEventListener('mousedown', startLongPress);
-document.addEventListener('mouseup', endLongPress);
