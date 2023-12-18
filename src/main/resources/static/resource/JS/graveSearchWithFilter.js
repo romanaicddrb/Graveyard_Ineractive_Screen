@@ -4,15 +4,12 @@ $(document).ready(function(){
     var myDataTable = $('#myDataTable').DataTable({
 
         language: {
-            "emptyTable": "<img src='../resource/image/nodata.png' style='position: fixed; z-index: 0; margin-left: 60%;'>",
+            "emptyTable": "<div style='position: fixed; z-index: 0; margin-left: 60%;'><img src='../resource/image/nodata.png'> <br><br><p style='color: #333; text-align: center;font-size: 24px;font-style: normal;font-weight: 800;'>তথ্য অনুসন্ধান করে পাওয়া যায় নি</p></div>",
             "lengthMenu": "Show _MENU_ entries",
             "info": "Showing _START_ to _END_ of _TOTAL_ entries",
             "infoEmpty": "Showing 0 to 0 of 0 entries",
             "search": "Search:",
             "loadingRecords": "HHHHHHHH ...",
-//            "loadingRecords": "&nbsp; Loading.../",
-
-//            "pageLength": 50,  <div class='spinner'></div>
             "paginate": {
                 "first": "First",
                 "last": "Last",
@@ -21,7 +18,6 @@ $(document).ready(function(){
             }
         },
         "responsive": true,
-//        "lengthChange": false,
         "autoWidth": true,
         "paging": true,
         "scrollCollapse": true,
@@ -32,10 +28,8 @@ $(document).ready(function(){
         "fixedHeader": true,
         "select": true,
         "processing": "<i class='fa fa-spinner fa-spin fa-3x fa-fw'></i>vvvv...",
-//        "processing": "Loading.....",
         "destroy": true,
         "orderable": true,
-//        "dom": 'Bfrtip',
 
         columns: [
             { data: 'dec_id', visible: false, width: '0%'},
@@ -50,7 +44,7 @@ $(document).ready(function(){
             { data: null,
                 render: function (data, type, row) {
                     if (data && data.dec_id && data.graveyard_id) {
-                      return '<div class="mr-3" style="margin-left: -5%; font-size: 5px; display: flex; align-items: center;"><button type="button" class="btn btn-block btn-sm"> বিস্তারিত দেখুন </button></div>';
+                      return '<div class="mr-3" style="margin-left: -5%; font-size: 5px; display: flex; align-items: center;"><button type="button" id="detailsButton" class="btn btn-block btn-sm"> বিস্তারিত দেখুন </button></div>';
                     }
                     else {
                       // If data is not available, return an empty string
@@ -91,12 +85,6 @@ $(document).ready(function(){
 
 
     $('#searchBtn').on('click', function() {
-
-//        $(".loader-wrapper").style.display = "block";
-//        $(".loader-wrapper").fadeOut("slow");
-        //myDataTable.reload();
-//        myDataTable.clear().draw();
-//        setTimeout(function(){
         var memoFilter = $('#MemoFilter').val();
         var deadNameFilter = $('#DeadnameFilter').val();
         var deadDayFilter = $('#DeaddayFilter').val();
@@ -110,20 +98,11 @@ $(document).ready(function(){
         deadYearFilter!="" || buriedDayFilter!="" || buriedMonthFilter!="" || buriedYearFilter!=""){
             $('#filterFieldEmpty').text("");
             swal({
-//                title:"Please wait! Data is loading...",
-//                text:"   ",
                 icon: "https://www.boasnotas.com/img/loading2.gif",
                 buttons: false,
                 closeOnClickOutside: false,
                 timer: 2500,
-                //icon: "success"
             });
-//            $('.loader-wrapper').toggle('slow', function() {
-//                $(".loader-wrapper").fadeOut(1500);
-//            });
-
-//            alert("Please wait! Data is loading...");
-            // Prepare the request data
             var requestData = {
                 graveyardId: '2',
                 memo: memoFilter,
@@ -142,30 +121,27 @@ $(document).ready(function(){
                 destroy : true,
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
-//                processing: 'Loading.....',
                 success: function(data) {
                     myDataTable.clear();
-//                    alert("Please wait! Data is loading...");
                     if (data.data.length > 0) {
                         myDataTable.rows.add(data.data).draw();
                         myDataTable.page.len( 25 ).draw();
                         $('.btn').on('click', function() {
+                            var rowData = myDataTable.row($(this).parents('tr')).data();
+                            loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
+                        });
+                        $('#detailsButton').on('click', function() {
                             swal({
                                 title:"Please wait! Map is loading...",
                                 text:"   ",
                                 icon: "https://www.boasnotas.com/img/loading2.gif",
                                 buttons: false,
                                 closeOnClickOutside: false,
-                                timer: 2500,
-                                //icon: "success"
+                                timer: 2500
                             });
-
-                            var rowData = myDataTable.row($(this).parents('tr')).data();
-                            loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
                         });
                     } else {
                         myDataTable.clear().draw();
-                        //myDataTable.rows.add( "" ).draw();
                     }
                 },
                 error: function(error) {
@@ -175,7 +151,6 @@ $(document).ready(function(){
         } else {
             $('#filterFieldEmpty').text("প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন");
         }
-//        }, 2000);
     });
 });
 
