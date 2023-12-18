@@ -21,9 +21,12 @@
   <link th:href="@{/resource/CSS/main.css}" rel="stylesheet">
   <link th:href="@{/resource/CSS/MapSearchGrave.css}" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<!--  <link rel="stylesheet" href="https://unpkg.com/leaflet-compass/dist/leaflet-compass.css" />-->
   <link rel="stylesheet" th:href="@{Control.FullScreen.css}"/>
   <!-- Make sure you put this AFTER Leaflet's CSS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
   <script th:src="@{Control.FullScreen.js}"></script>
 
   <script th:src="@{Graveyard_Banani_Grave_Qgis_4326.js}"></script>
@@ -86,7 +89,18 @@
 
       <div class="col-md-12 card" style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 40px;
            border: none; border-radius: 20px; width: 100%;">
-        <div id="map"></div>
+        <div id="map">
+<!--          test prianka-->
+<!--          <div class="leaflet-bottom leaflet-left">-->
+<!--            <div class="leaflet-compass leaflet-control">-->
+<!--              <div class="compass-button">-->
+<!--                <div class="compass-icon" style="transform: rotate(0deg);"></div>-->
+<!--                <span class="compass-digit">0°</span>-->
+<!--              </div>-->
+<!--              <div class="compass-alert" style="display: none;">Orientation angle not found</div>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
           <!-- Filter by Name -->
       </div>
     </div>
@@ -106,7 +120,8 @@
 <!--<script src="/plugins/jquery/jquery.min.js"></script>-->
 
 <!--<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>-->
-
+<!--<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>-->
+<script src="https://unpkg.com/leaflet-compass/dist/leaflet-compass.min.js"></script>
 
 <script type="text/javascript" th:src="@{/resource/JS/common.js}"></script>
 <script type="text/javascript" th:src="@{/resource/JS/MapSearchGrave.js}"></script>
