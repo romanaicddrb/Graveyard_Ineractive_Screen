@@ -1,26 +1,12 @@
-//swal({
-//    //        title:"Please wait! Map is loading...",
-//    //        text:"   ",
-//    icon: "https://www.boasnotas.com/img/loading2.gif",
-//    buttons: false,
-//    closeOnClickOutside: false,
-//    timer: 1000,
-//    //icon: "success"
-//});
-//
-//
-//
 
-
-
-//create map object in map div with co-orrdinate and zoom level
+//create map object in map div with co-ordinate and zoom level
     // var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);
     var map = L.map('map', {
-      fullscreenControl: true,
-      fullscreenControlOptions: {
-        position: 'topleft'
-      }
-}).setView([23.7999848513, 90.405272463100005], 19);
+        fullscreenControl: true,
+        fullscreenControlOptions: {
+            position: 'topleft'
+        }
+    }).setView([23.7999848513, 90.405272463100005], 19);
 
     //set map view as tile layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -45,8 +31,8 @@
     //set the style of the polygon
     function style(feature) {
         return {
-          //  fillColor: getColor(feature.properties.Grave_ID),
-          //  fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
+            //  fillColor: getColor(feature.properties.Grave_ID),
+            //  fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
             fillColor: getColor(feature.properties.Available),
             weight: 2,
             opacity: 1,
@@ -59,7 +45,6 @@
     //set the layer style
     function highlightFeature(e) {
         var layer = e.target;
-
         layer.setStyle({
             weight: 5,
             color: '#666',
@@ -93,7 +78,7 @@
     }
 
     var roaddata=L.geoJSON(roaddata).addTo(map)
-    var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
+    var gravedata=L.geoJSON(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
 
     var info = L.control();
 
@@ -112,4 +97,25 @@
 
     info.addTo(map);
 
-    var gravedata=L.geoJSON(gravedata).addTo(map);
+//    var gravedata = {
+//        "type": "Feature",
+//        "properties": {
+//            "name": "Coors Field",
+//            "amenity": "Baseball Stadium",
+//            "popupContent": "This is where the Rockies play!"
+//        },
+//        "geometry": {
+//            "type": "Point",
+//            "coordinates": [-104.99404, 39.75621]
+//        }
+//    };
+
+//    L.geoJSON(geojsonFeature).addTo(map);
+
+
+
+
+//    var gravedata1=L.geoJSON().addTo(map);
+//         gravedata1.addData(gravedata);
+
+//    var gravedata=L.geoJSON(gravedata).addTo(map);
