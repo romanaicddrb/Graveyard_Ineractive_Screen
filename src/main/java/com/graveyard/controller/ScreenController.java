@@ -30,7 +30,7 @@ public class ScreenController {
     private DecPersonService decPersonService;
     private GraveAvailable graveAvailable;
 
-    private final GraveService graveService;
+    private GraveService graveService;
 
 //    @Autowired
 //    public ScreenController(RestTemplateBuilder restTemplateBuilder) {
@@ -63,6 +63,9 @@ public class ScreenController {
     public String mapSearch(Model model) {
 
 //        List<GraveAvailable_ViewModel> Grave_availability = graveAvailable.getGraveAvailable(2);
+//        model.addAttribute("data",Grave_availability);
+
+//        List<GraveAvailable_ViewModel> Grave_availability = graveService.getGra
 //        model.addAttribute("data",Grave_availability);
 
         return "GraveFilter/MapSearchGrave";
