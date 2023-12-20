@@ -44,8 +44,7 @@ $(document).ready(function(){
             { data: null,
                 render: function (data, type, row) {
                     if (data && data.dec_id && data.graveyard_id) {
-                    console.log("btn for " + data.dec_id);
-                      return '<div class="mr-3" style="margin-left: -5%; font-size: 5px; display: flex; align-items: center;"><button type="button" class="btn btn-block btn-sm btnD" onclick="btnClick()" > বিস্তারিত দেখুন </button></div>';
+                      return '<div class="mr-3" style="margin-left: -5%; font-size: 5px; display: flex; align-items: center;"><button type="button" class="btn btn-block btn-sm"> বিস্তারিত দেখুন </button></div>';
                     }
                     else {
                       // If data is not available, return an empty string
@@ -123,7 +122,7 @@ $(document).ready(function(){
                         myDataTable.rows.add(data.data).draw();
                         myDataTable.page.len( 25 ).draw();
                         $(document).on('click','.btnD', function() {
-                        console.log("click call");
+//                        console.log("click call");
                             swal({
                                 title:"Please wait! Map is loading...",
                                 text:"   ",
@@ -132,9 +131,8 @@ $(document).ready(function(){
                                 closeOnClickOutside: false,
                                 timer: 2500
                             });
+
                             var rowData = myDataTable.row($(this).parents('tr')).data();
-                            console.log("row data "  + rowData.graveyard_id);
-                            // window.location.href = '/graveDetails_withPosition?id=' + rowData.dec_id + '&gid=' + rowData.graveyard_id;
                             loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
                         });
                     } else {
@@ -154,9 +152,9 @@ $(document).ready(function(){
 
 });
 
-function btnClick(){
-console.log("btnClick");
-}
+//function btnClick(){
+//console.log("btnClick");
+//}
 
     function loadDetailsPage(dec_id, graveyard_id) {
     console.log("loadDetailsPage");
@@ -266,11 +264,6 @@ for (let i=1974; i<2024; i++) {
     yearDropDownDead.appendChild(option);
 }
 
-document.addEventListener("contextmenu", event => {
-  if (event.target.nodeName === "nnnnnn") {
-    event.preventDefault();
-  }
-});
 
 
 

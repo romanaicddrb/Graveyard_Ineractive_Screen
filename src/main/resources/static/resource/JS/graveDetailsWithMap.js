@@ -28,7 +28,7 @@ if(found.length == 0){
     marker.bindPopup("<b>আপনার বর্তমান অবস্থান</b>").openPopup();
 }
 else{
-    marker.bindPopup("<b>কবর নম্বরঃ "+found[0].properties.Grave_ID+"<br><b>নাম: "+name+"</b>", {closeOnClick: false, autoClose: false}).openPopup();
+    marker.bindPopup("<b>কবর নম্বরঃ "+found[0].properties.Grave_ID+"<br><b>নাম: "+'[[${data.Dec_name}]]'+"</b>", {closeOnClick: false, autoClose: false}).openPopup();
     var marker = L.marker([23.7990516813, 90.4038127014]).addTo(map);
     marker.bindPopup("<b>আপনার বর্তমান অবস্থান</b>", {closeOnClick: false, autoClose: false}).openPopup();
 }
