@@ -264,6 +264,25 @@ for (let i=1974; i<2024; i++) {
     yearDropDownDead.appendChild(option);
 }
 
+//
+//function handleDateChange() {
+//    // Get the selected date from the input
+//    var selectedDate = document.getElementById("dayPicker").value;
+//
+//    // Parse the date string and extract the day
+//    var dateObject = new Date(selectedDate);
+//    var selectedDay = dateObject.getDate();
+//
+//    // Display the selected day (you can perform other actions as needed)
+//    alert("Selected Day: " + selectedDay);
+//}
+//$( function handleDateChange() {
+////     var date = $('#dayPicker').datepicker({
+//    $( "#dayPicker" ).datepicker({
+//        monthNames: [ "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December" ]
+//    });
+//});
+
 
 
 
