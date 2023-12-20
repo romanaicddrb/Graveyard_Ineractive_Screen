@@ -1,11 +1,11 @@
 //create map object in map div with co-orrdinate and zoom level
     // var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);
     var map = L.map('map', {
-      fullscreenControl: true,
-      fullscreenControlOptions: {
-        position: 'topleft'
-      }
-}).setView([23.7999848513, 90.405272463100005], 19);
+        fullscreenControl: true,
+        fullscreenControlOptions: {
+            position: 'topleft'
+        }
+    }).setView([23.7999848513, 90.405272463100005], 19);
 
     //set map view as tile layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -78,7 +78,7 @@
     }
 
     var roaddata=L.geoJSON(roaddata).addTo(map)
-    var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
+    var gravedata=L.geoJSON(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
 
     var info = L.control();
 
@@ -97,4 +97,25 @@
 
     info.addTo(map);
 
-//     var gravedata=L.geoJSON(gravedata).addTo(map);
+//    var gravedata = {
+//        "type": "Feature",
+//        "properties": {
+//            "name": "Coors Field",
+//            "amenity": "Baseball Stadium",
+//            "popupContent": "This is where the Rockies play!"
+//        },
+//        "geometry": {
+//            "type": "Point",
+//            "coordinates": [-104.99404, 39.75621]
+//        }
+//    };
+
+//    L.geoJSON(geojsonFeature).addTo(map);
+
+
+
+
+//    var gravedata1=L.geoJSON().addTo(map);
+//         gravedata1.addData(gravedata);
+
+//    var gravedata=L.geoJSON(gravedata).addTo(map);

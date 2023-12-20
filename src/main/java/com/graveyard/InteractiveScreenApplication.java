@@ -6,7 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class InteractiveScreenApplication extends SpringBootServletInitializer{
+public class  InteractiveScreenApplication extends SpringBootServletInitializer{
 
     public static void main(String[] args) {
         SpringApplication.run(InteractiveScreenApplication.class, args);

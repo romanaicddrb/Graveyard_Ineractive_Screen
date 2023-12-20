@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+
     var gidValue = '2';
     $('#myDataTable').DataTable().clear().destroy();
     var myDataTable = $('#myDataTable').DataTable({
@@ -148,18 +150,8 @@ $(document).ready(function(){
 //                    alert("Please wait! Data is loading...");
                     if (data.data.length > 0) {
                         myDataTable.rows.add(data.data).draw();
-                        myDataTable.page.len( 25 ).draw();
-                        $('.btn').on('click', function() {
-                            swal({
-                                title:"Please wait! Map is loading...",
-                                text:"   ",
-                                icon: "https://www.boasnotas.com/img/loading2.gif",
-                                buttons: false,
-                                closeOnClickOutside: false,
-                                timer: 2500,
-                                //icon: "success"
-                            });
-
+                        myDataTable.page.len(25).draw();
+                        $(document).on('click', '.btn', function() {
                             var rowData = myDataTable.row($(this).parents('tr')).data();
                             loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
                         });
@@ -173,7 +165,7 @@ $(document).ready(function(){
                 }
             });
         } else {
-            $('#filterFieldEmpty').text("Please fill at-least one filter field");
+            $('#filterFieldEmpty').text("প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন");
         }
 //        }, 2000);
     });
