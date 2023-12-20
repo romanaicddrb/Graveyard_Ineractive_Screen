@@ -19,9 +19,12 @@ body, div, a, p, span{
 	  }
 
      #map {
-      height: 730px;
-      width: 100%;
-      z-index: 0;
+        position: relative;
+        background-color: black;
+        height: 400px;
+        height: 730px;
+        width: 100%;
+        z-index: 0;
      }
 
     .info {
@@ -83,3 +86,37 @@ body, div, a, p, span{
 	background-color: rgba(255, 255, 255, 0.75);
 	border-radius:4px;
 }
+
+
+
+.leaflet-interactive:before{
+    content:"";
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    z-index:1;
+    background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%) !important;
+    mix-blend-mode: multiply;
+}
+
+.leaflet-interactive {
+    position: absolute;
+    z-index: -1;
+    /* Box shadow to create a black shed effect */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+#blackOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /*background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);*/
+    pointer-events: none; /* Allow interactions with the map under the overlay */
+}
+

@@ -240,18 +240,30 @@ return L.Control.Compass;
     }).setView([23.799617614599999, 90.404818522300005], 19);
 //0224140    setView([23.7999848513, 90.405272463100005], 18);
 
-
     //set map view as tile layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 70, // Set the maximum zoom level you want to allow
         minZoom: 1, // Set a minimum zoom level
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+//        id: 'mapbox.streets',
+//        tileSize: 512,
+//        zoomOffset: -1,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
+    //prianka Start
+
+//    var rectangle = L.rectangle([[51.49, -0.08], [51.51, -0.06]], { color: '#000000', weight: 1 }).addTo(map);
+//    var map = L.map('map');
+//    map.createPane('labels');
+//    map.getPane('labels').style.zIndex = 650;
+
+
+
+
+
     var comp = new L.Control.Compass({autoActive: true, showDigit:true});
-
-    	map.addControl(comp);
-
+    map.addControl(comp);
+//prianka end
 
     //set marker
     //var marker = L.marker([23.7990516813, 90.4038127014]).addTo(map);
@@ -340,6 +352,10 @@ return L.Control.Compass;
     };
 
     info.addTo(map);
+
+
+
+
 
 
 

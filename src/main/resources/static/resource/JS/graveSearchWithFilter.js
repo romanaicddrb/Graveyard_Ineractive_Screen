@@ -44,7 +44,7 @@ $(document).ready(function(){
             { data: null,
                 render: function (data, type, row) {
                     if (data && data.dec_id && data.graveyard_id) {
-                      return '<div class="mr-3" style="margin-left: -5%; font-size: 5px; display: flex; align-items: center;"><button type="button" class="btn btn-block btn-sm"> বিস্তারিত দেখুন </button></div>';
+                      return '<div class="mr-3" style="margin-left: -5%; font-size: 5px; display: flex; align-items: center;"><button type="button" class="btn btn-block btn-sm btnD"> বিস্তারিত দেখুন </button></div>';
                     }
                     else {
                       // If data is not available, return an empty string
