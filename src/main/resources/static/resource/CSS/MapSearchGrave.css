@@ -89,7 +89,7 @@ body, div, a, p, span{
 .leaflet-pane svg{
     content:"";
     position: fixed;
-    background-image:url('../image/sliderOverlay.png');
+    /*background-image:url('../image/sliderOverlay.png');*/
     right:0;
     left:0;
     bottom:0;
