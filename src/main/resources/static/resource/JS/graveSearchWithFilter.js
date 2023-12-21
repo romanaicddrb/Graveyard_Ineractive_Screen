@@ -35,7 +35,7 @@ $(document).ready(function(){
             { data: 'dec_id', visible: false, width: '0%'},
             { data: 'graveyard_id' , visible: false, width: '0%' },
             { data: 'memo_no', width: '100px' },
-//            { data: 'grave_id' , width: '100px' },
+            { data: 'grave_no' , width: '100px' },
             { data: 'dod', width: '140px', },
             { data: 'dec_name' },
             { data: 'father', },
@@ -55,14 +55,14 @@ $(document).ready(function(){
             }
         ],
         "columnDefs": [{
-                "targets": [4, 5], // Column indexes (0-based) where transformation should be applied
+                "targets": [5, 6], // Column indexes (0-based) where transformation should be applied
                 "render":
                     function (data, type, row) {
                     // Apply text-transform: uppercase to the rendered content
                         return type === 'display' && data !== null ? data.toUpperCase() : data;
                     }
                 },{
-                    targets: [3, 6], // Assuming the 'Date' column is at index 0
+                    targets: [4, 7], // Assuming the 'Date' column is at index 0
                     render: function(data, type, row, meta) {
                         // Format the date as 'DD-MM-YYYY' manually
                         if (type === 'display' && data) {
@@ -75,9 +75,23 @@ $(document).ready(function(){
                         return data;
                     }
                 },{
-                    orderable: false, targets: 8
+                    orderable: false, targets: 9
                 }
         ],
+    });
+
+
+    $(document).on('click','.btnD', function() {
+        swal({
+            title:"Please wait! Map is loading...",
+            text:"   ",
+            icon: "https://www.boasnotas.com/img/loading2.gif",
+            buttons: false,
+            closeOnClickOutside: false,
+            timer: 2500
+        });
+        var rowData = myDataTable.row($(this).parents('tr')).data();
+        loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
     });
 
   $('#searchBtn').on('click', function() {
@@ -122,20 +136,6 @@ $(document).ready(function(){
                     if (data.data.length > 0) {
                         myDataTable.rows.add(data.data).draw();
                         myDataTable.page.len( 25 ).draw();
-                        $(document).on('click','.btnD', function() {
-//                        console.log("click call");
-                            swal({
-                                title:"Please wait! Map is loading...",
-                                text:"   ",
-                                icon: "https://www.boasnotas.com/img/loading2.gif",
-                                buttons: false,
-                                closeOnClickOutside: false,
-                                timer: 2500
-                            });
-
-                            var rowData = myDataTable.row($(this).parents('tr')).data();
-                            loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
-                        });
                     } else {
                         myDataTable.clear().draw();
                     }
