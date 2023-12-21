@@ -14,41 +14,32 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  <link th:href="@{/plugins/HomeScreen/main.css}" rel="stylesheet">
-  <style>
-
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-
-
-  </style>
-
+  <link th:href="@{/resource/CSS/main.css}" rel="stylesheet">
 
 </head>
 <body>
 <div class="container-fluid">
-
   <div id="home-top-video">
     <div class="video-background">
       <video autoplay muted loop class="video" width="100%">
-        <source th:src="@{/resource/InteractionScreen.mp4}" type="video/mp4">
+        <source th:src="@{/resource/image/InteractionScreen.mp4}" type="video/mp4">
       </video>
     </div>
   </div>
 
   <div class="row headerOf">
     <div class="col-md-2 start">
-      <img th:src="@{/resource/আস-সালামু আলাইকুম ٱلسَّلَامُ عَلَيْكُمْ__.png}"
+      <img th:src="@{/resource/image/আস-সালামু আলাইকুম ٱلسَّلَامُ عَلَيْكُمْ__.png}"
            alt="আস-সালামু আলাইকুম"
            style="max-width: 200px; max-height: 70px;">
     </div>
 
     <div class="col-md-3 logosSec">
       <div class="col-md-4 logos">
-        <img th:src="@{/resource/logo.svg}" alt="logo"
+        <img th:src="@{/resource/image/logo.svg}" alt="logo"
              style="max-width: 50px; max-height: 50px;">
 
       </div>
@@ -72,12 +63,9 @@
         </p>
       </div>
 
-
       <div class="col-md-4 contentSec">
         <p>আপনাকে কিভাবে সহযোগিতা করতে পারি?</p>
       </div>
-
-
 
       <div class="col-md-4"
            style="padding: 0px 12px;">
@@ -101,7 +89,7 @@
             </div>
 
 
-            <div class="col-md-6 mapSearch">
+            <div class="col-md-6 mapSearch searchGrave">
               <a th:href="@{/mapSearch}" style="width:100%; height:100%; text-decoration:none">
                 <div style="width: 100%;
                       padding:15px;
@@ -140,7 +128,7 @@
             font-style: normal;
             font-weight: 500;
             line-height: 120%;">কারিগরি সহায়তায়:</p>
-      <img th:src="@{/resource/icddrb.png}" alt="icddrb" style="height: auto; width: 150px;">
+      <img th:src="@{/resource/image/icddrb.png}" alt="icddrb" style="height: auto; width: 150px;">
     </div>
 
     <div class="col-md-3 footRight">
@@ -155,12 +143,12 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M7 1.99908H17C18.1046 1.99908 19 2.89451 19 3.99908V19.9991C19 21.1037 18.1046 21.9991 17 21.9991H7C5.89543 21.9991 5 21.1037 5 19.9991V3.99908C5 2.89451 5.89543 1.99908 7 1.99908ZM7 3.99908V19.9991H17V3.99908H7ZM13 17.9991C13 18.5514 12.5523 18.9991 12 18.9991C11.4477 18.9991 11 18.5514 11 17.9991C11 17.4468 11.4477 16.9991 12 16.9991C12.5523 16.9991 13 17.4468 13 17.9991Z" fill="#fff"/>
         </svg>
-        মোবাইল এবং ওয়েবসাইট সম্পর্কে জানতে
+        আরও জানতে
         <!-- <button type="button" id="rest" data-toggle="modal" data-target="#ownerModal">
           <span style="color: #1175BD; display: inline;"> ভিজিট করুন</span>
         </button> -->
         <p style="color: #E98923; display: inline;">
-          ভিজিট করুন</p>
+          এখানে ক্লিক করুন</p>
       </div>
     </div>
 
@@ -168,15 +156,15 @@
   </div>
 </div>
 
+<div class="loader-wrapper">
+  <img src="https://www.boasnotas.com/img/loading2.gif" alt="loading...">
+</div>
+
+
 <div class="modal" id="visit" role="dialog">
 </div>
 
 <script type="text/javascript" src="js\mainJS.js"></script>
-<!--<script>-->
-<!--  document.getElementById("visit_modal").addEventListener("click", function(e) {-->
-<!--      e.preventDefault();-->
-<!--      $('#visitModal').modal('show');-->
-<!--  });-->
-<!--</script>-->
+<script type="text/javascript" th:src="@{/resource/JS/common.js}"></script>
 </body>
 </html>

@@ -1,0 +1,148 @@
+body, div, a, p, span{
+    user-select: text !important;
+}
+
+p, h1, h2, h3, h4, h5, h6{
+    cursor: auto; user-select: text !important;
+}::selection{
+    background-color: #338FFF !important; color: #fff !important;
+}
+
+#myDataTable thead th {
+    background-color: #E1EFFE;
+}
+
+body{
+    /*background: #F5F5F5;*/
+    font-family: Hind Siliguri;
+    font-style: normal;
+}
+
+.card-footer button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+}
+
+.card-footer button i {
+    margin-right: 5px;
+}
+
+.bg {
+    position: fixed;
+    z-index: -1000;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+#bg-top:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);
+    mix-blend-mode: multiply;
+}
+
+#bg-top {
+    left: 0%;
+    top: 0%;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+/* Ensure the image covers the full screen */
+.bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    z-index: 0;
+}
+
+.info {
+    padding: 6px 8px;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+.form-group p{
+    font-weight: 700;
+    font-size: calc(6.8px + 6 * ((100vw - 400px) / 680));
+}
+
+div.form-group{
+    padding: 5px;
+}
+
+div.col{
+    padding: 0px;
+}
+
+
+
+.leaflet-control.leaflet-compass {
+	position:relative;
+	color:#1978cf;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	/*background-color: rgba(0, 0, 0, 0.25);*/
+	background-color: rgba(255, 255, 255, 0.8);
+	/*background: none;*/
+	box-shadow: 0 1px 7px rgba(0,0,0,0.65);
+	margin-left:10px;
+	margin-top:10px;
+}
+.leaflet-compass .compass-button {
+	display:block;
+	float:left;
+	width:80px;
+	height:80px;
+	border-radius:4px;
+}
+.leaflet-compass .compass-button.active {
+	background: #fff;
+}
+.leaflet-compass .compass-icon {
+	height: 75px;
+	width: 75px;
+	margin: 2px;
+	background: url('../image/compass.jpg') center center no-repeat;
+}
+
+.leaflet-compass .compass-digit {
+}
+
+.leaflet-compass .compass-alert {
+	position:absolute;
+	right:50;
+	bottom:50px;
+	width:100px;
+	padding:2px;
+	line-height:.95em;
+	color:#e00;
+	border: 1px solid #888;
+	background-color: rgba(255, 255, 255, 0.75);
+	border-radius:4px;
+}
