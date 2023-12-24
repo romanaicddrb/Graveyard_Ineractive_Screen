@@ -332,31 +332,32 @@ var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature})
 //};
 //info.addTo(map);
 
+if(grave==null||grave==""){
+    var info = L.control();
+    info.onAdd = function (map) {
+       this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+       this.update();
+       return this._div;
+    };
 
-var info = L.control();
-info.onAdd = function (map) {
-   this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-   this.update();
-   return this._div;
-};
-
-// method that we will use to update the control based on feature properties passed
-info.update = function (props) {
-   this._div.innerHTML = '<div style="display: flex; flex-direction: column; gap:10px; padding: 20px; border-radius: 20px; font-family: Hind Siliguri;"><h4>কবর শনাক্তকরণ হয়নি</h4><p>আপনি কবর শনাক্তকরণে সহায়তা করতে চান?</p> <div style="display:flex; justify-content: center; align-items: center; gap: 30px;"><button type="button" class="btn btn-primary" style="width:70px" id="btnY">Yes</button><button type="button" style="width:70px" class="btn btn-danger" id="btnN">No</button></div></div>';
-};
-info.addTo(map);
+    // method that we will use to update the control based on feature properties passed
+    info.update = function (props) {
+       this._div.innerHTML = '<div style="display: flex; flex-direction: column; gap:10px; padding: 20px; border-radius: 20px; font-family: Hind Siliguri;"><h4>কবর শনাক্তকরণ হয়নি</h4><p>আপনি কবর শনাক্তকরণে সহায়তা করতে চান?</p> <div style="display:flex; justify-content: center; align-items: center; gap: 30px;"><button type="button" class="btn btn-primary" style="width:70px" id="btnY">Yes</button><button type="button" style="width:70px" class="btn btn-danger" id="btnN">No</button></div></div>';
+    };
+    info.addTo(map);
+}
 
 
 
 $(document).on('click','#btnY', function() {
 //    swal("Yes is working!");
     Swal.fire({
-        title: "Fill-up the below form for "+name,
+        title: "Fill-up the below form for ",
        // text: "Name: "+name+" and ID: "+id,
         html:
-//            '<div>Duration of Session </div>'+
-            '<label><strong>Grave Number: &nbsp; &nbsp;  </strong></label><input id="swal-input0" class="swal2-input" type="text" style="display: inline;">' +
-            '<br><label><strong>Select Block: &nbsp; &nbsp;  </strong></label><select onchange="selectBlock()" id="swal-input1" class="swal2-input" style="display: inline;"> <option value="" selected>Select Block</option></select>' +
+            '<div> <strong>'+name+'</strong></div>'+
+            '<br><label><strong>Grave Number: &nbsp; &nbsp;</strong></label><input id="swal-input0" class="swal2-input" type="text" style="display: inline; margin: 0; padding:0;">' +
+            '<br><br><label><strong>Select Block: &nbsp; &nbsp;  </strong></label><select onchange="selectBlock()" id="swal-input1" class="swal2-input" style="display: inline;"> <option value="" selected>Select Block</option></select>' +
             '<br><br><label><strong>Select Lane: &nbsp; &nbsp;  </strong></label><select onchange="selectLane()" id="swal-input2" class="swal2-input" style="display: inline;"> <option value="" selected>Select Lane</option></select>' +
             '<input id="swal-input3" class="swal2-input" type="hidden" value="' + id + '" style="display: block;">' ,
 //            '<input type="checkbox" id="Reffered" name="Reffered" value="Yes" >' + "Reffered",

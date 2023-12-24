@@ -107,7 +107,7 @@
                   <div class="col">
                      <div class="form-group">
                          <label >কবর নম্বর</label>
-                         <p th:text="${data.Grave_no == null OR data.Grave_no == ''} ? 'NO RECORD' : ${data.Grave_no}"></p>
+                         <p th:text="${data.Grave_no == null OR data.Grave_no == ''} ? 'NOT IDENTIFIED' : ${data.Grave_no}"></p>
 
                      </div>
                   </div>
@@ -230,7 +230,6 @@
     var found = GetGraveBycode(grave);
     var name = '[[${data.Dec_name}]]';
     var id = '[[${data.Dec_id}]]';
-
 </script>
 <!--<script th:src="@{/resource/JS/graveSearchWithFilter.js}"></script>-->
 <script th:src="@{/resource/JS/graveDetailsWithMap.js}"></script>
