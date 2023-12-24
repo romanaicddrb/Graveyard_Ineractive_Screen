@@ -332,19 +332,20 @@ var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature})
 //};
 //info.addTo(map);
 
-function notLinked()
-var info = L.control();
-info.onAdd = function (map) {
-   this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-   this.update();
-   return this._div;
-};
+if(grave==null||grave==""){
+    var info = L.control();
+    info.onAdd = function (map) {
+       this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+       this.update();
+       return this._div;
+    };
 
-// method that we will use to update the control based on feature properties passed
-info.update = function (props) {
-   this._div.innerHTML = '<div style="display: flex; flex-direction: column; gap:10px; padding: 20px; border-radius: 20px; font-family: Hind Siliguri;"><h4>কবর শনাক্তকরণ হয়নি</h4><p>আপনি কবর শনাক্তকরণে সহায়তা করতে চান?</p> <div style="display:flex; justify-content: center; align-items: center; gap: 30px;"><button type="button" class="btn btn-primary" style="width:70px" id="btnY">Yes</button><button type="button" style="width:70px" class="btn btn-danger" id="btnN">No</button></div></div>';
-};
-info.addTo(map);
+    // method that we will use to update the control based on feature properties passed
+    info.update = function (props) {
+       this._div.innerHTML = '<div style="display: flex; flex-direction: column; gap:10px; padding: 20px; border-radius: 20px; font-family: Hind Siliguri;"><h4>কবর শনাক্তকরণ হয়নি</h4><p>আপনি কবর শনাক্তকরণে সহায়তা করতে চান?</p> <div style="display:flex; justify-content: center; align-items: center; gap: 30px;"><button type="button" class="btn btn-primary" style="width:70px" id="btnY">Yes</button><button type="button" style="width:70px" class="btn btn-danger" id="btnN">No</button></div></div>';
+    };
+    info.addTo(map);
+}
 
 
 
