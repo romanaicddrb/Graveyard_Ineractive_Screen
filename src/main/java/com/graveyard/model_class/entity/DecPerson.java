@@ -1,7 +1,7 @@
 package com.graveyard.model_class.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.PastOrPresent;
+import javax.persistence.*;
+import javax.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
