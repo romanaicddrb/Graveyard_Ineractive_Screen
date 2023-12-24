@@ -9,56 +9,25 @@
 
   <title>Graveyard interactive screen</title>
 
-
-
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
   <!-- Custom styles for this template -->
 <!--  <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">-->
-  <style type="text/css" data-asas-style="">
-
-	  body, div, a, p, span{
-	    user-select: text !important;
-      }
-
-	  body{
-	    background: #F5F5F5;
-	    font-family: Hind Siliguri;
-        font-style: normal;
-      }
-
-	  p, h1, h2, h3, h4, h5, h6{
-        cursor: auto;
-        user-select: text !important;
-        }::selection{
-        background-color: #338FFF !important;
-	  }
-	  #myDataTable thead th {
-		  background-color: #E1EFFE;
-	  }
-
-     #map {
-      height: 780px;
-      width: 100%;
-     }
-
-    .info {
-      padding: 6px 8px;
-      background: rgba(255,255,255,0.8);
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      border-radius: 5px;
-    }
-    .info h4 {
-      margin: 0 0 5px;
-      color: #777;
-    }
-
-	  </style>
+  <link th:href="@{/resource/CSS/main.css}" rel="stylesheet">
+  <link th:href="@{/resource/CSS/MapSearchGrave.css}" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<!--  <link rel="stylesheet" href="https://unpkg.com/leaflet-compass/dist/leaflet-compass.css" />-->
+  <link rel="stylesheet" th:href="@{Control.FullScreen.css}"/>
   <!-- Make sure you put this AFTER Leaflet's CSS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script th:src="@{Control.FullScreen.js}"></script>
 
   <script th:src="@{Graveyard_Banani_Grave_Qgis_4326.js}"></script>
   <script th:src="@{Road_Banani.js}"></script>
@@ -67,9 +36,7 @@
 
 <div th:replace="CommonTemp/navBar.html :: navbar"></div>
 
-
-<main role="main"
-      style="margin-top: 98px; padding: 0px 2% 2%; background: #F5F5F5;">
+<main role="main" style="margin-top: 98px; padding: 0px 2% 2%; background: #F5F5F5;">
   <div class="row" style="padding: 0px;margin: 1% 0px;">
     <ol class="breadcrumb" style="background: none; color: white; padding: 0; margin: 0px;">
       <li class="breadcrumb-item">
@@ -79,55 +46,76 @@
           </svg>
           <p style="color: #1175BD; display: inline; cursor: pointer;">হোম</p>
         </a>
-
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#828282"/>
         </svg>
-
         <p style="color: #828282; display: inline; margin: 0px;">ম্যাপ এ দেখুন</p>
-
       </li>
-
     </ol>
   </div>
-
-
-
-  <div class="row"
-       style="background: #FFF; border-radius: 20px; display: flex; width: 102%; height: 100%;
-       ">
+  <div class="row" style="background: #FFF; border-radius: 20px; display: flex; width: 102%; height: 100%;">
     <!-- Left Card with Filter Options -->
-
     <div class="col-md-12" style="padding: 0;">
-      <div class="d-flex justify-content-between align-items-center"
-           style="padding: 16px 16px 0px 16px;">
+      <div class="d-flex justify-content-between align-items-center" style="padding: 16px 16px 0px 16px;">
         <p style="color: #205F8B; font-family: Hind Siliguri; font-size: 24px; font-style: normal;
           font-weight: 500; line-height: normal; text-align: left;
-          padding: 0px; display: flex; align-items: center; margin: 0;">
-          ম্যাপ এর মাধ্যমে কবর দেখুন
-        </p>
-<!--        <div class="card-header d-flex justify-content-between align-items-center">-->
-<!--          <span>ম্যাপ এর মাধ্যমে কবর দেখুন</span>-->
+          padding: 0px; display: flex; margin: 0;"> ম্যাপ এর মাধ্যমে কবর দেখুন</p>
         <span>
           <a th:href="@{/graveSearch}">
-            <button type="button" class="btn btn-outline-primary active">
-              <img th:src="@{/resource/magnify-scan.png}">
+            <button type="button" class="btn btn-outline-primary active" id="searchGrave">
+              <img th:src="@{/resource/image/magnify-scan.png}">
               কবর অনুসন্ধান করুন
             </button>
           </a>
         </span>
-<!--        </div>-->
       </div>
 
       <hr style="width: 100%; height: 1px; background: #DADADA;">
+      <div class="col-md-12 align-items-center" style="display:flex; justify-content: center;
+      gap: 20px; padding-bottom: 16px;">
+        <div>
+          <p style="color: #000;font-size: 16px;font-style: normal; font-weight: 600;
+          line-height: 120%; display:inline; align-items: center; margin: auto;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="8" fill="gray"/>
+          </svg>  ফাঁকা আছে</p>
+        </div>
+        <div>
+          <p style="color: #000;font-size: 16px;font-style: normal; font-weight: 600;
+          line-height: 120%; display:inline; align-items: center; margin: auto;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="8" fill="orange"/>
+          </svg>  প্রক্রিয়াকরণ</p>
+        </div>
+        <div>
+          <p style="color: #000;font-size: 16px;font-style: normal; font-weight: 600;
+          line-height: 120%; display:inline; align-items: center; margin: auto;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="8" fill="#29A74A"/>
+          </svg>  ফাঁকা হবে</p>
+        </div>
+      </div>
 
-      <div class="col-md-12 card"
-           style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 40px;
+      <div class="col-md-12 card" style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 40px;
            border: none; border-radius: 20px; width: 100%;">
-        <div id="map"></div>
+        <div id="map">
+<!--          <div id="blackOverlay"></div>-->
+<!--          test prianka-->
+<!--          <div class="leaflet-bottom leaflet-left">-->
+<!--            <div class="leaflet-compass leaflet-control">-->
+<!--              <div class="compass-button">-->
+<!--                <div class="compass-icon" style="transform: rotate(0deg);"></div>-->
+<!--                <span class="compass-digit">0°</span>-->
+<!--              </div>-->
+<!--              <div class="compass-alert" style="display: none;">Orientation angle not found</div>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
           <!-- Filter by Name -->
       </div>
     </div>
+  </div>
+
+
+  <div class="loader-wrapper">
+    <img src="https://www.boasnotas.com/img/loading2.gif" alt="loading...">
   </div>
 
 </main><!-- /.container -->
@@ -136,121 +124,14 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-<script src="/plugins/jquery/jquery.min.js"></script>
-<!--<script th:src="@{plugins/popper/popper.min.js}"></script>-->
-<!--<script th:src="@{plugins/bootstrap.js/bootstrap.min.js}"></script>-->
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<!--<script src="/plugins/jquery/jquery.min.js"></script>-->
 
-<!--<script th:inline="javascript">-->
-<!--  var graveAvailabilityData = [[${data}]] ;-->
-<!--        console.log(graveAvailabilityData);-->
-<!--</script>-->
+<!--<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>-->
+<!--<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>-->
+<script src="https://unpkg.com/leaflet-compass/dist/leaflet-compass.min.js"></script>
 
-<script>
-
-    //create map object in map div with co-orrdinate and zoom level
-    // var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);
-    var map = L.map('map', {
-      fullscreenControl: true,
-      fullscreenControlOptions: {
-        position: 'topleft'
-      }
-}).setView([23.7999848513, 90.405272463100005], 18);
-
-    //set map view as tile layer
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 70, // Set the maximum zoom level you want to allow
-        minZoom: 1, // Set a minimum zoom level
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
-
-
-    //set marker
-    var marker = L.marker([23.7990516813, 90.4038127014]).addTo(map);
-    marker.bindPopup("<b>আপনি এখানে.</b>").openPopup();
-
-    //set color of the polygon
-    function getColor(d) {
-        //return d = "0220139" ? '#800026' : '#FFFF00';
-        return  d == "Yes" ? '#52c755' : '#ff0f0f';
-    }
-
-    //set the style of the polygon
-    function style(feature) {
-        return {
-          //  fillColor: getColor(feature.properties.Grave_ID),
-          //  fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
-            fillColor: getColor(feature.properties.Available),
-            weight: 2,
-            opacity: 1,
-            color: 'white',
-            dashArray: '3',
-            fillOpacity: 0.7
-        };
-    }
-
-    //set the layer style
-    function highlightFeature(e) {
-        var layer = e.target;
-
-        layer.setStyle({
-            weight: 5,
-            color: '#666',
-            dashArray: '',
-            fillOpacity: 0.7
-        });
-
-        layer.bringToFront();
-        info.update(layer.feature.properties);
-    }
-
-    //reset the highlight
-    function resetHighlight(e) {
-        gravedata.resetStyle(e.target);
-        info.update();
-    }
-
-    //set the zoom feature
-    function zoomToFeature(e) {
-        map.fitBounds(e.target.getBounds());
-    }
-
-    //set the feature on mouse hover
-    function onEachFeature(feature, layer) {
-        layer.on({
-            // mouseover: highlightFeature,
-            mouseout: resetHighlight,
-            //click: zoomToFeature,
-            click: highlightFeature
-        });
-    }
-
-    var roaddata=L.geoJSON(roaddata).addTo(map)
-    var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
-
-    var info = L.control();
-
-    info.onAdd = function (map) {
-        this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-        this.update();
-        return this._div;
-    };
-
-    // method that we will use to update the control based on feature properties passed
-    info.update = function (props) {
-        this._div.innerHTML = '<h4>কবরের বিস্তারিত</h4>' +  (props ?
-            '<b>GraveID:</b> ' + props.Grave_ID + '<br\> <b>Block:</b>' + props.Block + '<br\> <b>Lane:</b>' + props.Lane
-            : 'Touch on a grave');
-    };
-
-    info.addTo(map);
-
-    var gravedata=L.geoJSON(gravedata).addTo(map)
-
-</script>
+<script type="text/javascript" th:src="@{/resource/JS/common.js}"></script>
+<script type="text/javascript" th:src="@{/resource/JS/MapSearchGrave.js}"></script>
 
 </body>
-
-
 </html>

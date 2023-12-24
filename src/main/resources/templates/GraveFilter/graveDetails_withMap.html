@@ -15,114 +15,25 @@
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-  <!-- Custom styles for this template -->
-  <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">
-  <style type="text/css" data-asas-style="">
-	  body, div, a, p, span{
-	    user-select: text !important;
-      }
+    <!-- Custom styles for this template -->
+    <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">
+    <link th:href="@{/resource/CSS/main.css}" rel="stylesheet">
+    <link th:href="@{/resource/CSS/graveDetailsWithMap.css}" rel="stylesheet">
+    <link th:href="@{/resource/CSS/graveSearchWithFilter.css}" rel="stylesheet">
 
-	  p, h1, h2, h3, h4, h5, h6{
-	    cursor: auto; user-select: text !important;
-      }::selection{
-        background-color: #338FFF !important; color: #fff !important;
-      }
-
-	  #myDataTable thead th {
-		  background-color: #E1EFFE;
-	  }
-
-      body{
-<!--	    background: #F5F5F5;-->
-	    font-family: Hind Siliguri;
-        font-style: normal;
-      }
-
-		.card-footer button {
-			background-color: #007bff;
-			color: #fff;
-			border: none;
-			padding: 10px 20px;
-		}
-
-		.card-footer button i {
-			margin-right: 5px;
-		}
-
-		.bg {
-            position: fixed;
-            z-index: -1000;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-        }
-
-        #bg-top:before {
-            content: "";
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            z-index: 1;
-            background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);
-            mix-blend-mode: multiply;
-        }
-
-        #bg-top {
-            left: 0%;
-            top: 0%;
-            height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            position: absolute;
-            z-index: -1;
-        }
-
-        /* Ensure the image covers the full screen */
-        .bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-      #map {
-          height: 100%;
-          width: 100%;
-          border-radius: 10px;
-      }
-
-    .info {
-      padding: 6px 8px;
-      background: rgba(255,255,255,0.8);
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      border-radius: 5px;
-    }
-    .info h4 {
-      margin: 0 0 5px;
-      color: #777;
-    }
-    .form-group p{
-      font-weight: 700;
-      font-size: calc(6.8px + 6 * ((100vw - 400px) / 680));
-    }
-
-    div.form-group{
-      padding: 5px;
-    }
-  </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" th:href="@{Control.FullScreen.css}"/>
     <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script th:src="@{Control.FullScreen.js}"></script>
+
     <script th:src="@{Graveyard_Banani_Grave_Qgis_4326.js}"></script>
+
     <script th:src="@{Road_Banani.js}"></script>
 </head>
 
 <body >
-
 <div th:replace="CommonTemp/navBar.html :: navbar"></div>
 <main role="main" class="overflow-hidden"
       style="margin-top: 98px; padding: 0 4%; height: 100%; width: 100%; padding: 0px 40px 40px 40px;">
@@ -130,7 +41,7 @@
     <div id="bg-top">
         <div class="video-background" style="margin-top: -20px;">
             <div class="bg">
-                <img th:src="@{/resource/Grave_QR1.png}" alt="BG">
+                <img th:src="@{/resource/image/Grave_QR1.png}" alt="BG">
             </div>
         </div>
     </div>
@@ -148,7 +59,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#FFF"/>
                 </svg>
-                <a class="active-2" href="#" style="display: inline;">
+                <a class="active-2" th:href="@{graveSearch}" style="display: inline;">
                     <p style="color: #FFF; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>
                 </a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -162,136 +73,137 @@
         </ol>
     </div>
 
-  <div class="row col-md-12"
-       style="height: 100%; width: 100%; background: #FFF;
-        border-radius: 20px; padding: 30px 20px; margin-left: 0.2%;">
-    <div style="width: 100%; padding: 0px 2%;">
-      <p style="color: #205F8B; font-size: 30px; font-style: normal; font-weight: 500;
-          line-height: normal; align-content: center; text-align: center; padding: 0px;
-          display: flex;
-          align-items: center;">
-          কবরের বিস্তারিত
-      </p>
-    </div>
-    <div class="col-md-4" style="padding-right: 0px;">
-    <!-- First Header Card -->
-      <div class="card"
-           style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 20px;
-           border: none; background: #FFF; height: 100%;">
-        <div class="row card-body"
-               style="border-radius: 10px; background: #F3F3F3;
-                    display: flex;
-                    padding: 30px 20px;
-                    align-items: flex-start;
-                    font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
-                    gap: 20px;">
-            <div class="col-md-4"
-                 style="display: flex; flex-direction: column; width: 100%; padding: 0px;">
-              <div class="col">
-                  <div class="form-group">
-                      <label >মেমো নম্বর</label>
-                      <p th:text="${data.Memo_no == null OR data.Memo_no == ''} ? 'N/A' : ${data.Memo_no}"></p>
-                  </div>
-              </div>
-              <div class="col">
-                 <div class="form-group">
-                     <label >কবর নম্বর</label>
-                     <p th:text="${data.Grave_no == null OR data.Grave_no == ''} ? 'N/A' : ${data.Grave_no}"></p>
-
-                 </div>
-              </div>
-              <div class="col">
-                  <div class="form-group">
-                      <label >কবরের সারি</label>
-                      <p th:text="${data.Grave_lane == null OR data.Grave_lane == ''} ? 'N/A' : ${data.Grave_lane}"></p>
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="form-group">
-                      <label>কবরের ব্লক</label>
-                      <p th:text="${data.Grave_block == null OR data.Grave_block == ''} ? 'N/A' : ${data.Grave_block}"></p>
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="form-group">
-                    <label >কবরের জোন</label>
-                      <p th:text="${data.Grave_zone == null OR data.Grave_zone == ''} ? 'N/A' : ${data.Grave_zone}"></p>
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="form-group">
-                      <label >মৃত্যুর তারিখ</label>
-                      <p th:text="${data.Dod} ? ${#temporals.format(data.Dod, 'dd-MM-yyyy')} : 'N/A'"></p>
-                  </div>
-              </div>
-
-            </div>
-
-            <div class="col-md-7" style="display: flex; flex-direction: column;
-            width: 100%; padding: 0px;">
-
-                <div class="col">
-                    <div class="form-group">
-                        <label >দাফনের তারিখ</label>
-                        <p th:text="${data.Bur_date} ? ${#temporals.format(data.Bur_date, 'dd-MM-yyyy')} : 'N/A'"></p>
-                    </div>
-                </div>
-              <div class="col">
-                <div class="form-group">
-                    <label >মৃত ব্যক্তির নাম</label>
-                    <p th:text="${data.Dec_name == null OR data.Dec_name == ''} ? 'N/A' : ${data.Dec_name}"></p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                    <label>স্বামী/স্ত্রীর নাম</label>
-                    <p th:text="${data.Spouse == null OR data.Spouse == ''} ? 'N/A' : ${data.Spouse}"></p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                    <label >পিতার নাম</label>
-                    <p th:text="${data.Father == null OR data.Father == ''} ? 'N/A' : ${data.Father}"></p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                    <label >মাতার নাম</label>
-                    <p th:text="${data.Mother == null OR data.Mother == ''} ? 'N/A' : ${data.Mother}"></p>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                    <label >ঠিকানা</label>
-                    <p th:text="${data.Address == null OR data.Address == ''} ? 'N/A' : ${data.Address}"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-
-    <div class="col-md-8" style="padding-left: 0px;">
-        <!-- Second Column with Card -->
-        <div class="card"
-             style="padding-top: 0px; padding-left: 20px; padding-right: 0px;
-             padding-bottom: 20px; border: none; background: #FFF; height: 100%;">
-          <div class="card-body"
-               style="border-radius: 10px;
-                    display: flex;
-                    padding: 0px;
-                    align-items: flex-start;
-                    gap: 20px;
-                    border: 1px solid #F3F3F3;">
-            <!-- Content for the second card -->
-              <div id="map"></div>
-          </div>
+    <div class="row col-md-12"
+       style="width: 100%; background: #FFF; border-radius: 20px; padding: 30px 20px;
+       margin-left: 0.2%; height: 100%;">
+        <div style="width: 100%; padding: 0px 2%;">
+            <p style="color: #205F8B; font-size: 30px; font-style: normal; font-weight: 500;
+              line-height: normal; align-content: center; text-align: center; padding: 0px;
+              display: flex;
+              align-items: center;">
+              কবরের বিস্তারিত
+            </p>
         </div>
-     </div>
+        <div class="col-md-4" style="padding-right: 20px;">
+        <!-- First Header Card -->
+            <div class="card"
+               style="padding-top: 0px; padding-left: 20px; padding-right: 0px; padding-bottom: 20px;
+               border: none; background: #FFF; height: 100%;">
+                <div class="row card-body"
+                   style="border-radius: 10px; background: #F3F3F3;
+                        display: flex;
+                        padding: 30px 0px 20px 15px;;
+                        align-items: flex-start;
+                        font-size: calc(5.09px + 6 * ((100vw - 400px) / 680));
+                        gap: 20px; height: 740px;">
+                <div class="col-md-4"
+                     style="display: flex; flex-direction: column; width: 100%; padding: 0px;">
+                  <div class="col">
+                      <div class="form-group">
+                          <label >মেমো নম্বর</label>
+                          <p th:text="${data.Memo_no == null OR data.Memo_no == ''} ? 'NO RECORD' : ${data.Memo_no}"></p>
+                      </div>
+                  </div>
+                  <div class="col">
+                     <div class="form-group">
+                         <label >কবর নম্বর</label>
+                         <p th:text="${data.Grave_no == null OR data.Grave_no == ''} ? 'NO RECORD' : ${data.Grave_no}"></p>
 
-  </div>
+                     </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group">
+                          <label >কবরের সারি</label>
+                          <p th:text="${data.Grave_lane == null OR data.Grave_lane == ''} ? 'NO RECORD' : ${data.Grave_lane}"></p>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group">
+                          <label>কবরের ব্লক</label>
+                          <p th:text="${data.Grave_block == null OR data.Grave_block == ''} ? 'NO RECORD' : ${data.Grave_block}"></p>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group">
+                        <label >কবরের জোন</label>
+                          <p th:text="${data.Grave_zone == null OR data.Grave_zone == ''} ? 'NO RECORD' : ${data.Grave_zone}"></p>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group">
+                          <label >মৃত্যুর তারিখ</label>
+                          <p th:text="${data.Dod} ? ${#temporals.format(data.Dod, 'dd-MM-yyyy')} : 'NO RECORD'"></p>
+                      </div>
+                  </div>
 
+                </div>
 
+                <div class="col-md-7" style="display: flex; flex-direction: column;
+                width: 100%; padding: 0px; overflow: hide;">
+
+                    <div class="col" style="overflow: hide;">
+                        <div class="form-group">
+                            <label >দাফনের তারিখ</label>
+                            <p th:text="${data.Bur_date} ? ${#temporals.format(data.Bur_date, 'dd-MM-yyyy')} : 'NO RECORD'"></p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label >মৃত ব্যক্তির নাম</label>
+                            <p th:text="${data.Dec_name == null OR data.Dec_name == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Dec_name)}"></p>
+                        </div>
+                    </div>
+                  <div class="col">
+                    <div class="form-group">
+                        <label>স্বামী/স্ত্রীর নাম</label>
+                        <p th:text="${data.Spouse == null OR data.Spouse == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Spouse)}"></p>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                        <label >পিতার নাম</label>
+                        <p th:text="${data.Father == null OR data.Father == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Father)}"></p>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                        <label >মাতার নাম</label>
+                        <p th:text="${data.Mother == null OR data.Mother == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Mother)}"></p>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                        <label >ঠিকানা</label>
+                        <p th:text="${data.Address == null OR data.Address == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Address)}"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-md-8" style="padding-left: 0px;">
+            <!-- Second Column with Card -->
+            <div class="card"
+                 style="padding-top: 0px; padding-left: 20px; padding-right: 0px;
+                 padding-bottom: 20px; border: none; background: #FFF; height: 100%;">
+                <div class="card-body"
+                   style="border-radius: 10px;
+                        display: flex;
+                        padding: 0px;
+                        align-items: flex-start;
+                        gap: 20px;
+                        border: 1px solid #F3F3F3;">
+                <!-- Content for the second card -->
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="loader-wrapper">
+        <img src="https://www.boasnotas.com/img/loading2.gif" alt="loading...">
+    </div>
 
 </main><!-- /.container -->
 
@@ -301,110 +213,25 @@
 <!--<script src="../../assets/js/vendor/popper.min.js"></script>-->
 <!--<script src="../../dist/js/bootstrap.min.js"></script>-->
 <!--<script src="https://cdn.datatables.net/1.11.8/js/jquery.dataTables.min.js"></script>-->
-
+<!--<script th:src="@{/resource/JS/graveDetailsWithMap.js}"></script>-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script th:src="@{/resource/JS/common.js}"></script>
 <script>
     function GetGraveBycode(id){
-            const features = gravedata.features;
-            return features.filter(
-                function(grave){
-                    return grave.properties.Grave_ID == id
-                }
-            );
-        }
-
-        var found = GetGraveBycode('[[${data.Grave_no}]]');
-
-        //create map object in map div with co-orrdinate and zoom level
-        var map = L.map('map').setView([found[0].properties.Y , found[0].properties.X], 21);
-
-        //set map view as tile layer
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 70, // Set the maximum zoom level you want to allow
-            minZoom: 1, // Set a minimum zoom level
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-
-        //set marker
-        var marker = L.marker([found[0].properties.Y, found[0].properties.X]).addTo(map);
-        marker.bindPopup("<b>কবর নম্বরঃ "+found[0].properties.Grave_ID+"<br><b>নাম: "+'[[${data.Dec_name}]]'+"</b>").openPopup();
-
-        //set color of the polygon
-        function getColor(d) {
-            //return d = "0220139" ? '#800026' : '#FFFF00';
-            return  d == "Yes" ? '#52c755' : '#ff0f0f';
-        }
-
-        //set the style of the polygon
-        function style(feature) {
-            return {
-               //  fillColor: getColor(feature.properties.Grave_ID),
-               //  fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
-               fillColor: getColor(feature.properties.Available),
-               weight: 2,
-               opacity: 1,
-               color: 'white',
-               dashArray: '3',
-               fillOpacity: 0.7
-            };
-         }
-
-        //set the layer style
-        function highlightFeature(e) {
-            var layer = e.target;
-            layer.setStyle({
-                weight: 5,
-                color: '#666',
-                dashArray: '',
-                fillOpacity: 0.7
-            });
-            layer.bringToFront();
-            info.update(layer.feature.properties);
-        }
-
-         //reset the highlight
-         function resetHighlight(e) {
-             gravedata.resetStyle(e.target);
-             info.update();
-         }
-
-         //set the zoom feature
-         function zoomToFeature(e) {
-             map.fitBounds(e.target.getBounds());
-         }
-
-         //set the feature on mouse hover
-         function onEachFeature(feature, layer) {
-             layer.on({
-                 // mouseover: highlightFeature,
-                 mouseout: resetHighlight,
-                 //click: zoomToFeature,
-                 click: highlightFeature
-             });
-         }
-
-         var roaddata=L.geoJSON(roaddata).addTo(map)
-         var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
-
-         var info = L.control();
-         info.onAdd = function (map) {
-             this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-             this.update();
-             return this._div;
-         };
-
-         // method that we will use to update the control based on feature properties passed
-         info.update = function (props) {
-             this._div.innerHTML = '<h4>Grave Details</h4>' +  (props ?
-                 '<b>GraveID:</b> ' + props.Grave_ID + '<br\> <b>Block:</b>' + props.Block + '<br\> <b>Lane:</b>' + props.Lane
-                 : 'Touch on a grave');
-         };
-         info.addTo(map);
-
-         var gravedata=L.geoJSON(gravedata).addTo(map)
+        const features = gravedata.features;
+        return features.filter(
+            function(grave){
+                return grave.properties.Grave_ID == id
+            }
+        );
+    }
+    var grave = '[[${data.Grave_no}]]';
+    var found = GetGraveBycode(grave);
+    var name = '[[${data.Dec_name}]]';
 
 </script>
-
-
+<!--<script th:src="@{/resource/JS/graveSearchWithFilter.js}"></script>-->
+<script th:src="@{/resource/JS/graveDetailsWithMap.js}"></script>
 
 </body>
 </html>
