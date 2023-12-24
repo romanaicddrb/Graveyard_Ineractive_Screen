@@ -126,7 +126,7 @@ $(document).ready(function(){
             };
 
             $.ajax({
-                url: '/api/search',
+                url: 'http://chu.icddrb.org:8081/graveyard_iscreen/api/search',
                 method: 'POST',
                 destroy : true,
                 contentType: 'application/json',
