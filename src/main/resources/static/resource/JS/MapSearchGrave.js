@@ -286,7 +286,7 @@ return L.Control.Compass;
     //set color of the polygon
     function getColor(d) {
         //return d = "0220139" ? '#800026' : '#FFFF00';  #52c755 #ff0f0f
-        return  d == "Yes" ? 'gray' : '#29A74A';  //#ED1C24
+        return  d == "Yes" ? 'gray' : 'green';  //#ED1C24
     }
 
     //set the style of the polygon

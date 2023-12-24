@@ -24,7 +24,7 @@ $(document).ready(function(){
         "scrollX": true,
         "scrollY": 685,
         "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        "order": [[6, 'desc']],
+        "order": [[7, 'desc']],
         "fixedHeader": true,
         "select": true,
         "processing": "<i class='fa fa-spinner fa-spin fa-3x fa-fw'></i>vvvv...",

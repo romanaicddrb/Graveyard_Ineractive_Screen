@@ -258,14 +258,14 @@ if(found.length == 0){
 }
 else{
     marker.bindPopup("<b>কবর নম্বরঃ "+found[0].properties.Grave_ID+"<br><b>নাম: "+name+"</b>", {closeOnClick: false, autoClose: false}).openPopup();
-    var marker = L.marker([23.7990516813, 90.4038127014]).addTo(map);
+    var marker = L.marker([23.79902320, 90.40380000]).addTo(map);
     marker.bindPopup("<b>আপনার বর্তমান অবস্থান</b>", {closeOnClick: false, autoClose: false}).openPopup();
 }
 
 
 //set color of the polygon
 function getColor(d) {
-    return  d == "Yes" ? '#52c755' : '#ff0f0f';
+    return  d == "Yes" ? 'gray' : 'green';
 }
 
 //set the style of the polygon
