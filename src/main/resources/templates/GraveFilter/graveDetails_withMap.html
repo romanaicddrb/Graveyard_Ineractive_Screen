@@ -31,19 +31,6 @@
     <script th:src="@{Graveyard_Banani_Grave_Qgis_4326.js}"></script>
 
     <script th:src="@{Road_Banani.js}"></script>
-<!--    <style>-->
-<!--        #loader {-->
-<!--  /* Your loader styles */-->
-<!--  display: block;-->
-<!--  position: fixed;-->
-<!--  top: 0;-->
-<!--  left: 0;-->
-<!--  width: 100%;-->
-<!--  height: 100%;-->
-<!--  /* Center the loader */-->
-<!--  /* Add other styles as needed */-->
-<!--}-->
-<!--    </style>-->
 </head>
 
 <body >
@@ -114,38 +101,38 @@
                   <div class="col">
                       <div class="form-group">
                           <label >মেমো নম্বর</label>
-                          <p th:text="${data.Memo_no == null OR data.Memo_no == ''} ? 'N/A' : ${data.Memo_no}"></p>
+                          <p th:text="${data.Memo_no == null OR data.Memo_no == ''} ? 'NO RECORD' : ${data.Memo_no}"></p>
                       </div>
                   </div>
                   <div class="col">
                      <div class="form-group">
                          <label >কবর নম্বর</label>
-                         <p th:text="${data.Grave_no == null OR data.Grave_no == ''} ? 'N/A' : ${data.Grave_no}"></p>
+                         <p th:text="${data.Grave_no == null OR data.Grave_no == ''} ? 'NO RECORD' : ${data.Grave_no}"></p>
 
                      </div>
                   </div>
                   <div class="col">
                       <div class="form-group">
                           <label >কবরের সারি</label>
-                          <p th:text="${data.Grave_lane == null OR data.Grave_lane == ''} ? 'N/A' : ${data.Grave_lane}"></p>
+                          <p th:text="${data.Grave_lane == null OR data.Grave_lane == ''} ? 'NO RECORD' : ${data.Grave_lane}"></p>
                       </div>
                   </div>
                   <div class="col">
                       <div class="form-group">
                           <label>কবরের ব্লক</label>
-                          <p th:text="${data.Grave_block == null OR data.Grave_block == ''} ? 'N/A' : ${data.Grave_block}"></p>
+                          <p th:text="${data.Grave_block == null OR data.Grave_block == ''} ? 'NO RECORD' : ${data.Grave_block}"></p>
                       </div>
                   </div>
                   <div class="col">
                       <div class="form-group">
                         <label >কবরের জোন</label>
-                          <p th:text="${data.Grave_zone == null OR data.Grave_zone == ''} ? 'N/A' : ${data.Grave_zone}"></p>
+                          <p th:text="${data.Grave_zone == null OR data.Grave_zone == ''} ? 'NO RECORD' : ${data.Grave_zone}"></p>
                       </div>
                   </div>
                   <div class="col">
                       <div class="form-group">
                           <label >মৃত্যুর তারিখ</label>
-                          <p th:text="${data.Dod} ? ${#temporals.format(data.Dod, 'dd-MM-yyyy')} : 'N/A'"></p>
+                          <p th:text="${data.Dod} ? ${#temporals.format(data.Dod, 'dd-MM-yyyy')} : 'NO RECORD'"></p>
                       </div>
                   </div>
 
@@ -157,37 +144,37 @@
                     <div class="col" style="overflow: hide;">
                         <div class="form-group">
                             <label >দাফনের তারিখ</label>
-                            <p th:text="${data.Bur_date} ? ${#temporals.format(data.Bur_date, 'dd-MM-yyyy')} : 'N/A'"></p>
+                            <p th:text="${data.Bur_date} ? ${#temporals.format(data.Bur_date, 'dd-MM-yyyy')} : 'NO RECORD'"></p>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label >মৃত ব্যক্তির নাম</label>
-                            <p th:text="${data.Dec_name == null OR data.Dec_name == ''} ? 'N/A' : ${#strings.toUpperCase(data.Dec_name)}"></p>
+                            <p th:text="${data.Dec_name == null OR data.Dec_name == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Dec_name)}"></p>
                         </div>
                     </div>
                   <div class="col">
                     <div class="form-group">
                         <label>স্বামী/স্ত্রীর নাম</label>
-                        <p th:text="${data.Spouse == null OR data.Spouse == ''} ? 'N/A' : ${#strings.toUpperCase(data.Spouse)}"></p>
+                        <p th:text="${data.Spouse == null OR data.Spouse == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Spouse)}"></p>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
                         <label >পিতার নাম</label>
-                        <p th:text="${data.Father == null OR data.Father == ''} ? 'N/A' : ${#strings.toUpperCase(data.Father)}"></p>
+                        <p th:text="${data.Father == null OR data.Father == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Father)}"></p>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
                         <label >মাতার নাম</label>
-                        <p th:text="${data.Mother == null OR data.Mother == ''} ? 'N/A' : ${#strings.toUpperCase(data.Mother)}"></p>
+                        <p th:text="${data.Mother == null OR data.Mother == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Mother)}"></p>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-group">
                         <label >ঠিকানা</label>
-                        <p th:text="${data.Address == null OR data.Address == ''} ? 'N/A' : ${#strings.toUpperCase(data.Address)}"></p>
+                        <p th:text="${data.Address == null OR data.Address == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Address)}"></p>
                     </div>
                   </div>
                 </div>
@@ -229,6 +216,20 @@
 <!--<script th:src="@{/resource/JS/graveDetailsWithMap.js}"></script>-->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script th:src="@{/resource/JS/common.js}"></script>
+<script>
+    function GetGraveBycode(id){
+        const features = gravedata.features;
+        return features.filter(
+            function(grave){
+                return grave.properties.Grave_ID == id
+            }
+        );
+    }
+    var found = GetGraveBycode('[[${data.Grave_no}]]');
+    var name = '[[${data.Dec_name}]]';
+</script>
+
 <script th:src="@{/resource/JS/graveDetailsWithMap.js}"></script>
+
 </body>
 </html>

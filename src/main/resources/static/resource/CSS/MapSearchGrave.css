@@ -19,9 +19,12 @@ body, div, a, p, span{
 	  }
 
      #map {
-      height: 730px;
-      width: 100%;
-      z-index: 0;
+        position: relative;
+        background-color: black;
+        height: 400px;
+        height: 730px;
+        width: 100%;
+        z-index: 0;
      }
 
     .info {
@@ -34,3 +37,86 @@ body, div, a, p, span{
       margin: 0 0 5px;
       color: #777;
     }
+
+
+
+
+.leaflet-control.leaflet-compass {
+	position:relative;
+	color:#1978cf;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	/*background-color: rgba(0, 0, 0, 0.25);*/
+	background-color: rgba(255, 255, 255, 0.8);
+	/*background: none;*/
+	box-shadow: 0 1px 7px rgba(0,0,0,0.65);
+	margin-left:10px;
+	margin-top:10px;
+}
+.leaflet-compass .compass-button {
+	display:block;
+	float:left;
+	width:80px;
+	height:80px;
+	border-radius:4px;
+}
+.leaflet-compass .compass-button.active {
+	background: #fff;
+}
+.leaflet-compass .compass-icon {
+	height: 75px;
+	width: 75px;
+	margin: 2px;
+	background: url('../image/compass.jpg') center center no-repeat;
+}
+
+.leaflet-compass .compass-digit {
+}
+
+.leaflet-compass .compass-alert {
+	position:absolute;
+	right:50;
+	bottom:50px;
+	width:100px;
+	padding:2px;
+	line-height:.95em;
+	color:#e00;
+	border: 1px solid #888;
+	background-color: rgba(255, 255, 255, 0.75);
+	border-radius:4px;
+}
+
+
+
+.leaflet-interactive:before{
+    content:"";
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    z-index:1;
+    background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%) !important;
+    mix-blend-mode: multiply;
+}
+
+.leaflet-interactive {
+    position: absolute;
+    z-index: -1;
+    /* Box shadow to create a black shed effect */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+#blackOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /*background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);*/
+    pointer-events: none; /* Allow interactions with the map under the overlay */
+}
+

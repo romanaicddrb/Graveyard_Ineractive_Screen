@@ -1,20 +1,15 @@
 $(document).ready(function(){
-
-
     var gidValue = '2';
     $('#myDataTable').DataTable().clear().destroy();
     var myDataTable = $('#myDataTable').DataTable({
 
         language: {
-            "emptyTable": "<img src='../resource/image/nodata.png' style='position: fixed; z-index: 0; margin-left: 60%;'>",
+            "emptyTable": "<div style='position: fixed; z-index: 0; margin-left: 60%;'><img src='../resource/image/nodata.png'> <br><br><p style='color: #333; text-align: center;font-size: 24px;font-style: normal;font-weight: 800;'>তথ্য অনুসন্ধান করে পাওয়া যায় নি</p></div>",
             "lengthMenu": "Show _MENU_ entries",
             "info": "Showing _START_ to _END_ of _TOTAL_ entries",
             "infoEmpty": "Showing 0 to 0 of 0 entries",
             "search": "Search:",
             "loadingRecords": "HHHHHHHH ...",
-//            "loadingRecords": "&nbsp; Loading.../",
-
-//            "pageLength": 50,  <div class='spinner'></div>
             "paginate": {
                 "first": "First",
                 "last": "Last",
@@ -23,7 +18,6 @@ $(document).ready(function(){
             }
         },
         "responsive": true,
-//        "lengthChange": false,
         "autoWidth": true,
         "paging": true,
         "scrollCollapse": true,
@@ -34,10 +28,8 @@ $(document).ready(function(){
         "fixedHeader": true,
         "select": true,
         "processing": "<i class='fa fa-spinner fa-spin fa-3x fa-fw'></i>vvvv...",
-//        "processing": "Loading.....",
         "destroy": true,
         "orderable": true,
-//        "dom": 'Bfrtip',
 
         columns: [
             { data: 'dec_id', visible: false, width: '0%'},
@@ -52,7 +44,7 @@ $(document).ready(function(){
             { data: null,
                 render: function (data, type, row) {
                     if (data && data.dec_id && data.graveyard_id) {
-                      return '<div class="mr-3" style="margin-left: -5%; font-size: 5px; display: flex; align-items: center;"><button type="button" class="btn btn-block btn-sm"> বিস্তারিত দেখুন </button></div>';
+                      return '<div class="mr-3" style="margin-left: -5%; font-size: 5px; display: flex; align-items: center;"><button type="button" class="btn btn-block btn-sm btnD"> বিস্তারিত দেখুন </button></div>';
                     }
                     else {
                       // If data is not available, return an empty string
@@ -87,18 +79,7 @@ $(document).ready(function(){
         ],
     });
 
-    function loadDetailsPage(dec_id, graveyard_id) {
-       window.location.href = '/graveDetails_withPosition?id=' + dec_id + '&gid=' + graveyard_id;
-    }
-
-
-    $('#searchBtn').on('click', function() {
-
-//        $(".loader-wrapper").style.display = "block";
-//        $(".loader-wrapper").fadeOut("slow");
-        //myDataTable.reload();
-//        myDataTable.clear().draw();
-//        setTimeout(function(){
+  $('#searchBtn').on('click', function() {
         var memoFilter = $('#MemoFilter').val();
         var deadNameFilter = $('#DeadnameFilter').val();
         var deadDayFilter = $('#DeaddayFilter').val();
@@ -112,20 +93,11 @@ $(document).ready(function(){
         deadYearFilter!="" || buriedDayFilter!="" || buriedMonthFilter!="" || buriedYearFilter!=""){
             $('#filterFieldEmpty').text("");
             swal({
-//                title:"Please wait! Data is loading...",
-//                text:"   ",
                 icon: "https://www.boasnotas.com/img/loading2.gif",
                 buttons: false,
                 closeOnClickOutside: false,
                 timer: 2500,
-                //icon: "success"
             });
-//            $('.loader-wrapper').toggle('slow', function() {
-//                $(".loader-wrapper").fadeOut(1500);
-//            });
-
-//            alert("Please wait! Data is loading...");
-            // Prepare the request data
             var requestData = {
                 graveyardId: '2',
                 memo: memoFilter,
@@ -144,20 +116,27 @@ $(document).ready(function(){
                 destroy : true,
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
-//                processing: 'Loading.....',
                 success: function(data) {
                     myDataTable.clear();
-//                    alert("Please wait! Data is loading...");
                     if (data.data.length > 0) {
                         myDataTable.rows.add(data.data).draw();
-                        myDataTable.page.len(25).draw();
-                        $(document).on('click', '.btn', function() {
+                        myDataTable.page.len( 25 ).draw();
+                        $(document).on('click','.btnD', function() {
+//                        console.log("click call");
+                            swal({
+                                title:"Please wait! Map is loading...",
+                                text:"   ",
+                                icon: "https://www.boasnotas.com/img/loading2.gif",
+                                buttons: false,
+                                closeOnClickOutside: false,
+                                timer: 2500
+                            });
+
                             var rowData = myDataTable.row($(this).parents('tr')).data();
                             loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
                         });
                     } else {
                         myDataTable.clear().draw();
-                        //myDataTable.rows.add( "" ).draw();
                     }
                 },
                 error: function(error) {
@@ -167,9 +146,44 @@ $(document).ready(function(){
         } else {
             $('#filterFieldEmpty').text("প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন");
         }
-//        }, 2000);
     });
+
+
+
 });
+
+//function btnClick(){
+//console.log("btnClick");
+//}
+
+    function loadDetailsPage(dec_id, graveyard_id) {
+    console.log("loadDetailsPage");
+
+
+       window.location.href = '/graveDetails_withPosition?id=' + dec_id + '&gid=' + graveyard_id;
+    }
+
+
+
+
+//    $('.btnD').on('click', function() {
+
+//        swal({
+//            title:"Please wait! Map is loading...",
+//            text:"   ",
+//            icon: "https://www.boasnotas.com/img/loading2.gif",
+//            buttons: false,
+//            closeOnClickOutside: false,
+//            timer: 2500
+//        });
+//        var rowData = myDataTable.row($(this).parents('tr')).data();
+//        // window.location.href = '/graveDetails_withPosition?id=' + rowData.dec_id + '&gid=' + rowData.graveyard_id;
+//        loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
+//    });
+
+
+//const collection = document.getElementsByClassName("btnD");
+//    collection[0].onclick = console.log("hello");
 
 const monthDropDown = document.getElementById("BuriedmonthFilter");
 const monthDropDownDead = document.getElementById("DeadmonthFilter");
@@ -249,9 +263,26 @@ for (let i=1974; i<2024; i++) {
     option.appendChild(optionText);
     yearDropDownDead.appendChild(option);
 }
-document.addEventListener("contextmenu", event => {
-  if (event.target.nodeName === "nnnnnn") {
-    event.preventDefault();
-  }
-});
+
+//
+//function handleDateChange() {
+//    // Get the selected date from the input
+//    var selectedDate = document.getElementById("dayPicker").value;
+//
+//    // Parse the date string and extract the day
+//    var dateObject = new Date(selectedDate);
+//    var selectedDay = dateObject.getDate();
+//
+//    // Display the selected day (you can perform other actions as needed)
+//    alert("Selected Day: " + selectedDay);
+//}
+//$( function handleDateChange() {
+////     var date = $('#dayPicker').datepicker({
+//    $( "#dayPicker" ).datepicker({
+//        monthNames: [ "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December" ]
+//    });
+//});
+
+
+
 
