@@ -75,15 +75,14 @@ public class GraveServiceImpl implements GraveService {
     }
 
     @Override
-    public List<GraveAvailabilityDto> getGraveStatus() {
-        try {
-            return graveRepository.getGraveStatus(2);
-        }catch (Exception ex){
-            ex.printStackTrace();
-            return null;
-        }
-
+    public List<GraveMapDetail> getGraveMapDetail(int gId) {
+        return null;
     }
+
+//    @Override
+//    public List<GraveAvailabilityDto> getGraveStatus() {
+//        return graveRepository.getGraveStatus(2);
+//    }
 
 
 }

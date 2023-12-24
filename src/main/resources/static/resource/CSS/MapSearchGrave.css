@@ -19,12 +19,10 @@ body, div, a, p, span{
 	  }
 
      #map {
-        position: relative;
-        background-color: black;
+        /*position: relative;*/
         height: 400px;
         height: 730px;
         width: 100%;
-        z-index: 0;
      }
 
     .info {
@@ -71,8 +69,6 @@ body, div, a, p, span{
 	background: url('../image/compass.jpg') center center no-repeat;
 }
 
-.leaflet-compass .compass-digit {
-}
 
 .leaflet-compass .compass-alert {
 	position:absolute;
@@ -89,34 +85,36 @@ body, div, a, p, span{
 
 
 
-.leaflet-interactive:before{
+
+.leaflet-pane svg{
     content:"";
     position: fixed;
-    top:0;
+    /*background-image:url('../image/sliderOverlay.png');*/
     right:0;
     left:0;
     bottom:0;
     z-index:1;
-    background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%) !important;
     mix-blend-mode: multiply;
 }
-
-.leaflet-interactive {
+/*
+svg {
     position: absolute;
     z-index: -1;
     /* Box shadow to create a black shed effect */
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
-}
+    /*box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}*/
+/*
+.*/
 
-
+/*
 #blackOverlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    /*background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);*/
-    pointer-events: none; /* Allow interactions with the map under the overlay */
-}
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);
+    pointer-events: none; /* Allow interactions with the map under the overlay *//*
+}*/
 

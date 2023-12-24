@@ -35,8 +35,8 @@ public class APIController {
     }
 
     @GetMapping(value = "/getGraveAvailApi/{gid}")
-    public ResponseEntity<List<GraveAvailabilityDto>> Allgraveavailability(@PathVariable("gid") String gid) {
-        return new ResponseEntity<>(graveService.getGraveStatus(), HttpStatus.OK);
+    public ResponseEntity<List<GraveMapDetail>> getMapDetail(@PathVariable("gid") int gid) {
+        return new ResponseEntity<>(graveService.getGraveMapDetail(gid), HttpStatus.OK);
     }
 
 }

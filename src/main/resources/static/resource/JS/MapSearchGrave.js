@@ -239,11 +239,24 @@ return L.Control.Compass;
         }
     }).setView([23.799617614599999, 90.404818522300005], 19);
 //0224140    setView([23.7999848513, 90.405272463100005], 18);
-
+//
+//    let myFilter = [
+//        'blur:0px',
+//        'brightness:10%',
+//        'contrast:130%',
+//        'grayscale:20%',
+//        'hue:290deg',
+//        'opacity:100%',
+//        'invert:100%',
+//        'saturate:300%',
+//        'sepia:10%',
+//    ];
     //set map view as tile layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 70, // Set the maximum zoom level you want to allow
         minZoom: 1, // Set a minimum zoom level
+
+//        brightness:100%,
 //        id: 'mapbox.streets',
 //        tileSize: 512,
 //        zoomOffset: -1,
@@ -266,8 +279,8 @@ return L.Control.Compass;
 
     //set color of the polygon
     function getColor(d) {
-        //return d = "0220139" ? '#800026' : '#FFFF00';
-        return  d == "Yes" ? '#52c755' : '#ff0f0f';
+        //return d = "0220139" ? '#800026' : '#FFFF00';  #52c755 #ff0f0f
+        return  d == "Yes" ? 'gray' : '#29A74A';  //#ED1C24
     }
 
     //set the style of the polygon

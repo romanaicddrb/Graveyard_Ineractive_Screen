@@ -1,41 +1,19 @@
 package com.graveyard.controller;
 
 import com.graveyard.model_class.dto.GraveDetail;
-import com.graveyard.model_class.viewmodel.GraveAvailable_ViewModel;
-import com.graveyard.model_class.viewmodel.GraveDetails_ViewModel;
-import com.graveyard.service.DecPersonService;
 import com.graveyard.service.*;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
-
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Calendar;
-import java.util.List;
-import java.util.UUID;
 
 @Controller
 @AllArgsConstructor
 public class ScreenController {
-//    private final RestTemplate restTemplate;
-    private DecPersonService decPersonService;
-    private GraveAvailable graveAvailable;
 
     private GraveService graveService;
-
-//    @Autowired
-//    public ScreenController(RestTemplateBuilder restTemplateBuilder) {
-//        this.restTemplate = restTemplateBuilder.build();
-//    }
 
     @GetMapping(path="/")
     public String welcome() {

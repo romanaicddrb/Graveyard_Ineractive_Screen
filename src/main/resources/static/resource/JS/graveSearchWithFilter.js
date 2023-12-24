@@ -1,4 +1,28 @@
 $(document).ready(function(){
+    function getBaseUrl() {
+    var pathArray = location.href.split('/');
+     console.log(pathArray)
+    var protocol = pathArray[0];
+     console.log(protocol)
+    var host = pathArray[2];
+     console.log(host)
+    var url = protocol + '//' + host + '/';
+     console.log(url)
+    return url;
+    }
+var pathArray = location.href.split('/');
+     console.log(pathArray)
+    var protocol = pathArray[0];
+     console.log(protocol)
+    var host = pathArray[2];
+     console.log(host)
+    var url = protocol + '//' + host + '/';
+     console.log(url)
+     console.log(location.href)
+    return url;
+
+
+
     var gidValue = '2';
     $('#myDataTable').DataTable().clear().destroy();
     var myDataTable = $('#myDataTable').DataTable({
@@ -24,7 +48,7 @@ $(document).ready(function(){
         "scrollX": true,
         "scrollY": 685,
         "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-
+        "order": [[6, 'desc']],
         "fixedHeader": true,
         "select": true,
         "processing": "<i class='fa fa-spinner fa-spin fa-3x fa-fw'></i>vvvv...",
@@ -35,6 +59,7 @@ $(document).ready(function(){
             { data: 'dec_id', visible: false, width: '0%'},
             { data: 'graveyard_id' , visible: false, width: '0%' },
             { data: 'memo_no', width: '100px' },
+            { data: 'grave_no' , width: '100px' },
             { data: 'dod', width: '140px', },
             { data: 'dec_name' },
             { data: 'father', },
@@ -54,14 +79,14 @@ $(document).ready(function(){
             }
         ],
         "columnDefs": [{
-                "targets": [4, 5], // Column indexes (0-based) where transformation should be applied
+                "targets": [5, 6], // Column indexes (0-based) where transformation should be applied
                 "render":
                     function (data, type, row) {
                     // Apply text-transform: uppercase to the rendered content
                         return type === 'display' && data !== null ? data.toUpperCase() : data;
                     }
                 },{
-                    targets: [3, 6], // Assuming the 'Date' column is at index 0
+                    targets: [4, 7], // Assuming the 'Date' column is at index 0
                     render: function(data, type, row, meta) {
                         // Format the date as 'DD-MM-YYYY' manually
                         if (type === 'display' && data) {
@@ -74,9 +99,23 @@ $(document).ready(function(){
                         return data;
                     }
                 },{
-                    orderable: false, targets: 8
+                    orderable: false, targets: 9
                 }
         ],
+    });
+
+
+    $(document).on('click','.btnD', function() {
+        swal({
+            title:"Please wait! Map is loading...",
+            text:"   ",
+            icon: "https://www.boasnotas.com/img/loading2.gif",
+            buttons: false,
+            closeOnClickOutside: false,
+            timer: 2500
+        });
+        var rowData = myDataTable.row($(this).parents('tr')).data();
+        loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
     });
 
   $('#searchBtn').on('click', function() {
@@ -121,20 +160,6 @@ $(document).ready(function(){
                     if (data.data.length > 0) {
                         myDataTable.rows.add(data.data).draw();
                         myDataTable.page.len( 25 ).draw();
-                        $(document).on('click','.btnD', function() {
-//                        console.log("click call");
-                            swal({
-                                title:"Please wait! Map is loading...",
-                                text:"   ",
-                                icon: "https://www.boasnotas.com/img/loading2.gif",
-                                buttons: false,
-                                closeOnClickOutside: false,
-                                timer: 2500
-                            });
-
-                            var rowData = myDataTable.row($(this).parents('tr')).data();
-                            loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
-                        });
                     } else {
                         myDataTable.clear().draw();
                     }
@@ -246,7 +271,7 @@ for (let i=1; i<31; i++) {
 
 const yearDropDown = document.getElementById("BuriedyearFilter");
 const yearDropDownDead = document.getElementById("DeadyearFilter");
-for (let i=1974; i<2024; i++) {
+for (let i=2023; i>1973; i--) {
     let option = document.createElement("option");
     option.setAttribute('value', i);
     let optionText = document.createTextNode(i);
@@ -256,7 +281,7 @@ for (let i=1974; i<2024; i++) {
 
 
 
-for (let i=1974; i<2024; i++) {
+for (let i=2023; i>1973; i--) {
     let option = document.createElement("option");
     option.setAttribute('value', i);
     let optionText = document.createTextNode(i);

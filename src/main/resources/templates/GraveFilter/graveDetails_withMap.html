@@ -225,10 +225,12 @@
             }
         );
     }
-    var found = GetGraveBycode('[[${data.Grave_no}]]');
+    var grave = '[[${data.Grave_no}]]';
+    var found = GetGraveBycode(grave);
     var name = '[[${data.Dec_name}]]';
-</script>
 
+</script>
+<!--<script th:src="@{/resource/JS/graveSearchWithFilter.js}"></script>-->
 <script th:src="@{/resource/JS/graveDetailsWithMap.js}"></script>
 
 </body>
