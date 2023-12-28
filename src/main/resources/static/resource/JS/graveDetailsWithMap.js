@@ -264,14 +264,14 @@ else{
 
 
 //set color of the polygon
-function getColor(d) {
-    return  d == "Yes" ? 'gray' : 'green';
+function getColor(d, idg) {
+    return  d == "Yes" ? '#A065B6' : idg == "9999999" ? '#FF5733' : 'green';
 }
 
 //set the style of the polygon
 function style(feature) {
     return {
-       fillColor: getColor(feature.properties.Available),
+       fillColor: getColor(feature.properties.Available,feature.properties.Grave_ID),
        weight: 2,
        opacity: 1,
        color: 'white',
@@ -332,61 +332,174 @@ var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature})
 //};
 //info.addTo(map);
 
+if(grave==null||grave==""){
+    var info = L.control();
+    info.onAdd = function (map) {
+       this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+       this.update();
+       return this._div;
+    };
 
-var info = L.control();
-info.onAdd = function (map) {
-   this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-   this.update();
-   return this._div;
-};
-
-// method that we will use to update the control based on feature properties passed
-info.update = function (props) {
-   this._div.innerHTML = '<div style="display: flex; flex-direction: column; gap:10px; padding: 20px; border-radius: 20px; font-family: Hind Siliguri;"><h4>কবর শনাক্তকরণ হয়নি</h4><p>আপনি কবর শনাক্তকরণে সহায়তা করতে চান?</p> <div style="display:flex; justify-content: center; align-items: center; gap: 30px;"><button type="button" class="btn btn-primary" style="width:70px" id="btnY">Yes</button><button type="button" style="width:70px" class="btn btn-danger" id="btnN">No</button></div></div>';
-};
-
-if(found.length == 0){
+    // method that we will use to update the control based on feature properties passed
+    info.update = function (props) {
+       this._div.innerHTML = '<div style="display: flex; flex-direction: column; gap:10px; padding: 20px; border-radius: 20px; font-family: Hind Siliguri;"><h4>আপনি কি কবর শনাক্ত করতে চান ?</h4><div style="display:flex; justify-content: center; align-items: center; gap: 30px;"><button type="button" class="btn btn-primary" style="width:70px" id="btnY">Yes</button><button type="button" style="width:70px" class="btn btn-danger" id="btnN">No</button></div></div>';
+       //   <p>আপনি কবর শনাক্তকরণে সহায়তা করতে চান?</p>
+    };
     info.addTo(map);
 }
 
 
+function subLayerVisibility(radioElement){
+//    if (radioElement.value == 'true') { x=$("#checkbox").is(":checked");
+    if(radioElement.id == 'grave_number'){
+        if ($(radioElement).prop('checked')==true){
+            //$(".blockLane").addClass("disabledbutton");
+            $(".numberBlock").addClass("disabledbutton");
+            $(".numberLane").addClass("disabledbutton");
+            $('#grave_subLayer').show();
+        } else{
+            $('#grave_subLayer').hide();
+            $(".numberBlock").removeClass("disabledbutton");
+            $(".numberLane").removeClass("disabledbutton");
+//            $(".blockLane").removeClass("disabledbutton");
+        }
+    }else if(radioElement.id == 'block_number'){
+        if ($(radioElement).prop('checked')==true){
+          var x = 0;
+          $(".numberGrave").addClass("disabledbutton");
+          $('#block_subLayer').show();
+        } else{
+          $('#block_subLayer').hide();
+            if(!document.querySelector('#lane_number').checked){
+                $(".numberGrave").removeClass("disabledbutton");
+            }
+//           if(y = 1){$(".numberGrave").removeClass("disabledbutton");}
+// //           debugger;
+//           x = 1;
+        }
+    }else if(radioElement.id == 'lane_number'){
+        if ($(radioElement).prop('checked')==true){
+        var y = 0;
+            $(".numberGrave").addClass("disabledbutton");
+            $('#lane_subLayer').show();
+        } else{
+            $('#lane_subLayer').hide();
+            if(!document.querySelector('#block_number').checked){
+                $(".numberGrave").removeClass("disabledbutton");
+            }
+//             if(x = 1){$(".numberGrave").removeClass("disabledbutton");}
+//             y = 1;
+        }
+    }
+}
+
+
+//        if(radioElement.name == 'grave_id_name'){
+//            $(".blockLane").addClass("disabledbutton");
+//            $('#'+radioElement.name+'_subLayer').show();
+//            if(radioElement.value == 'true'){
+//            console.log('true');
+//                $('#'+radioElement.name+'_subLayer').show();}
+//        }else if(radioElement.name == 'grave_block_line_name'){
+//            $(".numberGrave").addClass("disabledbutton");
+//            if(radioElement.value == 'block'){
+//                $('#line_subLayer').hide();
+//                $('#block_subLayer').show();
+//            }else{
+//                $('#block_subLayer').hide();
+//                $('#line_subLayer').show();
+//            }
+//        }
+//    }else{
+//        $('#'+radioElement.name+'_subLayer').hide();
+//    }
+//}
 
 
 $(document).on('click','#btnY', function() {
 //    swal("Yes is working!");
     Swal.fire({
-        title: "Fill-up the below form for "+name,
-       // text: "Name: "+name+" and ID: "+id,
+//        title: "Fill-up the below form for ",
+        title: name+"<br> এর কবর শনাক্ত করতে <br>আপনি কিভাবে সাহায্য করতে চান?",
+       // text: "Name: "+name+" and ID: "+id, এর কবর সনাক্তকরণে আপনি কিভাবে সাহায্য করতে চান?
         html:
-//            '<div>Duration of Session </div>'+
-            '<label><strong>Grave Number: &nbsp; &nbsp;  </strong></label><input id="swal-input0" class="swal2-input" type="text" style="display: inline;">' +
-            '<br><label><strong>Select Block: &nbsp; &nbsp;  </strong></label><select onchange="selectBlock()" id="swal-input1" class="swal2-input" style="display: inline;"> <option value="" selected>Select Block</option></select>' +
-            '<br><br><label><strong>Select Lane: &nbsp; &nbsp;  </strong></label><select onchange="selectLane()" id="swal-input2" class="swal2-input" style="display: inline;"> <option value="" selected>Select Lane</option></select>' +
-            '<input id="swal-input3" class="swal2-input" type="hidden" value="' + id + '" style="display: block;">' ,
-//            '<input type="checkbox" id="Reffered" name="Reffered" value="Yes" >' + "Reffered",
+        '<div class="row d-flex" style="justify-content: center; gap: 30px;">'+
+            '<div class="numberGrave"><input type="checkbox" id="grave_number" onchange="subLayerVisibility(this);">'+
+            '<br><label>কবর নম্বর</label>'+
+                '<div style="display:none;" id="grave_subLayer">'+
+                    '<input id="grave" type="text" placeholder="কবর নম্বর" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
+                '</div>'+
+
+            '<div class="numberBlock"><input type="checkbox" id="block_number" onchange="subLayerVisibility(this);">'+
+            '<br><label>ব্লক</label>'+
+                '<div style="display:none;" id="block_subLayer">'+
+                    '<input id="block" type="text" placeholder="ব্লক নম্বর" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
+                '</div>'+
+
+            '<div class="numberLane"><input type="checkbox" id="lane_number" onchange="subLayerVisibility(this);">'+
+                '<br><label>সারি</label>'+
+                    '<div style="display:none;" id="lane_subLayer">'+
+                        '<input id="block" type="text" placeholder="সারি নম্বর" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
+                    '</div>'+
+
+//                '<div class="row d-flex blockLane" style="gap: 30px;">'+
+//                    '<div><input type="checkbox" id="grave_line_yes" name="grave_block_line_name" value="block" onchange="subLayerVisibility(this);">'+
+//                        '<br><label for="block">ব্লক</label>'+
+//                            '<div style="display:none;" id="block_subLayer">'+
+//                                '<input type="text" class="form-control" placeholder="ব্লক নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px;">' +
+//                            '</div>'+
+//                    '</div>'+
+//                    '<div><input type="checkbox" id="grave_line_no" name="grave_block_line_name" value="line" onchange="subLayerVisibility(this);">'+
+//                        '<br><label for="line">সারি</label>'+
+//                            '<div style="display:none;" id="line_subLayer">'+
+//                                '<input type="text" class="form-control" placeholder="সারি নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px;"></div>' +
+//                            '</div>'+
+//                    '</div>'+
+//                '</div>'+
+
+//            '<div><div class="blockLane"><input type="radio" id="block_name" name="blockLane_name" value="true" onchange="subLayerVisibility(this);">'+
+//            '<br><label for="number_of_block">ব্লক</label></div>'+
+//                '<div style="display:none;" id="block_name_subLayer">'+
+//                    '<input id="grave" type="text" class="form-control" placeholder="ব্লক নম্বর" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
+//                '</div>'+
+//
+//            '<div class="blockLane"><input type="radio" id="lane_name" name="blockLane_name" value="true" onchange="subLayerVisibility(this);">'+
+//            '<br><label for="number_of_lane">সারি</label></div>'+
+//                '<div style="display:none;" id="lane_name_subLayer">'+
+//                    '<input id="grave" type="text" class="form-control" placeholder="সারি নম্বর" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
+//                '</div></div>'+
+        '</div>'+
+        '<p style="color: blue">***আপনার আত্মীয়/ পরিচিত ব্যক্তির কবরের সামনে ব্লক, লেন, কবর নম্বর দেয়া আছে। অনুগ্রহ করে সেই সকল তথ্য দিয়ে সহায়তা করুন।</p>',
+
+
+//        '<label>কবর নম্বর দিয়ে &nbsp; &nbsp;</label><input type="radio" id="grave_yes" name="help_grave_name" value="true" onchange="subLayerVisibility(this);"><label for="yes">&nbsp; Yes &nbsp; &nbsp;</label><input type="radio" id="grave_no" name="help_grave_name" value="false" onchange="subLayerVisibility(this);"><label for="no">&nbsp;No</label>' +
+//        '<div style="display:none;" id="help_grave_name_subLayer"><input id="grave" type="text" class="form-control" placeholder="Grave Number" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
+//        '<br><label>কবরের ব্লক নম্বর দিয়ে &nbsp; &nbsp;</label><input type="radio" id="grave_block_yes" name="help_grave_block_name" value="true" onchange="subLayerVisibility(this);"><label for="yes">&nbsp; Yes &nbsp; &nbsp;</label><input type="radio" id="grave_block_no" name="help_grave_block_name" value="false" onchange="subLayerVisibility(this);"><label for="no">&nbsp;No</label>' +
+//        '<div style="display:none;" id="help_grave_block_name_subLayer"><input id="graveBlock" type="text" class="form-control" placeholder="Grave Block Number" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
+//        '<br><label>কবরের সারি নম্বর দিয়ে &nbsp; &nbsp;</label><input type="radio" id="grave_line_yes" name="help_grave_line_name" value="true" onchange="subLayerVisibility(this);"><label for="yes">&nbsp; Yes &nbsp; &nbsp;</label><input type="radio" id="grave_line_no" name="help_grave_line_name" value="false" onchange="subLayerVisibility(this);"><label for="no">&nbsp;No</label>' +
+//        '<div style="display:none;" id="help_grave_line_name_subLayer"><input id="graveLine" type="text" class="form-control" placeholder="Grave Line Number" style="font-size: small;height: calc(2.25rem + 2px);"></div>',
+
+
+//            '<div> <strong>'+name+'</strong></div>'+
+//            '<br><label><strong>Grave Number: &nbsp; &nbsp;</strong></label><input id="swal-input0" class="swal2-input" type="text" style="display: inline; margin: 0; padding:0;">' +
+//            '<br><br><label><strong>Select Block: &nbsp; &nbsp;  </strong></label><select onchange="selectBlock()" id="swal-input1" class="swal2-input" style="display: inline;"> <option value="" selected>Select Block</option></select>' +
+//            '<br><br><label><strong>Select Lane: &nbsp; &nbsp;  </strong></label><select onchange="selectLane()" id="swal-input2" class="swal2-input" style="display: inline;"> <option value="" selected>Select Lane</option></select>' +
+//            '<input id="swal-input3" class="swal2-input" type="hidden" value="' + id + '" style="display: block;">' ,
+
 
         showCancelButton: true,
+        showConfirmButton: false,
         confirmButtonColor: '#28a745',
-        cancelButtonColor: '#d0cdcd',
-        confirmButtonText: 'Complete',
+        cancelButtonColor: 'red',
+        //confirmButtonText: 'আপনার সাহযোগিতার জন্য ধন্যবাদ',
+        cancelButtonText: 'Cancel',
         customClass: 'swal-wide',
-
-
     }).then((result) => {
         if (result.isConfirmed) {
-            if (document.getElementById('Reffered').checked) {
-                var p = "Yes"
-            }
-            else {
-                var p="No"
-            }
-
-            var urlcomplete = '@Url.Action("CompleteTask", "Phycologist")';
-            urlcomplete += '/?id=' + id + '&sdate=' + document.getElementById('swal-input1').value + '&edate=' + document.getElementById('swal-input2').value + '&Reffered=' + p
-            window.location.href = urlcomplete;
+            console.log('Form Submitted');
         }
         else {
-
+            console.log('Form Canceled');
         }
 
     });

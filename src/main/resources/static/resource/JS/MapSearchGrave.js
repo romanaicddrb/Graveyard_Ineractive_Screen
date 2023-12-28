@@ -216,20 +216,6 @@ return L.Control.Compass;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //create map object in map div with co-ordinate and zoom level
     // var map = L.map('map').setView([23.799105894372758, 90.4039862233958], 17.5);
     var map = L.map('map', {
@@ -239,35 +225,15 @@ return L.Control.Compass;
         }
     }).setView([23.799617614599999, 90.404818522300005], 19);
 //0224140    setView([23.7999848513, 90.405272463100005], 18);
-//
-//    let myFilter = [
-//        'blur:0px',
-//        'brightness:10%',
-//        'contrast:130%',
-//        'grayscale:20%',
-//        'hue:290deg',
-//        'opacity:100%',
-//        'invert:100%',
-//        'saturate:300%',
-//        'sepia:10%',
-//    ];
+
     //set map view as tile layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 70, // Set the maximum zoom level you want to allow
         minZoom: 1, // Set a minimum zoom level
-
-//        brightness:100%,
-//        id: 'mapbox.streets',
-//        tileSize: 512,
-//        zoomOffset: -1,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
-
-
-
-
-
+    //prianka Start
     var comp = new L.Control.Compass({autoActive: true, showDigit:true});
     map.addControl(comp);
 //prianka end
@@ -278,17 +244,23 @@ return L.Control.Compass;
     marker.bindPopup("<b>আপনার বর্তমান অবস্থান</b>").openPopup();
 
     //set color of the polygon
-    function getColor(d) {
-        //return d = "0220139" ? '#800026' : '#FFFF00';  #52c755 #ff0f0f
-        return  d == "Yes" ? 'gray' : 'green';  //#ED1C24
+    function getColor2(d, idg) {
+    //console.log(d);
+//        if(idg!='null' || idg!=''){
+            return  d == "Yes" ? '#A065B6' : idg == "9999999" ? '#FF5733' : 'green';
+//        } else if (idg== "null" || idg=='' || idg=='no record'){
+//        console.log('nuuuullll');
+//        //return d = "0220139" ? '#800026' : '#FFFF00';  #52c755 #ff0f0f
+//            return  idg == null? '#A065B6' : '#E8DA07';  //#ED1C24
+//        }
     }
 
     //set the style of the polygon
     function style(feature) {
-        return {
+          return {
             //  fillColor: getColor(feature.properties.Grave_ID),
             //  fillColor: (feature.properties.Grave_ID == "0220139") ? '#52c755' : '#ff0f0f',
-            fillColor: getColor(feature.properties.Available),
+            fillColor: getColor2(feature.properties.Available,feature.properties.Grave_ID),
             weight: 2,
             opacity: 1,
             color: 'white',
@@ -344,13 +316,6 @@ return L.Control.Compass;
         return this._div;
     };
 
-
-//    info.onAdd = function (map) {  //test by prianka
-//        this._div = L.DomUtil.create('div', 'comp'); // create a div with a class "info"
-//        this.update();
-//        return this._div;
-//    };
-
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
         this._div.innerHTML = '<h4>কবরের বিস্তারিত</h4>' +  (props ?
@@ -359,26 +324,3 @@ return L.Control.Compass;
     };
 
     info.addTo(map);
-
-//    var gravedata = {
-//        "type": "Feature",
-//        "properties": {
-//            "name": "Coors Field",
-//            "amenity": "Baseball Stadium",
-//            "popupContent": "This is where the Rockies play!"
-//        },
-//        "geometry": {
-//            "type": "Point",
-//            "coordinates": [-104.99404, 39.75621]
-//        }
-//    };
-
-//    L.geoJSON(geojsonFeature).addTo(map);
-
-
-
-
-//    var gravedata1=L.geoJSON().addTo(map);
-//         gravedata1.addData(gravedata);
-
-//    var gravedata=L.geoJSON(gravedata).addTo(map);
