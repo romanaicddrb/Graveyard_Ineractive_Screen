@@ -6,6 +6,7 @@ import com.graveyard.model_class.dto.DataTableDto.DataTableRequestDto;
 import com.graveyard.model_class.dto.DeathListDto;
 import com.graveyard.model_class.dto.GraveDetail;
 import com.graveyard.service.GraveService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class APIController {
+
+    @Value("${api.baseurl}")
+    private String baseUrl;
 
     private final GraveService graveService;
 

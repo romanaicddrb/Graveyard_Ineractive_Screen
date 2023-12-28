@@ -3,6 +3,8 @@ package com.graveyard.controller;
 import com.graveyard.model_class.dto.GraveDetail;
 import com.graveyard.service.*;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

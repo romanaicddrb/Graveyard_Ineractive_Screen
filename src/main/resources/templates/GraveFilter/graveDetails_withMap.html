@@ -107,7 +107,7 @@
                   <div class="col">
                      <div class="form-group">
                          <label >কবর নম্বর</label>
-                         <p th:text="${data.Grave_no == null OR data.Grave_no == ''} ? 'NO RECORD' : ${data.Grave_no}"></p>
+                         <p th:text="${data.Grave_no == null OR data.Grave_no == ''} ? 'NOT IDENTIFIED' : ${data.Grave_no}"></p>
 
                      </div>
                   </div>
@@ -216,6 +216,7 @@
 <!--<script th:src="@{/resource/JS/graveDetailsWithMap.js}"></script>-->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script th:src="@{/resource/JS/common.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function GetGraveBycode(id){
         const features = gravedata.features;
@@ -228,6 +229,7 @@
     var grave = '[[${data.Grave_no}]]';
     var found = GetGraveBycode(grave);
     var name = '[[${data.Dec_name}]]';
+    var id = '[[${data.Dec_id}]]';
 
 </script>
 <!--<script th:src="@{/resource/JS/graveSearchWithFilter.js}"></script>-->

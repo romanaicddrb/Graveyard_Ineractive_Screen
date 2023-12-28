@@ -1,34 +1,10 @@
 $(document).ready(function(){
-    function getBaseUrl() {
-    var pathArray = location.href.split('/');
-     console.log(pathArray)
-    var protocol = pathArray[0];
-     console.log(protocol)
-    var host = pathArray[2];
-     console.log(host)
-    var url = protocol + '//' + host + '/';
-     console.log(url)
-    return url;
-    }
-var pathArray = location.href.split('/');
-     console.log(pathArray)
-    var protocol = pathArray[0];
-     console.log(protocol)
-    var host = pathArray[2];
-     console.log(host)
-    var url = protocol + '//' + host + '/';
-     console.log(url)
-     console.log(location.href)
-    return url;
-
-
-
     var gidValue = '2';
     $('#myDataTable').DataTable().clear().destroy();
     var myDataTable = $('#myDataTable').DataTable({
 
         language: {
-            "emptyTable": "<div style='position: fixed; z-index: 0; margin-left: 60%;'><img src='../resource/image/nodata.png'> <br><br><p style='color: #333; text-align: center;font-size: 24px;font-style: normal;font-weight: 800;'>তথ্য অনুসন্ধান করে পাওয়া যায় নি</p></div>",
+            "emptyTable": "<div style='position: fixed; z-index: 0; margin-left: 60%;'><img src='"+baseUrlForImage+"/nodata.png'> <br><br><p style='color: #333; text-align: center;font-size: 24px;font-style: normal;font-weight: 800;'>তথ্য অনুসন্ধান করে পাওয়া যায় নি</p></div>",
             "lengthMenu": "Show _MENU_ entries",
             "info": "Showing _START_ to _END_ of _TOTAL_ entries",
             "infoEmpty": "Showing 0 to 0 of 0 entries",
@@ -48,7 +24,7 @@ var pathArray = location.href.split('/');
         "scrollX": true,
         "scrollY": 685,
         "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-        "order": [[6, 'desc']],
+        "order": [[7, 'desc']],
         "fixedHeader": true,
         "select": true,
         "processing": "<i class='fa fa-spinner fa-spin fa-3x fa-fw'></i>vvvv...",
@@ -150,7 +126,7 @@ var pathArray = location.href.split('/');
             };
 
             $.ajax({
-                url: '/api/search',
+                url: baseUrlForSearch,
                 method: 'POST',
                 destroy : true,
                 contentType: 'application/json',
@@ -182,10 +158,8 @@ var pathArray = location.href.split('/');
 //}
 
     function loadDetailsPage(dec_id, graveyard_id) {
-    console.log("loadDetailsPage");
-
-
-       window.location.href = '/graveDetails_withPosition?id=' + dec_id + '&gid=' + graveyard_id;
+       console.log("loadDetailsPage");
+       window.location.href = baseUrlForDetails + '?id=' + dec_id + '&gid=' + graveyard_id;
     }
 
 
