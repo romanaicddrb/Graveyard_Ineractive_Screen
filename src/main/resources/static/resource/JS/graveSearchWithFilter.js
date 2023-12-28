@@ -132,6 +132,7 @@ $(document).ready(function(){
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(data) {
+                console.log(data);
                     myDataTable.clear();
                     if (data.data.length > 0) {
                         myDataTable.rows.add(data.data).draw();
@@ -163,28 +164,6 @@ $(document).ready(function(){
 
        window.location.href = '/graveDetails_withPosition?id=' + dec_id + '&gid=' + graveyard_id;
     }
-
-
-
-
-//    $('.btnD').on('click', function() {
-
-//        swal({
-//            title:"Please wait! Map is loading...",
-//            text:"   ",
-//            icon: "https://www.boasnotas.com/img/loading2.gif",
-//            buttons: false,
-//            closeOnClickOutside: false,
-//            timer: 2500
-//        });
-//        var rowData = myDataTable.row($(this).parents('tr')).data();
-//        // window.location.href = '/graveDetails_withPosition?id=' + rowData.dec_id + '&gid=' + rowData.graveyard_id;
-//        loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
-//    });
-
-
-//const collection = document.getElementsByClassName("btnD");
-//    collection[0].onclick = console.log("hello");
 
 const monthDropDown = document.getElementById("BuriedmonthFilter");
 const monthDropDownDead = document.getElementById("DeadmonthFilter");
@@ -283,7 +262,22 @@ for (let i=2023; i>1973; i--) {
 //        monthNames: [ "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December" ]
 //    });
 //});
+const express = require('express');
+const app = express();
 
+// Enable CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://external-tomcat-server.com');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+// Your API routes go here...
+
+app.listen(3000, () => {
+  console.log('API server listening on port 3000');
+});
 
 
 
