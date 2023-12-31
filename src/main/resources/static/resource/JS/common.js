@@ -26,8 +26,6 @@ $(document).ready(function(){
     document.addEventListener('mouseup', endLongPress);
 });
 
-
-
 jQuery(document).ready(function(){
     jQuery("#visit").load("VisitModal.html");
 });

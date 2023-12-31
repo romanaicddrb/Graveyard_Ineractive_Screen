@@ -1,4 +1,4 @@
-   //test by prianka
+//test by prianka
 (function (factory) {
     if(typeof define === 'function' && define.amd) {
     //AMD
@@ -13,217 +13,154 @@
         factory(window.L);
     }
 })(function (L) {
+    L.Control.Compass = L.Control.extend({
+        includes: L.version[0] =='1' ? L.Evented.prototype : L.Mixin.Events,
+        //Managed Events:
+        //	Event				Data passed		Description
+        //	compass:rotated		{angle}			fired after compass data is rotated
+        //	compass:disabled					fired when compass is disabled
+        //Methods exposed:
+        //	Method 			Description
+        //  getAngle		return Azimut angle
+        //  setAngle		set rotation compass
+        //  activate		active tracking on runtime
+        //  deactivate		deactive tracking on runtime
+        options: {
+            position: 'bottomleft',	//position of control inside map
+            autoActive: false,		//activate control at startup
+            showDigit: false,		//show angle value bottom compass
+            textErr: '',			//error message on alert notification
+            callErr: null,			//function that run on compass error activating
+            angleOffset: 2			//min angle deviation before rotate
+            /* big angleOffset is need for device have noise in orientation sensor */
+        },
+        initialize: function(options) {
+            if(options && options.style)
+                options.style = L.Util.extend({}, this.options.style, options.style);
+            L.Util.setOptions(this, options);
+            this._errorFunc = this.options.callErr || this.showAlert;
+            this._isActive = false;//global state of compass
+            this._currentAngle = null;	//store last angle
+        },
+        onAdd: function (map) {
+            var self = this;
+            this._map = map;
+            var container = L.DomUtil.create('div', 'leaflet-compass');
+            this._button = L.DomUtil.create('span', 'compass-button', container);
+            this._button.href = '#';
+            this._icon = L.DomUtil.create('div', 'compass-icon', this._button);
+            this._digit = L.DomUtil.create('span', 'compass-digit', this._button);
+            this._alert = L.DomUtil.create('div', 'compass-alert', container);
+            this._alert.style.display = 'none';
+            L.DomEvent
+                .on(this._button, 'click', L.DomEvent.stop, this)
+                .on(this._button, 'click', this._switchCompass, this);
+            L.DomEvent.on(window, 'compassneedscalibration', function(e) {
+                self.showAlert('Your compass needs calibrating! Wave your device in a figure-eight motion');
+            }, this);
+            if(this.options.autoActive)
+                this.activate(true);
+            return container;
+        },
+        onRemove: function(map) {
+            this.deactivate();
+            L.DomEvent
+                .off(this._button, 'click', L.DomEvent.stop, this)
+                .off(this._button, 'click', this._switchCompass, this);
+        },
+        _switchCompass: function() {
+            if(this._isActive)
+                this.deactivate();
+            else
+                this.activate();
+        },
 
-L.Control.Compass = L.Control.extend({
+        _rotateHandler: function(e) {
+            var self = this, angle;
+            if(!this._isActive) return false;
+            if(e.webkitCompassHeading) {  //iphone
+            angle = 360 - e.webkitCompassHeading;
+            this._compassIphone = true;
+        }else if(e.alpha)  {   //android
+            angle = e.alpha-180;
+            this._compassAndroid = true;
+        }else {
+            this._errorCompass({message: 'Orientation angle not found'});
+        }
+        angle = Math.round(angle);
+        if(angle % this.options.angleOffset === 0)
+            self.setAngle(angle);
+        },
+        _errorCompass: function(e) {
+            this.deactivate();
+            this._errorFunc.call(this, this.options.textErr || e.message);
+        },
 
-	includes: L.version[0] =='1' ? L.Evented.prototype : L.Mixin.Events,
-	//
-	//Managed Events:
-	//	Event				Data passed		Description
-	//
-	//	compass:rotated		{angle}			fired after compass data is rotated
-	//	compass:disabled					fired when compass is disabled
-	//
-	//Methods exposed:
-	//	Method 			Description
-	//
-	//  getAngle		return Azimut angle
-	//  setAngle		set rotation compass
-	//  activate		active tracking on runtime
-	//  deactivate		deactive tracking on runtime
-	//
-	options: {
-		position: 'bottomleft',	//position of control inside map
-		autoActive: false,		//activate control at startup
-		showDigit: false,		//show angle value bottom compass
-		textErr: '',			//error message on alert notification
-		callErr: null,			//function that run on compass error activating
-		angleOffset: 2			//min angle deviation before rotate
-		/* big angleOffset is need for device have noise in orientation sensor */
-	},
+        _rotateElement: function(e) {
+            var ang = this._currentAngle;
+            //DEBUG e = this._map.getContainer();
+            e.style.webkitTransform = "rotate("+ ang +"deg)";
+            e.style.MozTransform = "rotate("+ ang +"deg)";
+            e.style.transform = "rotate("+ ang +"deg)";
+        },
 
-	initialize: function(options) {
-		if(options && options.style)
-			options.style = L.Util.extend({}, this.options.style, options.style);
-		L.Util.setOptions(this, options);
-		this._errorFunc = this.options.callErr || this.showAlert;
-		this._isActive = false;//global state of compass
-		this._currentAngle = null;	//store last angle
-	},
+        setAngle: function(angle) {
+            if(this.options.showDigit && !isNaN(parseFloat(angle)) && isFinite(angle)) {
+                this._digit.innerHTML = (-angle)+'°';
+            }
+            this._currentAngle = angle;
+            this._rotateElement( this._icon );
+            this.fire('compass:rotated', {angle: angle});
+        },
+        getAngle: function() {	//get last angle
+            return this._currentAngle;
+        },
+        _activate: function () {
+            this._isActive = true;
+            L.DomEvent.on(window, 'deviceorientation', this._rotateHandler, this);
+            L.DomUtil.addClass(this._button, 'active');
+        },
+        activate: function (isAutoActivation) {
+            if (typeof(DeviceOrientationEvent) !== 'undefined' &&
+                typeof(DeviceOrientationEvent.requestPermission) === 'function') {
+                var that = this;
+                DeviceOrientationEvent.requestPermission().then(function (permission) {
+                    if (permission === 'granted')
+                        that._activate();
+                    else if (isAutoActivation !== true)
+                        alert('Cannot activate compass: permission ' + permission);
+                    },
+                function (reason) {
+                    if (isAutoActivation !== true)
+                        alert('Error activating compass: ' + reason);
+                });
+            } else {
+                this._activate();
+            }
+        },
+        deactivate: function() {
+            this.setAngle(0);
+            this._isActive = true;
+            L.DomEvent.off(window, 'deviceorientation', this._rotateHandler, this);
+            L.DomUtil.removeClass(this._button, 'active');
+            this.fire('compass:disabled');
+        },
+        showAlert: function(text) {
+            this._alert.style.display = 'block';
+            this._alert.innerHTML = text;
+            var that = this;
+            clearTimeout(this.timerAlert);
+            this.timerAlert = setTimeout(function() {
+                that._alert.style.display = 'none';
+            }, 5000);
+        }
+    });
 
-	onAdd: function (map) {
-
-		var self = this;
-
-		this._map = map;
-
-		var container = L.DomUtil.create('div', 'leaflet-compass');
-
-		this._button = L.DomUtil.create('span', 'compass-button', container);
-		this._button.href = '#';
-
-		this._icon = L.DomUtil.create('div', 'compass-icon', this._button);
-		this._digit = L.DomUtil.create('span', 'compass-digit', this._button);
-
-		this._alert = L.DomUtil.create('div', 'compass-alert', container);
-		this._alert.style.display = 'none';
-
-		L.DomEvent
-			.on(this._button, 'click', L.DomEvent.stop, this)
-			.on(this._button, 'click', this._switchCompass, this);
-
-		L.DomEvent.on(window, 'compassneedscalibration', function(e) {
-			self.showAlert('Your compass needs calibrating! Wave your device in a figure-eight motion');
-		}, this);
-
-		if(this.options.autoActive)
-			this.activate(true);
-
-		return container;
-	},
-
-	onRemove: function(map) {
-
-		this.deactivate();
-
-		L.DomEvent
-			.off(this._button, 'click', L.DomEvent.stop, this)
-			.off(this._button, 'click', this._switchCompass, this);
-	},
-
-	_switchCompass: function() {
-		if(this._isActive)
-			this.deactivate();
-		else
-			this.activate();
-	},
-
-  _rotateHandler: function(e) {
-
-    var self = this, angle;
-
-    if(!this._isActive) return false;
-
-    if(e.webkitCompassHeading) {  //iphone
-      angle = 360 - e.webkitCompassHeading;
-      this._compassIphone = true;
-    }
-    else if(e.alpha)  {   //android
-      angle = e.alpha-180;
-      this._compassAndroid = true;
-    }
-    else {
-      this._errorCompass({message: 'Orientation angle not found'});
-    }
-
-    angle = Math.round(angle);
-
-    if(angle % this.options.angleOffset === 0)
-      self.setAngle(angle);
-  },
-
-  _errorCompass: function(e) {
-    this.deactivate();
-    this._errorFunc.call(this, this.options.textErr || e.message);
-  },
-
-  _rotateElement: function(e) {
-    var ang = this._currentAngle;
-    //DEBUG e = this._map.getContainer();
-    //
-    e.style.webkitTransform = "rotate("+ ang +"deg)";
-    e.style.MozTransform = "rotate("+ ang +"deg)";
-    e.style.transform = "rotate("+ ang +"deg)";
-  },
-
-  setAngle: function(angle) {
-
-    if(this.options.showDigit && !isNaN(parseFloat(angle)) && isFinite(angle)) {
-
-      this._digit.innerHTML = (-angle)+'°';
-    }
-
-    this._currentAngle = angle;
-    this._rotateElement( this._icon );
-
-    this.fire('compass:rotated', {angle: angle});
-  },
-
-	getAngle: function() {	//get last angle
-		return this._currentAngle;
-	},
-
-	_activate: function () {
-		this._isActive = true;
-
-		L.DomEvent.on(window, 'deviceorientation', this._rotateHandler, this);
-
-		L.DomUtil.addClass(this._button, 'active');
-	},
-
-	activate: function (isAutoActivation) {
-		if (typeof(DeviceOrientationEvent) !== 'undefined' &&
-		    typeof(DeviceOrientationEvent.requestPermission) === 'function') {
-			/* iPhoneOS, must ask interactively */
-			var that = this;
-			DeviceOrientationEvent.requestPermission().then(function (permission) {
-				if (permission === 'granted')
-					that._activate();
-				else if (isAutoActivation !== true)
-					alert('Cannot activate compass: permission ' + permission);
-			    }, function (reason) {
-				if (isAutoActivation !== true)
-					alert('Error activating compass: ' + reason);
-			    });
-		} else {
-			this._activate();
-    }
-	},
-
-	deactivate: function() {
-
-		this.setAngle(0);
-
-		this._isActive = true;
-
-		L.DomEvent.off(window, 'deviceorientation', this._rotateHandler, this);
-
-		L.DomUtil.removeClass(this._button, 'active');
-
-		this.fire('compass:disabled');
-	},
-
-	showAlert: function(text) {
-		this._alert.style.display = 'block';
-		this._alert.innerHTML = text;
-		var that = this;
-		clearTimeout(this.timerAlert);
-		this.timerAlert = setTimeout(function() {
-			that._alert.style.display = 'none';
-		}, 5000);
-	}
+    L.control.compass = function (options) {
+        return new L.Control.Compass(options);
+    };
+    return L.Control.Compass;
 });
-
-L.control.compass = function (options) {
-	return new L.Control.Compass(options);
-};
-
-return L.Control.Compass;
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //console.log(name);
 //create map object in map div with co-ordinate and zoom level
@@ -247,7 +184,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     minZoom: 1, // Set a minimum zoom level
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
-
 var comp = new L.Control.Compass({autoActive: true, showDigit:true});
 map.addControl(comp);
 
@@ -262,7 +198,6 @@ else{
     marker.bindPopup("<b>আপনার বর্তমান অবস্থান</b>", {closeOnClick: false, autoClose: false}).openPopup();
 }
 
-
 //set color of the polygon
 function getColor(d, idg) {
     return  d == "Yes" ? '#A065B6' : idg == "9999999" ? '#FF5733' : 'green';
@@ -271,12 +206,12 @@ function getColor(d, idg) {
 //set the style of the polygon
 function style(feature) {
     return {
-       fillColor: getColor(feature.properties.Available,feature.properties.Grave_ID),
-       weight: 2,
-       opacity: 1,
-       color: 'white',
-       dashArray: '3',
-       fillOpacity: 0.7
+        fillColor: getColor(feature.properties.Available,feature.properties.Grave_ID),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
     };
 }
 
@@ -309,28 +244,12 @@ function onEachFeature(feature, layer) {
     layer.on({
      // mouseover: highlightFeature,
          mouseout: resetHighlight,
-         //click: zoomToFeature,
          click: highlightFeature
     });
 }
 
 var roaddata=L.geoJSON(roaddata).addTo(map)
 var gravedata=L.geoJson(gravedata, {style: style, onEachFeature: onEachFeature}).addTo(map);
-
-//var info = L.control();
-//info.onAdd = function (map) {
-//    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-//    this.update();
-//    return this._div;
-//};
-//
-//// method that we will use to update the control based on feature properties passed
-//info.update = function (props) {
-//    this._div.innerHTML = '<h4>কবরের বিস্তারিত</h4>' +  (props ?
-//    '<b>কবর নম্বর:</b> ' + props.Grave_ID + '<br> <b>ব্লক:</b>' + props.Block + '<br> <b>লেন:</b>' + props.Lane
-//    : 'কবর নির্বাচন করুন');
-//};
-//info.addTo(map);
 
 if(grave==null||grave==""){
     var info = L.control();
@@ -343,17 +262,13 @@ if(grave==null||grave==""){
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
        this._div.innerHTML = '<div style="display: flex; flex-direction: column; gap:10px; padding: 20px; border-radius: 20px; font-family: Hind Siliguri;"><h4>আপনি কি কবর শনাক্ত করতে চান ?</h4><div style="display:flex; justify-content: center; align-items: center; gap: 30px;"><button type="button" class="btn btn-primary" style="width:70px" id="btnY">Yes</button><button type="button" style="width:70px" class="btn btn-danger" id="btnN">No</button></div></div>';
-       //   <p>আপনি কবর শনাক্তকরণে সহায়তা করতে চান?</p>
     };
     info.addTo(map);
 }
 
-
 function subLayerVisibility(radioElement){
-//    if (radioElement.value == 'true') { x=$("#checkbox").is(":checked");
     if(radioElement.id == 'grave_number'){
         if ($(radioElement).prop('checked')==true){
-            //$(".blockLane").addClass("disabledbutton");
             $(".numberBlock").addClass("disabledbutton");
             $(".numberLane").addClass("disabledbutton");
             $('#grave_subLayer').show();
@@ -361,14 +276,13 @@ function subLayerVisibility(radioElement){
             $('#grave_subLayer').hide();
             $(".numberBlock").removeClass("disabledbutton");
             $(".numberLane").removeClass("disabledbutton");
-//            $(".blockLane").removeClass("disabledbutton");
         }
     }else if(radioElement.id == 'block_number'){
         if ($(radioElement).prop('checked')==true){
-          $(".numberGrave").addClass("disabledbutton");
-          $('#block_subLayer').show();
+            $(".numberGrave").addClass("disabledbutton");
+            $('#block_subLayer').show();
         } else{
-          $('#block_subLayer').hide();
+            $('#block_subLayer').hide();
             if(!document.querySelector('#lane_number').checked){
                 $(".numberGrave").removeClass("disabledbutton");
             }
@@ -386,51 +300,33 @@ function subLayerVisibility(radioElement){
     }
 
     if(document.querySelector('#block_number').checked || document.querySelector('#lane_number').checked || document.querySelector('#grave_number').checked){
-        //if(document.querySelector('#grave').value == null){
         $('#grave').keyup(function(e){
-          if ($('#grave').val()) {
-            $(".swal2-confirm").css('display','inline-block');
-            $(".swal2-cancel").css('display','none');
-          } else {
-            $(".swal2-confirm").css('display','none');
-            $(".swal2-cancel").css('display','inline-block');
-          }
+            if ($('#grave').val()) {
+                $(".swal2-confirm").css('display','inline-block');
+                $(".swal2-cancel").css('display','none');
+            } else {
+                $(".swal2-confirm").css('display','none');
+                $(".swal2-cancel").css('display','inline-block');
+            }
         })
         $('#block').keyup(function(e){
-          if ($('#block').val()) {
-            $(".swal2-confirm").css('display','inline-block');
-            $(".swal2-cancel").css('display','none');
-          } else {
-            $(".swal2-confirm").css('display','none');
-            $(".swal2-cancel").css('display','inline-block');
-          }
+            if ($('#block').val()) {
+                $(".swal2-confirm").css('display','inline-block');
+                $(".swal2-cancel").css('display','none');
+            } else {
+                $(".swal2-confirm").css('display','none');
+                $(".swal2-cancel").css('display','inline-block');
+            }
         })
         $('#lane').keyup(function(e){
-          if ($('#lane').val()) {
-            $(".swal2-confirm").css('display','inline-block');
-            $(".swal2-cancel").css('display','none');
-          } else {
-            $(".swal2-confirm").css('display','none');
-            $(".swal2-cancel").css('display','inline-block');
-          }
+            if ($('#lane').val()) {
+                $(".swal2-confirm").css('display','inline-block');
+                $(".swal2-cancel").css('display','none');
+            } else {
+                $(".swal2-confirm").css('display','none');
+                $(".swal2-cancel").css('display','inline-block');
+            }
         })
-
-//        var checkInput = document.getElementById("grave");
-//            checkInput.addEventListener('keyup', (e)=>{
-//              if (e.target.value===''){
-//                $(".swal2-confirm").css('display','none');
-//            }else{
-//                $(".swal2-confirm").css('display','inline-block');
-//            }
-//          })
-
-
-//            $(".swal2-cancel").css('display','none');
-//            $(".swal2-confirm").css('display','inline-block');
-        //}else{
-//            $(".swal2-cancel").css('display','none');
-//            $(".swal2-confirm").css('display','inline-block');
-        //}
     }else{
         $(".swal2-cancel").css('display','inline-block');
         $(".swal2-confirm").css('display','none');
@@ -440,71 +336,28 @@ function subLayerVisibility(radioElement){
 $(document).on('click','#btnY', function() {
     Swal.fire({
         title: name+"<br> এর কবর শনাক্ত করতে <br>আপনি কিভাবে সাহায্য করতে চান?",
-       // text: "Name: "+name+" and ID: "+id, এর কবর সনাক্তকরণে আপনি কিভাবে সাহায্য করতে চান?
         html:
-        '<div class="row d-flex" style="justify-content: center; gap: 30px;">'+
-            '<div class="numberGrave"><input type="checkbox" id="grave_number" onchange="subLayerVisibility(this);">'+
-            '<br><label>কবর নম্বর</label>'+
-                '<div style="display:none;" id="grave_subLayer">'+
-                    '<input id="grave" type="number" placeholder="কবর নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px; padding: 15px; overflow: hidden;"></div>' +
-                '</div>'+
-
-            '<div class="numberBlock"><input type="checkbox" id="block_number" onchange="subLayerVisibility(this);">'+
-            '<br><label>ব্লক</label>'+
-                '<div style="display:none;" id="block_subLayer">'+
-                    '<input id="block" type="number" placeholder="ব্লক নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px; padding: 15px;"></div>' +
-                '</div>'+
-
-            '<div class="numberLane"><input type="checkbox" id="lane_number" onchange="subLayerVisibility(this);">'+
-                '<br><label>সারি</label>'+
-                    '<div style="display:none;" id="lane_subLayer">'+
-                        '<input id="lane" type="number" placeholder="সারি নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px; padding: 15px;"></div>' +
+            '<div class="row d-flex" style="justify-content: center; gap: 30px;">'+
+                '<div class="numberGrave"><input type="checkbox" id="grave_number" onchange="subLayerVisibility(this);">'+
+                '<br><label>কবর নম্বর</label>'+
+                    '<div style="display:none;" id="grave_subLayer">'+
+                        '<input id="grave" type="number" placeholder="কবর নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px; padding: 15px; overflow: hidden;"></div>' +
                     '</div>'+
 
-//                '<div class="row d-flex blockLane" style="gap: 30px;">'+
-//                    '<div><input type="checkbox" id="grave_line_yes" name="grave_block_line_name" value="block" onchange="subLayerVisibility(this);">'+
-//                        '<br><label for="block">ব্লক</label>'+
-//                            '<div style="display:none;" id="block_subLayer">'+
-//                                '<input type="text" class="form-control" placeholder="ব্লক নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px;">' +
-//                            '</div>'+
-//                    '</div>'+
-//                    '<div><input type="checkbox" id="grave_line_no" name="grave_block_line_name" value="line" onchange="subLayerVisibility(this);">'+
-//                        '<br><label for="line">সারি</label>'+
-//                            '<div style="display:none;" id="line_subLayer">'+
-//                                '<input type="text" class="form-control" placeholder="সারি নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px;"></div>' +
-//                            '</div>'+
-//                    '</div>'+
-//                '</div>'+
+                '<div class="numberBlock"><input type="checkbox" id="block_number" onchange="subLayerVisibility(this);">'+
+                '<br><label>ব্লক</label>'+
+                    '<div style="display:none;" id="block_subLayer">'+
+                        '<input id="block" type="number" placeholder="ব্লক নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px; padding: 15px;"></div>' +
+                    '</div>'+
 
-//            '<div><div class="blockLane"><input type="radio" id="block_name" name="blockLane_name" value="true" onchange="subLayerVisibility(this);">'+
-//            '<br><label for="number_of_block">ব্লক</label></div>'+
-//                '<div style="display:none;" id="block_name_subLayer">'+
-//                    '<input id="grave" type="text" class="form-control" placeholder="ব্লক নম্বর" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
-//                '</div>'+
-//
-//            '<div class="blockLane"><input type="radio" id="lane_name" name="blockLane_name" value="true" onchange="subLayerVisibility(this);">'+
-//            '<br><label for="number_of_lane">সারি</label></div>'+
-//                '<div style="display:none;" id="lane_name_subLayer">'+
-//                    '<input id="grave" type="text" class="form-control" placeholder="সারি নম্বর" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
-//                '</div></div>'+
-        '</div><br>'+
-        '<p style="color: blue">***আপনার আত্মীয়/ পরিচিত ব্যক্তির কবরের সামনে ব্লক, লেন, কবর নম্বর দেয়া আছে। অনুগ্রহ করে সেই সকল তথ্য দিয়ে সহায়তা করুন।</p>',
-
-
-//        '<label>কবর নম্বর দিয়ে &nbsp; &nbsp;</label><input type="radio" id="grave_yes" name="help_grave_name" value="true" onchange="subLayerVisibility(this);"><label for="yes">&nbsp; Yes &nbsp; &nbsp;</label><input type="radio" id="grave_no" name="help_grave_name" value="false" onchange="subLayerVisibility(this);"><label for="no">&nbsp;No</label>' +
-//        '<div style="display:none;" id="help_grave_name_subLayer"><input id="grave" type="text" class="form-control" placeholder="Grave Number" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
-//        '<br><label>কবরের ব্লক নম্বর দিয়ে &nbsp; &nbsp;</label><input type="radio" id="grave_block_yes" name="help_grave_block_name" value="true" onchange="subLayerVisibility(this);"><label for="yes">&nbsp; Yes &nbsp; &nbsp;</label><input type="radio" id="grave_block_no" name="help_grave_block_name" value="false" onchange="subLayerVisibility(this);"><label for="no">&nbsp;No</label>' +
-//        '<div style="display:none;" id="help_grave_block_name_subLayer"><input id="graveBlock" type="text" class="form-control" placeholder="Grave Block Number" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
-//        '<br><label>কবরের সারি নম্বর দিয়ে &nbsp; &nbsp;</label><input type="radio" id="grave_line_yes" name="help_grave_line_name" value="true" onchange="subLayerVisibility(this);"><label for="yes">&nbsp; Yes &nbsp; &nbsp;</label><input type="radio" id="grave_line_no" name="help_grave_line_name" value="false" onchange="subLayerVisibility(this);"><label for="no">&nbsp;No</label>' +
-//        '<div style="display:none;" id="help_grave_line_name_subLayer"><input id="graveLine" type="text" class="form-control" placeholder="Grave Line Number" style="font-size: small;height: calc(2.25rem + 2px);"></div>',
-
-
-//            '<div> <strong>'+name+'</strong></div>'+
-//            '<br><label><strong>Grave Number: &nbsp; &nbsp;</strong></label><input id="swal-input0" class="swal2-input" type="text" style="display: inline; margin: 0; padding:0;">' +
-//            '<br><br><label><strong>Select Block: &nbsp; &nbsp;  </strong></label><select onchange="selectBlock()" id="swal-input1" class="swal2-input" style="display: inline;"> <option value="" selected>Select Block</option></select>' +
-//            '<br><br><label><strong>Select Lane: &nbsp; &nbsp;  </strong></label><select onchange="selectLane()" id="swal-input2" class="swal2-input" style="display: inline;"> <option value="" selected>Select Lane</option></select>' +
-//            '<input id="swal-input3" class="swal2-input" type="hidden" value="' + id + '" style="display: block;">' ,
-
+                '<div class="numberLane"><input type="checkbox" id="lane_number" onchange="subLayerVisibility(this);">'+
+                    '<br><label>সারি</label>'+
+                        '<div style="display:none;" id="lane_subLayer">'+
+                            '<input id="lane" type="number" placeholder="সারি নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px; padding: 15px;"></div>' +
+                        '</div>'+
+            '</div><br>'+
+            '<input id="grave_id" type="hidden" value="' + id + '" style="display: none;">'+
+            '<p style="color: blue">***আপনার আত্মীয়/ পরিচিত ব্যক্তির কবরের সামনে ব্লক, লেন, কবর নম্বর দেয়া আছে। অনুগ্রহ করে সেই সকল তথ্য দিয়ে সহায়তা করুন।</p>',
 
         showCancelButton: true,
         showConfirmButton: false,
@@ -520,7 +373,6 @@ $(document).on('click','#btnY', function() {
         else {
             console.log('Form Canceled');
         }
-
     });
 });
 
@@ -532,7 +384,7 @@ $(document).on('click','#swal-input1', function selectBlock(){
     const blockDropDown = document.getElementById("swal-input1");
     for (let i=1; i<21; i++) {
         if(i<10){
-          i = "0" + i;
+            i = "0" + i;
         }
         let option = document.createElement("option");
         option.setAttribute('value', i);
@@ -546,7 +398,7 @@ $(document).on('click','#swal-input2', function selectLane(){
     const laneDropDown = document.getElementById("swal-input2");
     for (let i=1; i<21; i++) {
         if(i<10){
-          i = "0" + i;
+            i = "0" + i;
         }
         let option = document.createElement("option");
         option.setAttribute('value', i);

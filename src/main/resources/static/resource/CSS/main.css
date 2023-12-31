@@ -12,49 +12,47 @@ body {
 }
 
 #homeBg{
-  background-image: url("HomePageBg.png");
-  background-size: cover;
-  min-width: 2000px;
-  min-height: 2211px;
+    background-image: url("HomePageBg.png");
+    background-size: cover;
+    min-width: 2000px;
+    min-height: 2211px;
 }
 
-.video { /* This is to make the video appear behind everything else */
+.video {
     position: fixed;
-    z-index: -1000; /* Z-Index is -1000 just to be safe */
+    z-index: -1000;
     right: 0;
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
     display: flex;
-
 }
 
 #home-top-video:before {
-  content:"";
-  position: fixed;
-  top:0;
-  right:0;
-  left:0;
-  bottom:0;
-  z-index:1;
-  background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);
-  mix-blend-mode: multiply;
+    content:"";
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    z-index:1;
+    background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);
+    mix-blend-mode: multiply;
 }
 
 #home-top-video {
-  left: 0%;
-  top: 0%;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
+    left: 0%;
+    top: 0%;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
 .headerOf{
     display: flex;
     margin: 25px 0px 25px 15px;
-    /* width: 1759px; */
     justify-content: space-between;
     align-items: center;
 }
@@ -87,143 +85,134 @@ body {
 }
 
 .logoText{
-  color: #FFF;
-  display: flex;
-  justify-content: right;
-  text-align: right;
-  font-size: 22px;
-  padding: 0;
-  /* font-style: normal; */
-  font-weight: 600;
-  line-height: normal;
+    color: #FFF;
+    display: flex;
+    justify-content: right;
+    text-align: right;
+    font-size: 22px;
+    padding: 0;
+    /* font-style: normal; */
+    font-weight: 600;
+    line-height: normal;
 }
 
 .contentCenter{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: Hind Siliguri;
-  gap: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Hind Siliguri;
+    gap: 40px;
 }
 
 .titleB{
-  color: #FFF;
-  text-align: center;
-  text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
-  font-family: Hind Siliguri;
-  display: flex;
-  flex-direction: column;
-  font-style: normal;
-  padding: 25px 10px;
-  border-radius: 10px;
-  border: 2px solid rgba(255, 255, 255, 0.44);
-  background: rgba(17, 117, 189, 0.19);
-  line-height: 60px;
-  margin-bottom: 50px;
+    color: #FFF;
+    text-align: center;
+    text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+    font-family: Hind Siliguri;
+    display: flex;
+    flex-direction: column;
+    font-style: normal;
+    padding: 25px 10px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.44);
+    background: rgba(17, 117, 189, 0.19);
+    line-height: 60px;
+    margin-bottom: 50px;
 }
 
 .contentSec{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 100%;
-  line-height: normal;
-  padding: 0px;
-  color: #FFF;
-  font-weight: 500;
-  font-family: Hind Siliguri;
-  font-style: normal;
-  display: flex;
-  text-align: justify;
-  font-size: calc(16.8px + 6 * ((100vw - 400px) / 680));
-  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.60);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100%;
+    line-height: normal;
+    padding: 0px;
+    color: #FFF;
+    font-weight: 500;
+    font-family: Hind Siliguri;
+    font-style: normal;
+    display: flex;
+    text-align: justify;
+    font-size: calc(16.8px + 6 * ((100vw - 400px) / 680));
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.60);
 }
 
 
 
 .centerBottom{
-  display: flex;
-  /* align-items: flex-start; */
-  gap: 20px;
-  padding: 0px;
-
-  .graveSearch{
     display: flex;
+    gap: 20px;
     padding: 0px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex: 1 0 0;
-
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.69);
-    background: #1175BD;
-
-    p{
-      color: #FFFFFF;
-      font-family: Hind Siliguri;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      display: inline;
+    .graveSearch{
+        display: flex;
+        padding: 0px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex: 1 0 0;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.69);
+        background: #1175BD;
+        p{
+            color: #FFFFFF;
+            font-family: Hind Siliguri;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            display: inline;
+        }
     }
-  }
-
-  .mapSearch{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    gap: 10px;
-    flex: 1 0 0;
-
-    border-radius: 10px;
-    background: #FFF;
-
-    p{
-      font-family: Hind Siliguri;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
+    .mapSearch{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        gap: 10px;
+        flex: 1 0 0;
+        border-radius: 10px;
+        background: #FFF;
+        p{
+            font-family: Hind Siliguri;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
     }
-  }
 }
 
-.footOf { /* This is for the content */
+.footOf {
     position: fixed;
-    z-index: 1; /* This can be set to any number greater than -1000. */
+    z-index: 1;
     bottom: 0;
-    /* background: rgba(0, 0, 0, 0.5); */
     color: #f1f1f1;
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 25px 20px;
-    /* align-items: center; */
     gap: 4px;
 }
 
 p{
-  margin: auto;
-  align-content: center;
+    margin: auto;
+    align-content: center;
 }
 
 .footRight{
-  display: flex;
-  padding: 0px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 10px;
-  background: rgba(12, 64, 101, 0.85);
+    display: flex;
+    padding: 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    background: rgba(12, 64, 101, 0.85);
 
-  p{
-    color: #343434;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+    p{
+        color: #343434;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
 }
 
 .modal {
@@ -240,7 +229,6 @@ p{
     background-color: rgba(0,0,0,0.4);
 }
 
-
 .loader-wrapper {
     width: 100%;
     height: 100%;
@@ -252,27 +240,25 @@ p{
     justify-content: center;
     align-items: center;
 }
-    /*z-index: 900000;
-}
 
 .loader {
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
 }*/
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 
@@ -280,15 +266,12 @@ p{
     background: none !important;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
-

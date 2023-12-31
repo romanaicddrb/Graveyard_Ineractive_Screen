@@ -2,7 +2,6 @@ $(document).ready(function(){
     var gidValue = '2';
     $('#myDataTable').DataTable().clear().destroy();
     var myDataTable = $('#myDataTable').DataTable({
-
         language: {
             "emptyTable": "<div style='position: fixed; z-index: 0; margin-left: 60%;'><img src='"+baseUrlForImage+"/nodata.png'> <br><br><p style='color: #333; text-align: center;font-size: 24px;font-style: normal;font-weight: 800;'>তথ্য অনুসন্ধান করে পাওয়া যায় নি</p></div>",
             "lengthMenu": "Show _MENU_ entries",
@@ -30,7 +29,6 @@ $(document).ready(function(){
         "processing": "<i class='fa fa-spinner fa-spin fa-3x fa-fw'></i>vvvv...",
         "destroy": true,
         "orderable": true,
-
         columns: [
             { data: 'dec_id', visible: false, width: '0%'},
             { data: 'graveyard_id' , visible: false, width: '0%' },
@@ -40,7 +38,6 @@ $(document).ready(function(){
             { data: 'dec_name' },
             { data: 'father', },
             { data: 'bur_date', width: '160px', },
-
             { data: 'address' , visible: false, width: '0%' },
             { data: null,
                 render: function (data, type, row) {
@@ -55,31 +52,29 @@ $(document).ready(function(){
             }
         ],
         "columnDefs": [{
-                "targets": [5, 6], // Column indexes (0-based) where transformation should be applied
-                "render":
-                    function (data, type, row) {
+            "targets": [5, 6], // Column indexes (0-based) where transformation should be applied
+            "render":
+                function (data, type, row) {
                     // Apply text-transform: uppercase to the rendered content
-                        return type === 'display' && data !== null ? data.toUpperCase() : data;
-                    }
-                },{
-                    targets: [4, 7], // Assuming the 'Date' column is at index 0
-                    render: function(data, type, row, meta) {
-                        // Format the date as 'DD-MM-YYYY' manually
-                        if (type === 'display' && data) {
-                            var date = new Date(data);
-                            var day = date.getDate().toString().padStart(2, '0');
-                            var month = (date.getMonth() + 1).toString().padStart(2, '0');
-                            var year = date.getFullYear();
-                            return day + '-' + month + '-' + year;
-                        }
-                        return data;
-                    }
-                },{
-                    orderable: false, targets: 9
+                    return type === 'display' && data !== null ? data.toUpperCase() : data;
                 }
+            },{
+                targets: [4, 7], // Assuming the 'Date' column is at index 0
+                render: function(data, type, row, meta) {
+                    if (type === 'display' && data) {
+                        var date = new Date(data);
+                        var day = date.getDate().toString().padStart(2, '0');
+                        var month = (date.getMonth() + 1).toString().padStart(2, '0');
+                        var year = date.getFullYear();
+                        return day + '-' + month + '-' + year;
+                    }
+                    return data;
+                }
+            },{
+                orderable: false, targets: 9
+            }
         ],
     });
-
 
     $(document).on('click','.btnD', function() {
         swal({
@@ -94,7 +89,7 @@ $(document).ready(function(){
         loadDetailsPage(rowData.dec_id,rowData.graveyard_id);
     });
 
-  $('#searchBtn').on('click', function() {
+    $('#searchBtn').on('click', function() {
         var memoFilter = $('#MemoFilter').val();
         var deadNameFilter = $('#DeadnameFilter').val();
         var deadDayFilter = $('#DeaddayFilter').val();
@@ -149,37 +144,21 @@ $(document).ready(function(){
             $('#filterFieldEmpty').text("প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন");
         }
     });
-
-
-
 });
 
-//function btnClick(){
-//console.log("btnClick");
-//}
-
-    function loadDetailsPage(dec_id, graveyard_id) {
-       console.log("loadDetailsPage");
-       window.location.href = baseUrlForDetails + '?id=' + dec_id + '&gid=' + graveyard_id;
-    }
+function loadDetailsPage(dec_id, graveyard_id) {
+    console.log("loadDetailsPage");
+    window.location.href = baseUrlForDetails + '?id=' + dec_id + '&gid=' + graveyard_id;
+}
 
 const monthDropDown = document.getElementById("BuriedmonthFilter");
 const monthDropDownDead = document.getElementById("DeadmonthFilter");
 const monthData = {
 //"জানুয়ারি": "01","ফেব্রুয়ারি": "02","মার্চ": "03", "এপ্রিল": "04", "মে": "05", "জুন": "06",
 //"জুলাই": "07", "আগস্ট": "08", "সেপ্টেম্বর": "09", "অক্টোবর": "10", "নভেম্বর": "11", "ডিসেম্বর": "12"
-    "January": "01",
-    "February": "02",
-    "March": "03",
-    "April": "04",
-    "May": "05",
-    "June": "06",
-    "July": "07",
-    "August": "08",
-    "September": "09",
-    "October": "10",
-    "November": "11",
-    "December": "12"
+    "January": "01", "February": "02", "March": "03", "April": "04",
+    "May": "05", "June": "06", "July": "07", "August": "08",
+    "September": "09", "October": "10", "November": "11", "December": "12"
 }
 
 for (let key in monthData) {
@@ -202,7 +181,7 @@ const dayDropDown = document.getElementById("BurieddayFilter");
 const dayDropDownDead = document.getElementById("DeaddayFilter");
 for (let i=1; i<31; i++) {
     if(i<10){
-      i = "0" + i;
+        i = "0" + i;
     }
     let option = document.createElement("option");
     option.setAttribute('value', i);
@@ -213,7 +192,7 @@ for (let i=1; i<31; i++) {
 
 for (let i=1; i<31; i++) {
     if(i<10){
-      i = "0" + i;
+        i = "0" + i;
     }
     let option = document.createElement("option");
     option.setAttribute('value', i);
@@ -232,8 +211,6 @@ for (let i=2023; i>1973; i--) {
     yearDropDown.appendChild(option);
 }
 
-
-
 for (let i=2023; i>1973; i--) {
     let option = document.createElement("option");
     option.setAttribute('value', i);
@@ -242,40 +219,19 @@ for (let i=2023; i>1973; i--) {
     yearDropDownDead.appendChild(option);
 }
 
-//
-//function handleDateChange() {
-//    // Get the selected date from the input
-//    var selectedDate = document.getElementById("dayPicker").value;
-//
-//    // Parse the date string and extract the day
-//    var dateObject = new Date(selectedDate);
-//    var selectedDay = dateObject.getDate();
-//
-//    // Display the selected day (you can perform other actions as needed)
-//    alert("Selected Day: " + selectedDay);
-//}
-//$( function handleDateChange() {
-////     var date = $('#dayPicker').datepicker({
-//    $( "#dayPicker" ).datepicker({
-//        monthNames: [ "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December" ]
-//    });
-//});
 const express = require('express');
 const app = express();
 
 // Enable CORS
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://external-tomcat-server.com');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
+    res.header('Access-Control-Allow-Origin', 'http://external-tomcat-server.com');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
 });
 
 // Your API routes go here...
 
 app.listen(3000, () => {
-  console.log('API server listening on port 3000');
+    console.log('API server listening on port 3000');
 });
-
-
-

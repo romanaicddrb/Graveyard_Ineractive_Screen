@@ -1,43 +1,40 @@
 body, div, a, p, span{
-	    user-select: text !important;
-      }
+    user-select: text !important;
+}
 
-	  body{
-	    background: #F5F5F5;
-	    font-family: Hind Siliguri;
-        font-style: normal;
-      }
+body{
+    background: #F5F5F5;
+    font-family: Hind Siliguri;
+    font-style: normal;
+}
 
-	  p, h1, h2, h3, h4, h5, h6{
-        cursor: auto;
-        user-select: text !important;
-        }::selection{
-        background-color: #338FFF !important;
-	  }
-	  #myDataTable thead th {
-		  background-color: #E1EFFE;
-	  }
+p, h1, h2, h3, h4, h5, h6{
+    cursor: auto;
+    user-select: text !important;
+}::selection{
+    background-color: #338FFF !important;
+}
 
-     #map {
-        /*position: relative;*/
-        height: 400px;
-        height: 730px;
-        width: 100%;
-     }
+#myDataTable thead th {
+    background-color: #E1EFFE;
+}
 
-    .info {
-      padding: 6px 8px;
-      background: rgba(255,255,255,0.8);
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      border-radius: 5px;
-    }
-    .info h4 {
-      margin: 0 0 5px;
-      color: #777;
-    }
+#map {
+    height: 400px;
+    height: 730px;
+    width: 100%;
+}
 
-
-
+.info {
+    padding: 6px 8px;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
 
 .leaflet-control.leaflet-compass {
 	position:relative;
@@ -45,9 +42,7 @@ body, div, a, p, span{
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
-	/*background-color: rgba(0, 0, 0, 0.25);*/
 	background-color: rgba(255, 255, 255, 0.8);
-	/*background: none;*/
 	box-shadow: 0 1px 7px rgba(0,0,0,0.65);
 	margin-left:10px;
 	margin-top:10px;
@@ -69,7 +64,6 @@ body, div, a, p, span{
 	background: url('../image/compass.jpg') center center no-repeat;
 }
 
-
 .leaflet-compass .compass-alert {
 	position:absolute;
 	right:50;
@@ -83,9 +77,6 @@ body, div, a, p, span{
 	border-radius:4px;
 }
 
-
-
-
 .leaflet-pane svg{
     content:"";
     position: fixed;
@@ -96,25 +87,3 @@ body, div, a, p, span{
     z-index:1;
     mix-blend-mode: multiply;
 }
-/*
-svg {
-    position: absolute;
-    z-index: -1;
-    /* Box shadow to create a black shed effect */
-    /*box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
-}*/
-/*
-.*/
-
-/*
-#blackOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background: linear-gradient(180deg, rgba(3, 71, 92, 0.78) 0.27%, rgba(0, 53, 70, 0.78) 52.93%, rgba(5, 76, 99, 0.58) 98.76%);
-    pointer-events: none; /* Allow interactions with the map under the overlay *//*
-}*/
-
