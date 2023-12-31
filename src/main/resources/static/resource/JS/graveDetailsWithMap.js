@@ -384,14 +384,57 @@ function subLayerVisibility(radioElement){
             }
         }
     }
+
     if(document.querySelector('#block_number').checked || document.querySelector('#lane_number').checked || document.querySelector('#grave_number').checked){
-        $(".swal2-cancel").css('display','none');
-        $(".swal2-confirm").css('display','inline-block');
+        //if(document.querySelector('#grave').value == null){
+        $('#grave').keyup(function(e){
+          if ($('#grave').val()) {
+            $(".swal2-confirm").css('display','inline-block');
+            $(".swal2-cancel").css('display','none');
+          } else {
+            $(".swal2-confirm").css('display','none');
+            $(".swal2-cancel").css('display','inline-block');
+          }
+        })
+        $('#block').keyup(function(e){
+          if ($('#block').val()) {
+            $(".swal2-confirm").css('display','inline-block');
+            $(".swal2-cancel").css('display','none');
+          } else {
+            $(".swal2-confirm").css('display','none');
+            $(".swal2-cancel").css('display','inline-block');
+          }
+        })
+        $('#lane').keyup(function(e){
+          if ($('#lane').val()) {
+            $(".swal2-confirm").css('display','inline-block');
+            $(".swal2-cancel").css('display','none');
+          } else {
+            $(".swal2-confirm").css('display','none');
+            $(".swal2-cancel").css('display','inline-block');
+          }
+        })
+
+//        var checkInput = document.getElementById("grave");
+//            checkInput.addEventListener('keyup', (e)=>{
+//              if (e.target.value===''){
+//                $(".swal2-confirm").css('display','none');
+//            }else{
+//                $(".swal2-confirm").css('display','inline-block');
+//            }
+//          })
+
+
+//            $(".swal2-cancel").css('display','none');
+//            $(".swal2-confirm").css('display','inline-block');
+        //}else{
+//            $(".swal2-cancel").css('display','none');
+//            $(".swal2-confirm").css('display','inline-block');
+        //}
     }else{
         $(".swal2-cancel").css('display','inline-block');
         $(".swal2-confirm").css('display','none');
     }
-
 }
 
 $(document).on('click','#btnY', function() {
@@ -403,19 +446,19 @@ $(document).on('click','#btnY', function() {
             '<div class="numberGrave"><input type="checkbox" id="grave_number" onchange="subLayerVisibility(this);">'+
             '<br><label>কবর নম্বর</label>'+
                 '<div style="display:none;" id="grave_subLayer">'+
-                    '<input id="grave" type="text" placeholder="কবর নম্বর" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
+                    '<input id="grave" type="number" placeholder="কবর নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px; padding: 15px; overflow: hidden;"></div>' +
                 '</div>'+
 
             '<div class="numberBlock"><input type="checkbox" id="block_number" onchange="subLayerVisibility(this);">'+
             '<br><label>ব্লক</label>'+
                 '<div style="display:none;" id="block_subLayer">'+
-                    '<input id="block" type="text" placeholder="ব্লক নম্বর" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
+                    '<input id="block" type="number" placeholder="ব্লক নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px; padding: 15px;"></div>' +
                 '</div>'+
 
             '<div class="numberLane"><input type="checkbox" id="lane_number" onchange="subLayerVisibility(this);">'+
                 '<br><label>সারি</label>'+
                     '<div style="display:none;" id="lane_subLayer">'+
-                        '<input id="block" type="text" placeholder="সারি নম্বর" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
+                        '<input id="lane" type="number" placeholder="সারি নম্বর" style="font-size: small;height: calc(2.25rem + 2px); width: 150px; padding: 15px;"></div>' +
                     '</div>'+
 
 //                '<div class="row d-flex blockLane" style="gap: 30px;">'+
