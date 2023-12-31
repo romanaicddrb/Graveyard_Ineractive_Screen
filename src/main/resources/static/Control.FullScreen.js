@@ -4,25 +4,23 @@
 * Uses fragments from the package 'screenfull'
 */
 (function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-		// define an AMD module that requires 'leaflet'
-		// and resolve to an object containing leaflet
-		define('leafletFullScreen', ['leaflet'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-		// define a CommonJS module that requires 'leaflet'
-		module.exports = factory(require('leaflet'));
-  } else {
-		// Assume 'leaflet' are loaded into global variable already
-		factory(root.L);
-	}
+    if (typeof define === 'function' && define.amd) {
+        // define an AMD module that requires 'leaflet'
+        // and resolve to an object containing leaflet
+        define('leafletFullScreen', ['leaflet'], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        // define a CommonJS module that requires 'leaflet'
+        module.exports = factory(require('leaflet'));
+    } else {
+        // Assume 'leaflet' are loaded into global variable already
+        factory(root.L);
+    }
 }(typeof self !== 'undefined' ? self : this, function (leaflet) {
 	'use strict';
-
 	if (typeof document === 'undefined') {
 		console.warn('"window.document" is undefined; leaflet.fullscreen requires this object to access the DOM');
 		return false;
 	}
-
 	const nativeAPI = (() => {
 		const methodMap = [
 			// Standard
@@ -113,7 +111,7 @@
 			}
 		},
 		nativeAPI: nativeAPI
-};
+    };
 
 	Object.defineProperties(fullscreenAPI, {
 		isFullscreen: {
