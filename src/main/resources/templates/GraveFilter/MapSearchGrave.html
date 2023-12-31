@@ -1,120 +1,101 @@
 <!DOCTYPE html>
 <html lang="en" style="scroll-behavior:smooth" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-
-  <title>Graveyard interactive screen</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-  <!-- Custom styles for this template -->
-<!--  <link th:href="@{/plugins/starter/starter-template.css}" rel="stylesheet">-->
-  <link th:href="@{/resource/CSS/main.css}" rel="stylesheet">
-  <link th:href="@{/resource/CSS/MapSearchGrave.css}" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<!--  <link rel="stylesheet" href="https://unpkg.com/leaflet-compass/dist/leaflet-compass.css" />-->
-  <link rel="stylesheet" th:href="@{Control.FullScreen.css}"/>
-  <!-- Make sure you put this AFTER Leaflet's CSS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-  <script th:src="@{Control.FullScreen.js}"></script>
-
-  <script th:src="@{Graveyard_Banani_Grave_Qgis_4326.js}"></script>
-  <script th:src="@{Road_Banani.js}"></script>
-</head>
-<body>
-
-<div th:replace="CommonTemp/navBar.html :: navbar"></div>
-
-<main role="main" style="margin-top: 98px; padding: 0px 2% 2%; background: #F5F5F5;">
-  <div class="row" style="padding: 0px;margin: 1% 0px;">
-    <ol class="breadcrumb" style="background: none; color: white; padding: 0; margin: 0px;">
-      <li class="breadcrumb-item">
-        <a class="active-2" th:href="@{/}" style="display: inline;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.90727 8.33332L9.90837 3.33222L14.9095 8.33332H14.9084V16.6667H4.90839V8.33332H4.90727ZM3.24172 9.99887L2.01104 11.2296L0.833374 10.0519L8.73086 2.1544C9.38118 1.50408 10.4356 1.50408 11.0859 2.1544L18.9834 10.0519L17.8057 11.2296L16.5751 9.99889V16.6667C16.5751 17.5871 15.8289 18.3333 14.9084 18.3333H4.90839C3.98791 18.3333 3.24172 17.5871 3.24172 16.6667V9.99887Z" fill="#1175BD"/>
-          </svg>
-          <p style="color: #1175BD; display: inline; cursor: pointer;">হোম</p>
-        </a>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#828282"/>
-        </svg>
-        <p style="color: #828282; display: inline; margin: 0px;">ম্যাপ এ দেখুন</p>
-      </li>
-    </ol>
-  </div>
-  <div class="row" style="background: #FFF; border-radius: 20px; display: flex; width: 102%; height: 100%;">
-    <!-- Left Card with Filter Options -->
-    <div class="col-md-12" style="padding: 0;">
-      <div class="d-flex justify-content-between align-items-center" style="padding: 16px 16px 0px 16px;">
-        <p style="color: #205F8B; font-family: Hind Siliguri; font-size: 24px; font-style: normal;
-          font-weight: 500; line-height: normal; text-align: left;
-          padding: 0px; display: flex; margin: 0;"> ম্যাপ এর মাধ্যমে কবর দেখুন</p>
-        <span>
-          <a th:href="@{/graveSearch}">
-            <button type="button" class="btn btn-outline-primary active" id="searchGrave">
-              <img th:src="@{/resource/image/magnify-scan.png}">
-              কবর অনুসন্ধান করুন
-            </button>
-          </a>
-        </span>
-      </div>
-
-      <hr style="width: 100%; height: 1px; background: #DADADA;">
-      <div class="col-md-12 align-items-center" style="display:flex; justify-content: center;
-      gap: 20px; padding-bottom: 16px;">
-        <div>
-          <p style="color: #000;font-size: 16px;font-style: normal; font-weight: 600;
-          line-height: 120%; display:inline; align-items: center; margin: auto;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <circle cx="8" cy="8" r="8" fill="gray"/>
-          </svg>  কবর শনাক্ত করা হয়নি</p>
-        </div>
-        <div>
-          <p style="color: #000;font-size: 16px;font-style: normal; font-weight: 600;
-          line-height: 120%; display:inline; align-items: center; margin: auto;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <circle cx="8" cy="8" r="8" fill="yellow"/>
-          </svg> কবর শনাক্ত করার কাজ চলছে </p>
-        </div>
-        <div>
-          <p style="color: #000;font-size: 16px;font-style: normal; font-weight: 600;
-          line-height: 120%; display:inline; align-items: center; margin: auto;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <circle cx="8" cy="8" r="8" fill="green"/>
-          </svg> কবর শনাক্ত করা হয়েছে </p>
-        </div>
-      </div>
-
-      <div class="col-md-12 card" style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 40px;
-           border: none; border-radius: 20px; width: 100%;">
-        <div id="map"></div>
-          <!-- Filter by Name -->
-      </div>
-    </div>
-  </div>
-
-
-  <div class="loader-wrapper">
-    <img src="https://www.boasnotas.com/img/loading2.gif" alt="loading...">
-  </div>
-
-</main><!-- /.container -->
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-<script src="https://unpkg.com/leaflet-compass/dist/leaflet-compass.min.js"></script>
-<script type="text/javascript" th:src="@{/resource/JS/common.js}"></script>
-<script type="text/javascript" th:src="@{/resource/JS/MapSearchGrave.js}"></script>
-
-</body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+        <title>Graveyard interactive screen</title>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link th:href="@{/resource/CSS/main.css}" rel="stylesheet">
+        <link th:href="@{/resource/CSS/MapSearchGrave.css}" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" th:href="@{Control.FullScreen.css}"/>
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script th:src="@{Control.FullScreen.js}"></script>
+        <script th:src="@{Graveyard_Banani_Grave_Qgis_4326.js}"></script>
+        <script th:src="@{Road_Banani.js}"></script>
+    </head>
+    <body>
+        <div th:replace="CommonTemp/navBar.html :: navbar"></div>
+        <main role="main" style="margin-top: 98px; padding: 0px 2% 2%; background: #F5F5F5;">
+            <div class="row" style="padding: 0px;margin: 1% 0px;">
+                <ol class="breadcrumb" style="background: none; color: white; padding: 0; margin: 0px;">
+                    <li class="breadcrumb-item">
+                        <a class="active-2" th:href="@{/}" style="display: inline;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.90727 8.33332L9.90837 3.33222L14.9095 8.33332H14.9084V16.6667H4.90839V8.33332H4.90727ZM3.24172 9.99887L2.01104 11.2296L0.833374 10.0519L8.73086 2.1544C9.38118 1.50408 10.4356 1.50408 11.0859 2.1544L18.9834 10.0519L17.8057 11.2296L16.5751 9.99889V16.6667C16.5751 17.5871 15.8289 18.3333 14.9084 18.3333H4.90839C3.98791 18.3333 3.24172 17.5871 3.24172 16.6667V9.99887Z" fill="#1175BD"/>
+                            </svg>
+                            <p style="color: #1175BD; display: inline; cursor: pointer;">হোম</p>
+                        </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#828282"/>
+                        </svg>
+                        <p style="color: #828282; display: inline; margin: 0px;">ম্যাপ এ দেখুন</p>
+                    </li>
+                </ol>
+            </div>
+            <div class="row" style="background: #FFF; border-radius: 20px; display: flex; width: 102%; height: 100%;">
+                <!-- Left Card with Filter Options -->
+                <div class="col-md-12" style="padding: 0;">
+                    <div class="d-flex justify-content-between align-items-center" style="padding: 16px 16px 0px 16px;">
+                        <p style="color: #205F8B; font-family: Hind Siliguri; font-size: 24px; font-style: normal;
+                          font-weight: 500; line-height: normal; text-align: left;
+                          padding: 0px; display: flex; margin: 0;"> ম্যাপ এর মাধ্যমে কবর দেখুন</p>
+                        <span>
+                            <a th:href="@{/graveSearch}">
+                                <button type="button" class="btn btn-outline-primary active" id="searchGrave">
+                                    <img th:src="@{/resource/image/magnify-scan.png}">
+                                    কবর অনুসন্ধান করুন
+                                </button>
+                            </a>
+                        </span>
+                    </div>
+                    <hr style="width: 100%; height: 1px; background: #DADADA;">
+                    <div class="col-md-12 align-items-center" style="display:flex; justify-content: center; gap: 20px; padding-bottom: 16px;">
+                        <div>
+                            <p style="color: #000;font-size: 16px;font-style: normal; font-weight: 600; line-height: 120%; display:inline; align-items: center; margin: auto;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <circle cx="8" cy="8" r="8" fill="gray"/>
+                                </svg>
+                                কবর শনাক্ত করা হয়নি
+                            </p>
+                        </div>
+                        <div>
+                            <p style="color: #000;font-size: 16px;font-style: normal; font-weight: 600; line-height: 120%; display:inline; align-items: center; margin: auto;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <circle cx="8" cy="8" r="8" fill="yellow"/>
+                                </svg>
+                                কবর শনাক্ত করার কাজ চলছে
+                            </p>
+                        </div>
+                        <div>
+                            <p style="color: #000;font-size: 16px;font-style: normal; font-weight: 600; line-height: 120%; display:inline; align-items: center; margin: auto;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <circle cx="8" cy="8" r="8" fill="green"/>
+                                </svg>
+                                কবর শনাক্ত করা হয়েছে
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 card" style="padding-top: 0px; padding-left: 20px; padding-right: 20px; padding-bottom: 40px; border: none; border-radius: 20px; width: 100%;">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="loader-wrapper">
+                <img src="https://www.boasnotas.com/img/loading2.gif" alt="loading...">
+            </div>
+        </main><!-- /.container -->
+        <script src="https://unpkg.com/leaflet-compass/dist/leaflet-compass.min.js"></script>
+        <script type="text/javascript" th:src="@{/resource/JS/common.js}"></script>
+        <script type="text/javascript" th:src="@{/resource/JS/MapSearchGrave.js}"></script>
+    </body>
 </html>

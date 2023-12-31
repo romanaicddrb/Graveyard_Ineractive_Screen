@@ -1,242 +1,197 @@
 <!DOCTYPE html>
 <html lang="en" style="scroll-behavior:smooth" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-
-  <title>Graveyard interactive screen</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
-  <link th:href="@{/resource/CSS/main.css}" rel="stylesheet">
-  <link th:href="@{/resource/CSS/graveSearchWithFilter.css}" rel="stylesheet">
-
-<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-</head>
-<body>
-  <div th:replace="CommonTemp/navBar.html :: navbar"></div>
-  <main role="main" class="overflow-hidden"
-        style="margin-top: 98px; padding: 0 1%;">
-    <div class="row gx-5">
-      <div id="bg-top">
-        <div class="video-background" style="margin-top: -20px;">
-          <div class="bg">
-            <img th:src="@{/resource/image/graveSearchWithfilterBG.jpg}" alt="BG">
-          </div>
-        </div>
-      </div>
-
-      <div class="row" style="padding: 0px;margin: 1% 0px;margin-top: 2%;">
-        <ol class="breadcrumb" style="background: none; color: white; padding: 0 1rem; margin: 0px;">
-          <li class="breadcrumb-item">
-            <a class="active-2" th:href="@{/}" style="display: inline;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.90727 8.33332L9.90837 3.33222L14.9095 8.33332H14.9084V16.6667H4.90839V8.33332H4.90727ZM3.24172 9.99887L2.01104 11.2296L0.833374 10.0519L8.73086 2.1544C9.38118 1.50408 10.4356 1.50408 11.0859 2.1544L18.9834 10.0519L17.8057 11.2296L16.5751 9.99889V16.6667C16.5751 17.5871 15.8289 18.3333 14.9084 18.3333H4.90839C3.98791 18.3333 3.24172 17.5871 3.24172 16.6667V9.99887Z" fill="white"/>
-              </svg>
-              <p style="color: white; display: inline; cursor: pointer;">হোম</p>
-            </a>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#D1D5DB"/>
-            </svg>
-            <a class="active-2" href="#" style="display: inline;">
-              <p style="color: white; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>
-            </a>
-          </li>
-
-        </ol>
-      </div>
-    </div>
-
-    <div class="row" style="height: 100%;">
-    <!-- Left Card with Filter Options -->
-
-      <div class="col-md-4">
-      <div class="card"
-           style="padding: 20px; padding-left: 40px; padding-right: 40px; padding-bottom: 70px;
-           border-radius: 20px; background: #FFF; height: 100%;">
-        <div>
-          <p style="color: #205F8B; font-family: Hind Siliguri; font-size: 30px; font-style: normal;
-              font-weight: 500; line-height: normal; margin: auto; align-content: center; padding: 20px 0px;
-              display: flex; align-items: center;">
-            প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন
-          </p>
-        </div>
-        <div class="card-body"
-             style="display: flex; flex-direction: column; align-items: flex-start; padding: 50px;
-                    font-family: Hind Siliguri; font-size: 22px; border-radius: 10px; padding-bottom: 60px; background: #EBEBEB;">
-          <div class="row" style="gap: 20px;">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="MemoFilter">মেমো নম্বর</label>
-                <input type="text" class="form-control" id="MemoFilter">
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="DeadnameFilter">মৃত ব্যক্তির নাম</label>
-                <input type="text" class="form-control" id="DeadnameFilter">
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="DeaddayFilter">মৃত্যুর তারিখ</label>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <select class="form-control" id="DeaddayFilter" >
-                        <option value="" selected>দিন</option>
-                      </select>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+        <title>Graveyard interactive screen</title>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Hind Siliguri' rel='stylesheet'>
+        <link th:href="@{/resource/CSS/main.css}" rel="stylesheet">
+        <link th:href="@{/resource/CSS/graveSearchWithFilter.css}" rel="stylesheet">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    <body>
+        <div th:replace="CommonTemp/navBar.html :: navbar"></div>
+        <main role="main" class="overflow-hidden" style="margin-top: 98px; padding: 0 1%;">
+            <div class="row gx-5">
+                <div id="bg-top">
+                    <div class="video-background" style="margin-top: -20px;">
+                        <div class="bg">
+                            <img th:src="@{/resource/image/graveSearchWithfilterBG.jpg}" alt="BG">
+                        </div>
                     </div>
-                  </div>
-
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <select class="form-control" id="DeadmonthFilter" >
-<!--                        onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();'-->
-                        <option value="" selected>মাস</option>
-                        <!-- Add more month options as needed -->
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                        <select class="form-control" id="DeadyearFilter">
-                          <option value="" selected>সাল</option>
-                        </select>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="BurieddayFilter">দাফনের তারিখ</label>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <select class="form-control" id="BurieddayFilter" >
-<!--                        onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1;'-->
-                        <option value="" selected>দিন</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-4">
-                    <div class="form-group select-wrapper">
-                      <select class="form-control" id="BuriedmonthFilter" >
-                          <option value="" selected>মাস</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <select class="form-control" id="BuriedyearFilter" style="max-height: 200px;" >
-                        <option value="" selected>সাল</option>
-                      </select>
-                    </div>
-                  </div>
+                <div class="row" style="padding: 0px;margin: 1% 0px;margin-top: 2%;">
+                    <ol class="breadcrumb" style="background: none; color: white; padding: 0 1rem; margin: 0px;">
+                        <li class="breadcrumb-item">
+                            <a class="active-2" th:href="@{/}" style="display: inline;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.90727 8.33332L9.90837 3.33222L14.9095 8.33332H14.9084V16.6667H4.90839V8.33332H4.90727ZM3.24172 9.99887L2.01104 11.2296L0.833374 10.0519L8.73086 2.1544C9.38118 1.50408 10.4356 1.50408 11.0859 2.1544L18.9834 10.0519L17.8057 11.2296L16.5751 9.99889V16.6667C16.5751 17.5871 15.8289 18.3333 14.9084 18.3333H4.90839C3.98791 18.3333 3.24172 17.5871 3.24172 16.6667V9.99887Z" fill="white"/>
+                                </svg>
+                                <p style="color: white; display: inline; cursor: pointer;">হোম</p>
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9226 3.92259L12.7441 2.74408L5.48817 10L12.7441 17.2559L13.9226 16.0774L7.8452 10L13.9226 3.92259Z" fill="#D1D5DB"/>
+                            </svg>
+                            <a class="active-2" href="#" style="display: inline;">
+                                <p style="color: white; display: inline; cursor: pointer;">কবর অনুসন্ধান</p>
+                            </a>
+                        </li>
+                    </ol>
                 </div>
-              </div>
             </div>
-            <div class="col-md-12" style="margin-top: 10px;">
-              <button id="searchBtn" type="button" class="btn"
-                      style="width: 100%; background-color: #205F8B;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M13 22.5C7.47715 22.5 3 18.0228 3 12.5C3 6.97715 7.47715 2.5 13 2.5C18.5228 2.5 23 6.97715 23 12.5C23 14.8109 22.2161 16.9387 20.8998 18.6321L27.6339 25.3661L25.8661 27.1339L19.1321 20.3998C17.4387 21.7161 15.3109 22.5 13 22.5ZM20.5 12.5C20.5 16.6421 17.1421 20 13 20C8.85786 20 5.5 16.6421 5.5 12.5C5.5 8.35786 8.85786 5 13 5C17.1421 5 20.5 8.35786 20.5 12.5Z" fill="white"/>
-                </svg>
-              </button>
+            <div class="row" style="height: 100%;">
+                <!-- Left Card with Filter Options -->
+                <div class="col-md-4">
+                    <div class="card" style="padding: 20px; padding-left: 40px; padding-right: 40px; padding-bottom: 70px; border-radius: 20px; background: #FFF; height: 100%;">
+                        <div>
+                            <p style="color: #205F8B; font-family: Hind Siliguri; font-size: 30px; font-style: normal; font-weight: 500; line-height: normal; margin: auto; align-content: center; padding: 20px 0px; display: flex; align-items: center;">
+                                প্রয়োজনীয় তথ্য দিয়ে অনুসন্ধান করুন
+                            </p>
+                        </div>
+                        <div class="card-body" style="display: flex; flex-direction: column; align-items: flex-start; padding: 50px; font-family: Hind Siliguri; font-size: 22px; border-radius: 10px; padding-bottom: 60px; background: #EBEBEB;">
+                            <div class="row" style="gap: 20px;">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="MemoFilter">মেমো নম্বর</label>
+                                        <input type="text" class="form-control" id="MemoFilter">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="DeadnameFilter">মৃত ব্যক্তির নাম</label>
+                                        <input type="text" class="form-control" id="DeadnameFilter">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="DeaddayFilter">মৃত্যুর তারিখ</label>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <select class="form-control" id="DeaddayFilter" >
+                                                        <option value="" selected>দিন</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <select class="form-control" id="DeadmonthFilter" >
+                                                        <!--onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1; this.blur();'-->
+                                                        <option value="" selected>মাস</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <select class="form-control" id="DeadyearFilter">
+                                                        <option value="" selected>সাল</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="BurieddayFilter">দাফনের তারিখ</label>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <select class="form-control" id="BurieddayFilter" >
+                                                        <!--onfocus='this.size=10;' onblur='this.size=1;' onchange='this.size=1;'-->
+                                                        <option value="" selected>দিন</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group select-wrapper">
+                                                    <select class="form-control" id="BuriedmonthFilter" >
+                                                        <option value="" selected>মাস</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <select class="form-control" id="BuriedyearFilter" style="max-height: 200px;" >
+                                                        <option value="" selected>সাল</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-top: 10px;">
+                                    <button id="searchBtn" type="button" class="btn" style="width: 100%; background-color: #205F8B;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13 22.5C7.47715 22.5 3 18.0228 3 12.5C3 6.97715 7.47715 2.5 13 2.5C18.5228 2.5 23 6.97715 23 12.5C23 14.8109 22.2161 16.9387 20.8998 18.6321L27.6339 25.3661L25.8661 27.1339L19.1321 20.3998C17.4387 21.7161 15.3109 22.5 13 22.5ZM20.5 12.5C20.5 16.6421 17.1421 20 13 20C8.85786 20 5.5 16.6421 5.5 12.5C5.5 8.35786 8.85786 5 13 5C17.1421 5 20.5 8.35786 20.5 12.5Z" fill="white"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="col-md-12">
+                                    <label id="filterFieldEmpty" style="color:red; display: block; text-align: center; margin-bottom: -15px;">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Card with Data Table -->
+                <div class="col-md-8">
+                    <div class="card" style="height: 100%; border-radius: 20px;">
+                        <div class="card-body table-responsive"  style="padding: 0px 20px 0px 20px;">
+                            <table class="table align-middle" id="myDataTable" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th style="display:none">Id</th>
+                                    <th style="display:none">GraveId</th>
+                                    <th>মেমো নম্বর</th>
+                                    <th>কবর নম্বর</th>
+                                    <th>মৃত্যুর তারিখ</th>
+                                    <th>মৃত ব্যক্তির নাম</th>
+                                    <th>পিতার নাম</th>
+                                    <th>দাফনের তারিখ</th>
+                                    <th>ঠিকানা</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="col-md-12">
-              <label id="filterFieldEmpty"
-                     style="color:red; display: block; text-align: center; margin-bottom: -15px;">
-              </label>
+            <div class="loader-wrapper">
+                <img src="https://www.boasnotas.com/img/loading2.gif" alt="loading...">
             </div>
-        </div>
-        </div>
-      </div>
-    </div>
+        </main>
 
-      <!-- Right Card with Data Table -->
-      <div class="col-md-8">
-      <div class="card" style="height: 100%; border-radius: 20px;">
-
-        <div class="card-body table-responsive"  style="padding: 0px 20px 0px 20px;">
-          <!-- DataTable style="background: #E1EFFE; border-radius: 20px 20px 0px 0px;"-->
-          <table class="table align-middle" id="myDataTable"
-                 style="width: 100%;">
-            <thead>
-              <tr>
-                <th style="display:none">Id</th>
-                <th style="display:none">GraveId</th>
-                <th>মেমো নম্বর</th>
-                <th>কবর নম্বর</th>
-                <th>মৃত্যুর তারিখ</th>
-                <th>মৃত ব্যক্তির নাম</th>
-                <th>পিতার নাম</th>
-                <th>দাফনের তারিখ</th>
-                <th>ঠিকানা</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <div class="loader-wrapper">
-<!--      <span class="loader">-->
-        <img src="https://www.boasnotas.com/img/loading2.gif" alt="loading...">
-<!--        <span class="loader-inner"></span>-->
-<!--      </span>-->
-    </div>
-
-  </main>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<!--<script src="/plugins/jquery/jquery.min.js"></script>-->
-<!--<script src="/plugins/datatables/jquery.datatables.min.js"></script>-->
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-
-<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-mockjax/1.6.2/jquery.mockjax.min.js"></script>
-<!--<script type="text/javascript" src="//cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.js"></script>-->
-<script th:inline="javascript">
-    var baseUrlForSearch = [[@{/api/search}]];
-
-    const baseUrl = window.location.protocol + '//' + window.location.host;
-    var baseUrlForDetails = [[@{/graveDetails_withPosition}]];
-
-    var baseUrlForImage = [[@{/resource/image}]];
-</script>
-<script type="module" th:src="@{/resource/JS/graveSearchWithFilter.js}"></script>
-<script type="text/javascript" th:src="@{/resource/JS/common.js}"></script>
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mockjax/1.6.2/jquery.mockjax.min.js"></script>
-
-</body>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+        <script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.24/dataRender/datetime.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-mockjax/1.6.2/jquery.mockjax.min.js"></script>
+        <script th:inline="javascript">
+            var baseUrlForSearch = [[@{/api/search}]];
+            const baseUrl = window.location.protocol + '//' + window.location.host;
+            var baseUrlForDetails = [[@{/graveDetails_withPosition}]];
+            var baseUrlForImage = [[@{/resource/image}]];
+        </script>
+        <script type="module" th:src="@{/resource/JS/graveSearchWithFilter.js}"></script>
+        <script type="text/javascript" th:src="@{/resource/JS/common.js}"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mockjax/1.6.2/jquery.mockjax.min.js"></script>
+    </body>
 </html>
