@@ -365,7 +365,6 @@ function subLayerVisibility(radioElement){
         }
     }else if(radioElement.id == 'block_number'){
         if ($(radioElement).prop('checked')==true){
-          var x = 0;
           $(".numberGrave").addClass("disabledbutton");
           $('#block_subLayer').show();
         } else{
@@ -373,13 +372,9 @@ function subLayerVisibility(radioElement){
             if(!document.querySelector('#lane_number').checked){
                 $(".numberGrave").removeClass("disabledbutton");
             }
-//           if(y = 1){$(".numberGrave").removeClass("disabledbutton");}
-// //           debugger;
-//           x = 1;
         }
     }else if(radioElement.id == 'lane_number'){
         if ($(radioElement).prop('checked')==true){
-        var y = 0;
             $(".numberGrave").addClass("disabledbutton");
             $('#lane_subLayer').show();
         } else{
@@ -387,39 +382,20 @@ function subLayerVisibility(radioElement){
             if(!document.querySelector('#block_number').checked){
                 $(".numberGrave").removeClass("disabledbutton");
             }
-//             if(x = 1){$(".numberGrave").removeClass("disabledbutton");}
-//             y = 1;
         }
     }
+    if(document.querySelector('#block_number').checked || document.querySelector('#lane_number').checked || document.querySelector('#grave_number').checked){
+        $(".swal2-cancel").css('display','none');
+        $(".swal2-confirm").css('display','inline-block');
+    }else{
+        $(".swal2-cancel").css('display','inline-block');
+        $(".swal2-confirm").css('display','none');
+    }
+
 }
 
-
-//        if(radioElement.name == 'grave_id_name'){
-//            $(".blockLane").addClass("disabledbutton");
-//            $('#'+radioElement.name+'_subLayer').show();
-//            if(radioElement.value == 'true'){
-//            console.log('true');
-//                $('#'+radioElement.name+'_subLayer').show();}
-//        }else if(radioElement.name == 'grave_block_line_name'){
-//            $(".numberGrave").addClass("disabledbutton");
-//            if(radioElement.value == 'block'){
-//                $('#line_subLayer').hide();
-//                $('#block_subLayer').show();
-//            }else{
-//                $('#block_subLayer').hide();
-//                $('#line_subLayer').show();
-//            }
-//        }
-//    }else{
-//        $('#'+radioElement.name+'_subLayer').hide();
-//    }
-//}
-
-
 $(document).on('click','#btnY', function() {
-//    swal("Yes is working!");
     Swal.fire({
-//        title: "Fill-up the below form for ",
         title: name+"<br> এর কবর শনাক্ত করতে <br>আপনি কিভাবে সাহায্য করতে চান?",
        // text: "Name: "+name+" and ID: "+id, এর কবর সনাক্তকরণে আপনি কিভাবে সাহায্য করতে চান?
         html:
@@ -468,7 +444,7 @@ $(document).on('click','#btnY', function() {
 //                '<div style="display:none;" id="lane_name_subLayer">'+
 //                    '<input id="grave" type="text" class="form-control" placeholder="সারি নম্বর" style="font-size: small;height: calc(2.25rem + 2px);"></div>' +
 //                '</div></div>'+
-        '</div>'+
+        '</div><br>'+
         '<p style="color: blue">***আপনার আত্মীয়/ পরিচিত ব্যক্তির কবরের সামনে ব্লক, লেন, কবর নম্বর দেয়া আছে। অনুগ্রহ করে সেই সকল তথ্য দিয়ে সহায়তা করুন।</p>',
 
 
@@ -491,7 +467,7 @@ $(document).on('click','#btnY', function() {
         showConfirmButton: false,
         confirmButtonColor: '#28a745',
         cancelButtonColor: 'red',
-        //confirmButtonText: 'আপনার সাহযোগিতার জন্য ধন্যবাদ',
+        confirmButtonText: 'আপনার সাহযোগিতার জন্য ধন্যবাদ',
         cancelButtonText: 'Cancel',
         customClass: 'swal-wide',
     }).then((result) => {
