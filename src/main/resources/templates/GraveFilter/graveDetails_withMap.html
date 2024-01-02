@@ -18,14 +18,12 @@
         <link th:href="@{/resource/CSS/main.css}" rel="stylesheet">
         <link th:href="@{/resource/CSS/graveDetailsWithMap.css}" rel="stylesheet">
         <link th:href="@{/resource/CSS/graveSearchWithFilter.css}" rel="stylesheet">
-
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
         <link rel="stylesheet" th:href="@{Control.FullScreen.css}"/>
         <!-- Make sure you put this AFTER Leaflet's CSS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <script th:src="@{Control.FullScreen.js}"></script>
-
         <script th:src="@{Graveyard_Banani_Grave_Qgis_4326.js}"></script>
         <script th:src="@{Road_Banani.js}"></script>
     </head>
@@ -108,42 +106,43 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-7" style="display: flex; flex-direction: column; width: 100%; padding: 0px; overflow: hide;">
-                            <div class="col" style="overflow: hide;">
-                                <div class="form-group">
-                                    <label >দাফনের তারিখ</label>
-                                    <p th:text="${data.Bur_date} ? ${#temporals.format(data.Bur_date, 'dd-MM-yyyy')} : 'NO RECORD'"></p>
+
+                            <div class="col-md-7" style="display: flex; flex-direction: column; width: 100%; padding: 0px; overflow: hide;">
+                                <div class="col" style="overflow: hide;">
+                                    <div class="form-group">
+                                        <label >দাফনের তারিখ</label>
+                                        <p th:text="${data.Bur_date} ? ${#temporals.format(data.Bur_date, 'dd-MM-yyyy')} : 'NO RECORD'"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label >মৃত ব্যক্তির নাম</label>
-                                    <p th:text="${data.Dec_name == null OR data.Dec_name == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Dec_name)}"></p>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label >মৃত ব্যক্তির নাম</label>
+                                        <p th:text="${data.Dec_name == null OR data.Dec_name == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Dec_name)}"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>স্বামী/স্ত্রীর নাম</label>
-                                    <p th:text="${data.Spouse == null OR data.Spouse == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Spouse)}"></p>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>স্বামী/স্ত্রীর নাম</label>
+                                        <p th:text="${data.Spouse == null OR data.Spouse == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Spouse)}"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label >পিতার নাম</label>
-                                    <p th:text="${data.Father == null OR data.Father == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Father)}"></p>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label >পিতার নাম</label>
+                                        <p th:text="${data.Father == null OR data.Father == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Father)}"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label >মাতার নাম</label>
-                                    <p th:text="${data.Mother == null OR data.Mother == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Mother)}"></p>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label >মাতার নাম</label>
+                                        <p th:text="${data.Mother == null OR data.Mother == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Mother)}"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label >ঠিকানা</label>
-                                    <p th:text="${data.Address == null OR data.Address == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Address)}"></p>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label >ঠিকানা</label>
+                                        <p th:text="${data.Address == null OR data.Address == ''} ? 'NO RECORD' : ${#strings.toUpperCase(data.Address)}"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
